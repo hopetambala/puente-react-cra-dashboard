@@ -32,3 +32,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 [CSS Boxes](https://www.bypeople.com/css-boxes/)
 [Flexbox](http://flexbox.buildwithreact.com/)
+[React Router](https://reacttraining.com/react-router/web/example/basic)
