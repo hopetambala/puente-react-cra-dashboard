@@ -8,3 +8,16 @@ export const first_last_names = gql`
         }
     }
 `;
+
+export const age_sex_chronic = gql`
+    query{
+        getEvalMedicalRecords{
+            dob
+            chronic_condition_diabetes
+            chronic_condition_hypertension
+            chronic_condition_other
+            sex
+        }
+    }
+`;
+
