@@ -1,11 +1,15 @@
 import React from 'react';
 import { Row, Container } from 'react-bootstrap';
+import { BrowserRouter as Route, Link } from "react-router-dom";
 
 //Components
 import { Boxx } from '../components/widget/Boxx/Boxx';
-import { Map } from '../components/widget/Map/Map';
+import { LeafletMap } from '../components/widget/Map/LeafletMap';
 
 import { BarChart } from '../components/d3/barchart/BarChart';
+
+//Pages
+import {MedicalEvalAnalytics} from '../pages/MedicalEval';
 
 
 const styles = {
@@ -28,34 +32,28 @@ const styles = {
   }
 
 export class HomePage extends React.Component {
+	constructor(props){
+		super(props)
+	}
+
 	render() {
 		return (
 				<Container style={styles.container}>
-					<BarChart data={[5,10,1,3,10,20,30]} size={[500,500]}></BarChart>
+					{/*<BarChart data={[5,10,1,3,10,20,30]} size={[500,500]}></BarChart>*/}
 
 					<Row style={styles.row}>
-						<Boxx/>
-						<Boxx/>
+						
+						<Link to="/medicalanalytics" ><Boxx/></Link>
+						
 						<Boxx/>
 						<Boxx/>
 					</Row>
 					<Row style={styles.row}>
-						<Map/>
+						<LeafletMap />
 					</Row>
-					<Row>
-						{/*<Query query={fl}>
-							{({ data, loading, error }) => {
-								if (loading) return <p>Loading...</p>;
-								if (error) return <p>Error :(</p>;
-								return data.getPeople.map(({ fname, lname }) =>
-									//<div key={fname}>
-									//	<h1>{fname}: {lname}</h1>
-									//</div>
-									console.log(fname,lname)
-								);
-							}}
-						</Query> */}
-					</Row>
+
+					
+
 				</Container>		
 		);
 	}
