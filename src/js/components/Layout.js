@@ -8,14 +8,9 @@ import { ExportPage } from "../pages/DataExport";
 import { MedicalEvalAnalytics} from '../pages/MedicalEval';
 
 //Apollo
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import {ApolloClient} from "apollo-boost";
 
-
-const client = new ApolloClient({
-  uri: "https://puente-graphql.herokuapp.com/"
-});
-
+import { withApollo } from "react-apollo";
 
 
 const styles = {
@@ -41,7 +36,6 @@ const styles = {
 export default class Layout extends React.Component {
 	render() {
 		return (
-			<ApolloProvider client={client}>
 				<Router>
 					<Nav style={{background:'white'}} className="navbar navbar-expand-lg fixed-top is-white is-dark-text">
 						<div className="navbar-brand h1 mb-0 text-large font-medium">
@@ -61,9 +55,8 @@ export default class Layout extends React.Component {
 					<Route exact path="/" component={HomePage} />
 					<Route path="/dataexport" component={ExportPage} />
 					<Route path="/medicalanalytics" component={MedicalEvalAnalytics} />
-
 				</Router>
-			</ApolloProvider>
+			
 		);
 	}
 }

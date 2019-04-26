@@ -6,14 +6,29 @@ import './index.css';
 import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 
+
+//Apollo
+import ApolloClient from "apollo-boost";
+import { ApolloProvider} from "react-apollo";
+
 import * as serviceWorker from './serviceWorker';
 
 //REACT
 const app =  document.getElementById('root')
 
 
+//Apollo Graphql client
+const client = new ApolloClient({
+    uri: "https://puente-graphql.herokuapp.com/"
+  });
+
 //This renders the layout
-ReactDOM.render(<Layout/>, app);
+ReactDOM.render(
+    <ApolloProvider client={client}>
+        <Layout />
+    </ApolloProvider>
+    ,app
+);
 
 /*
 const app =  document.getElementById('root')

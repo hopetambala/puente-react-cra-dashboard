@@ -39,7 +39,6 @@ export class HomePage extends React.Component {
 	render() {
 		return (
 				<Container style={styles.container}>
-					{/*<BarChart data={[5,10,1,3,10,20,30]} size={[500,500]}></BarChart>*/}
 
 					<Row style={styles.row}>
 						

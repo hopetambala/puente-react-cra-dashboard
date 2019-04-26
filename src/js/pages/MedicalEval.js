@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Container } from 'react-bootstrap';
-import { Query } from 'react-apollo';
+import { Query, withApollo } from 'react-apollo';
 
 //Components
 import { Boxx } from '../components/widget/Boxx/Boxx';
@@ -27,21 +27,8 @@ const styles = {
 		marginBottom:0,
 		paddingBottom:0
 	}
-  }
+}
 
-
-const dataQuery = () => (
-	<Query query={asc}>
-		{({ data, loading, error }) => {
-			if (loading) return <p>Loading...</p>;
-			if (error) return <p>Error :(</p>;
-				
-			return (
-				console.log(data.getEvalMedicalRecords)
-			);
-		}}
-	</Query>
-)
 
 export class MedicalEvalAnalytics extends React.Component {
 	constructor(props){
@@ -51,6 +38,7 @@ export class MedicalEvalAnalytics extends React.Component {
 		}
 	}
 
+	
 
 
 	render() {
@@ -61,26 +49,17 @@ export class MedicalEvalAnalytics extends React.Component {
 						<Boxx/>
 					</Row>
 					<Row style={styles.row}>
-						<BrushBarChronicComponent />
+						<Query query={asc}>
+							{({ data, loading, error }) => {
+								if (loading) return <p>Loading...</p>;
+								if (error) return <p>Error :(</p>;
+								console.log(data.getEvalMedicalRecords);
+								return (
+									<BrushBarChronicComponent data={data} />
+								);
+							}}
+						</Query>
 					</Row>
-
-					<Query query={asc}>
-					{({ data, loading, error }) => {
-						if (loading) return <p>Loading...</p>;
-						if (error) return <p>Error :(</p>;
-						console.log(data.getEvalMedicalRecords);
-						this.setState({
-							data : data.getEvalMedicalRecords
-						}) 
-							
-						return (
-							<div></div>
-						);
-					}}
-					</Query>
-
-					{/* */}
-					
 				</Container>		
 		);
 	}
