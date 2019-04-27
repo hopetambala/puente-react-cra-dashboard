@@ -11,6 +11,11 @@ import { BarChart } from '../components/d3/barchart/BarChart';
 //Pages
 import {MedicalEvalAnalytics} from '../pages/MedicalEval';
 
+//Assets
+import health from '../../assets/health.png';
+import env from '../../assets/env.png'
+import people from '../../assets/people.png'
+
 
 const styles = {
 	container: {
@@ -29,7 +34,8 @@ const styles = {
 		marginBottom:0,
 		paddingBottom:0
 	}
-  }
+}
+
 
 export class HomePage extends React.Component {
 	constructor(props){
@@ -42,10 +48,10 @@ export class HomePage extends React.Component {
 
 					<Row style={styles.row}>
 						
-						<Link to="/medicalanalytics" ><Boxx/></Link>
+						<Link to="/medicalanalytics" ><Boxx background={health}/></Link>
 						
-						<Boxx/>
-						<Boxx/>
+						<Boxx background={env}/>
+						<Boxx background={people}/>
 					</Row>
 					<Row style={styles.row}>
 						<LeafletMap />
