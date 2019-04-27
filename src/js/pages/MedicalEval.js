@@ -53,7 +53,7 @@ export class MedicalEvalAnalytics extends React.Component {
 							{({ data, loading, error }) => {
 								if (loading) return <p>Loading...</p>;
 								if (error) return <p>Error :(</p>;
-								console.log(data.getEvalMedicalRecords);
+								//console.log(data.getEvalMedicalRecords);
 								return (
 									<BrushBarChronicComponent data={data} />
 								);
