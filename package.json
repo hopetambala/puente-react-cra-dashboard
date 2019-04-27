@@ -33,7 +33,8 @@
     "react-scripts": "^2.1.8",
     "react-test-renderer": "^16.8.3",
     "recharts": "^1.5.0",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "underscore": "^1.9.1"
   },
   "scripts": {
     "start": "react-scripts start",
