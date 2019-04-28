@@ -16,10 +16,12 @@ const Div = styled.div`
         //background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1765/bg-blog-card.jpg);
         //background: url(${props => props.img && css});
         //background: ${props => props.inputColor && css|| "palevioletred"};
-        //background: #f8af1e; Puente color
+        background: #f8af1e; Puente color
         background: #1a2a6c;  
         //background: -webkit-linear-gradient(to left, #f8af1e, #b21f1f, #1a2a6c); 
         //background: linear-gradient(20deg, #f8af1e, #b21f1f, #1a2a6c); 
+        //color: #f8af1e;
+        color: #1a2a6c;
 
         box-shadow: 1px 12px 20px 1px rgba(0, 0, 0, 0.2);
     }
