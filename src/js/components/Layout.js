@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";
 import { MedicalEvalAnalytics} from '../pages/MedicalEval';
+import { EnvironHealthAnalytics } from '../pages/EnvironHealth';
 
 //Apollo
 import {ApolloClient} from "apollo-boost";
@@ -55,6 +56,7 @@ export default class Layout extends React.Component {
 					<Route exact path="/" component={HomePage} />
 					<Route path="/dataexport" component={ExportPage} />
 					<Route path="/medicalanalytics" component={MedicalEvalAnalytics} />
+					<Route path="/evalanalytics" component={EnvironHealthAnalytics} />
 				</Router>
 			
 		);

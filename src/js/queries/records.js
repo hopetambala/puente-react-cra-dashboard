@@ -21,3 +21,15 @@ export const age_sex_chronic = gql`
     }
 `;
 
+export const env_age_latrines_clinic = gql`
+    query{
+        getEnvRecords{
+            sex
+            dob
+            latrineAccess
+            clinicAccess
+            numberofIndividualsLivingintheHouse
+            numberofChildrenLivinginHouseUndertheAgeof5
+        }
+    }
+`;
