@@ -44,10 +44,10 @@ export class MedicalEvalAnalytics extends React.Component {
 	render() {
 		return (
 				<Container style={styles.container}>
-					<Row style={styles.row}>
+					{/*<Row style={styles.row}>
 						<Boxx/>
 						<Boxx/>
-					</Row>
+					</Row>*/}
 					<Row style={styles.row}>
 						<Query query={asc}>
 							{({ data, loading, error }) => {
