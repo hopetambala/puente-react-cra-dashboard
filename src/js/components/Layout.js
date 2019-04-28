@@ -31,7 +31,7 @@ export default class Layout extends React.Component {
 					<Route exact path="/" component={HomePage} />
 					<Route path="/dataexport" component={ExportPage} />
 					<Route path="/medicalanalytics" component={MedicalEvalAnalytics} />
-					<Route path="/evalanalytics" component={EnvironHealthAnalytics} />
+					<Route path="/envalanalytics" component={EnvironHealthAnalytics} />
 				</Router>
 			
 		);
