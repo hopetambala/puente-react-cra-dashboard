@@ -8,31 +8,6 @@ import { ExportPage } from "../pages/DataExport";
 import { MedicalEvalAnalytics} from '../pages/MedicalEval';
 import { EnvironHealthAnalytics } from '../pages/EnvironHealth';
 
-//Apollo
-import {ApolloClient} from "apollo-boost";
-
-import { withApollo } from "react-apollo";
-
-
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		//alignItems: 'flex-center',
-		alignContent: 'flex-start',
-		paddingTop: '5%'
-		
-	},
-	row: {
-		//height:'100vh',	
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	}
-  }
-
 
 export default class Layout extends React.Component {
 	render() {

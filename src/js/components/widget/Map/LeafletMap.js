@@ -1,5 +1,6 @@
 import React from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 /*type State = {
   lat: number,
@@ -16,7 +17,7 @@ export class LeafletMap extends React.Component{
   }
 
   async componentDidMount() {
-    await fetch('http://puente-api.herokuapp.com/records/organizations/WOF')
+    await fetch('http://puente-api.herokuapp.com/records/')
       .then(response => response.json())
       .then(data => this.setState({ places: data.records })
       );
@@ -29,7 +30,7 @@ export class LeafletMap extends React.Component{
       lat: 18.7357,
       lng: -70.1627
     },
-    zoom: 10
+    zoom: 9
 };
 
   render() {
@@ -41,6 +42,7 @@ export class LeafletMap extends React.Component{
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <MarkerClusterGroup>
         {places.map(place => (
             <Marker position={[place.latitude,place.longitude]}>
               <Popup>
@@ -48,6 +50,8 @@ export class LeafletMap extends React.Component{
               </Popup>
             </Marker>
         ))}
+        </MarkerClusterGroup>
+
         
       </Map>
     )
