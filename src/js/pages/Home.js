@@ -1,15 +1,11 @@
 import React from 'react';
 import { Row, Container } from 'react-bootstrap';
 import { BrowserRouter as Route, Link } from "react-router-dom";
+import styled from 'styled-components';
 
 //Components
 import { Boxx } from '../components/widget/Boxx/Boxx';
 import { LeafletMap } from '../components/widget/Map/LeafletMap';
-
-import { BarChart } from '../components/d3/barchart/BarChart';
-
-//Pages
-import {MedicalEvalAnalytics} from '../pages/MedicalEval';
 
 //Assets
 import health from '../../assets/health.png';
@@ -36,6 +32,14 @@ const styles = {
 	}
 }
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+	}
+	margin: 2%;
+`;
 
 export class HomePage extends React.Component {
 	constructor(props){
@@ -48,9 +52,14 @@ export class HomePage extends React.Component {
 
 					<Row style={styles.row}>
 						
-						<Link to="/medicalanalytics" ><Boxx background={health}/></Link>
+						<StyledLink to="/medicalanalytics">
+							<Boxx background={health}/>
+						</StyledLink>
 						
-						<Boxx background={env}/>
+						<StyledLink to="/evalanalytics" >
+							<Boxx background={env}/>
+						</StyledLink>
+
 						<Boxx background={people}/>
 					</Row>
 					<Row style={styles.row}>
