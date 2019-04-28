@@ -11,6 +11,7 @@ import { LeafletMap } from '../components/widget/Map/LeafletMap';
 import health from '../../assets/health.png';
 import env from '../../assets/env.png'
 import people from '../../assets/people.png'
+import {HomePageText} from '../providers/Text';
 
 
 const styles = {
@@ -32,7 +33,8 @@ const styles = {
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-
+	
+	color: black;
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
 	}
@@ -51,11 +53,19 @@ export class HomePage extends React.Component {
 					<Row style={styles.row}>
 						
 						<StyledLink to="/medicalanalytics">
-							<Boxx background={health}/>
+							<Boxx 
+								Cardtitle={HomePageText.medical.title} 
+								Cardsubtitle={HomePageText.medical.subtitle} 
+								Cardtext={HomePageText.medical.text} 
+								background={health}/>
 						</StyledLink>
 						
-						<StyledLink to="/evalanalytics" >
-							<Boxx background={env}/>
+						<StyledLink to="/envalanalytics" >
+							<Boxx 
+								Cardtitle={HomePageText.environmentalhealth.title} 
+								Cardsubtitle={HomePageText.environmentalhealth.subtitle} 
+								Cardtext={HomePageText.environmentalhealth.text} 
+								background={env}/>
 						</StyledLink>
 
 						<Boxx background={people}/>
