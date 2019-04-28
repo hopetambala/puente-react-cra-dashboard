@@ -18,13 +18,11 @@ const styles = {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
-		//alignItems: 'flex-center',
 		alignContent: 'flex-start',
 		paddingTop: '5%'
 		
 	},
 	row: {
-		//height:'100vh',	
 		justifyContent: 'center',
 		flex:1,
 		marginBottom:0,
@@ -65,8 +63,6 @@ export class HomePage extends React.Component {
 					<Row style={styles.row}>
 						<LeafletMap />
 					</Row>
-
-					
 
 				</Container>		
 		);
