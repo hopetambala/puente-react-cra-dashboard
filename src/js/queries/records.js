@@ -1,5 +1,28 @@
 import gql from "graphql-tag";
 
+export const all_records = gql`
+    query{
+        getPeople{
+            fname
+            lname
+            nickname
+            sex
+            dob
+            telephoneNumber
+            educationLevel
+            occupation
+            city
+            province
+            clinicProvider
+            cedulaNumber
+            surveyingUser
+            surveyingOrganization
+            latitude
+            longitude
+        }
+    }
+`;
+
 export const first_last_names = gql`
     query {
         getPeople{
