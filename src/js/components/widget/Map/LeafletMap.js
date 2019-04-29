@@ -16,11 +16,15 @@ export class LeafletMap extends React.Component{
     };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
+    /*
     await fetch('http://puente-api.herokuapp.com/records/')
       .then(response => response.json())
       .then(data => this.setState({ places: data.records })
-      );
+      );*/
+      this.setState({
+        places:this.props.data.getPeople
+      })
   }
 
   static defaultProps = {
