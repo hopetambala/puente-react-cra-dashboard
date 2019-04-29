@@ -14,6 +14,11 @@ import people from '../../assets/people.png'
 import {HomePageText} from '../providers/Text';
 
 
+//Apollo
+import { Query } from 'react-apollo';
+import { all_records } from '../queries/records';
+
+
 const styles = {
 	container: {
 		flexDirection: 'row',
@@ -71,7 +76,15 @@ export class HomePage extends React.Component {
 						<Boxx background={people}/>
 					</Row>
 					<Row style={styles.row}>
-						<LeafletMap />
+						<Query query={all_records}>
+							{({ data, loading, error }) => {
+								if (loading) return <p>Loading...</p>;
+								if (error) return <p>Error :(</p>;
+								return (
+									<LeafletMap data={data}/>
+								);
+							}}
+						</Query>
 					</Row>
 
 				</Container>		
