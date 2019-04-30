@@ -38,10 +38,11 @@
     "underscore": "^1.9.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:local": "react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
