@@ -13,7 +13,7 @@ import styled from 'styled-components'
 
 const StyledNav = styled(Nav)`
     //&:hover {
-	background: #1a2a6c !important;
+	//background: #1a2a6c !important;
 	color: #f8af1e
 	//}
 `;
