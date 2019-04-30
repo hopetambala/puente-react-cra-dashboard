@@ -1,7 +1,5 @@
 import React from 'react';
-import {PropTypes } from 'prop-types'
-import { Button,Col, Row,Card, Nav} from 'react-bootstrap';
-import myMan from '../../assets/man.png'
+import { Nav } from 'react-bootstrap';
 
 
 export default class Header extends React.Component {
