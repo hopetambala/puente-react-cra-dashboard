@@ -8,9 +8,9 @@ import { Boxx } from '../components/widget/Boxx/Boxx';
 import { LeafletMap } from '../components/widget/Map/LeafletMap';
 
 //Assets
-import health from '../../assets/health.png';
-import env from '../../assets/env.png'
-import people from '../../assets/people.png'
+import medical from '../../assets/medical.png';
+import env from '../../assets/env.png';
+import vitals from '../../assets/vitals.png';
 import {HomePageText} from '../providers/Text';
 
 
@@ -62,7 +62,7 @@ export class HomePage extends React.Component {
 								Cardtitle={HomePageText.medical.title} 
 								Cardsubtitle={HomePageText.medical.subtitle} 
 								Cardtext={HomePageText.medical.text} 
-								background={health}/>
+								background={medical}/>
 						</StyledLink>
 						
 						<StyledLink to="/envalanalytics" >
@@ -73,7 +73,11 @@ export class HomePage extends React.Component {
 								background={env}/>
 						</StyledLink>
 
-						<Boxx background={people}/>
+						<Boxx 
+							Cardtitle={HomePageText.vitals.title} 
+							Cardsubtitle={HomePageText.vitals.subtitle} 
+							Cardtext={HomePageText.vitals.text} 
+							background={vitals}/>
 					</Row>
 					<Row style={styles.row}>
 						<Query query={all_records}>
