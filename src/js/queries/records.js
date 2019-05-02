@@ -56,3 +56,18 @@ export const env_age_latrines_clinic = gql`
         }
     }
 `;
+
+export const vitals = gql`
+  query{
+    getVitals{
+            sex
+            dob
+            bmi
+            bloodSugar
+            bloodPressure
+            Systolic
+            Diastolic
+            
+        }
+    }  
+`;

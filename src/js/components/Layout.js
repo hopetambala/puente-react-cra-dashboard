@@ -7,6 +7,7 @@ import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";
 import { MedicalEvalAnalytics} from '../pages/MedicalEval';
 import { EnvironHealthAnalytics } from '../pages/EnvironHealth';
+import { VitalsAnalytics } from '../pages/Vitals';
 
 //Styling
 import styled from 'styled-components'
@@ -41,6 +42,7 @@ export default class Layout extends React.Component {
 					<Route path="/dataexport" component={ExportPage} />
 					<Route path="/medicalanalytics" component={MedicalEvalAnalytics} />
 					<Route path="/envalanalytics" component={EnvironHealthAnalytics} />
+					<Route path="/vitalanalytics" component={VitalsAnalytics} />
 				</Router>
 			
 		);

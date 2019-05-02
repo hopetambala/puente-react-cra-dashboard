@@ -72,12 +72,13 @@ export class HomePage extends React.Component {
 								Cardtext={HomePageText.environmentalhealth.text} 
 								background={env}/>
 						</StyledLink>
-
-						<Boxx 
-							Cardtitle={HomePageText.vitals.title} 
-							Cardsubtitle={HomePageText.vitals.subtitle} 
-							Cardtext={HomePageText.vitals.text} 
-							background={vitals}/>
+						<StyledLink to="/vitalanalytics">
+							<Boxx 
+								Cardtitle={HomePageText.vitals.title} 
+								Cardsubtitle={HomePageText.vitals.subtitle} 
+								Cardtext={HomePageText.vitals.text} 
+								background={vitals}/>
+						</StyledLink>
 					</Row>
 					<Row style={styles.row}>
 						<Query query={all_records}>

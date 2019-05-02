@@ -30,6 +30,7 @@
     "react-final-form": "^4.0.2",
     "react-leaflet": "^1.8.0",
     "react-leaflet-markercluster": "^1.1.8",
+    "react-pivottable": "^0.9.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8",
     "react-test-renderer": "^16.8.3",

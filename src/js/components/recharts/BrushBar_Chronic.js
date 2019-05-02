@@ -25,14 +25,14 @@ export class BrushBarChronicComponent extends React.Component{
 		for(let i =0; i< modData.length; i++ ){
 			modData[i].age = func.get_age(modData[i]['dob']);
 
-			if(modData[i].chronic_condition_diabetes =='Yes'){
+			if(modData[i].chronic_condition_diabetes === 'Yes'){
 				modData[i].chronic_condition_diabetes = 1
 			}
 
-			if(modData[i].chronic_condition_hypertension =='Yes'){
+			if(modData[i].chronic_condition_hypertension === 'Yes'){
 				modData[i].chronic_condition_hypertension = 1
 			}
-			if(modData[i].chronic_condition_other =='Yes'){
+			if(modData[i].chronic_condition_other === 'Yes'){
 				modData[i].chronic_condition_other = 1
 			}
 		}

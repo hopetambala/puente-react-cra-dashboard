@@ -14,8 +14,6 @@ const Div = styled.div`
     &:hover {
         border-radius: 20px; 
         //background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1765/bg-blog-card.jpg);
-        //background: url(${props => props.img && css});
-        //background: ${props => props.inputColor && css|| "palevioletred"};
         background: #f8af1e; Puente color
         background: #1a2a6c;  
         //background: -webkit-linear-gradient(to left, #f8af1e, #b21f1f, #1a2a6c); 

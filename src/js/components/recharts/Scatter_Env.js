@@ -2,7 +2,7 @@ import React from 'react';
 import * as func from '../../providers/Functions';
 import * as d3 from 'd3'
 
-import * as _ from 'underscore';
+//import * as _ from 'underscore';
 
 import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend,} from 'recharts';
 
