@@ -19,6 +19,8 @@ export const all_records = gql`
             surveyingOrganization
             latitude
             longitude
+            createdAt
+            updatedAt
         }
     }
 `;
@@ -91,6 +93,8 @@ export const allRecordsByOrganization = gql`
             surveyingOrganization
             latitude
             longitude
+            createdAt
+            updatedAt
         }
     }
 `;
@@ -124,6 +128,8 @@ export const allVitalsByOrganization = gql`
             pulse
             hemoglobinLevels
             painLevels
+            createdAt
+            updatedAt
         }
     }  
 `;
@@ -163,6 +169,8 @@ export const allEnvsByOrganization = gql`
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
             houseownership
+            createdAt
+            updatedAt
         }
     }  
 `;
@@ -205,6 +213,8 @@ export const allEvalMedicalsByOrganization = gql`
             AssessmentandEvaluation_Surgical_Guess
             immediate_follow_up
             planOfAction
+            createdAt
+            updatedAt
         }
     }  
 `;
