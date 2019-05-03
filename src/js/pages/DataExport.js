@@ -190,7 +190,7 @@ export class ExportPage extends React.Component {
 					</Field>
 				</div>
 				<div>
-					<label>Toppings</label>
+					<label>Organizations</label>
 					<Field name="organization" component="select" >
 						<option />
 						<option value="Puente">Puente</option>
