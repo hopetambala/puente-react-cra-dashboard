@@ -14,6 +14,9 @@ import {
 	allVitalsByOrganization,
 	allEvalMedicalsByOrganization} from '../queries/records';
 
+import { CSVLink } from "react-csv";
+
+
 
 //Styling
 import Styles from '../components/styles/Styles'
@@ -55,10 +58,12 @@ const Dem = ({ organization }) => (
 		if (error) return `Error!: ${error}`;
 
 		return (
-			<div>
+			<Button>
 			{console.log(data)}
-			<button onClick={() => refetch()}>Download</button>
-			</div>
+				<CSVLink data={data.getPeopleByOrganization}>
+					Download me
+				</CSVLink>
+			</Button>
 		);
 		}}
 	</Query>
@@ -75,10 +80,12 @@ const Vitals = ({ organization }) => (
 		if (error) return `Error!: ${error}`;
 
 		return (
-			<div>
+			<Button>
 			{console.log(data)}
-			<button onClick={() => refetch()}>Download</button>
-			</div>
+				<CSVLink data={data.getVitalByOrganization}>
+					Download me
+				</CSVLink>
+			</Button>
 		);
 		}}
 	</Query>
@@ -96,10 +103,12 @@ const EnvHealth = ({ organization }) => (
 		if (error) return `Error!: ${error}`;
 
 		return (
-			<div>
+			<Button>
 			{console.log(data)}
-			<button onClick={() => refetch()}>Download</button>
-			</div>
+				<CSVLink data={data.getEnvByOrganization}>
+					Download me
+				</CSVLink>
+			</Button>
 		);
 		}}
 	</Query>
@@ -117,10 +126,12 @@ const EvalMedical = ({ organization }) => (
 		if (error) return `Error!: ${error}`;
 
 		return (
-			<div>
+			<Button>
 			{console.log(data)}
-				<button onClick={() => refetch()}>Download</button>
-			</div>
+				<CSVLink data={data.getEvalMedicalByOrganization}>
+					Download me
+				</CSVLink>
+			</Button>
 		);
 		}}
 	</Query>
