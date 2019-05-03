@@ -114,13 +114,16 @@ export const allVitalsByOrganization = gql`
             latitude
             longitude
 
-            sex
-            dob
             bmi
             bloodSugar
+            bloodOxygen
             bloodPressure
             Systolic
             Diastolic
+            temp
+            pulse
+            hemoglobinLevels
+            painLevels
         }
     }  
 `;
