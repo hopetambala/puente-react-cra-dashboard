@@ -20,6 +20,9 @@ const StyledNav = styled(Nav)`
 `;
 
 export default class Layout extends React.Component {
+	static defaultProps = {
+		username: "User"       
+	}
 	render() {
 		return (
 				<Router>
@@ -29,7 +32,6 @@ export default class Layout extends React.Component {
 						</div>
 						<div className="navbar-nav ml-auto">
 							<span className="pr-2"><Link to="/">DASHBOARD</Link></span>
-							<span className="pr-2">MAPS</span>
 							<span className="pr-2"><Link to="/dataexport">EXPORT MANAGER</Link></span>
 							<span className="pr-2">Hi, {this.props.username}</span>
 							<span className="img-container">

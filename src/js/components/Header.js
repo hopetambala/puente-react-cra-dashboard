@@ -1,12 +1,15 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 
-
+//Unused
 export default class Header extends React.Component {
   constructor(props){
     super(props)
   }
   
+  static defaultProps = {
+    username: "User"       
+}
 
   render() {
     return (
@@ -16,7 +19,6 @@ export default class Header extends React.Component {
           </div>
           <div className="navbar-nav ml-auto">
               <span className="pr-2">Dashboard</span>
-              <span className="pr-2">Maps</span>
               <span className="pr-2">Export Manager</span>
               <span className="pr-2">Hi, {this.props.username}</span>
               <span className="img-container">
@@ -28,9 +30,6 @@ export default class Header extends React.Component {
    
 }
 
-Header.defaultProps = {
-  username : 'Username'
-}
 
 /*
  <style type="text/css">
