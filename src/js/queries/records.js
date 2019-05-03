@@ -11,6 +11,7 @@ export const all_records = gql`
             telephoneNumber
             educationLevel
             occupation
+            communityname
             city
             province
             clinicProvider
@@ -85,6 +86,7 @@ export const allRecordsByOrganization = gql`
             telephoneNumber
             educationLevel
             occupation
+            communityname
             city
             province
             clinicProvider
@@ -109,6 +111,7 @@ export const allVitalsByOrganization = gql`
             telephoneNumber
             educationLevel
             occupation
+            communityname
             city
             province
             clinicProvider
@@ -145,6 +148,7 @@ export const allEnvsByOrganization = gql`
             telephoneNumber
             educationLevel
             occupation
+            communityname
             city
             province
             clinicProvider
@@ -186,6 +190,7 @@ export const allEvalMedicalsByOrganization = gql`
             telephoneNumber
             educationLevel
             occupation
+            communityname
             city
             province
             clinicProvider
