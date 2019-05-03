@@ -38,9 +38,6 @@ export class MedicalEvalAnalytics extends React.Component {
 		}
 	}
 
-	
-
-
 	render() {
 		return (
 				<Container style={styles.container}>
