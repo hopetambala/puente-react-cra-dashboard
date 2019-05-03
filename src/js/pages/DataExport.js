@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button,Row,Col } from 'react-bootstrap'
-import { ApolloConsumer } from 'react-apollo';
+import { Query, ApolloConsumer } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 
 
@@ -8,7 +8,11 @@ import { Form, Field } from 'react-final-form';
 import { ResultsTable } from '../components/widget/Table/Table';
 
 //Queries
-import { all_records } from '../queries/records';
+import { 
+	allRecordsByOrganization,
+	allEnvsByOrganization, 
+	allVitalsByOrganization,
+	allEvalMedicalsByOrganization} from '../queries/records';
 
 
 //Styling
@@ -34,29 +38,133 @@ const styles = {
 	}
   }
 
-  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-
-  const onSubmit = async values => {
+  /*const onSubmit = async values => {
 	await sleep(300)
 	window.alert(JSON.stringify(values, 0, 2))
-  }
+  }*/
+
+const Dem = ({ organization }) => (
+	<Query
+		query={allRecordsByOrganization}
+		variables={{ organization }}
+		notifyOnNetworkStatusChange
+	>
+		{({ loading, error, data, refetch, networkStatus }) => {
+		if (networkStatus === 4) return "Refetching!";
+		if (loading) return null;
+		if (error) return `Error!: ${error}`;
+
+		return (
+			<div>
+			{console.log(data)}
+			<button onClick={() => refetch()}>Download</button>
+			</div>
+		);
+		}}
+	</Query>
+);
+const Vitals = ({ organization }) => (
+	<Query
+		query={allVitalsByOrganization}
+		variables={{ organization }}
+		notifyOnNetworkStatusChange
+	>
+		{({ loading, error, data, refetch, networkStatus }) => {
+		if (networkStatus === 4) return "Refetching!";
+		if (loading) return null;
+		if (error) return `Error!: ${error}`;
+
+		return (
+			<div>
+			{console.log(data)}
+			<button onClick={() => refetch()}>Download</button>
+			</div>
+		);
+		}}
+	</Query>
+);
+
+const EnvHealth = ({ organization }) => (
+	<Query
+		query={allEnvsByOrganization}
+		variables={{ organization }}
+		notifyOnNetworkStatusChange
+	>
+		{({ loading, error, data, refetch, networkStatus }) => {
+		if (networkStatus === 4) return "Refetching!";
+		if (loading) return null;
+		if (error) return `Error!: ${error}`;
+
+		return (
+			<div>
+			{console.log(data)}
+			<button onClick={() => refetch()}>Download</button>
+			</div>
+		);
+		}}
+	</Query>
+);
+
+const EvalMedical = ({ organization }) => (
+	<Query
+		query={allEvalMedicalsByOrganization}
+		variables={{ organization }}
+		notifyOnNetworkStatusChange
+	>
+		{({ loading, error, data, refetch, networkStatus }) => {
+		if (networkStatus === 4) return "Refetching!";
+		if (loading) return null;
+		if (error) return `Error!: ${error}`;
+
+		return (
+			<div>
+			{console.log(data)}
+				<button onClick={() => refetch()}>Download</button>
+			</div>
+		);
+		}}
+	</Query>
+);
 
 export class ExportPage extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			type:null,
-			org:null
-
+			type:"dem",
+			org:'Puente'
 		}
 	}
+	
+	onSubmit = async (values) => {
+		await this.setState({
+			type: values.type,
+			org: values.organization,
+		})
+	}
+	
 
 	render() {
+		let aThing;
+		if (this.state.type === "dem") {
+			aThing = <Dem organization={this.state.org} />;
+		} 
+		else if (this.state.type === "med") {
+			aThing = <EvalMedical organization={this.state.org} />;
+		}
+		else if (this.state.type === "env") {
+			aThing = <EnvHealth organization={this.state.org} />;
+		}
+		else if (this.state.type === "vitals") {
+			aThing = <Vitals organization={this.state.org} />;
+		}
+
+
+
 		return (
 			<Styles style={styles.container}>
 			<h1>🏁 Data Exporter</h1>
 			<Form
-				onSubmit={onSubmit}
+				onSubmit={this.onSubmit}
 				initialValues={{ type: 'all', organization: '' }}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit}>
@@ -67,6 +175,7 @@ export class ExportPage extends React.Component {
 						<option value="dem">Demographics Only</option>
 						<option value="med">Dem + Medical Evaluation</option>
 						<option value="env">Dem + Environmental Health</option>
+						<option value="vitals">Dem + Vitals</option>
 					</Field>
 				</div>
 				<div>
@@ -90,11 +199,19 @@ export class ExportPage extends React.Component {
 						disabled={submitting || pristine}>
 						Reset
 					</button>
+
 				</div>
 				<pre>{JSON.stringify(values, 0, 2)}</pre>
+				<div>
+					{aThing}
+				</div>
+				{/*<Vitals organization={this.state.org} />*/}
 				</form>
+				
+				
 			)}
-			/>
+			
+		/>
 		</Styles>
 		);
 	}
