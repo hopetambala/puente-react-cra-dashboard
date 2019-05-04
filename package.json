@@ -19,6 +19,7 @@
     "graphql-tag": "^2.10.0",
     "leaflet": "^1.4.0",
     "leaflet.markercluster": "^1.4.1",
+    "material-table": "^1.35.1",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.1",

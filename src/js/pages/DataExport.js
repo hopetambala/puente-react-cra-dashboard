@@ -5,8 +5,7 @@ import { Form, Field } from 'react-final-form';
 
 
 //Components
-import { ResultsTable } from '../components/widget/Table/Table';
-
+import { DataTable } from '../components/widget/Table/DataTable';
 //Queries
 import { 
 	allRecordsByOrganization,
@@ -30,7 +29,6 @@ const styles = {
 		//alignItems: 'flex-center',
 		alignContent: 'flex-start',
 		paddingTop: '5%'
-		
 	},
 	row: {
 		//height:'100vh',	
@@ -38,13 +36,11 @@ const styles = {
 		flex:1,
 		marginBottom:0,
 		paddingBottom:0
+	},
+	button: {
+		backgroundColor:'white'
 	}
   }
-
-  /*const onSubmit = async values => {
-	await sleep(300)
-	window.alert(JSON.stringify(values, 0, 2))
-  }*/
 
 const Dem = ({ organization }) => (
 	<Query
@@ -58,12 +54,15 @@ const Dem = ({ organization }) => (
 		if (error) return `Error!: ${error}`;
 
 		return (
-			<Button>
-			{console.log(data)}
-				<CSVLink data={data.getPeopleByOrganization}>
-					Download me
-				</CSVLink>
-			</Button>
+			<>
+				<Button style={styles.button}>
+				{console.log(data)}
+					<CSVLink data={data.getPeopleByOrganization}>
+						Download
+					</CSVLink>
+				</Button>
+				<DataTable data={data.getPeopleByOrganization} />
+			</>
 		);
 		}}
 	</Query>
@@ -80,12 +79,15 @@ const Vitals = ({ organization }) => (
 		if (error) return `Error!: ${error}`;
 
 		return (
-			<Button>
-			{console.log(data)}
-				<CSVLink data={data.getVitalByOrganization}>
-					Download me
-				</CSVLink>
-			</Button>
+			<>
+				<Button style={styles.button}>
+				{console.log(data)}
+					<CSVLink data={data.getVitalByOrganization}>
+						Download
+					</CSVLink>
+				</Button>
+				<DataTable data={data.getVitalByOrganization} />
+			</>
 		);
 		}}
 	</Query>
@@ -103,12 +105,15 @@ const EnvHealth = ({ organization }) => (
 		if (error) return `Error!: ${error}`;
 
 		return (
-			<Button>
-			{console.log(data)}
-				<CSVLink data={data.getEnvByOrganization}>
-					Download me
-				</CSVLink>
-			</Button>
+			<>
+			<Button style={styles.button}>
+				{console.log(data)}
+					<CSVLink data={data.getEnvByOrganization}>
+						Download
+					</CSVLink>
+				</Button>
+				<DataTable data={data.getEnvByOrganization} />
+			</>
 		);
 		}}
 	</Query>
@@ -126,12 +131,15 @@ const EvalMedical = ({ organization }) => (
 		if (error) return `Error!: ${error}`;
 
 		return (
-			<Button>
-			{console.log(data)}
-				<CSVLink data={data.getEvalMedicalByOrganization}>
-					Download me
-				</CSVLink>
-			</Button>
+			<>
+				<Button style={styles.button}>
+				{console.log(data)}
+					<CSVLink data={data.getEvalMedicalByOrganization}>
+						Download
+					</CSVLink>
+				</Button>
+				<DataTable data={data.getEvalMedicalByOrganization} />
+			</>
 		);
 		}}
 	</Query>
@@ -172,6 +180,7 @@ export class ExportPage extends React.Component {
 
 
 		return (
+			<>
 			<Styles style={styles.container}>
 			<h1>🏁 Data Exporter</h1>
 			<Form
@@ -213,17 +222,16 @@ export class ExportPage extends React.Component {
 
 				</div>
 				<pre>{JSON.stringify(values, 0, 2)}</pre>
+				
+				</form>	
+			)}
+			/>
+			</Styles>
 				<div>
 					{aThing}
 				</div>
-				{/*<Vitals organization={this.state.org} />*/}
-				</form>
-				
-				
-			)}
-			
-		/>
-		</Styles>
+			</>
+
 		);
 	}
 }
