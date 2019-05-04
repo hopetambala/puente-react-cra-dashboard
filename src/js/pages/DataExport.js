@@ -149,7 +149,7 @@ export class ExportPage extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			type:"dem",
+			type:"Demographics",
 			org:'Puente'
 		}
 	}
@@ -164,16 +164,16 @@ export class ExportPage extends React.Component {
 
 	render() {
 		let aThing;
-		if (this.state.type === "dem") {
+		if (this.state.type === "Demographics") {
 			aThing = <Dem organization={this.state.org} />;
 		} 
-		else if (this.state.type === "med") {
+		else if (this.state.type === "Medical Evaluation") {
 			aThing = <EvalMedical organization={this.state.org} />;
 		}
-		else if (this.state.type === "env") {
+		else if (this.state.type === "Environmental Health") {
 			aThing = <EnvHealth organization={this.state.org} />;
 		}
-		else if (this.state.type === "vitals") {
+		else if (this.state.type === "Vitals") {
 			aThing = <Vitals organization={this.state.org} />;
 		}
 
@@ -185,23 +185,21 @@ export class ExportPage extends React.Component {
 			<h1>🏁 Data Exporter</h1>
 			<Form
 				onSubmit={this.onSubmit}
-				initialValues={{ type: 'all', organization: '' }}
+				initialValues={{ type: 'Demographics', organization: 'Puente' }}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit}>
 				<div>
 					<label>Record Type</label>
 					<Field name="type" component="select">
-						<option />
-						<option value="dem">Demographics Only</option>
-						<option value="med">Dem + Medical Evaluation</option>
-						<option value="env">Dem + Environmental Health</option>
-						<option value="vitals">Dem + Vitals</option>
+						<option value="Demographics">Demographics Only</option>
+						<option value="Medical Evaluation">Dem + Medical Evaluation</option>
+						<option value="Environmental Health">Dem + Environmental Health</option>
+						<option value="Vitals">Dem + Vitals</option>
 					</Field>
 				</div>
 				<div>
 					<label>Organizations</label>
 					<Field name="organization" component="select" >
-						<option />
 						<option value="Puente">Puente</option>
 						<option value="One World Surgery">One World Surgery</option>
 						<option value="WOF">World Outreach Foundation</option>
