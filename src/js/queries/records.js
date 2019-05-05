@@ -8,6 +8,7 @@ export const all_records = gql`
             nickname
             sex
             dob
+            age
             telephoneNumber
             educationLevel
             occupation
@@ -83,6 +84,7 @@ export const allRecordsByOrganization = gql`
             nickname
             sex
             dob
+            age
             telephoneNumber
             educationLevel
             occupation
@@ -108,6 +110,7 @@ export const allVitalsByOrganization = gql`
             nickname
             sex
             dob
+            age
             telephoneNumber
             educationLevel
             occupation
@@ -145,6 +148,7 @@ export const allEnvsByOrganization = gql`
             nickname
             sex
             dob
+            age
             telephoneNumber
             educationLevel
             occupation
@@ -187,6 +191,7 @@ export const allEvalMedicalsByOrganization = gql`
             nickname
             sex
             dob
+            age
             telephoneNumber
             educationLevel
             occupation
