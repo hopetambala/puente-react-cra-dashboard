@@ -228,3 +228,41 @@ export const allEvalMedicalsByOrganization = gql`
         }
     }  
 `;
+
+
+export const allHistoryMedicalsByOrganization = gql`
+    query($organization: String!){
+        getMedHistoryByOrganization(organization: $organization){
+            fname
+            lname
+            nickname
+            sex
+            dob
+            age
+            telephoneNumber
+            educationLevel
+            occupation
+            communityname
+            city
+            province
+            clinicProvider
+            cedulaNumber
+            surveyingUser
+            surveyingOrganization
+            latitude
+            longitude
+            
+            surgeryWhatKind
+            medicalIllnesses
+            whenDiagnosed
+            whatDoctorDoyousee
+            majorEvents
+            treatment
+            familyhistory
+            preventativeCare
+            
+            createdAt
+            updatedAt
+        }
+    }  
+`;
