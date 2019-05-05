@@ -11,7 +11,8 @@ import {
 	allRecordsByOrganization,
 	allEnvsByOrganization, 
 	allVitalsByOrganization,
-	allEvalMedicalsByOrganization} from '../queries/records';
+	allEvalMedicalsByOrganization,
+	allHistoryMedicalsByOrganization} from '../queries/records';
 
 import { CSVLink } from "react-csv";
 
@@ -145,6 +146,32 @@ const EvalMedical = ({ organization }) => (
 	</Query>
 );
 
+const HistoryMedical = ({ organization }) => (
+	<Query
+		query={allHistoryMedicalsByOrganization}
+		variables={{ organization }}
+		notifyOnNetworkStatusChange
+	>
+		{({ loading, error, data, refetch, networkStatus }) => {
+		if (networkStatus === 4) return "Refetching!";
+		if (loading) return null;
+		if (error) return `Error!: ${error}`;
+
+		return (
+			<>
+				<Button style={styles.button}>
+				{console.log(data)}
+					<CSVLink data={data.getMedHistoryByOrganization}>
+						Download
+					</CSVLink>
+				</Button>
+				<DataTable data={data.getMedHistoryByOrganization} />
+			</>
+		);
+		}}
+	</Query>
+);
+
 export class ExportPage extends React.Component {
 	constructor(props){
 		super(props)
@@ -176,6 +203,9 @@ export class ExportPage extends React.Component {
 		else if (this.state.type === "Vitals") {
 			aThing = <Vitals organization={this.state.org} />;
 		}
+		else if (this.state.type === "Medical History") {
+			aThing = <HistoryMedical organization={this.state.org} />;
+		}
 
 
 
@@ -185,7 +215,7 @@ export class ExportPage extends React.Component {
 			<h1>🏁 Data Exporter</h1>
 			<Form
 				onSubmit={this.onSubmit}
-				initialValues={{ type: 'Demographics', organization: 'Puente' }}
+				initialValues={{ type: 'Demographics', organization: '' }}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit}>
 				<div>
@@ -195,11 +225,13 @@ export class ExportPage extends React.Component {
 						<option value="Medical Evaluation">Dem + Medical Evaluation</option>
 						<option value="Environmental Health">Dem + Environmental Health</option>
 						<option value="Vitals">Dem + Vitals</option>
+						<option value="Medical History">Dem + Medical History</option>
 					</Field>
 				</div>
 				<div>
 					<label>Organizations</label>
 					<Field name="organization" component="select" >
+						<option ></option>
 						<option value="Puente">Puente</option>
 						<option value="One World Surgery">One World Surgery</option>
 						<option value="WOF">World Outreach Foundation</option>
