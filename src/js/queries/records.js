@@ -168,7 +168,7 @@ export const allEnvsByOrganization = gql`
             latrineAccess
             clinicAccess
             conditionoRoofinyourhouse
-            conditionoRoofinyourhouse
+            conditionoFloorinyourhouse
             medicalproblemswheredoyougo
             dentalproblemswheredoyougo
             biggestproblemofcommunity
