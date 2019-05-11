@@ -15,6 +15,8 @@ export const all_records = gql`
             communityname
             city
             province
+            insuranceNumber
+            insuranceProvider
             clinicProvider
             cedulaNumber
             surveyingUser
@@ -91,6 +93,8 @@ export const allRecordsByOrganization = gql`
             communityname
             city
             province
+            insuranceNumber
+            insuranceProvider
             clinicProvider
             cedulaNumber
             surveyingUser
@@ -117,6 +121,8 @@ export const allVitalsByOrganization = gql`
             communityname
             city
             province
+            insuranceNumber
+            insuranceProvider
             clinicProvider
             cedulaNumber
             surveyingUser
@@ -155,6 +161,8 @@ export const allEnvsByOrganization = gql`
             communityname
             city
             province
+            insuranceNumber
+            insuranceProvider
             clinicProvider
             cedulaNumber
             surveyingUser
@@ -198,6 +206,8 @@ export const allEvalMedicalsByOrganization = gql`
             communityname
             city
             province
+            insuranceNumber
+            insuranceProvider
             clinicProvider
             cedulaNumber
             surveyingUser
@@ -245,6 +255,8 @@ export const allHistoryMedicalsByOrganization = gql`
             communityname
             city
             province
+            insuranceNumber
+            insuranceProvider
             clinicProvider
             cedulaNumber
             surveyingUser
