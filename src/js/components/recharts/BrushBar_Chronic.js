@@ -71,10 +71,10 @@ export class BrushBarChronicComponent extends React.Component{
 			var treasure = _.findWhere(hyps, { age: element.age });
 	  
 			return _.extend(element, treasure);
-	  });
+	  	});
 
-
-	  //console.log(c)
+	  	moddedData.pop()
+	  	//console.log(moddedData)
 		
 		this.setState({
 			modded:moddedData
@@ -92,18 +92,21 @@ export class BrushBarChronicComponent extends React.Component{
 
 	render () {
 		return (
+			<>
+			<h1>Number of Chronic Diseases by Age</h1>
 			<BarChart width={800} height={500} data={this.state.modded}
 					margin={{top: 5, right: 30, left: 20, bottom: 5}}>
 				<CartesianGrid strokeDasharray="3 3"/>
-				<XAxis dataKey="age"/>
-				<YAxis/>
+				<XAxis  height={40} label={{ value: 'Age', position: 'insideBottom', dy:0 }} dataKey="age"/>
+				<YAxis  label={{ value: 'Count of Chronic Diseases Reported', angle: -90, position: 'center', dx: -20}}/>
 				<Tooltip/>
 				<Legend verticalAlign="top" wrapperStyle={{lineHeight: '40px'}}/>
 				<ReferenceLine y={0} stroke='#000'/>
-				<Brush dataKey='age' height={30} stroke="#8884d8"/>
+				<Brush dataKey='age' height={40} stroke="#8884d8"/>
 				<Bar dataKey="diabetes_count" fill="#8884d8" />
 				<Bar dataKey="hypertension_count" fill="#82ca9d" />
 			</BarChart>
+			</>
 		);
 	}
 }
