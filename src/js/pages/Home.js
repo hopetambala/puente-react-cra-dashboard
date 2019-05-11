@@ -6,6 +6,7 @@ import styled from 'styled-components';
 //Components
 import { Boxx } from '../components/widget/Boxx/Boxx';
 import { LeafletMap } from '../components/widget/Map/LeafletMap';
+import { LineChart_GeneralComponent } from '../components/recharts/LineChart_General';
 
 //Assets
 import medical from '../../assets/medical.png';
@@ -79,6 +80,18 @@ export class HomePage extends React.Component {
 								Cardtext={HomePageText.vitals.text} 
 								background={vitals}/>
 						</StyledLink>
+					</Row>
+					<Row style={styles.row}>
+						<Query query={all_records}>
+							{({ data, loading, error }) => {
+								if (loading) return <p>Loading...</p>;
+								if (error) return <p>Error :(</p>;
+								//console.log(data.getEvalMedicalRecords);
+								return (
+									<LineChart_GeneralComponent data={data} />
+								);
+							}}
+						</Query>
 					</Row>
 					<Row style={styles.row}>
 						<Query query={all_records}>
