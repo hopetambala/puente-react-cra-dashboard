@@ -7,7 +7,7 @@ const Div = styled.div`
     transition: 0.3s;
     border-radius: 20px; 
     width: 250px;
-    height: 300px;
+    //height: ${props => props.Height};
     margin: 1%;
     //background: #f8af1e; Puente color
 
@@ -33,7 +33,8 @@ export class Boxx extends React.Component{
     static defaultProps = {
         Cardtitle: "Card title",
         Cardsubtitle: "Card subtitle",
-        Cardtext: "Some quick example text to build on the card title and make up the bulk of the card's content."        
+        Cardtext: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        height:"300px"    
     }
 
     
@@ -41,7 +42,8 @@ export class Boxx extends React.Component{
     render(){
         const style = {
             //onHover: {
-                backgroundImage: `url(${this.props.background})`
+                backgroundImage: `url(${this.props.background})`,
+                height:this.props.height
             //}
             
             //backgroundImage: `url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1765/bg-blog-card.jpg)`

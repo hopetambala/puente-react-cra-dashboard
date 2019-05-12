@@ -62,7 +62,8 @@ export class HomePage extends React.Component {
 							<Boxx 
 								Cardtitle={HomePageText.medical.title} 
 								Cardsubtitle={HomePageText.medical.subtitle} 
-								Cardtext={HomePageText.medical.text} 
+								Cardtext={HomePageText.medical.text}
+								height="200px"
 								background={medical}/>
 						</StyledLink>
 						
@@ -71,6 +72,7 @@ export class HomePage extends React.Component {
 								Cardtitle={HomePageText.environmentalhealth.title} 
 								Cardsubtitle={HomePageText.environmentalhealth.subtitle} 
 								Cardtext={HomePageText.environmentalhealth.text} 
+								height="200px"
 								background={env}/>
 						</StyledLink>
 						<StyledLink to="/vitalanalytics">
@@ -78,6 +80,7 @@ export class HomePage extends React.Component {
 								Cardtitle={HomePageText.vitals.title} 
 								Cardsubtitle={HomePageText.vitals.subtitle} 
 								Cardtext={HomePageText.vitals.text} 
+								height="200px"
 								background={vitals}/>
 						</StyledLink>
 					</Row>
@@ -93,18 +96,6 @@ export class HomePage extends React.Component {
 							}}
 						</Query>
 					</Row>
-					<Row style={styles.row}>
-						<Query query={all_records}>
-							{({ data, loading, error }) => {
-								if (loading) return <p>Loading...</p>;
-								if (error) return <p>Error :(</p>;
-								return (
-									<LeafletMap data={data}/>
-								);
-							}}
-						</Query>
-					</Row>
-
 				</Container>		
 		);
 	}
