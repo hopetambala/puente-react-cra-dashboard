@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //Pages
 import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";
+import { MapPage } from '../pages/Map'
 import { MedicalEvalAnalytics} from '../pages/MedicalEval';
 import { EnvironHealthAnalytics } from '../pages/EnvironHealth';
 import { VitalsAnalytics } from '../pages/Vitals';
@@ -33,6 +34,7 @@ export default class Layout extends React.Component {
 						<div className="navbar-nav ml-auto">
 							<span className="pr-2"><Link to="/">DASHBOARD</Link></span>
 							<span className="pr-2"><Link to="/dataexport">EXPORT MANAGER</Link></span>
+							<span className="pr-2"><Link to="/map">MAP</Link></span>
 							<span className="pr-2">Hi, {this.props.username}</span>
 							<span className="img-container">
 								{/*<img src={myMan} className="rounded-circle" alt="user" /> */}
@@ -42,6 +44,7 @@ export default class Layout extends React.Component {
 					
 					<Route exact path="/" component={HomePage} />
 					<Route path="/dataexport" component={ExportPage} />
+					<Route path="/map" component={MapPage} />
 					<Route path="/medicalanalytics" component={MedicalEvalAnalytics} />
 					<Route path="/envalanalytics" component={EnvironHealthAnalytics} />
 					<Route path="/vitalanalytics" component={VitalsAnalytics} />
