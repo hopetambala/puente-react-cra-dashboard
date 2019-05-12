@@ -50,7 +50,11 @@ export class LeafletMap extends React.Component{
         {places.map(place => (
             <Marker position={[place.latitude,place.longitude]}>
               <Popup>
-                {place.fname} <br /> {place.lname}
+                <div>
+                  <h3>{place.fname} {place.lname}</h3>
+                  <h5>{place.communityname}</h5>
+                  <p>{place.city}, {place.province}</p>
+                </div>
               </Popup>
             </Marker>
         ))}
