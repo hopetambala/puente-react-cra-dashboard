@@ -2,13 +2,13 @@ import React from 'react';
 import { Nav } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+//Navigation
+import { Selector } from './Selector';
+
 //Pages
 import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";
 import { MapPage } from '../pages/Map'
-import { MedicalEvalAnalytics} from '../pages/MedicalEval';
-import { EnvironHealthAnalytics } from '../pages/EnvironHealth';
-import { VitalsAnalytics } from '../pages/Vitals';
 
 //Styling
 import styled from 'styled-components'
@@ -18,6 +18,9 @@ const StyledNav = styled(Nav)`
 	//background: #1a2a6c !important;
 	color: #f8af1e
 	//}
+`;
+const StyledSelector = styled(Selector)`
+	margin-top:200%;
 `;
 
 export default class Layout extends React.Component {
@@ -41,13 +44,10 @@ export default class Layout extends React.Component {
 							</span>
 						</div>	
 					</StyledNav>
-					
+			
 					<Route exact path="/" component={HomePage} />
 					<Route path="/dataexport" component={ExportPage} />
 					<Route path="/map" component={MapPage} />
-					<Route path="/medicalanalytics" component={MedicalEvalAnalytics} />
-					<Route path="/envalanalytics" component={EnvironHealthAnalytics} />
-					<Route path="/vitalanalytics" component={VitalsAnalytics} />
 				</Router>
 			
 		);

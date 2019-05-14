@@ -1,0 +1,23 @@
+$card-width:  250px;
+$card-height: 300px;
+$h-color:     #9CC9E3;
+$yellow:      #D0BB57;
+$txt-color:   #DCE3E7;
+
+.cardz {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 20px; /* 5px rounded corners */
+    width: $card-width;
+    height: $card-height;
+    //background: green;
+    margin: 1%;
+}  
+
+
+
+.cardz:hover {
+    border-radius: 20px; /* 5px rounded corners */
+    //background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1765/bg-blog-card.jpg) no-repeat;
+    box-shadow: 1px 12px 20px 1px rgba(0, 0, 0, 0.2);
+}
