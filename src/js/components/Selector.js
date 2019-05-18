@@ -13,41 +13,27 @@ export class Selector extends React.Component {
 
   render() {
     return (
-      <>
-            <Dropdown >
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Form Select
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item>
-                  <Link to="/demographicanalytics">Demographics</Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link to="/medicalanalytics">Medical Evaluation</Link>
-                </Dropdown.Item>
-                <Dropdown.Item href="#/action-2">
-                  <Link to="/vitalanalytics">Vitals</Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link to="/envalanalytics">Environmental Analytics</Link>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          
-          {/*<Row>
-            <Dropdown style={{margin:"2px"}}>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Puente
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">One World Surgery</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">World Outreach Foundation</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Constanza Medical Mission</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Row>*/}
-          </>
+        <div>
+          <Dropdown >
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              Form Select
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item>
+                <Link to="/demographicanalytics">Demographics</Link>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link to="/medicalanalytics">Medical Evaluation</Link>
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-2">
+                <Link to="/vitalanalytics">Vitals</Link>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link to="/envalanalytics">Environmental Analytics</Link>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
     )}
    
 }
