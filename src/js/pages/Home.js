@@ -1,15 +1,17 @@
 import React from 'react';
-import { Row, Container, Button } from 'react-bootstrap';
+import { ApolloConsumer } from 'react-apollo';
+import { Row, Container, Button, Dropdown } from 'react-bootstrap';
 import { Form, Field } from 'react-final-form';
-import { BrowserRouter as  Router, Route, Link  } from "react-router-dom";
+import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom";
 import styled from 'styled-components';
 
-//Components
-import { DemographicsAnalytics} from '../pages/Demographics';
+//Pages
 import { MedicalEvalAnalytics} from '../pages/MedicalEval';
-import { EnvironHealthAnalytics } from '../pages/EnvironHealth';
+import EnvironHealthAnalytics  from '../pages/EnvironHealth';
 import { VitalsAnalytics } from '../pages/Vitals';
-import { LineChart_GeneralComponent } from '../components/recharts/LineChart_General';
+import DemographicsAnalytics  from '../pages/Demographics';
+
+//Componenents
 import { Selector } from '../components/Selector';
 
 //Assets
@@ -21,7 +23,7 @@ import {HomePageText} from '../providers/Text';
 
 //Apollo
 import { Query } from 'react-apollo';
-import { all_records } from '../queries/records';
+import { all_records, allRecordsByOrganization } from '../queries/records';
 
 
 const styles = {
@@ -44,11 +46,14 @@ const styles = {
 const StyledLink = styled(Link)`
     text-decoration: none;
 	
-	color: black;
+	color: white;
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
 	}
-	margin: 2%;
+	margin: 0%;
+`;
+const StyledButton = styled(Button)`
+	margin: .1%;
 `;
 
 
@@ -57,9 +62,9 @@ export class HomePage extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
+			url: this.props.match.url,
 			topMargin: "0%",
-			organization:null,
-			form:null
+			organization:null
 		}
 		
 	}
@@ -79,114 +84,86 @@ export class HomePage extends React.Component {
 
 	onSubmit = async (values) => {
 		await this.setState({
-			form: values.form,
 			org: values.organization,
 		})
-
 	}
 
 	render() {
 		return (
-		<Router style={{marginTop:this.state.topMargin}}>
-			<Container style={styles.container}>
-				<Row styles={styles.row}>
-					{/*<Selector ></Selector>*/}
-					<Form
-						onSubmit={this.onSubmit}
-						initialValues={{ form:"", organization: 'all' }}
-						render={({ handleSubmit, form, submitting, pristine, values }) => (
-						<form onSubmit={handleSubmit} class="form-group">
-							<div class="row">
-								<div>
-									<label>Form Select</label>
-									<Field name="form" component="select" class="form-control" >
-										<option></option>
-										<option value="/demographicanalytics">Demographics</option>
-										<option value="medicalanalytics">Medical Evaluation</option>
+			
+			<Router style={{marginTop:this.state.topMargin}}>
+				<Container style={styles.container}>
+					<Row styles={styles.row}>
+						<StyledButton>
+							<StyledLink to={`/demographicanalytics`}>General</StyledLink>
+						</StyledButton>
+						<StyledButton>
+							<StyledLink to={`/medicalanalytics`}>Medical Evaluation</StyledLink>
+						</StyledButton>
+						<StyledButton>
+							<StyledLink to="/vitalanalytics">Vitals</StyledLink>
+						</StyledButton>
+						<StyledButton>
+							<StyledLink to="/envalanalytics">Environmental Analytics</StyledLink>
+						</StyledButton>
+							{/*<Form
+								onSubmit={this.onSubmit}
+								initialValues={{ organization: '' }}
+								render={({ handleSubmit, form, submitting, pristine, values }) => (
+								<form onSubmit={handleSubmit}>
+									<Row>
+										<div style={{paddingLeft:"5%"}}>
+											<Field name="organization" component="select" class="form-control">
+												<option ></option>
+												<option value="Puente">Puente</option>
+												<option value="One World Surgery">One World Surgery</option>
+												<option value="WOF">World Outreach Foundation</option>
+												<option value="Constanza Medical Mission">Constanza Medical Mission</option>
+											</Field>
+										</div>
+										<div>
+											<Button type="submit" disabled={submitting || pristine}>
+												Submit
+											</Button>
+										</div>
+									</Row>
+								</form>	
+							)}
+								/>*/}
+					</Row>
 									
-									</Field>
-								</div>
-								<div>
-									<label>Organization Select</label>
-									<Field name="organization" component="select" class="form-control">
-										<option value="all"></option>
-										<option value="Puente">Puente</option>
-										<option value="One World Surgery">One World Surgery</option>
-										<option value="WOF">World Outreach Foundation</option>
-										<option value="Constanza Medical Mission">Constanza Medical Mission</option>
-									</Field>
-								</div>
-								<div>
-									<Button type="submit" disabled={submitting || pristine} style={{marginTop:"35%"}}>
-										Submit
-									</Button>
-								</div>
-							</div>	
-						</form>	
-					)}
-					/>
-				</Row>
-				
-			{/**/}
-				
-				<Row style={styles.row}>
-					<Route 
-						exact path="/demographicanalytics" 
-						render={(props) => <DemographicsAnalytics {...props} isAuthed={true} />} />
-					<Route exact path="/medicalanalytics" component={MedicalEvalAnalytics} />
-					<Route path="/envalanalytics" component={EnvironHealthAnalytics} />
-					<Route path="/vitalanalytics" component={VitalsAnalytics} />
-				</Row>
-				
-			</Container>
-		</Router>
+					<Row style={styles.row}>
+						{/*<Query
+								query={allRecordsByOrganization}
+								variables={{ organization }}
+								notifyOnNetworkStatusChange>
+							{({ loading, error, data, refetch, networkStatus }) => {
+							//if (networkStatus === 4) return "Refetching!";
+							if (loading) return <p>Loading...</p>;
+							if (error) return `Error!: ${error}`;
+							return (
+								<>
+									{console.log(data)}
+									<Route 
+									path="/demographicanalytics" 
+									render={(props) => <DemographicsAnalytics {...props} data={data.getPeopleByOrganization} />} />
+								</>
+							);
+							}}
+						</Query>*/}
+						{/*<Route path={`/demographicanalytics`} component={DemographicsAnalytics} />*/}
+						<Switch>
+							<Route path={`/demographicanalytics`} component={DemographicsAnalytics} />
+							<Route path={`/medicalanalytics`} component={MedicalEvalAnalytics} />
+							<Route path="/envalanalytics" component={EnvironHealthAnalytics} />
+							<Route path="/vitalanalytics" component={VitalsAnalytics} />
+							<Route component={DemographicsAnalytics}/>
+						</Switch>
+					</Row>
+					
+				</Container>
+			</Router>
+			
 		);
 	}
 }
-
-function GeneralAnalytics() {
-	return (
-		<div>
-			{/*<Row style={styles.row}>
-				<StyledLink to="/medicalanalytics">
-					<Boxx 
-						Cardtitle={HomePageText.medical.title} 
-						Cardsubtitle={HomePageText.medical.subtitle} 
-						Cardtext={HomePageText.medical.text}
-						height="200px"
-						background={medical}/>
-				</StyledLink>
-				
-				<StyledLink to="/envalanalytics" >
-					<Boxx 
-						Cardtitle={HomePageText.environmentalhealth.title} 
-						Cardsubtitle={HomePageText.environmentalhealth.subtitle} 
-						Cardtext={HomePageText.environmentalhealth.text} 
-						height="200px"
-						background={env}/>
-				</StyledLink>
-				<StyledLink to="/vitalanalytics">
-					<Boxx 
-						Cardtitle={HomePageText.vitals.title} 
-						Cardsubtitle={HomePageText.vitals.subtitle} 
-						Cardtext={HomePageText.vitals.text} 
-						height="200px"
-						background={vitals}/>
-				</StyledLink>
-			</Row> */}
-			<Row style={styles.rows}>
-				<Query query={all_records}>
-				{({ data, loading, error }) => {
-					if (loading) return <p>Loading...</p>;
-					if (error) return <p>Error :(</p>;
-					//console.log(data.getEvalMedicalRecords);
-					return (
-						<LineChart_GeneralComponent data={data} />
-					);
-				}}
-				</Query>
-			</Row>
-		</div>
-	);
-}
-
