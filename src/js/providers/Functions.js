@@ -18,4 +18,13 @@ export function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+export function removeBlanksByKey(arrObjects, key) {
+    for (let i =0; i< arrObjects.length; i++){
+        if (arrObjects[i][key] === "" || arrObjects[i][key] === " ") {
+            delete arrObjects[i];
+        }    
+    };
+    return arrObjects
+}
+
 export {get_age}
