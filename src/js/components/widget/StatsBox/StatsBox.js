@@ -13,10 +13,10 @@ const Div = styled.div`
 
     &:hover {
         border-radius: 20px; 
-        background: #f8af1e; Puente color
+        //background: #f8af1e; Puente color
         background: #1a2a6c;  
-        //color: #f8af1e;
-        color: #1a2a6c;
+        color: #f8af1e;
+        //color: #1a2a6c;
 
         box-shadow: 1px 12px 20px 1px rgba(0, 0, 0, 0.2);
     }
@@ -31,7 +31,7 @@ export class StatsBox extends React.Component{
         Cardtitle: "Card title",
         Cardsubtitle: "Card subtitle",
         Cardtext: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        height:"300px"    
+        height:"200px"    
     }
 
     
@@ -47,6 +47,10 @@ export class StatsBox extends React.Component{
                     <h6 className="card-subtitle mb-2 text-muted">{this.props.Cardsubtitle}</h6>
                     <h3 className="card-title">{this.props.Cardtitle}</h3>
                     <p className="card-text">{this.props.Cardtext}</p>
+                    
+                </div>
+                <div>
+                    {this.props.children}
                 </div>
             </Div>
 
