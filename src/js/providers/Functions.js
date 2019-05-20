@@ -18,6 +18,16 @@ export function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+export function sum(obj) {
+    var sum = 0;
+    for( var el in obj ) {
+      if( obj.hasOwnProperty( el ) ) {
+        sum += parseFloat( obj[el] );
+      }
+    }
+    return sum;
+  }
+
 export function removeBlanksByKey(arrObjects, key) {
     for (let i =0; i< arrObjects.length; i++){
         if (arrObjects[i][key] === "" || arrObjects[i][key] === " ") {
