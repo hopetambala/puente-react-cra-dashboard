@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Container, Col } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
-import { removeBlanksByKey, get_age } from '../providers/Functions';
+import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 
 //Components
 import { StatsBox } from '../components/widget/StatsBox/StatsBox';
@@ -48,7 +48,7 @@ class DemographicsAnalytics extends React.Component {
 	}
 
 	/*https://github.com/apollographql/react-apollo/issues/1411*/
-	componentWillMount = async () => {
+	componentDidMount = async () => {
 		const {client} = this.props;
 		//let res = await client.query({query: allRecordsByOrganization,variables: {organization:this.state.organization }});
 		let res = await client.query({query: all_records});
@@ -65,10 +65,12 @@ class DemographicsAnalytics extends React.Component {
 			modData[i].age = get_age(modData[i]['dob']);
 		}
 
+		//Count of All Records
 		var allCounts = d3.nest()
 			.rollup(function(v) { return v.length; })
 			.object(modData);
 
+		//Count of Records based on sex
 		var sexCounts = d3.nest()
 			.key(function(d) { return d.sex; })
 			.rollup(function(v) { return  v.length; })
@@ -76,6 +78,7 @@ class DemographicsAnalytics extends React.Component {
 		
 		var sexCounts = await removeBlanksByKey(sexCounts,"key")
 		
+		//Count of All Records based on education
 		var educationCounts = d3.nest()
 			.key(function(d) { return d.educationLevel; })
 			.rollup(function(v) { return  v.length; })
@@ -87,10 +90,14 @@ class DemographicsAnalytics extends React.Component {
 
 		var educationCounts = await removeBlanksByKey(educationCounts,"key")
 
+		//Average of ages
 		var ageAverage = d3.nest()
 			.rollup(function(v) { return d3.mean(v, function(d) { return d.age; }); })
 			.object(modData);
 
+		var roundedNumber = Math.round(ageAverage * 10) / 10	
+
+		//Count of All recors based on age
 		var ageCounts = d3.nest()
 			.key(function(d) { return d.age; })
 			.rollup(function(v) { return  v.length })
@@ -100,10 +107,23 @@ class DemographicsAnalytics extends React.Component {
 			return b.value - a.value;
 		});
 
-		//console.log(ageAverage,ageCounts)
+		//Count of All records under the age of 6
+		var ageUnder6 = d3.nest()
+			.key(function(d) { 
+				if(d.age < 6) 
+					return d.age; 
+			})
+			.rollup(function(v) { 
+				return v.length; 
+			})
+			.object(modData);
 		
-		var roundedNumber = Math.round(ageAverage * 10) / 10
+		if (undefined in ageUnder6){
+			delete ageUnder6.undefined
+		}
 
+		var ageUnder6summed = sum(ageUnder6)
+		
 		
 
 
@@ -113,8 +133,10 @@ class DemographicsAnalytics extends React.Component {
 			all: allCounts,
 			sexes: sexCounts,
 			educations: educationCounts,
-			ageMetrics : [roundedNumber,ageCounts]
+			ageMetrics : [roundedNumber,ageUnder6summed]
 		})
+
+		//console.log(this.state)
 
 	}
 
@@ -145,7 +167,7 @@ class DemographicsAnalytics extends React.Component {
 						<Col>
 							<StatsBox
 								Cardsubtitle={"Metrics on Education"}
-								Cardtitle={" Highest: " + this.state.educations[0].key}
+								Cardtitle={"Highest: " + this.state.educations[0].key}
 								Cardtext={this.state.educations[0].value}
 								height="300px"
 							>
@@ -159,7 +181,17 @@ class DemographicsAnalytics extends React.Component {
 								Cardsubtitle={"Metrics on Age"}
 								Cardtitle={" Average: " + this.state.ageMetrics[0]}
 								Cardtext={""}
-								height="300px"
+								height="150px"
+							>
+								{/*<Pie180ChartComponent 
+								data={this.state.ageMetrics[1]}
+								valueKey="value" /> */}
+							</StatsBox>
+							<StatsBox
+								Cardsubtitle={"Metrics on Age"}
+								Cardtitle={"Less Than Age 5: " + this.state.ageMetrics[1]}
+								Cardtext={""}
+								height="150px"
 							>
 								{/*<Pie180ChartComponent 
 								data={this.state.ageMetrics[1]}
