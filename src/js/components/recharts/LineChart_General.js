@@ -90,7 +90,7 @@ export class LineChart_GeneralComponent extends React.Component{
 			}}
 		  >
 			<CartesianGrid strokeDasharray="3 3" />
-			<XAxis height={40} label={{ value: 'Date', position: 'insideBottom', dy:0 }} dataKey={getXaxis} />
+			<XAxis height={40} label={{ value: 'Date', position: 'insideBottom', dy:0 }} dataKey={getXaxis} reversed />
 			<YAxis label={{ value: 'Number of Records Collected That Day', angle: -90, position: 'center', dx: -20}} />
 			<Tooltip />
 			<Legend verticalAlign="top" />
