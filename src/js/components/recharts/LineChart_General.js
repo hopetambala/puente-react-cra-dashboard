@@ -60,7 +60,7 @@ export class LineChart_GeneralComponent extends React.Component{
 		
 		
 		this.setState({
-			modded: res,
+			modded: resSorted,
 			//Puente: quien,
 			//WOF: sabe
 		})
