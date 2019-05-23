@@ -32,7 +32,7 @@ const styles = {
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		alignContent: 'flex-start',
-		paddingTop: '5%'
+		paddingTop: '1%'
 		
 	},
 	row: {
@@ -62,25 +62,11 @@ export class HomePage extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			url: this.props.match.url,
-			topMargin: "0%",
 			organization:"All"
 		}
 		
 	}
-	
-	componentDidMount() {
-		//window.addEventListener("resize", this.resize.bind(this));
-		//this.resize();
-	}
-	  
-	resize() {
-		if (window.innerWidth <= 760){
-			this.setState({
-				topMargin:"15%"
-			})
-		}
-	}
+
 
 	async onSubmit(value){
 		await this.setState({
@@ -91,8 +77,7 @@ export class HomePage extends React.Component {
 
 	render() {
 		return (
-			
-			<Router style={{marginTop:this.state.topMargin}}>
+			<Router>
 				<Container style={styles.container}>
 					<Row styles={styles.row}>
 						<StyledButton>
