@@ -179,11 +179,41 @@ class DemographicsAnalytics extends React.Component {
 		}
 		
 	}
+	async onSubmitz(organization){
+		if (organization!= "All"){
+			await this.setState({
+				organization: organization,
+				progress:40
+			})
+
+			const {client} = this.props;
+
+			let res = await client.query({query: allRecordsByOrganization ,variables: {organization:this.state.organization }});
+			this.setState({results: res.data.getPeopleByOrganization})
+			//console.log(this.state.results);
+			await this.dataWrangle()
+		}
+		else{
+			await this.setState({
+				organization: organization,
+				progress:40
+			})
+			const {client} = this.props;
+			let res = await client.query({query: all_records});
+			this.setState({
+				results: res.data.getPeople,
+				progress: 65
+			})
+			//console.log(this.state.results);
+			await this.dataWrangle()
+		}
+		
+	}
 
 	render() {
 		return (
 				<Container style={styles.container}>
-					<Form
+					{/*<Form
 						onSubmit={this.onSubmit}
 						initialValues={{ organization: '' }}
 						render={({ handleSubmit, form, submitting, pristine, values }) => (
@@ -203,7 +233,20 @@ class DemographicsAnalytics extends React.Component {
 								</Button>
 							</BSForm>
 							)}
-					/>
+						/>*/}
+					<Dropdown>
+						<Dropdown.Toggle variant="success" id="dropdown-basic">
+							{this.state.organization}
+						</Dropdown.Toggle>
+
+						<Dropdown.Menu>
+							<Dropdown.Item onClick={()=>{this.onSubmitz("All")}}>All</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.onSubmitz("Puente")}}>Puente</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.onSubmitz("One World Surgery")}}>One World Surgery</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.onSubmitz("WOF")}}>World Outreach Foundation</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.onSubmitz("Constanza Medical Mission")}}>Constanza Medical Mission</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
 				{ this.state.progress < 95 && this.state &&
 					<>
 						<ProgressBar animated now={this.state.progress} />
