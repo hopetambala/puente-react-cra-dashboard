@@ -6,7 +6,7 @@ const Div = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 10px; 
-    width: 300px;
+    //width: 300px;
     //height: ${props => props.Height};
     margin: 1%;
     //background: #f8af1e; Puente color
@@ -31,7 +31,8 @@ export class StatsBox extends React.Component{
         Cardtitle: "Card title",
         Cardsubtitle: "Card subtitle",
         Cardtext: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        height:"200px"    
+        height:"200px",
+        width:"300px"
     }
 
     
@@ -39,7 +40,8 @@ export class StatsBox extends React.Component{
     render(){
         const style = {
             backgroundImage: `url(${this.props.background})`,
-            height:this.props.height
+            height:this.props.height,
+            width:this.props.width
         }
         return(
             <Div style={style}>

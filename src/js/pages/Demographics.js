@@ -1,8 +1,8 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar, Dropdown, Form as BSForm, Button, ButtonToolbar } from 'react-bootstrap';
-import { Form, Field } from 'react-final-form';
+import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
+import MaterialTable from 'material-table';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 
 //Components
@@ -23,11 +23,12 @@ const styles = {
 		justifyContent: 'center',
 		//alignItems: 'flex-center',
 		alignContent: 'flex-start',
-		paddingTop: '5%'
+		//paddingTop: '5%'
 		
 	},
 	row: {
-		//height:'100vh',	
+		//height:'100vh',
+		alignItems: 'flex-center',
 		justifyContent: 'center',
 		flex:1,
 		marginBottom:0,
@@ -46,7 +47,8 @@ class DemographicsAnalytics extends React.Component {
 			all: null,
 			sexes: null,
 			educations:null,
-			ageMetrics:null
+			ageMetrics:null,
+			organizationCounts:null
 		}
 	}
 
@@ -96,11 +98,11 @@ class DemographicsAnalytics extends React.Component {
 			return b.value - a.value;
 		});
 
+		var educationCounts = await removeBlanksByKey(educationCounts,"key")
+
 		this.setState({
 			progress:80
-		})
-
-		var educationCounts = await removeBlanksByKey(educationCounts,"key")
+		});
 
 		//Average of ages
 		var ageAverage = d3.nest()
@@ -136,12 +138,27 @@ class DemographicsAnalytics extends React.Component {
 
 		var ageUnder6summed = sum(ageUnder6)
 		
+
+		//Count of All Records based on Organization
+		var organizationCounts = d3.nest()
+			.key(function(d) { return d.surveyingOrganization; })
+			.rollup(function(v) { return  v.length; })
+			.entries(modData);
+
+		organizationCounts.sort(function(a,b) {
+			return b.value - a.value;
+		});
+
+		var organizationCounts = await removeBlanksByKey(organizationCounts,"key");
+
+		console.log(organizationCounts)
 	
 		this.setState({
 			all: allCounts,
 			sexes: sexCounts,
 			educations: educationCounts,
 			ageMetrics : [roundedNumber,ageUnder6summed],
+			organizationCounts: organizationCounts,
 			progress: 100
 		})
 
@@ -179,6 +196,7 @@ class DemographicsAnalytics extends React.Component {
 		}
 		
 	}
+
 	async onSubmitz(organization){
 		if (organization!= "All"){
 			await this.setState({
@@ -213,27 +231,6 @@ class DemographicsAnalytics extends React.Component {
 	render() {
 		return (
 				<Container style={styles.container}>
-					{/*<Form
-						onSubmit={this.onSubmit}
-						initialValues={{ organization: '' }}
-						render={({ handleSubmit, form, submitting, pristine, values }) => (
-						<BSForm onSubmit={handleSubmit}>
-							<Dropdown>
-								<label>Organizations</label>
-								<Field name="organization" component="select" >
-									<option value="All">All</option>
-									<option value="Puente">Puente</option>
-									<option value="One World Surgery">One World Surgery</option>
-									<option value="WOF">World Outreach Foundation</option>
-									<option value="Constanza Medical Mission">Constanza Medical Mission</option>
-								</Field>
-							</Dropdown>
-								<Button variant="success" type="submit" disabled={submitting || pristine}>
-									Submit
-								</Button>
-							</BSForm>
-							)}
-						/>*/}
 					<Dropdown>
 						<Dropdown.Toggle variant="success" id="dropdown-basic">
 							{this.state.organization}
@@ -304,9 +301,24 @@ class DemographicsAnalytics extends React.Component {
 								valueKey="value" /> */}
 							</StatsBox>
 						</Col>
+						<Col>
+							<MaterialTable 	
+								title={"Organization Counts"}
+								columns={[
+									{ title: 'Organization', field: 'key' },
+									{ title: 'Count of Records', field: 'value' },
+								]}
+
+								options={{
+									search: false
+								  }}
+								data={this.state.organizationCounts}        
+							/>
+						</Col>
 							
 					</Row>
-					}
+					
+				}
 					{this.state.organization =="All" && 
 					<Row style={styles.rows}>
 						<Query query={all_records}>
@@ -314,7 +326,9 @@ class DemographicsAnalytics extends React.Component {
 							if (loading) return <p>Loading...</p>;
 							if (error) return <p>Error :(</p>;
 							return (
-								<LineChart_GeneralComponent data={data} />
+								<Col>
+									<LineChart_GeneralComponent data={data} />
+								</Col>
 							);
 						}}
 						</Query>
