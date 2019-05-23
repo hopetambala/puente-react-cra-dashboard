@@ -1,5 +1,6 @@
 import React from 'react';
-import { Row, Container, Col } from 'react-bootstrap';
+import { Row, Container, Col, ProgressBar, Dropdown, Form as BSForm, Button, ButtonToolbar } from 'react-bootstrap';
+import { Form, Field } from 'react-final-form';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
@@ -12,7 +13,7 @@ import { LineChart_GeneralComponent } from '../components/recharts/LineChart_Gen
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
 
 //Query
-import { allRecordsByOrganization as allOrg, all_records} from '../queries/records';
+import { allRecordsByOrganization, all_records} from '../queries/records';
 
 
 const styles = {
@@ -39,6 +40,8 @@ class DemographicsAnalytics extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
+			progress: 25,
+			organization:"All",
 			results:null,
 			all: null,
 			sexes: null,
@@ -50,13 +53,18 @@ class DemographicsAnalytics extends React.Component {
 	/*https://github.com/apollographql/react-apollo/issues/1411*/
 	componentDidMount = async () => {
 		const {client} = this.props;
-		//let res = await client.query({query: allRecordsByOrganization,variables: {organization:this.state.organization }});
+	
 		let res = await client.query({query: all_records});
-		this.setState({results: res.data.getPeople})
+		this.setState({
+			results: res.data.getPeople,
+			progress: 100
+		})
 		//console.log(this.state.results);
 		await this.dataWrangle()
-	}
 	
+		
+	}
+
 	async dataWrangle(){
 		var modData = this.state.results
 
@@ -87,6 +95,10 @@ class DemographicsAnalytics extends React.Component {
 		educationCounts.sort(function(a,b) {
 			return b.value - a.value;
 		});
+
+		this.setState({
+			progress:80
+		})
 
 		var educationCounts = await removeBlanksByKey(educationCounts,"key")
 
@@ -124,29 +136,80 @@ class DemographicsAnalytics extends React.Component {
 
 		var ageUnder6summed = sum(ageUnder6)
 		
-		
-
-
-
-
+	
 		this.setState({
 			all: allCounts,
 			sexes: sexCounts,
 			educations: educationCounts,
-			ageMetrics : [roundedNumber,ageUnder6summed]
+			ageMetrics : [roundedNumber,ageUnder6summed],
+			progress: 100
 		})
 
 		//console.log(this.state)
 
 	}
+	
+	onSubmit = async values => {
+		if (values.organization != "All"){
+			await this.setState({
+				organization: values.organization,
+				progress:40
+			})
 
-	
-	
+			const {client} = this.props;
+
+			let res = await client.query({query: allRecordsByOrganization ,variables: {organization:this.state.organization }});
+			this.setState({results: res.data.getPeopleByOrganization})
+			//console.log(this.state.results);
+			await this.dataWrangle()
+		}
+		else{
+			await this.setState({
+				organization: values.organization,
+				progress:40
+			})
+			const {client} = this.props;
+			let res = await client.query({query: all_records});
+			this.setState({
+				results: res.data.getPeople,
+				progress: 65
+			})
+			//console.log(this.state.results);
+			await this.dataWrangle()
+		}
+		
+	}
 
 	render() {
 		return (
 				<Container style={styles.container}>
-				{ this.state && this.state.sexes && this.state.educations &&
+					<Form
+						onSubmit={this.onSubmit}
+						initialValues={{ organization: '' }}
+						render={({ handleSubmit, form, submitting, pristine, values }) => (
+						<BSForm onSubmit={handleSubmit}>
+							<Dropdown>
+								<label>Organizations</label>
+								<Field name="organization" component="select" >
+									<option value="All">All</option>
+									<option value="Puente">Puente</option>
+									<option value="One World Surgery">One World Surgery</option>
+									<option value="WOF">World Outreach Foundation</option>
+									<option value="Constanza Medical Mission">Constanza Medical Mission</option>
+								</Field>
+							</Dropdown>
+								<Button variant="success" type="submit" disabled={submitting || pristine}>
+									Submit
+								</Button>
+							</BSForm>
+							)}
+					/>
+				{ this.state.progress < 95 && this.state &&
+					<>
+						<ProgressBar animated now={this.state.progress} />
+					</>
+				}
+				{ this.state.progress == 100 && this.state && this.state.sexes && this.state.educations &&
 					<Row style={styles.row}>
 					
 						<Col>
@@ -201,6 +264,7 @@ class DemographicsAnalytics extends React.Component {
 							
 					</Row>
 					}
+					{this.state.organization =="All" && 
 					<Row style={styles.rows}>
 						<Query query={all_records}>
 						{({ data, loading, error }) => {
@@ -211,7 +275,7 @@ class DemographicsAnalytics extends React.Component {
 							);
 						}}
 						</Query>
-					</Row>
+					</Row>}
 				</Container>		
 		);
 	}

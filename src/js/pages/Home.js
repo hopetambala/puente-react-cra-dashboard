@@ -64,7 +64,7 @@ export class HomePage extends React.Component {
 		this.state = {
 			url: this.props.match.url,
 			topMargin: "0%",
-			organization:null
+			organization:"All"
 		}
 		
 	}
@@ -82,10 +82,11 @@ export class HomePage extends React.Component {
 		}
 	}
 
-	onSubmit = async (values) => {
+	async onSubmit(value){
 		await this.setState({
-			org: values.organization,
+			organization: value
 		})
+		console.log(this.state.organization)
 	}
 
 	render() {
@@ -153,11 +154,14 @@ export class HomePage extends React.Component {
 						</Query>*/}
 						{/*<Route path={`/demographicanalytics`} component={DemographicsAnalytics} />*/}
 						<Switch>
-							<Route path={`/demographicanalytics`} component={DemographicsAnalytics} />
+							<Route
+								path='/demographicanalytics'
+								render={()=><DemographicsAnalytics/>}
+							/>
 							<Route path={`/medicalanalytics`} component={MedicalEvalAnalytics} />
 							<Route path="/envalanalytics" component={EnvironHealthAnalytics} />
 							<Route path="/vitalanalytics" component={VitalsAnalytics} />
-							<Route component={DemographicsAnalytics}/>
+							<Route render={()=><DemographicsAnalytics />}/>
 						</Switch>
 					</Row>
 					
