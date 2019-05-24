@@ -24,8 +24,8 @@ export class Pie180ChartComponent extends React.Component{
 			data : null,
 			valueKey : null
 		}
-		console.log(this.props.valueKey)
-		console.log(this.props.data)
+		//console.log(this.props.valueKey)
+		//console.log(this.props.data)
 	}
 
 	/*static defaultProps = {

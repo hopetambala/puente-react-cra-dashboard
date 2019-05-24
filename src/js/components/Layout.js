@@ -33,15 +33,17 @@ const StyledLink = styled(Link)`
 	}
 `;
 
+
+
 export default class Layout extends React.Component {
 	static defaultProps = {
 		username: "User"       
 	}
 	render() {
 		return (
-			<Router>
+			<Router >
 				{/*<StyledNav  className="navbar navbar-expand-lg fixed-top is-white is-dark-text bg-light">*/}
-				<StyledNavBar collapseOnSelect expand="md" variant="dark" >
+				<StyledNavBar fixed="top" collapseOnSelect expand="md" variant="dark" >
 				<StyledNavBarBrand>PUENTE</StyledNavBarBrand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">

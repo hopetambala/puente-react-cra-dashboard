@@ -6,13 +6,10 @@ import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom
 import styled from 'styled-components';
 
 //Pages
-import { MedicalEvalAnalytics} from '../pages/MedicalEval';
+import MedicalEvalAnalytics from '../pages/MedicalEval';
 import EnvironHealthAnalytics  from '../pages/EnvironHealth';
 import { VitalsAnalytics } from '../pages/Vitals';
 import DemographicsAnalytics  from '../pages/Demographics';
-
-//Componenents
-import { Selector } from '../components/Selector';
 
 //Assets
 import medical from '../../assets/medical.png';
@@ -20,19 +17,13 @@ import env from '../../assets/env.png';
 import vitals from '../../assets/vitals.png';
 import {HomePageText} from '../providers/Text';
 
-
-//Apollo
-import { Query } from 'react-apollo';
-import { all_records, allRecordsByOrganization } from '../queries/records';
-
-
 const styles = {
 	container: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		alignContent: 'flex-start',
-		paddingTop: '1%'
+		paddingTop: '60px'
 		
 	},
 	row: {
@@ -40,7 +31,8 @@ const styles = {
 		flex:1,
 		marginBottom:0,
 		paddingBottom:0
-	}
+	}, 
+
 }
 
 const StyledLink = styled(Link)`
@@ -92,52 +84,9 @@ export class HomePage extends React.Component {
 						<StyledButton>
 							<StyledLink to="/envalanalytics">Environmental Analytics</StyledLink>
 						</StyledButton>
-							{/*<Form
-								onSubmit={this.onSubmit}
-								initialValues={{ organization: '' }}
-								render={({ handleSubmit, form, submitting, pristine, values }) => (
-								<form onSubmit={handleSubmit}>
-									<Row>
-										<div style={{paddingLeft:"5%"}}>
-											<Field name="organization" component="select" class="form-control">
-												<option ></option>
-												<option value="Puente">Puente</option>
-												<option value="One World Surgery">One World Surgery</option>
-												<option value="WOF">World Outreach Foundation</option>
-												<option value="Constanza Medical Mission">Constanza Medical Mission</option>
-											</Field>
-										</div>
-										<div>
-											<Button type="submit" disabled={submitting || pristine}>
-												Submit
-											</Button>
-										</div>
-									</Row>
-								</form>	
-							)}
-								/>*/}
 					</Row>
 									
 					<Row style={styles.row}>
-						{/*<Query
-								query={allRecordsByOrganization}
-								variables={{ organization }}
-								notifyOnNetworkStatusChange>
-							{({ loading, error, data, refetch, networkStatus }) => {
-							//if (networkStatus === 4) return "Refetching!";
-							if (loading) return <p>Loading...</p>;
-							if (error) return `Error!: ${error}`;
-							return (
-								<>
-									{console.log(data)}
-									<Route 
-									path="/demographicanalytics" 
-									render={(props) => <DemographicsAnalytics {...props} data={data.getPeopleByOrganization} />} />
-								</>
-							);
-							}}
-						</Query>*/}
-						{/*<Route path={`/demographicanalytics`} component={DemographicsAnalytics} />*/}
 						<Switch>
 							<Route
 								path='/demographicanalytics'

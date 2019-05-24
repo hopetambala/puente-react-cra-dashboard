@@ -4,15 +4,28 @@ import * as d3 from 'd3'
 
 import * as _ from 'underscore';
 
-import { BarChart, Bar, Brush, ReferenceLine, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import { BarChart, Bar, Brush, ReferenceLine, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
+import styled from 'styled-components';
 
+const Div = styled.div`
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+		border-radius: 10px; 
+		background: white;
 
+    margin: 1%;
+
+    &:hover {
+        border-radius: 20px; 
+        box-shadow: 1px 12px 20px 1px rgba(0, 0, 0, 0.2);
+    }
+`;
 //http://recharts.org/en-US/examples/BrushBarChart
 export class BrushBarChronicComponent extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			data : this.props.data.getEvalMedicalRecords,
+			data : this.props.data,
 			modded : null
 		}
 		//console.log(this.props.data)
@@ -92,21 +105,23 @@ export class BrushBarChronicComponent extends React.Component{
 
 	render () {
 		return (
-			<>
-			<h1>Number of Chronic Diseases by Age</h1>
-			<BarChart width={800} height={500} data={this.state.modded}
-					margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-				<CartesianGrid strokeDasharray="3 3"/>
-				<XAxis  height={40} label={{ value: 'Age', position: 'insideBottom', dy:0 }} dataKey="age"/>
-				<YAxis  label={{ value: 'Count of Chronic Diseases Reported', angle: -90, position: 'center', dx: -20}}/>
-				<Tooltip/>
-				<Legend verticalAlign="top" wrapperStyle={{lineHeight: '40px'}}/>
-				<ReferenceLine y={0} stroke='#000'/>
-				<Brush dataKey='age' height={40} stroke="#8884d8"/>
-				<Bar dataKey="diabetes_count" fill="#8884d8" />
-				<Bar dataKey="hypertension_count" fill="#82ca9d" />
-			</BarChart>
-			</>
+			<Div>
+				<h1>Number of Chronic Diseases by Age</h1>
+				<ResponsiveContainer width="100%"height={600}>
+					<BarChart data={this.state.modded}
+							margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+						<CartesianGrid strokeDasharray="3 3"/>
+						<XAxis  height={40} label={{ value: 'Age', position: 'insideBottom', dy:0 }} dataKey="age"/>
+						<YAxis  label={{ value: 'Count of Chronic Diseases Reported', angle: -90, position: 'center', dx: -20}}/>
+						<Tooltip/>
+						<Legend verticalAlign="top" wrapperStyle={{lineHeight: '40px'}}/>
+						<ReferenceLine y={0} stroke='#000'/>
+						<Brush dataKey='age' height={40} stroke="#8884d8"/>
+						<Bar dataKey="diabetes_count" fill="#8884d8" />
+						<Bar dataKey="hypertension_count" fill="#82ca9d" />
+					</BarChart>
+				</ResponsiveContainer>
+			</Div>
 		);
 	}
 }

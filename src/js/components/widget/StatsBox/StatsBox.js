@@ -10,6 +10,7 @@ const Div = styled.div`
     //height: ${props => props.Height};
     margin: 1%;
     //background: #f8af1e; Puente color
+    background: white;
 
     &:hover {
         border-radius: 20px; 

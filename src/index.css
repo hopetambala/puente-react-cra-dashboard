@@ -1,6 +1,7 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background: #F5F8FD;
 }
 
 ol, ul {
@@ -18,7 +19,7 @@ ol, ul {
 }
 
 .square {
-  background: #fff;
+  background: #F5F8FD;
   border: 1px solid #999;
   float: left;
   font-size: 24px;
@@ -37,7 +38,7 @@ ol, ul {
 }
 
 .kbd-navigation .square:focus {
-  background: #ddd;
+  background: #F5F8FD;
 }
 
 .game {

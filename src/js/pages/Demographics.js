@@ -57,7 +57,7 @@ class DemographicsAnalytics extends React.Component {
 		const {client} = this.props;
 	
 		let res = await client.query({query: all_records});
-		this.setState({
+		await this.setState({
 			results: res.data.getPeople,
 			progress: 100
 		})
@@ -68,106 +68,105 @@ class DemographicsAnalytics extends React.Component {
 	}
 
 	async dataWrangle(){
-		var modData = this.state.results
+		var modData = await this.state.results
 
 		//get ages from date of births
-		for(let i =0; i< modData.length; i++ ){
-			modData[i].age = get_age(modData[i]['dob']);
-		}
+		if(modData){
+			for(let i =0; i< modData.length; i++ ){
+				modData[i].age = get_age(modData[i]['dob']);
+			}
 
-		//Count of All Records
-		var allCounts = d3.nest()
-			.rollup(function(v) { return v.length; })
-			.object(modData);
+			//Count of All Records
+			var allCounts = d3.nest()
+				.rollup(function(v) { return v.length; })
+				.object(modData);
 
-		//Count of Records based on sex
-		var sexCounts = d3.nest()
-			.key(function(d) { return d.sex; })
-			.rollup(function(v) { return  v.length; })
-			.entries(modData);
+			//Count of Records based on sex
+			var sexCounts = d3.nest()
+				.key(function(d) { return d.sex; })
+				.rollup(function(v) { return  v.length; })
+				.entries(modData);
+			
+			var sexCounts = await removeBlanksByKey(sexCounts,"key")
+			
+			//Count of All Records based on education
+			var educationCounts = d3.nest()
+				.key(function(d) { return d.educationLevel; })
+				.rollup(function(v) { return  v.length; })
+				.entries(modData);
+
+			educationCounts.sort(function(a,b) {
+				return b.value - a.value;
+			});
+
+			var educationCounts = await removeBlanksByKey(educationCounts,"key")
+
+			this.setState({
+				progress:80
+			});
+
+			//Average of ages
+			var ageAverage = d3.nest()
+				.rollup(function(v) { return d3.mean(v, function(d) { return d.age; }); })
+				.object(modData);
+
+			var roundedNumber = Math.round(ageAverage * 10) / 10	
+
+			//Count of All recors based on age
+			var ageCounts = d3.nest()
+				.key(function(d) { return d.age; })
+				.rollup(function(v) { return  v.length })
+				.entries(modData);
+
+			ageCounts.sort(function(a,b) {
+				return b.value - a.value;
+			});
+
+			//Count of All records under the age of 6
+			var ageUnder6 = d3.nest()
+				.key(function(d) { 
+					if(d.age < 6) 
+						return d.age; 
+				})
+				.rollup(function(v) { 
+					return v.length; 
+				})
+				.object(modData);
+			
+			if (undefined in ageUnder6){
+				delete ageUnder6.undefined
+			}
+
+			var ageUnder6summed = sum(ageUnder6)
+			
+
+			//Count of All Records based on Organization
+			var organizationCounts = d3.nest()
+				.key(function(d) { return d.surveyingOrganization; })
+				.rollup(function(v) { return  v.length; })
+				.entries(modData);
+
+			organizationCounts.sort(function(a,b) {
+				return b.value - a.value;
+			});
+
+			var organizationCounts = await removeBlanksByKey(organizationCounts,"key");
 		
-		var sexCounts = await removeBlanksByKey(sexCounts,"key")
-		
-		//Count of All Records based on education
-		var educationCounts = d3.nest()
-			.key(function(d) { return d.educationLevel; })
-			.rollup(function(v) { return  v.length; })
-			.entries(modData);
-
-		educationCounts.sort(function(a,b) {
-			return b.value - a.value;
-		});
-
-		var educationCounts = await removeBlanksByKey(educationCounts,"key")
-
-		this.setState({
-			progress:80
-		});
-
-		//Average of ages
-		var ageAverage = d3.nest()
-			.rollup(function(v) { return d3.mean(v, function(d) { return d.age; }); })
-			.object(modData);
-
-		var roundedNumber = Math.round(ageAverage * 10) / 10	
-
-		//Count of All recors based on age
-		var ageCounts = d3.nest()
-			.key(function(d) { return d.age; })
-			.rollup(function(v) { return  v.length })
-			.entries(modData);
-
-		ageCounts.sort(function(a,b) {
-			return b.value - a.value;
-		});
-
-		//Count of All records under the age of 6
-		var ageUnder6 = d3.nest()
-			.key(function(d) { 
-				if(d.age < 6) 
-					return d.age; 
+			this.setState({
+				all: allCounts,
+				sexes: sexCounts,
+				educations: educationCounts,
+				ageMetrics : [roundedNumber,ageUnder6summed],
+				organizationCounts: organizationCounts,
+				progress: 100
 			})
-			.rollup(function(v) { 
-				return v.length; 
-			})
-			.object(modData);
-		
-		if (undefined in ageUnder6){
-			delete ageUnder6.undefined
 		}
-
-		var ageUnder6summed = sum(ageUnder6)
-		
-
-		//Count of All Records based on Organization
-		var organizationCounts = d3.nest()
-			.key(function(d) { return d.surveyingOrganization; })
-			.rollup(function(v) { return  v.length; })
-			.entries(modData);
-
-		organizationCounts.sort(function(a,b) {
-			return b.value - a.value;
-		});
-
-		var organizationCounts = await removeBlanksByKey(organizationCounts,"key");
-
-		console.log(organizationCounts)
-	
-		this.setState({
-			all: allCounts,
-			sexes: sexCounts,
-			educations: educationCounts,
-			ageMetrics : [roundedNumber,ageUnder6summed],
-			organizationCounts: organizationCounts,
-			progress: 100
-		})
-
 		//console.log(this.state)
 
 	}
 	
 	onSubmit = async values => {
-		if (values.organization != "All"){
+		if (values.organization !== "All"){
 			await this.setState({
 				organization: values.organization,
 				progress:40
@@ -208,7 +207,6 @@ class DemographicsAnalytics extends React.Component {
 
 			let res = await client.query({query: allRecordsByOrganization ,variables: {organization:this.state.organization }});
 			this.setState({results: res.data.getPeopleByOrganization})
-			//console.log(this.state.results);
 			await this.dataWrangle()
 		}
 		else{
@@ -249,7 +247,7 @@ class DemographicsAnalytics extends React.Component {
 						<ProgressBar animated now={this.state.progress} />
 					</>
 				}
-				{ this.state.progress == 100 && this.state && this.state.sexes && this.state.educations &&
+				{ this.state.progress === 100 && this.state && this.state.sexes && this.state.educations &&
 					<Row style={styles.row}>
 					
 						<Col>
@@ -319,7 +317,7 @@ class DemographicsAnalytics extends React.Component {
 					</Row>
 					
 				}
-					{this.state.organization =="All" && 
+					{this.state.organization === "All" && 
 					<Row style={styles.rows}>
 						<Query query={all_records}>
 						{({ data, loading, error }) => {

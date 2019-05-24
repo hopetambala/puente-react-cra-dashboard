@@ -35,10 +35,7 @@ export class VitalsAnalytics extends React.Component {
 			data:null
 		}
 	}
-
 	
-
-
 	render() {
 		return (
 				<Container style={styles.container}>
