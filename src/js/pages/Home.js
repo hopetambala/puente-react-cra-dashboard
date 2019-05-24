@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloConsumer } from 'react-apollo';
-import { Row, Container, Button, Dropdown } from 'react-bootstrap';
+import { Row, Container, Button, Nav, Navbar } from 'react-bootstrap';
 import { Form, Field } from 'react-final-form';
 import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom";
 import styled from 'styled-components';
@@ -38,9 +38,11 @@ const styles = {
 const StyledLink = styled(Link)`
     text-decoration: none;
 	
-	color: white;
+	color: #1a2a6c !important;
     &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
+        &:hover {
+			//background: #1a2a6c !important;
+			color: #f8af1e !important;
 	}
 	margin: 0%;
 `;
@@ -71,21 +73,28 @@ export class HomePage extends React.Component {
 		return (
 			<Router>
 				<Container style={styles.container}>
-					<Row styles={styles.row}>
-						<StyledButton>
-							<StyledLink to={`/demographicanalytics`}>General</StyledLink>
-						</StyledButton>
-						<StyledButton>
-							<StyledLink to={`/medicalanalytics`}>Medical Evaluation</StyledLink>
-						</StyledButton>
-						<StyledButton>
-							<StyledLink to="/vitalanalytics">Vitals</StyledLink>
-						</StyledButton>
-						<StyledButton>
-							<StyledLink to="/envalanalytics">Environmental Analytics</StyledLink>
-						</StyledButton>
-					</Row>
-									
+					<h1>Dashboard</h1>
+					<Navbar style={{padding:"0"}} collapseOnSelect>
+						<Navbar.Brand style={{color:""}}>Analytics ></Navbar.Brand>
+						<Navbar.Toggle aria-controls="basic-navbar-nav" />
+						<Navbar.Collapse id="basic-navbar-nav">
+							<Nav className="mr-auto">
+								<Nav.Link>
+									<StyledLink to={`/demographicanalytics`}>General</StyledLink>
+								</Nav.Link>
+								<Nav.Link>
+									<StyledLink to={`/medicalanalytics`}>Medical Evaluation</StyledLink>
+								</Nav.Link>
+								<Nav.Link>
+									<StyledLink to="/vitalanalytics">Vitals</StyledLink>
+								</Nav.Link>
+								<Nav.Link>
+									<StyledLink to="/envalanalytics">Environmental Analytics</StyledLink>
+								</Nav.Link>
+							</Nav>
+						</Navbar.Collapse>
+					</Navbar>
+															
 					<Row style={styles.row}>
 						<Switch>
 							<Route
