@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const all_records = gql`
     query{
         getPeople{
+            objectId
             fname
             lname
             nickname
@@ -32,6 +33,7 @@ export const all_records = gql`
 export const allEvalMedicals = gql`
     query{
         getEvalMedicalRecords{
+            objectId
             fname
             lname
             nickname
@@ -129,6 +131,7 @@ export const vitals = gql`
 export const allRecordsByOrganization = gql`
     query($organization: String!){
         getPeopleByOrganization(organization: $organization){
+            objectId
             fname
             lname
             nickname

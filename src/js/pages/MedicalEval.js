@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
+import * as _ from "underscore";
 
 import { removeBlanksByKey } from '../providers/Functions';
 
@@ -69,6 +70,15 @@ class MedicalEvalAnalytics extends React.Component {
 			.rollup(function(v) { return v.length; })
 			.object(modData);
 
+		let uniqmodData = _.uniq(modData, function(x){
+			return x.objectId;
+		});
+
+		var allEvalMedPatientCounts = d3.nest()
+			.rollup(function(v) { return v.length; })
+			.object(uniqmodData); //unique values only
+
+		
 		/*
 			Medical
 		*/
@@ -148,6 +158,7 @@ class MedicalEvalAnalytics extends React.Component {
 		*/
 		this.setState({
 			allCounts: allEvalMedCounts,
+			allUniqueCounts: allEvalMedPatientCounts,
 			medicalFollowupcounts:AssessmentandEvaluationCounts_cleaned,
 			surgicalFollowupcounts:AssessmentandEvaluation_SurgicalCounts,
 			immediateFollowupcounts:immediate_follow_upCounts,
@@ -221,10 +232,21 @@ class MedicalEvalAnalytics extends React.Component {
 					<Row style={styles.row}>
 						<Col>
 							<StatsBox
-								Cardsubtitle={"Metrics on All Evaluations"}
+								Cardsubtitle={"All Evaluations"}
 								Cardtitle={" All Evaluations Completed: " + this.state.allCounts}
 								Cardtext={""}
-								height="inherit"
+								height="150px"
+							>
+								{/*<Pie180ChartComponent 
+									data={this.state.sexes}
+									valueKey="value" 
+								/>*/}
+							</StatsBox>
+							<StatsBox
+								Cardsubtitle={"Patients"}
+								Cardtitle={"Patients Identified: " + this.state.allUniqueCounts}
+								Cardtext={""}
+								height="150px"
 							>
 								{/*<Pie180ChartComponent 
 									data={this.state.sexes}
@@ -235,10 +257,10 @@ class MedicalEvalAnalytics extends React.Component {
 						</Col>
 						<Col>
 							<StatsBox
-								Cardsubtitle={"Analytics on Doctor Visits"}
+								Cardsubtitle={"All Evaluations: Doctor Visits"}
 								Cardtitle={"Seen Doctor Regarding Issue: " + this.state.view_seendoctorcounts.Yes}
 								Cardtext={""}
-								height="inherit"
+								height="300px"
 							>
 								<Pie180ChartComponent 
 								data={this.state.seendoctorcounts}
@@ -247,10 +269,10 @@ class MedicalEvalAnalytics extends React.Component {
 						</Col>
 						<Col>
 							<StatsBox
-								Cardsubtitle={"Metrics on Parts of Body"}
+								Cardsubtitle={"All Evaluations: Parts of Body"}
 								Cardtitle={"Biggest Problem: " + this.state.partofbodycounts[0].key}
 								Cardtext={this.state.partofbodycounts[0].value}
-								height="inherit"
+								height="300px"
 							>
 								<Pie180ChartComponent 
 								data={this.state.partofbodycounts}
@@ -261,10 +283,10 @@ class MedicalEvalAnalytics extends React.Component {
 					<Row style={styles.row}>
 						<Col>
 							<StatsBox
-								Cardsubtitle={"Metrics on Assessments"}
+								Cardsubtitle={"All Evaluations: Assessments"}
 								Cardtitle={"Medical Follow-Up Requested : " + this.state.view_medicalFollowupcounts.Yes}
 								Cardtext={""}
-								height="inherit"
+								height="300px"
 							>
 								<Pie180ChartComponent 
 								data={this.state.medicalFollowupcounts}
@@ -273,10 +295,10 @@ class MedicalEvalAnalytics extends React.Component {
 						</Col>
 						<Col>
 							<StatsBox
-								Cardsubtitle={"Metrics on Assessments"}
+								Cardsubtitle={"All Evaluations: Assessments"}
 								Cardtitle={"Surgical Follow-Up Requested : " + this.state.view_surgicalFollowupcounts.Yes}
 								Cardtext={""}
-								height="inherit"
+								height="300px"
 							>
 								<Pie180ChartComponent 
 								data={this.state.surgicalFollowupcounts}
@@ -285,10 +307,10 @@ class MedicalEvalAnalytics extends React.Component {
 						</Col>
 						<Col>
 							<StatsBox
-								Cardsubtitle={"Metrics on Assessments"}
+								Cardsubtitle={"All Evaluations: Assessments"}
 								Cardtitle={"Immediate Follow-Up Requested : " + this.state.view_immediateFollowupcounts.Yes}
 								Cardtext={""}
-								height="inherit"
+								height="300px"
 							>
 								<Pie180ChartComponent 
 								data={this.state.immediateFollowupcounts}

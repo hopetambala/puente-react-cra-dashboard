@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
+import * as _ from "underscore";
 import MaterialTable from 'material-table';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 
