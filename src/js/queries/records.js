@@ -79,6 +79,53 @@ export const allEvalMedicals = gql`
     }
 `;
 
+export const allEnvs = gql`
+    query{
+        getEnvRecords{
+            objectId
+            fname
+            lname
+            nickname
+            sex
+            dob
+            age
+            telephoneNumber
+            educationLevel
+            occupation
+            communityname
+            city
+            province
+            insuranceNumber
+            insuranceProvider
+            clinicProvider
+            cedulaNumber
+            surveyingUser
+            surveyingOrganization
+            latitude
+            longitude
+            
+            yearsLivedinthecommunity
+            yearsLivedinThisHouse
+            waterAccess
+            typeofWaterdoyoudrink
+            latrineAccess
+            clinicAccess
+            conditionoRoofinyourhouse
+            conditionoFloorinyourhouse
+            medicalproblemswheredoyougo
+            dentalproblemswheredoyougo
+            biggestproblemofcommunity
+            timesperweektrashcollected
+            wheretrashleftbetweenpickups
+            numberofIndividualsLivingintheHouse
+            numberofChildrenLivinginHouseUndertheAgeof5
+            houseownership
+            createdAt
+            updatedAt
+        }
+    }
+`;
+
 export const first_last_names = gql`
     query {
         getPeople{
@@ -222,6 +269,7 @@ export const allEnvsByOrganization = gql`
             surveyingOrganization
             latitude
             longitude
+            
             yearsLivedinthecommunity
             yearsLivedinThisHouse
             waterAccess

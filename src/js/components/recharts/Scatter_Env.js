@@ -11,7 +11,7 @@ export class ThreeDimenEnvComponent extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			data : this.props.data.getEnvRecords,
+			data : this.props.data,
 			modded : null,
 			clinicYes : null,
 			clinicNo : null

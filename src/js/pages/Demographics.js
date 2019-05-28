@@ -279,7 +279,7 @@ class DemographicsAnalytics extends React.Component {
 							</StatsBox>
 						</Col>
 						<Col>
-						<StatsBox
+							<StatsBox
 								Cardsubtitle={"Metrics on Age"}
 								Cardtitle={" Average: " + this.state.ageMetrics[0]}
 								Cardtext={""}
