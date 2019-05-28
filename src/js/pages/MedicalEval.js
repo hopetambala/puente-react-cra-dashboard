@@ -17,21 +17,20 @@ import { Pie180ChartComponent } from '../components/recharts/PieChart';
 //Query
 import { age_sex_chronic as asc, allEvalMedicalsByOrganization, allEvalMedicals} from '../queries/records';
 
-
 const styles = {
 	container: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		//alignItems: 'flex-center',
-		alignContent: 'flex-center',
-		paddingTop: '5%'
+		alignContent: 'flex-start',
+		//paddingTop: '5%'
 		
 	},
 	row: {
-		//height:'100vh',	
+		//height:'100vh',
+		alignItems: 'flex-center',
 		justifyContent: 'center',
-		alignContent: 'flex-center',
 		flex:1,
 		marginBottom:0,
 		paddingBottom:0

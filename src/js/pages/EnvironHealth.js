@@ -23,11 +23,12 @@ const styles = {
 		justifyContent: 'center',
 		//alignItems: 'flex-center',
 		alignContent: 'flex-start',
-		paddingTop: '5%'
+		//paddingTop: '5%'
 		
 	},
 	row: {
-		//height:'100vh',	
+		//height:'100vh',
+		alignItems: 'flex-center',
 		justifyContent: 'center',
 		flex:1,
 		marginBottom:0,
