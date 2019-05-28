@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 
 import * as _ from 'underscore';
 
-import { PieChart, Pie, Sector, Cell, Tooltip, LabelList} from 'recharts';
+import { PieChart, Pie, Sector, Cell, Tooltip, LabelList, ResponsiveContainer} from 'recharts';
 
 const data = [
 	{ name: 'Group A', value: 400 }, { name: 'Group B', value: 300 },
@@ -61,14 +61,16 @@ export class Pie180ChartComponent extends React.Component{
 				<Bar dataKey="diabetes_count" fill="#8884d8" />
 				<Bar dataKey="hypertension_count" fill="#82ca9d" />
 			</BarChart>*/}
-			<PieChart width={350} height={200}>
-				<Pie dataKey={this.props.valueKey} startAngle={180} endAngle={0} data={this.props.data} cx={100} cy={100} outerRadius={60} fill="#8884d8" label nameKey="key">
-				{
-					data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-				}
-				</Pie>
-				<Tooltip />
-			</PieChart>
+			<ResponsiveContainer width="100%" height={200}>
+				<PieChart >
+					<Pie dataKey={this.props.valueKey} startAngle={180} endAngle={0} data={this.props.data} outerRadius={60} fill="#8884d8" label nameKey="key">
+					{
+						data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+					}
+					</Pie>
+					<Tooltip />
+				</PieChart>
+			</ResponsiveContainer>
 			</>
 		);
 	}
