@@ -160,6 +160,7 @@ export const allRecordsByOrganization = gql`
 export const allVitalsByOrganization = gql`
     query($organization: String!){
         getVitalByOrganization(organization: $organization){
+            objectId
             fname
             lname
             nickname
@@ -200,6 +201,7 @@ export const allVitalsByOrganization = gql`
 export const allEnvsByOrganization = gql`
     query($organization: String!){
         getEnvByOrganization(organization: $organization){
+            objectId
             fname
             lname
             nickname
@@ -245,6 +247,7 @@ export const allEnvsByOrganization = gql`
 export const allEvalMedicalsByOrganization = gql`
     query($organization: String!){
         getEvalMedicalByOrganization(organization: $organization){
+            objectId
             fname
             lname
             nickname
@@ -294,6 +297,7 @@ export const allEvalMedicalsByOrganization = gql`
 export const allHistoryMedicalsByOrganization = gql`
     query($organization: String!){
         getMedHistoryByOrganization(organization: $organization){
+            objectId
             fname
             lname
             nickname
