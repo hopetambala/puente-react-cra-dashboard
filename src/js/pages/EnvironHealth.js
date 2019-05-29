@@ -22,7 +22,8 @@ const styles = {
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		//alignItems: 'flex-center',
-		alignContent: 'flex-start',
+		//alignContent: 'flex-start',
+		alignContent: 'flex-center',
 		//paddingTop: '5%'
 		
 	},
@@ -247,6 +248,11 @@ class EnvironHealthAnalytics extends React.Component {
 					</Row>
 					<Row style={styles.row}>
 						<Col>
+							<ThreeDimenEnvComponent data={this.state.data} />
+						</Col>
+					</Row>
+					<Row style={styles.row}>
+						<Col>
 							<StatsBox
 								Cardsubtitle={"Accessibility: Health"}
 								Cardtitle={"Clinic Access: " + this.state.view_clinicCounts.Y}
@@ -286,15 +292,9 @@ class EnvironHealthAnalytics extends React.Component {
 							</StatsBox>
 						</Col>
 					</Row>
+					
 				</>
 					
-				}
-				{this.state.data != null && 
-					<Row style={styles.row}>
-					
-						<ThreeDimenEnvComponent data={this.state.data} />
-							
-					</Row>
 				}
 			</Container>
 		);

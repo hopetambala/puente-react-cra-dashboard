@@ -2,9 +2,22 @@ import React from 'react';
 import * as func from '../../providers/Functions';
 import * as d3 from 'd3'
 
-//import * as _ from 'underscore';
+import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
+import styled from "styled-components";
 
-import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend,} from 'recharts';
+const Div = styled.div`
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+		border-radius: 10px; 
+		background: white;
+
+    margin: 1%;
+
+    &:hover {
+        border-radius: 20px; 
+        box-shadow: 1px 12px 20px 1px rgba(0, 0, 0, 0.2);
+    }
+`;
 
 //http://recharts.org/en-US/examples/ThreeDimScatterChart
 export class ThreeDimenEnvComponent extends React.Component{
@@ -51,21 +64,24 @@ export class ThreeDimenEnvComponent extends React.Component{
 
 	render () {
 		return (
-			<ScatterChart
-				width={800}
-				height={600}
-				margin={{
-					top: 20, right: 20, bottom: 20, left: 20,
-				}}>
-				<CartesianGrid />
-				<XAxis type="number" dataKey="age" name="Age" unit="years" />
-				<YAxis type="number" dataKey="individualsInHouse" name="Individuals In the House" />
-				{/*<ZAxis type="number" dataKey="childrenInHouse" range={[0, 12]} name="Children in House" />*/}
-				<Tooltip cursor={{ strokeDasharray: '3 3' }} />
-				<Legend verticalAlign="top"/>
-				<Scatter name="Clinic Access" data={this.state.clinicYes} fill="#8884d8" />
-				<Scatter name="No Clinic Access" data={this.state.clinicNo} fill="#82ca9d" />
-			</ScatterChart>
+			<Div>
+				<ResponsiveContainer width="100%" height={600}>
+					<ScatterChart
+						margin={{
+							//top: 20, right: 20, bottom: 20, left: 20,
+							right: 20
+						}}>
+						<CartesianGrid />
+						<XAxis type="number" dataKey="age" name="Age" unit="years" />
+						<YAxis type="number" dataKey="individualsInHouse" name="Individuals In the House" />
+						{/*<ZAxis type="number" dataKey="childrenInHouse" range={[0, 12]} name="Children in House" />*/}
+						<Tooltip cursor={{ strokeDasharray: '3 3' }} />
+						<Legend verticalAlign="top"/>
+						<Scatter name="Clinic Access" data={this.state.clinicYes} fill="#8884d8" />
+						<Scatter name="No Clinic Access" data={this.state.clinicNo} fill="#82ca9d" />
+					</ScatterChart>
+				</ResponsiveContainer>
+			</Div>
 		);
 	}
 }

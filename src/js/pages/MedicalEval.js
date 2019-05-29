@@ -175,8 +175,6 @@ class MedicalEvalAnalytics extends React.Component {
 
 	}
 
-
-
 	async onSubmit(organization){
 		if (organization!= "All"){
 			await this.setState({
