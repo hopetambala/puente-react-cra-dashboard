@@ -74,8 +74,8 @@ export class HomePage extends React.Component {
 			<Router>
 				<Container style={styles.container}>
 					<h1>Dashboard</h1>
-					<Navbar style={{padding:"0"}} collapseOnSelect>
-						<Navbar.Brand style={{color:""}}>Analytics ></Navbar.Brand>
+					<Navbar style={{padding:"0"}} collapseOnSelect expand="sm">
+						<Navbar.Brand>Analytics ></Navbar.Brand>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="mr-auto">
