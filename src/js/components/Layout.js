@@ -9,6 +9,7 @@ import { Selector } from './Selector';
 import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";
 import { MapPage } from '../pages/Map';
+import PatientList from '../pages/Patient/PatientList';
 
 //Styling
 import styled from 'styled-components'
@@ -59,6 +60,7 @@ export default class Layout extends React.Component {
 				<Route exact path="/" component={HomePage} />
 				<Route path="/dataexport" component={ExportPage} />
 				<Route path="/map" component={MapPage} />
+				<Route path="/patients" component={PatientList} />
 			</Router>
 		);
 	}
