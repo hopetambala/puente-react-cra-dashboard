@@ -79,18 +79,18 @@ export class HomePage extends React.Component {
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="mr-auto">
-								<Nav.Link>
-									<StyledLink to={`/demographicanalytics`}>General</StyledLink>
-								</Nav.Link>
-								<Nav.Link>
-									<StyledLink to={`/medicalanalytics`}>Medical Evaluation</StyledLink>
-								</Nav.Link>
-								<Nav.Link>
-									<StyledLink to="/vitalanalytics">Vitals</StyledLink>
-								</Nav.Link>
-								<Nav.Link>
-									<StyledLink to="/envalanalytics">Environmental Analytics</StyledLink>
-								</Nav.Link>
+								<StyledLink className="nav-link" to={`/demographicanalytics`}>
+									General
+								</StyledLink>
+								<StyledLink className="nav-link" to={`/medicalanalytics`}>
+									Medical Evaluation
+								</StyledLink>
+								<StyledLink className="nav-link" to="/vitalanalytics">
+									Vitals
+								</StyledLink>
+								<StyledLink className="nav-link" to="/envalanalytics">
+									Environmental Analytics
+								</StyledLink>
 							</Nav>
 						</Navbar.Collapse>
 					</Navbar>

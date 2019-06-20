@@ -8,7 +8,7 @@ import { Selector } from './Selector';
 //Pages
 import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";
-import { MapPage } from '../pages/Map'
+import { MapPage } from '../pages/Map';
 
 //Styling
 import styled from 'styled-components'
@@ -48,13 +48,14 @@ export default class Layout extends React.Component {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="mr-auto">
-							<Nav.Link><StyledLink to="/">DASHBOARD</StyledLink></Nav.Link>
-							<Nav.Link><StyledLink to="/dataexport">EXPORT MANAGER</StyledLink></Nav.Link>
-							<Nav.Link><StyledLink to="/map">MAP</StyledLink></Nav.Link>
+							<StyledLink className="nav-link" to="/">DASHBOARD</StyledLink>
+							<StyledLink className="nav-link" to="/dataexport">EXPORT MANAGER</StyledLink>
+							<StyledLink className="nav-link" to="/map">MAP</StyledLink>
+							<StyledLink className="nav-link" to="/patients">PATIENTS</StyledLink>
 						</Nav>
 					</Navbar.Collapse>
 				</StyledNavBar>
-		
+			
 				<Route exact path="/" component={HomePage} />
 				<Route path="/dataexport" component={ExportPage} />
 				<Route path="/map" component={MapPage} />
