@@ -35,6 +35,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8",
     "react-test-renderer": "^16.8.3",
+    "react-window": "^1.8.2",
     "recharts": "^1.5.0",
     "styled-components": "^4.2.0",
     "underscore": "^1.9.1"
