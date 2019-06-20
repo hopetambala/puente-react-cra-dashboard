@@ -381,3 +381,71 @@ export const allHistoryMedicalsByOrganization = gql`
         }
     }  
 `;
+
+
+export const personalVitals = gql`
+    query($id:String!){
+        getPersonVitals(id:$id){
+            bmi
+            bloodSugar
+            bloodOxygen
+            bloodPressure
+            Systolic
+            Diastolic
+            temp
+            pulse
+            hemoglobinLevels
+            painLevels
+        }
+    }  
+`;
+
+export const personalEvaluationMedical = gql`
+    query($id:String!){
+        getPersonEvalMedical(id:$id){
+            chronic_condition_diabetes
+            chronic_condition_hypertension
+            chronic_condition_other
+            seen_doctor
+            received_treatment_notes
+            received_treatment_description
+            receiving_treatment_support_required
+            part_of_body
+            part_of_body_description
+            duration
+            trauma_induced
+            condition_progression
+            notes
+            AssessmentandEvaluation
+            AssessmentandEvaluation_Surgical
+            AssessmentandEvaluation_Surgical_Guess
+            immediate_follow_up
+            planOfAction
+            createdAt
+            updatedAt
+        }
+    }  
+`;
+
+export const personalEnvironmentalHealth = gql`
+    query($id:String!){
+        getPersonEnv(id:$id){
+            yearsLivedinthecommunity
+            yearsLivedinThisHouse
+            waterAccess
+            typeofWaterdoyoudrink
+            latrineAccess
+            clinicAccess
+            conditionoRoofinyourhouse
+            conditionoFloorinyourhouse
+            medicalproblemswheredoyougo
+            dentalproblemswheredoyougo
+            biggestproblemofcommunity
+            timesperweektrashcollected
+            wheretrashleftbetweenpickups
+            numberofIndividualsLivingintheHouse
+            numberofChildrenLivinginHouseUndertheAgeof5
+            houseownership
+        }
+    }  
+`;
