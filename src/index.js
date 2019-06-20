@@ -11,10 +11,6 @@ import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider} from "react-apollo";
 
-import * as serviceWorker from './serviceWorker';
-import styled from 'styled-components';
-
-
 //REACT
 const app =  document.getElementById('root')
 
