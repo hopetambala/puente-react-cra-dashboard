@@ -4,6 +4,7 @@ import { withApollo } from 'react-apollo';
 //UI
 import { Row, Container, Col } from 'react-bootstrap';
 import { StatsBox } from '../../components/widget/StatsBox/StatsBox';
+import styled, { css } from 'styled-components';
 import MaterialTable from 'material-table';
 
 //Queries
@@ -26,6 +27,24 @@ const styles = {
 	}, 
 
 }
+
+
+
+const Div = styled.div`
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 10px; 
+    margin: 1%;
+    background: white;
+    height:100%;
+
+    &:hover {
+        //border-radius: 20px; 
+        background: #1a2a6c;  
+        color: #f8af1e;
+        box-shadow: 1px 12px 20px 1px rgba(0, 0, 0, 0.2);
+    }
+`;
 
 class Patient extends React.Component {
     constructor(props){
@@ -107,92 +126,97 @@ class Patient extends React.Component {
         return(
             <Container style={styles.container}>
                 <Row style={styles.row}>
-                    <h1>{this.state.personalResults.fname}</h1>
-                    <Col>
-                        <div><b>Birth:</b> {this.state.personalResults.dob}</div>
-                        <div><b>License:</b> {this.state.personalResults.cedulaNumber}</div>
-                    </Col>
-                    <Col>
-                        <div><b>Sex:</b> {this.state.personalResults.sex}</div>
-                        <div><b>Phone:</b> {this.state.personalResults.telephoneNumber}</div>
-                    </Col>
-                    <Col>
-                        <div><b>Community:</b> {this.state.personalResults.communityname}</div>
-                        <div><b>Province:</b> {this.state.personalResults.province}</div>
-                    </Col>
-                </Row>
-                {this.state.vitalresults === null && 
-                    <div>Loading Vitals</div>
-                }
-                {this.state.vitalresults && 
-                <Row style={styles.row}>
-                    {this.state.latestBloodPressure &&
-                        <Col>
-                        <StatsBox
-                            Cardsubtitle={"Blood Pressure"}
-                            Cardtitle={this.state.latestBloodPressure}
-                            Cardtext={"Normal (mmHg)"}
-                            height="200px"
-                            width="250px"
-                            >
+                    <Col md={4} l={4}>
+                        <Div>
+                            <h2>{this.state.personalResults.fname} {this.state.personalResults.lname}</h2>
                             
-                            {/*<Pie180ChartComponent 
-                                data={this.state.sexes}
-                                valueKey="value" 
-                            />*/}
-                        </StatsBox>
+                            <div><b>Birth:</b> {this.state.personalResults.dob}</div>
+                            <div><b>License:</b> {this.state.personalResults.cedulaNumber}</div>
+                        
+                            <div><b>Sex:</b> {this.state.personalResults.sex}</div>
+                            <div><b>Phone:</b> {this.state.personalResults.telephoneNumber}</div>
+                        
+                            <div><b>Community:</b> {this.state.personalResults.communityname}</div>
+                            <div><b>Province:</b> {this.state.personalResults.province}</div>
+                        </Div>
                     </Col>
-                    }
-                    {this.state.bloodOxygen &&
-                        <Col>
-                            <StatsBox
-                                Cardsubtitle={"Blood Oxygen"}
-                                Cardtitle={this.state.bloodOxygen}
-                                Cardtext={"Normal (mmHg)"}
-                                height="200px"
-                                width="250px">
-
-                                {/*<Pie180ChartComponent 
-                                    data={this.state.sexes}
-                                    valueKey="value" 
-                                />*/}
-                            </StatsBox>
-                        </Col>
-                    }
-                    {this.state.pulse &&
                     <Col>
-                        <StatsBox
-                            Cardsubtitle={"Heart Rate"}
-                            Cardtitle={this.state.pulse}
-                            Cardtext={"Normal (bpm)"}
-                            height="200px"
-                            width="250px">
+                        {this.state.vitalresults === null && 
+                            <div>Loading Vitals</div>
+                        }
+                        {this.state.vitalresults && 
+                        <Row style={styles.row}>
+                            {this.state.latestBloodPressure &&
+                                <Col>
+                                <StatsBox
+                                    Cardsubtitle={"Blood Pressure"}
+                                    Cardtitle={this.state.latestBloodPressure}
+                                    Cardtext={"Normal (mmHg)"}
+                                    height="100%"
+                                    width="250px"
+                                    >
+                                    
+                                    {/*<Pie180ChartComponent 
+                                        data={this.state.sexes}
+                                        valueKey="value" 
+                                    />*/}
+                                </StatsBox>
+                            </Col>
+                            }
+                            {this.state.bloodOxygen &&
+                                <Col>
+                                    <StatsBox
+                                        Cardsubtitle={"Blood Oxygen"}
+                                        Cardtitle={this.state.bloodOxygen}
+                                        Cardtext={"Normal (mmHg)"}
+                                        height="100%"
+                                        width="250px">
 
-                            {/*<Pie180ChartComponent 
-                                data={this.state.sexes}
-                                valueKey="value" 
-                            />*/}
-                        </StatsBox>
-                    </Col>
-                    }
-                    {this.state.bloodSugar &&
-                    <Col>
-                        <StatsBox
-                            Cardsubtitle={"Glucose"}
-                            Cardtitle={this.state.bloodSugar}
-                            Cardtext={"Normal (mg/dL)"}
-                            height="200px"
-                            width="250px">
+                                        {/*<Pie180ChartComponent 
+                                            data={this.state.sexes}
+                                            valueKey="value" 
+                                        />*/}
+                                    </StatsBox>
+                                </Col>
+                            }
+                            {this.state.pulse &&
+                            <Col>
+                                <StatsBox
+                                    Cardsubtitle={"Heart Rate"}
+                                    Cardtitle={this.state.pulse}
+                                    Cardtext={"Normal (bpm)"}
+                                    height="100%"
+                                    width="250px">
 
-                            {/*<Pie180ChartComponent 
-                                data={this.state.sexes}
-                                valueKey="value" 
-                            />*/}
-                        </StatsBox>
+                                    {/*<Pie180ChartComponent 
+                                        data={this.state.sexes}
+                                        valueKey="value" 
+                                    />*/}
+                                </StatsBox>
+                            </Col>
+                            }
+                            {this.state.bloodSugar &&
+                            <Col>
+                                <StatsBox
+                                    Cardsubtitle={"Glucose"}
+                                    Cardtitle={this.state.bloodSugar}
+                                    Cardtext={"Normal (mg/dL)"}
+                                    height="100%"
+                                    width="250px">
+
+                                    {/*<Pie180ChartComponent 
+                                        data={this.state.sexes}
+                                        valueKey="value" 
+                                    />*/}
+                                </StatsBox>
+                            </Col>
+                            }
+                        </Row>
+                        }
                     </Col>
-                    }
+                    
                 </Row>
-                }
+                
                 {this.state.evalMedicalresults === null && 
                     <div>Loading Medical Evaluations</div>
                 }
