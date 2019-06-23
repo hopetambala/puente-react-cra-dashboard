@@ -88,7 +88,7 @@ class DemographicsAnalytics extends React.Component {
 				.rollup(function(v) { return  v.length; })
 				.entries(modData);
 			
-			var sexCounts = await removeBlanksByKey(sexCounts,"key")
+			//var sexCounts = await removeBlanksByKey(sexCounts,"key")
 			
 			//Count of All Records based on education
 			var educationCounts = d3.nest()
@@ -100,7 +100,7 @@ class DemographicsAnalytics extends React.Component {
 				return b.value - a.value;
 			});
 
-			var educationCounts = await removeBlanksByKey(educationCounts,"key")
+			//var educationCounts = await removeBlanksByKey(educationCounts,"key")
 
 			this.setState({
 				progress:80
@@ -162,7 +162,8 @@ class DemographicsAnalytics extends React.Component {
 				progress: 100
 			})
 		}
-		//console.log(this.state)
+		console.log(this.state.educations)
+		console.log(this.state.sexes)
 
 	}
 	
@@ -258,10 +259,10 @@ class DemographicsAnalytics extends React.Component {
 								Cardtext={""}
 								height="300px"
 							>
-								<Pie180ChartComponent 
+								{<Pie180ChartComponent 
 									data={this.state.sexes}
 									valueKey="value" 
-									/>
+								/>}
 							</StatsBox>
 								
 						</Col>

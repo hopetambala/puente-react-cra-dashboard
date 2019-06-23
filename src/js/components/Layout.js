@@ -2,9 +2,6 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-//Navigation
-import { Selector } from './Selector';
-
 //Pages
 import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";

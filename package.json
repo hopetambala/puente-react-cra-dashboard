@@ -21,6 +21,7 @@
     "leaflet.markercluster": "^1.4.1",
     "material-table": "^1.35.1",
     "node-sass": "^4.11.0",
+    "parse": "^2.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.1",
     "react-apollo": "^2.5.4",
