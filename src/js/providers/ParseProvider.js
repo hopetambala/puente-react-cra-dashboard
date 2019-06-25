@@ -1,6 +1,6 @@
 import Parse from 'parse';
 
-export function retrieveMainData(){
+export function retrieveMainData(Parse){
   //Creates local object based on "SurveyData" Object in Parse-Server
   const SurveyData = Parse.Object.extend("SurveyData");
 

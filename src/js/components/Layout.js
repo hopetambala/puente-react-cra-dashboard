@@ -1,10 +1,15 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Parse from 'parse';
+
+//Keys
+import { ENV } from '../providers/Environments/Local';
 
 //Pages
 import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";
+import FormCreator from '../pages/FormCreator';
 import { MapPage } from '../pages/Map';
 import PatientList from '../pages/Patient/PatientList';
 
@@ -34,6 +39,12 @@ const StyledLink = styled(Link)`
 
 
 export default class Layout extends React.Component {
+	constructor(props){
+		super(props);
+
+		Parse.initialize(ENV.parseAppId,ENV.parseJavascriptKey);
+		Parse.serverURL = ENV.parseServerUrl;
+	}
 	static defaultProps = {
 		username: "User"       
 	}
@@ -47,9 +58,10 @@ export default class Layout extends React.Component {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="mr-auto">
 							<StyledLink className="nav-link" to="/">DASHBOARD</StyledLink>
-							<StyledLink className="nav-link" to="/dataexport">EXPORT MANAGER</StyledLink>
 							<StyledLink className="nav-link" to="/map">MAP</StyledLink>
 							<StyledLink className="nav-link" to="/patients">PATIENTS</StyledLink>
+							<StyledLink className="nav-link" to="/formcreation">FORM CREATOR</StyledLink>
+							<StyledLink className="nav-link" to="/dataexport">EXPORT MANAGER</StyledLink>
 						</Nav>
 					</Navbar.Collapse>
 				</StyledNavBar>
@@ -58,6 +70,7 @@ export default class Layout extends React.Component {
 				<Route path="/dataexport" component={ExportPage} />
 				<Route path="/map" component={MapPage} />
 				<Route path="/patients" component={PatientList} />
+				<Route path="/formcreation" component={FormCreator} />
 			</Router>
 		);
 	}
