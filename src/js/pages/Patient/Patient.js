@@ -4,7 +4,7 @@ import { withApollo } from 'react-apollo';
 //UI
 import { Row, Container, Col } from 'react-bootstrap';
 import { StatsBox } from '../../components/widget/StatsBox/StatsBox';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import MaterialTable from 'material-table';
 
 //Queries

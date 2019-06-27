@@ -1,7 +1,5 @@
 import React from 'react';
-//import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
 
-import Parse from 'parse';
 import { postObjectsToClass } from '../providers/ParseProvider'
 
 import { Form, Field } from 'react-final-form';
@@ -34,10 +32,6 @@ const styles = {
 
 
 class FormCreator extends React.Component{
-    constructor(props){
-		super(props)	
-    }
-
     onSubmit = async (values) => {
 		alert(values)
 	}

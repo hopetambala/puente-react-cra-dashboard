@@ -1,7 +1,5 @@
 import React from 'react';
-import { ApolloConsumer } from 'react-apollo';
 import { Row, Container, Button, Nav, Navbar } from 'react-bootstrap';
-import { Form, Field } from 'react-final-form';
 import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -10,12 +8,6 @@ import MedicalEvalAnalytics from '../pages/MedicalEval';
 import EnvironHealthAnalytics  from '../pages/EnvironHealth';
 import { VitalsAnalytics } from '../pages/Vitals';
 import DemographicsAnalytics  from '../pages/Demographics';
-
-//Assets
-import medical from '../../assets/medical.png';
-import env from '../../assets/env.png';
-import vitals from '../../assets/vitals.png';
-import {HomePageText} from '../providers/Text';
 
 const styles = {
 	container: {

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Row, Container } from 'react-bootstrap';
-import { Query, withApollo } from 'react-apollo';
+import { Query } from 'react-apollo';
 
 //Components
-import { Boxx } from '../components/widget/Boxx/Boxx';
 import { PivotTableComponent } from '../components/pivottable/PivotTable';
 
 //Query

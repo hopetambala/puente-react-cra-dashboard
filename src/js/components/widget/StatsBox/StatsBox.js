@@ -24,10 +24,6 @@ const Div = styled.div`
 `;
 
 export class StatsBox extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
     static defaultProps = {
         Cardtitle: "Card title",
         Cardsubtitle: "Card subtitle",

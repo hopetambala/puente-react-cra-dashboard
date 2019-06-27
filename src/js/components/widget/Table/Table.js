@@ -6,10 +6,6 @@ import { first_last_names as fl} from '../../../queries/records'
 import { Query } from 'react-apollo';
 
 export class ResultsTable extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
     render(){
         return(
             <Table striped bordered hover>

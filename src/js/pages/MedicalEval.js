@@ -1,11 +1,8 @@
 import React from 'react';
 import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
-import { Query, withApollo } from 'react-apollo';
+import { withApollo } from 'react-apollo';
 import * as d3 from 'd3';
 import * as _ from "underscore";
-
-import { removeBlanksByKey } from '../providers/Functions';
-
 
 //Components
 import { BrushBarChronicComponent } from '../components/recharts/BrushBar_Chronic';
@@ -15,7 +12,7 @@ import { StatsBox } from '../components/widget/StatsBox/StatsBox';
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
 
 //Query
-import { age_sex_chronic as asc, allEvalMedicalsByOrganization, allEvalMedicals} from '../queries/records';
+import { allEvalMedicalsByOrganization, allEvalMedicals} from '../queries/records';
 
 const styles = {
 	container: {
@@ -93,7 +90,7 @@ class MedicalEvalAnalytics extends React.Component {
 		var	AssessmentandEvaluationCounts_cleaned = [];
 		
 		for (let i=0; i < AssessmentandEvaluationCounts.length; i++){
-			if (AssessmentandEvaluationCounts[i].key == "Yes" || AssessmentandEvaluationCounts[i].key == "No"){
+			if (AssessmentandEvaluationCounts[i].key === "Yes" || AssessmentandEvaluationCounts[i].key === "No"){
 				AssessmentandEvaluationCounts_cleaned.push(AssessmentandEvaluationCounts[i])
 			}
 		}
@@ -176,7 +173,7 @@ class MedicalEvalAnalytics extends React.Component {
 	}
 
 	async onSubmit(organization){
-		if (organization!= "All"){
+		if (organization !== "All"){
 			await this.setState({
 				organization: organization,
 				progress:40

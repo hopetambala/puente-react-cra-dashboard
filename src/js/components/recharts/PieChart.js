@@ -1,10 +1,8 @@
 import React from 'react';
-import * as func from '../../providers/Functions';
-import * as d3 from 'd3'
 
 import * as _ from 'underscore';
 
-import { PieChart, Pie, Sector, Cell, Tooltip, LabelList, ResponsiveContainer} from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer} from 'recharts';
 
 const data = [
 	{ name: 'Group A', value: 400 }, { name: 'Group B', value: 300 },
