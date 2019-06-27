@@ -72,6 +72,7 @@ class FormCreator extends React.Component{
 							<option value="One World Surgery">One World Surgery</option>
 							<option value="WOF">World Outreach Foundation</option>
 							<option value="Constanza Medical Mission">Constanza Medical Mission</option>
+							<option value="testORG">Test</option>
 						</Field>
 					</div>
 					<div>---</div>
