@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
-import * as _ from "underscore";
 import MaterialTable from 'material-table';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 
@@ -10,7 +9,7 @@ import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 import { StatsBox } from '../components/widget/StatsBox/StatsBox';
 
 //Charts 
-import { LineChart_GeneralComponent } from '../components/recharts/LineChart_General';
+import { LineChartGeneralComponent } from '../components/recharts/LineChart_General';
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
 
 //Query
@@ -151,14 +150,14 @@ class DemographicsAnalytics extends React.Component {
 				return b.value - a.value;
 			});
 
-			var organizationCounts = await removeBlanksByKey(organizationCounts,"key");
+			var organizationCountsCleaned = await removeBlanksByKey(organizationCounts,"key");
 		
 			this.setState({
 				all: allCounts,
 				sexes: sexCounts,
 				educations: educationCounts,
 				ageMetrics : [roundedNumber,ageUnder6summed],
-				organizationCounts: organizationCounts,
+				organizationCounts: organizationCountsCleaned,
 				progress: 100
 			})
 		}
@@ -199,7 +198,7 @@ class DemographicsAnalytics extends React.Component {
 	}
 
 	async onSubmitz(organization){
-		if (organization!= "All"){
+		if (organization !== "All"){
 			await this.setState({
 				organization: organization,
 				progress:40
@@ -327,7 +326,7 @@ class DemographicsAnalytics extends React.Component {
 							if (error) return <p>Error :(</p>;
 							return (
 								<Col>
-									<LineChart_GeneralComponent data={data} />
+									<LineChartGeneralComponent data={data} />
 								</Col>
 							);
 						}}

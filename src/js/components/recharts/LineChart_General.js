@@ -23,7 +23,7 @@ const Div = styled.div`
     }
 `;
 
-export class LineChart_GeneralComponent extends React.Component{
+export class LineChartGeneralComponent extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {

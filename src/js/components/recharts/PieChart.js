@@ -1,7 +1,5 @@
 import React from 'react';
 
-import * as _ from 'underscore';
-
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer} from 'recharts';
 
 const data = [
@@ -22,14 +20,7 @@ export class Pie180ChartComponent extends React.Component{
 			data : null,
 			valueKey : null
 		}
-		//console.log(this.props.valueKey)
-		//console.log(this.props.data)
 	}
-
-	/*static defaultProps = {
-        data: data,
-        valueKey: "value",
-    }*/
 
 	async componentDidMount(){
 		this.state.data = this.props.data;
@@ -47,18 +38,6 @@ export class Pie180ChartComponent extends React.Component{
 		return (
 			<>
 			<h1>{this.state.title}</h1>
-			{/*<BarChart width={800} height={500} data={this.state.modded}
-					margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-				<CartesianGrid strokeDasharray="3 3"/>
-				<XAxis  height={40} label={{ value: 'Age', position: 'insideBottom', dy:0 }} dataKey="age"/>
-				<YAxis  label={{ value: 'Count of Chronic Diseases Reported', angle: -90, position: 'center', dx: -20}}/>
-				<Tooltip/>
-				<Legend verticalAlign="top" wrapperStyle={{lineHeight: '40px'}}/>
-				<ReferenceLine y={0} stroke='#000'/>
-				<Brush dataKey='age' height={40} stroke="#8884d8"/>
-				<Bar dataKey="diabetes_count" fill="#8884d8" />
-				<Bar dataKey="hypertension_count" fill="#82ca9d" />
-			</BarChart>*/}
 			<ResponsiveContainer width="100%" height={200}>
 				<PieChart >
 					<Pie dataKey={this.props.valueKey} startAngle={180} endAngle={0} data={this.props.data} outerRadius={60} fill="#8884d8" label nameKey="key">

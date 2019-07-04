@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Container, Button, Nav, Navbar } from 'react-bootstrap';
+import { Row, Container, Nav, Navbar } from 'react-bootstrap';
 import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -38,11 +38,6 @@ const StyledLink = styled(Link)`
 	}
 	margin: 0%;
 `;
-const StyledButton = styled(Button)`
-	margin: .1%;
-`;
-
-
 
 export class HomePage extends React.Component {
 	constructor(props){

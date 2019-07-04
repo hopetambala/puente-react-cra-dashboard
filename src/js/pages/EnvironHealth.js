@@ -3,7 +3,6 @@ import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
 import { withApollo } from 'react-apollo';
 
 import * as d3 from 'd3';
-import * as _ from "underscore";
 
 //Components
 import { StatsBox } from '../components/widget/StatsBox/StatsBox';
@@ -68,9 +67,10 @@ class EnvironHealthAnalytics extends React.Component {
 
 		//Average Family Size
 		var averageFamily = await d3.mean(modData, function(d) { return d.numberofIndividualsLivingintheHouse; });
-		var averageFamily = Math.round(averageFamily * 10) / 10
+		averageFamily = Math.round(averageFamily * 10) / 10
+
 		var averageFamilyUnder5 = await d3.mean(modData, function(d) { return d.numberofChildrenLivinginHouseUndertheAgeof5; });
-		var averageFamilyUnder5 = Math.round(averageFamilyUnder5 * 10) / 10
+		averageFamilyUnder5 = Math.round(averageFamilyUnder5 * 10) / 10
 
 
 		/*
@@ -156,7 +156,7 @@ class EnvironHealthAnalytics extends React.Component {
 	}
 
 	async onSubmit(organization){
-		if (organization!= "All"){
+		if (organization !== "All"){
 			await this.setState({
 				organization: organization,
 				progress:40

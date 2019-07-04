@@ -1,6 +1,6 @@
 import React from 'react';
 import './Boxx.scss'; 
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const Div = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

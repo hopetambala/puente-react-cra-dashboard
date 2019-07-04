@@ -46,7 +46,7 @@ class FormCreator extends React.Component{
     render(){
         return(
 			<Styles style={styles.container}>
-			<h1>🏁 Form Creator</h1>
+			<h1><span role="img" aria-labelledby="formCreator">🏁</span> Form Creator</h1>
 			<Form
 				onSubmit={this.submitCustomForm}
 				initialValues={{ 
@@ -72,6 +72,7 @@ class FormCreator extends React.Component{
 							<option value="One World Surgery">One World Surgery</option>
 							<option value="WOF">World Outreach Foundation</option>
 							<option value="Constanza Medical Mission">Constanza Medical Mission</option>
+							<option value="DR Missions">DR Missions</option>
 							<option value="testORG">Test</option>
 						</Field>
 					</div>
