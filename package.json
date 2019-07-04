@@ -33,11 +33,14 @@
     "react-leaflet": "^1.8.0",
     "react-leaflet-markercluster": "^1.1.8",
     "react-pivottable": "^0.9.0",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8",
     "react-test-renderer": "^16.8.3",
     "react-window": "^1.8.2",
     "recharts": "^1.5.0",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.5",
     "styled-components": "^4.2.0",
     "underscore": "^1.9.1"
   },
@@ -47,7 +50,7 @@
     "test": "react-scripts test",
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
-    "start:local": "react-scripts start"
+    "start-local": "react-scripts start"
   },
   "pre-commit": {
     "run": [
