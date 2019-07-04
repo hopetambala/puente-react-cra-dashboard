@@ -236,6 +236,7 @@ export class ExportPage extends React.Component {
 						<option value="One World Surgery">One World Surgery</option>
 						<option value="WOF">World Outreach Foundation</option>
 						<option value="Constanza Medical Mission">Constanza Medical Mission</option>
+						<option value="DR Missions">DR Missions & Good Samaritan</option>
 					</Field>
 				</div>
 				
