@@ -2,10 +2,6 @@ import React from 'react';
 import MaterialTable from 'material-table';
 
 export class DataTable extends React.Component {
-  constructor(props){
-      super(props)
-  }
-
   render() {
     return (
       <MaterialTable

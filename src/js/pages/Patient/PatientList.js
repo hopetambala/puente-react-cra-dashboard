@@ -1,6 +1,4 @@
 import React from 'react';
-import {ProgressBar } from 'react-bootstrap';
-
 
 import MaterialTable from 'material-table';
 import { withApollo } from 'react-apollo';

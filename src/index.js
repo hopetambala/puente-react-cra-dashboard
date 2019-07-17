@@ -1,20 +1,34 @@
 //React 
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from './js/components/Layout';
-import './index.css';
-import "bootstrap/dist/css/bootstrap.css";
-import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
-
+import { Provider } from "react-redux";
 
 //Apollo
 import ApolloClient from "apollo-boost";
 import { ApolloProvider} from "react-apollo";
 
+import Layout from './js/components/Layout';
+import configureStore from "./configure-store";
+
+//Style
+import './index.css';
+import "bootstrap/dist/css/bootstrap.css";
+import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
+
+
+
+
+
+
+
+
 //REACT
 const app =  document.getElementById('root')
 
-//Apollo Graphql client
+//REDUX
+const store = configureStore();
+
+//APOLLO
 const client = new ApolloClient({
     uri: "https://puente-graphql.herokuapp.com/"
   });
@@ -22,7 +36,9 @@ const client = new ApolloClient({
 //This renders the layout
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <Layout />
+        <Provider store={store}>
+            <Layout />
+        </Provider>
     </ApolloProvider>
     ,app
 );

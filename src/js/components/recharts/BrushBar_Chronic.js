@@ -56,10 +56,7 @@ export class BrushBarChronicComponent extends React.Component{
 			.rollup(function(v) { return d3.sum(v, function(d) { return d.chronic_condition_diabetes; }); })
 			.object(modData);
 		var diabs = Object.entries(sexAgeDiabetes).map(([age, diabetes_count]) => ({age, diabetes_count}));
-
-
-
-
+		
 		var sexAgeHypertension = d3.nest()
 			//.key(function(d) { return d.sex; })
 			.key(function(d) { return d.age; })
@@ -67,19 +64,15 @@ export class BrushBarChronicComponent extends React.Component{
 			.object(modData);
 		var hyps = Object.entries(sexAgeHypertension).map(([age, hypertension_count]) => ({age, hypertension_count}));
 		
-		
-		
-		
-		var sexAgeOther= d3.nest()
+		/*var sexAgeOther= d3.nest()
 			//.key(function(d) { return d.sex; })
 			.key(function(d) { return d.age; })
 			.rollup(function(v) { return d3.sum(v, function(d) { return d.chronic_condition_other; }); })
 			.object(modData); 
 		
 		var others = Object.entries(sexAgeOther).map(([age, other_count]) => ({age, other_count}));
-		//console.log(res3)
+		//console.log(res3)*/
 		
-
 		var moddedData = _.map(diabs, function(element) {
 			var treasure = _.findWhere(hyps, { age: element.age });
 	  
@@ -87,14 +80,10 @@ export class BrushBarChronicComponent extends React.Component{
 	  	});
 
 	  	moddedData.pop()
-	  	//console.log(moddedData)
 		
 		this.setState({
 			modded:moddedData
 		})
-		//console.log(modData);
-		
-		
 	}
 
 	componentWillMount(){

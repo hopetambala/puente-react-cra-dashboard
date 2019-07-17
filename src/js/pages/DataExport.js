@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button,Row,Col } from 'react-bootstrap'
-import { Query, ApolloConsumer } from 'react-apollo';
+import { Button } from 'react-bootstrap'
+import { Query } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 
 
@@ -212,7 +212,7 @@ export class ExportPage extends React.Component {
 		return (
 			<>
 			<Styles style={styles.container}>
-			<h1>🏁 Data Exporter</h1>
+			<h1><span role="img" aria-labelledby="dataExport">🏁</span> Data Exporter</h1>
 			<Form
 				onSubmit={this.onSubmit}
 				initialValues={{ type: 'Demographics', organization: '' }}
@@ -236,6 +236,7 @@ export class ExportPage extends React.Component {
 						<option value="One World Surgery">One World Surgery</option>
 						<option value="WOF">World Outreach Foundation</option>
 						<option value="Constanza Medical Mission">Constanza Medical Mission</option>
+						<option value="DR Missions">DR Missions & Good Samaritan</option>
 					</Field>
 				</div>
 				

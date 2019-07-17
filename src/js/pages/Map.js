@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Container } from 'react-bootstrap';
-import styled from 'styled-components';
 
 //Components
 import { LeafletMap } from '../components/widget/Map/LeafletMap';
@@ -29,10 +28,6 @@ const styles = {
 
 
 export class MapPage extends React.Component {
-	constructor(props){
-		super(props)
-	}
-
 	render() {
 		return (
 				<Container style={styles.container}>

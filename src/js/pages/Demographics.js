@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
-import * as _ from "underscore";
 import MaterialTable from 'material-table';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 
@@ -10,7 +9,7 @@ import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 import { StatsBox } from '../components/widget/StatsBox/StatsBox';
 
 //Charts 
-import { LineChart_GeneralComponent } from '../components/recharts/LineChart_General';
+import { LineChartGeneralComponent } from '../components/recharts/LineChart_General';
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
 
 //Query
@@ -88,7 +87,7 @@ class DemographicsAnalytics extends React.Component {
 				.rollup(function(v) { return  v.length; })
 				.entries(modData);
 			
-			var sexCounts = await removeBlanksByKey(sexCounts,"key")
+			//var sexCounts = await removeBlanksByKey(sexCounts,"key")
 			
 			//Count of All Records based on education
 			var educationCounts = d3.nest()
@@ -100,7 +99,7 @@ class DemographicsAnalytics extends React.Component {
 				return b.value - a.value;
 			});
 
-			var educationCounts = await removeBlanksByKey(educationCounts,"key")
+			//var educationCounts = await removeBlanksByKey(educationCounts,"key")
 
 			this.setState({
 				progress:80
@@ -151,18 +150,19 @@ class DemographicsAnalytics extends React.Component {
 				return b.value - a.value;
 			});
 
-			var organizationCounts = await removeBlanksByKey(organizationCounts,"key");
+			var organizationCountsCleaned = await removeBlanksByKey(organizationCounts,"key");
 		
 			this.setState({
 				all: allCounts,
 				sexes: sexCounts,
 				educations: educationCounts,
 				ageMetrics : [roundedNumber,ageUnder6summed],
-				organizationCounts: organizationCounts,
+				organizationCounts: organizationCountsCleaned,
 				progress: 100
 			})
 		}
-		//console.log(this.state)
+		console.log(this.state.educations)
+		console.log(this.state.sexes)
 
 	}
 	
@@ -198,7 +198,7 @@ class DemographicsAnalytics extends React.Component {
 	}
 
 	async onSubmitz(organization){
-		if (organization!= "All"){
+		if (organization !== "All"){
 			await this.setState({
 				organization: organization,
 				progress:40
@@ -258,10 +258,10 @@ class DemographicsAnalytics extends React.Component {
 								Cardtext={""}
 								height="300px"
 							>
-								<Pie180ChartComponent 
+								{<Pie180ChartComponent 
 									data={this.state.sexes}
 									valueKey="value" 
-									/>
+								/>}
 							</StatsBox>
 								
 						</Col>
@@ -326,7 +326,7 @@ class DemographicsAnalytics extends React.Component {
 							if (error) return <p>Error :(</p>;
 							return (
 								<Col>
-									<LineChart_GeneralComponent data={data} />
+									<LineChartGeneralComponent data={data} />
 								</Col>
 							);
 						}}

@@ -2,7 +2,7 @@ import React from 'react';
 import * as func from '../../providers/Functions';
 import * as d3 from 'd3'
 
-import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 import styled from "styled-components";
 
 const Div = styled.div`
