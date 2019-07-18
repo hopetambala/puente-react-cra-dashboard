@@ -39,7 +39,7 @@ export default class Layout extends React.Component {
 	constructor(props){
 		super(props);
 
-		Parse.initialize(process.env.REACT_APP_parseAppId,process.env.REACT_APP_parseJavascriptKey);
+		Parse.initialize(process.env.REACT_APP_parseAppId , process.env.REACT_APP_parseJavascriptKey);
 		Parse.serverURL = process.env.REACT_APP_parseServerUrl;
 	}
 	static defaultProps = {
