@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
+import { Row, Container, Dropdown } from 'react-bootstrap';
 import { Query } from 'react-apollo';
 
 //Components

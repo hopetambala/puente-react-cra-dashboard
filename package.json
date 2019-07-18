@@ -50,12 +50,13 @@
     "test": "react-scripts test",
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
-    "start-local": "react-scripts start"
+    "start-local": "react-scripts start",
+    "release": "standard-version",
+    "snyk-protect": "snyk protect"
   },
   "pre-commit": {
     "run": [
-      "lint",
-      "test"
+      "lint"
     ]
   },
   "eslintConfig": {
@@ -67,7 +68,40 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "nyc": {
+    "exclude": [
+      "src/**/*.test.js*",
+      "test/**"
+    ],
+    "require": [
+      "@babel/register"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
   "devDependencies": {
-    "react-app-env": "^1.2.3"
-  }
+    "@babel/core": "7.5.4",
+    "@babel/plugin-proposal-class-properties": "7.5.0",
+    "@babel/preset-react": "7.0.0",
+    "@babel/register": "7.4.4",
+    "chai": "4.2.0",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "eslint-config-react-app": "4.0.1",
+    "eslint-plugin-flowtype": "3.11.1",
+    "eslint-plugin-import": "2.18.0",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.14.2",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "jsdom-global": "3.0.2",
+    "mocha": "6.1.4",
+    "nyc": "14.1.1",
+    "pre-commit": "1.2.2",
+    "standard-version": "6.0.1"
+  },
+  "snyk": true
 }
