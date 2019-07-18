@@ -4,7 +4,7 @@
 
 Puente React is a web dashboard used to visualize data collected on the ground in developing countries. It's still an early prototype and it's still under development. 
 
-For a live demo, please check out [here](https://puente-dashboard.herokuapp.com/)
+For a live demo, please check out [here](https://puente-dashboard.herokuapp.com/) 
 
 ![screencap](public/tour_high.gif)
 ## Project Layout
