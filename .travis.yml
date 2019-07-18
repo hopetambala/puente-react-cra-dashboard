@@ -2,16 +2,16 @@ sudo: false
 
 language: node_js
 node_js:
-- '12'
+  - '12'
 
 install:
   - npm install -g codecov
 
 script:
-- npm ci --no-optional
-- npm run test
-- codecov
-- npm run build
+  - npm ci --no-optional
+  - npm run test
+  - codecov
+  - npm run build
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
