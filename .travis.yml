@@ -12,3 +12,6 @@ script:
 - npm run test
 - codecov
 - npm run build
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
