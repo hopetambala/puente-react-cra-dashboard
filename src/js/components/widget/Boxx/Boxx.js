@@ -1,6 +1,6 @@
 import React from 'react';
 import './Boxx.scss'; 
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const Div = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -26,18 +26,12 @@ const Div = styled.div`
 `;
 
 export class Boxx extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
     static defaultProps = {
         Cardtitle: "Card title",
         Cardsubtitle: "Card subtitle",
         Cardtext: "Some quick example text to build on the card title and make up the bulk of the card's content.",
         height:"300px"    
     }
-
-    
 
     render(){
         const style = {
