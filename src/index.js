@@ -15,13 +15,6 @@ import './index.css';
 import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 
-
-
-
-
-
-
-
 //REACT
 const app =  document.getElementById('root')
 
@@ -30,7 +23,7 @@ const store = configureStore();
 
 //APOLLO
 const client = new ApolloClient({
-    uri: "https://puente-graphql.herokuapp.com/"
+    uri: process.env.REACT_APP_graphqlURL
   });
 
 //This renders the layout

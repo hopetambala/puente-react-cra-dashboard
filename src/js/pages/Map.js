@@ -31,7 +31,7 @@ export class MapPage extends React.Component {
 	render() {
 		return (
 				<Container style={styles.container}>
-
+					<h1>Map</h1>
 					<Row style={styles.row}>
 						<Query query={all_records}>
 							{({ data, loading, error }) => {

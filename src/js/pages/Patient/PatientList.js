@@ -6,6 +6,8 @@ import { all_records } from '../../queries/records';
 
 import Patient from '../Patient/Patient';
 
+import { styles } from "../../components/styles/Theme";
+
 
 
 class PatientList extends React.Component{
@@ -34,14 +36,14 @@ class PatientList extends React.Component{
 
     render() {
         return(
-            <div style={{paddingTop:"60px"}}>
-            { this.state.results === null &&
-                <div>Loading</div>
-            }
-
-            {this.state.results && 
+            <div style={styles.container}>
+                <h1>Patient List</h1>
+                { this.state.results === null &&
+                    <div>Loading</div>
+                }
+                {this.state.results && 
                 <MaterialTable
-                    title={"Patient List"}
+                    title={""}
                     columns={[
                         { title: 'First Name', field: 'fname' },
                         { title: 'Last Name', field: 'lname' },
@@ -65,7 +67,7 @@ class PatientList extends React.Component{
                       }}
                     //onRowClick={(event, rowData, togglePanel) => togglePanel()}
                 /> 
-            }
+                }
             </div>
         )
 

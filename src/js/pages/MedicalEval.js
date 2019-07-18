@@ -19,13 +19,10 @@ const styles = {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
-		//alignItems: 'flex-center',
 		alignContent: 'flex-start',
-		//paddingTop: '5%'
 		
 	},
 	row: {
-		//height:'100vh',
 		alignItems: 'flex-center',
 		justifyContent: 'center',
 		flex:1,

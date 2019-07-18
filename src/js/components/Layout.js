@@ -3,9 +3,6 @@ import { Nav, Navbar } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Parse from 'parse';
 
-//Keys
-import { ENV } from '../providers/Environments/Local';
-
 //Pages
 import { HomePage } from "../pages/Home";
 import { ExportPage } from "../pages/DataExport";
@@ -42,8 +39,8 @@ export default class Layout extends React.Component {
 	constructor(props){
 		super(props);
 
-		Parse.initialize(ENV.parseAppId,ENV.parseJavascriptKey);
-		Parse.serverURL = ENV.parseServerUrl;
+		Parse.initialize(process.env.REACT_APP_parseAppId,process.env.REACT_APP_parseJavascriptKey);
+		Parse.serverURL = process.env.REACT_APP_parseServerUrl;
 	}
 	static defaultProps = {
 		username: "User"       

@@ -46,11 +46,11 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build": "react-scripts build",
+    "build": "react-app-env -env-file=production.env build",
     "test": "react-scripts test",
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
-    "start-local": "react-scripts start"
+    "start-local": "react-app-env --env-file=development.env start"
   },
   "pre-commit": {
     "run": [
@@ -66,5 +66,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "react-app-env": "^1.2.3"
+  }
 }
