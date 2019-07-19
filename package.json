@@ -51,6 +51,7 @@
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
     "start-local": "react-scripts start",
+    "check": "rm -rf node_modules/ && npm install",
     "release": "standard-version",
     "snyk-protect": "snyk protect"
   },
