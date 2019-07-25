@@ -58,16 +58,11 @@
     "release": "standard-version",
     "snyk-protect": "snyk protect"
   },
-  "pre-commit": {
-    "run": [
-      "lint"
-    ]
-  },
-  "post-commit": {
-    "run": [
-      "coverage",
-      "coverage-upload"
-    ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "coverage && coverage-upload"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -108,6 +103,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.2",
     "eslint-plugin-react-hooks": "1.6.1",
+    "husky": "^3.0.1",
     "jsdom-global": "3.0.2",
     "mocha": "6.2.0",
     "nyc": "14.1.1",
