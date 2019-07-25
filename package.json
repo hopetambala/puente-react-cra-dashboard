@@ -61,7 +61,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "coverage && coverage-upload"
+      "pre-push": "npm run coverage && npm run coverage-upload"
     }
   },
   "eslintConfig": {
