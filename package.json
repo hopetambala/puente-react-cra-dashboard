@@ -48,6 +48,7 @@
     "start": "node server.js",
     "build": "react-scripts build",
     "coverage": "react-scripts test --coverage",
+    "coverage-upload": "./node_modules/.bin/codecov",
     "test": "react-scripts test",
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
@@ -60,6 +61,12 @@
   "pre-commit": {
     "run": [
       "lint"
+    ]
+  },
+  "post-commit": {
+    "run": [
+      "coverage",
+      "coverage-upload"
     ]
   },
   "eslintConfig": {
@@ -92,6 +99,7 @@
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.5.5",
     "chai": "4.2.0",
+    "codecov": "^3.5.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "eslint-config-react-app": "4.0.1",
