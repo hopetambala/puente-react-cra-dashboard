@@ -36,7 +36,7 @@ export class ThreeDimenEnvComponent extends React.Component{
 
 		//get ages from date of births
 		for(let i =0; i< modData.length; i++ ){
-			modData[i].age = func.get_age(modData[i]['dob']);
+			modData[i].age = func.get_age(modData[i]['dob'], new Date());
 			modData[i].individualsInHouse = parseInt(modData[i].numberofIndividualsLivingintheHouse);
 			modData[i].childrenInHouse = parseInt(modData[i].numberofChildrenLivinginHouseUndertheAgeof5);
 		}

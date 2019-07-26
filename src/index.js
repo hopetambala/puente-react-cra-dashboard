@@ -18,7 +18,7 @@ import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 //REACT
 const app =  document.getElementById('root')
 
-//REDUX
+//REDU
 const store = configureStore();
 
 //APOLLO

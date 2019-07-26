@@ -50,7 +50,7 @@ export class LineChartGeneralComponent extends React.Component{
 		var modData = this.state.data
 
 		for(let i =0; i< modData.length; i++ ){
-			modData[i].age = func.get_age(modData[i]['dob']); //get ages from date of births
+			modData[i].age = func.get_age(modData[i]['dob'], new Date()); //get ages from date of births
 			modData[i].betterDate = func.formatDate(modData[i]['createdAt'])
 			//convert to dates
 		}

@@ -36,7 +36,7 @@ export class BrushBarChronicComponent extends React.Component{
 
 		//get ages from date of births
 		for(let i =0; i< modData.length; i++ ){
-			modData[i].age = func.get_age(modData[i]['dob']);
+			modData[i].age = func.get_age(modData[i]['dob'], new Date());
 
 			if(modData[i].chronic_condition_diabetes === 'Yes'){
 				modData[i].chronic_condition_diabetes = 1
