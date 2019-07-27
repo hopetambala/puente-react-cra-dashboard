@@ -71,21 +71,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "nyc": {
-    "exclude": [
-      "src/**/*.test.js*",
-      "test/**"
-    ],
-    "require": [
-      "@babel/register"
-    ],
-    "reporter": [
-      "lcov",
-      "text-summary"
-    ],
-    "sourceMap": false,
-    "instrument": false
-  },
   "devDependencies": {
     "@babel/core": "7.5.5",
     "@babel/plugin-proposal-class-properties": "7.5.5",
