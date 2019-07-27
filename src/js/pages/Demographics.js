@@ -73,7 +73,7 @@ class DemographicsAnalytics extends React.Component {
 		//get ages from date of births
 		if(modData){
 			for(let i =0; i< modData.length; i++ ){
-				modData[i].age = get_age(modData[i]['dob']);
+				modData[i].age = get_age(modData[i]['dob'], new Date());
 			}
 
 			//Count of All Records

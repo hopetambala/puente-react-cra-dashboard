@@ -47,8 +47,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "react-scripts build",
-    "coverage": "react-scripts test --coverage",
-    "coverage-upload": "./node_modules/.bin/codecov",
+    "coverage": "react-scripts test --coverage && codecov --token='84aec1b2-dbab-453c-b321-49f9fbd650ab'",
     "test": "react-scripts test",
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
@@ -58,11 +57,10 @@
     "release": "standard-version",
     "snyk-protect": "snyk protect"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run coverage && npm run coverage-upload"
-    }
+  "pre-commit": {
+    "run": [
+      "lint"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -103,7 +101,6 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.2",
     "eslint-plugin-react-hooks": "1.6.1",
-    "husky": "^3.0.1",
     "jsdom-global": "3.0.2",
     "mocha": "6.2.0",
     "nyc": "14.1.1",

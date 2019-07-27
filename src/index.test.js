@@ -1,11 +1,13 @@
-//import React, { useState } from 'react';
-//import ReactDOM from 'react-dom';
+import { get_age } from './js/providers/Functions';
+import { assert } from 'chai';
 
-//import Layout from './js/components/Layout';
-//import './index.css';
+it('gets the age of the person', () => {
+  const date = '1998-10-27';
+  const expectedAge = '20';
 
+  let age = get_age(date, new Date());
 
-it('renders without crashing', () => {
-  //const app =  document.getElementById('root')
-  //ReactDOM.render(<Layout/>,app);
+  assert.equal(age, expectedAge, 'Asserts age function works');
 });
+
+
