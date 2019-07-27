@@ -62,7 +62,7 @@ in your changes being overwritten.
 
 ### How are decisions made?
 
-Short answer: with pull requests to the CRviz repository.
+Short answer: with pull requests to the Puente-React-Dashboard repository.
 
 All decisions affecting Puente-React-Dashboard follow the same 3 steps:
 
@@ -86,7 +86,7 @@ You don't have to be a maintainer to make a difference on our project!
 It is every maintainer's responsibility to:
 
 * 1) Deliver prompt feedback and decisions on pull requests.
-* 2) Be available to anyone with questions, bug reports, criticism etc. on CRviz.
+* 2) Be available to anyone with questions, bug reports, criticism etc. on Puente-React-Dashboard.
 
 ### How is this process changed?
 

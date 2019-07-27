@@ -8,13 +8,11 @@ about: Tell us what is broken
 Describe your issue here.
 
 ### Environment
-- version of CRviz?
+- version of Puente-React-Dashboard?
 - which browser and its version?
 - versions of the following (if known and/or applicable)
   - node.js
   - RxJS
-  - D3
-  - Docker
 
 ### Steps to reproduce
 Tell us how to recreate your issue.
