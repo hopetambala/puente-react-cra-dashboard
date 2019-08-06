@@ -7,12 +7,14 @@ import { Provider } from "react-redux";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider} from "react-apollo";
 
-import Layout from './js/components/Layout';
+//import App from './js/components/App';
+import HomepageLayout  from './js/landing-page/landing';
 import configureStore from "./configure-store";
 
 //Style
 import './index.css';
 import "bootstrap/dist/css/bootstrap.css";
+import 'semantic-ui-css/semantic.min.css'
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 
 //REACT
@@ -30,7 +32,7 @@ const client = new ApolloClient({
 ReactDOM.render(
     <ApolloProvider client={client}>
         <Provider store={store}>
-            <Layout />
+            <HomepageLayout />
         </Provider>
     </ApolloProvider>
     ,app
