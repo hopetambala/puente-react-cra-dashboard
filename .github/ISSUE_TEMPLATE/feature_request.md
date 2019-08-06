@@ -5,13 +5,13 @@ about: Tell us what you think needs improvement
 ---
 
 ### Describe the feature you are requesting
-A clear and concise description of the functionality you would like implemented.
+_A clear and concise description of the functionality you would like implemented._
 
 ### Describe your use case
-A clear and concise explanation of the obstacle you are facing.  
+_A clear and concise explanation of the obstacle you are facing._  
 
 ### Explain how this feature supports your use case? Other use cases?
-Why should this be implemented in the way you are suggesting?
+_Why should this be implemented in the way you are suggesting?_
 
 ### Additional Info
-Add any other information relevant to this request
+_Add any other information relevant to this request_
