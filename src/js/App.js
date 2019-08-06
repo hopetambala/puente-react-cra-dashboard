@@ -1,7 +1,19 @@
+//REACT + PARSE
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap'
-import { BrowserRouter as Redirect, Route, Link, Switch} from "react-router-dom";
 import Parse from 'parse';
+import { BrowserRouter as Route, Link, Switch} from "react-router-dom";
+
+//REDUX
+import { Provider } from "react-redux";
+import configureStore from "./configure-store";
+
+
+
+
+//Style
+import { Nav, Navbar } from 'react-bootstrap'
+import styled from 'styled-components'
+
 
 //Pages
 import { HomePage } from "./pages/Home";
@@ -10,8 +22,7 @@ import FormCreator from './pages/FormCreator';
 import { MapPage } from './pages/Map';
 import PatientList from './pages/Patient/PatientList';
 
-//Styling
-import styled from 'styled-components'
+
 
 const StyledNavBar = styled(Navbar)`
 	background: #1a2a6c !important;
@@ -33,7 +44,7 @@ const StyledLink = styled(Link)`
 	}
 `;
 
-
+const store = configureStore();
 
 export default class App extends React.Component {
 	constructor(props){
@@ -44,7 +55,7 @@ export default class App extends React.Component {
 	}
 	render() {
 		return (
-			<>
+			<Provider store={store}>
 				{/*<StyledNav  className="navbar navbar-expand-lg fixed-top is-white is-dark-text bg-light">*/}
 				<StyledNavBar fixed="top" collapseOnSelect expand="md" variant="dark" >
 				<StyledNavBarBrand>PUENTE</StyledNavBarBrand>
@@ -68,7 +79,7 @@ export default class App extends React.Component {
 					<Route path={`${this.props.routePath}/formcreation`} component={FormCreator} />
 				</Switch>
 				
-			</>
+			</Provider>
 		);
 	}
 }
