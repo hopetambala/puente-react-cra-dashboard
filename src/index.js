@@ -2,13 +2,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Apollo
 import ApolloClient from "apollo-boost";
 import { ApolloProvider} from "react-apollo";
 
-//import App from './js/components/App';
-import HomepageLayout  from './js/landing-page/landing';
+import App from './js/App';
+import HomepageLayout  from './landing-page/landing';
 import configureStore from "./configure-store";
 
 //Style
@@ -30,11 +31,19 @@ const client = new ApolloClient({
 
 //This renders the layout
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <Provider store={store}>
-            <HomepageLayout />
-        </Provider>
-    </ApolloProvider>
+    <Router>
+        <Switch>
+            <Route component={HomepageLayout} exact path="/" />
+
+            <ApolloProvider client={client}>
+                <Route
+                    exactly
+                    path='/app'
+                    render={(props) => <App {...props} routePath="/app" />}
+                />
+            </ApolloProvider>
+        </Switch>
+    </Router>
     ,app
 );
 
