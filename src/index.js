@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider} from "react-apollo";
 
-//Components
+//Components and Pages
 import App from './js/App';
 import HomepageLayout  from './landing-page/landing';
 
@@ -27,13 +27,8 @@ ReactDOM.render(
     <Router>
         <Switch>
             <Route component={HomepageLayout} exact path="/" />
-
             <ApolloProvider client={client}>
-                <Route
-                    exactly
-                    path='/app'
-                    render={(props) => <App {...props} routePath="/app" />}
-                />
+                <Route exactly path='/app' render={(props) => <App {...props} routePath="/app" />} />
             </ApolloProvider>
         </Switch>
     </Router>

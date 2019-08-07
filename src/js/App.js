@@ -5,7 +5,7 @@ import { BrowserRouter as Route, Link, Switch} from "react-router-dom";
 
 //REDUX
 import { Provider } from "react-redux";
-import configureStore from "./configure-store";
+import configureStore from "../configure-store";
 
 
 
