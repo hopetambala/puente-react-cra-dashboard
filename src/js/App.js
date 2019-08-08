@@ -1,7 +1,7 @@
 //REACT + PARSE
 import React from 'react';
 import Parse from 'parse';
-import { BrowserRouter as Route, Link, Switch} from "react-router-dom";
+import { Route, Link, Switch} from "react-router-dom";
 
 //REDUX
 import { Provider } from "react-redux";
