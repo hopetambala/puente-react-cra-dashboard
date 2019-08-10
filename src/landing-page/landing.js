@@ -18,6 +18,8 @@ import {
   Visibility,
 } from 'semantic-ui-react';
 
+import landingStyle from './landing.module.css';
+
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
 // For more advanced usage please check Responsive docs under the "Usage" section.
@@ -32,32 +34,42 @@ const getWidth = () => {
  * such things.
  */
 const HomepageHeading = ({ mobile }) => (
-  <Container text>
-    <Header
-      as='h1'
-      content='Imagine-a-Company'
-      inverted
-      style={{
-        fontSize: mobile ? '2em' : '4em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
-      }}
-    />
-    <Header
-      as='h2'
-      content='Do whatever you want when you want to.'
-      inverted
-      style={{
-        fontSize: mobile ? '1.5em' : '1.7em',
-        fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
-      }}
-    />
-    <Button primary size='huge'>
-      Get Started
-      <Icon name='right arrow' />
-    </Button>
+  <Container>
+    <Grid>
+        <Grid.Column width={10}>
+          <Header
+            as='h1'
+            content='Smarter International Development'
+            //inverted
+            textAlign='left'
+            style={{
+              fontSize: mobile ? '2em' : '4em',
+              fontWeight: 'normal',
+              marginBottom: 0,
+              marginTop: mobile ? '1.5em' : '3em',
+            }}
+          />
+          <Header
+            as='p'
+            content="Puente's digital technology empowers people to achieve more sustainable community development."
+            //inverted
+            textAlign='left'
+            style={{
+              fontSize: mobile ? '1.5em' : '1.7em',
+              fontWeight: 'normal',
+              marginTop: mobile ? '0.5em' : '1.5em',
+            }}
+          />
+          <Button primary size='huge'>
+            Get Started
+            <Icon name='right arrow' />
+          </Button>
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+        </Grid.Column>
+  </Grid>
+    
   </Container>
 )
 
@@ -87,7 +99,7 @@ class DesktopContainer extends Component {
           onBottomPassedReverse={this.hideFixedMenu}
         >
           <Segment
-            inverted
+            //inverted
             textAlign='center'
             style={{ minHeight: 700, padding: '1em 0em' }}
             vertical
@@ -104,10 +116,10 @@ class DesktopContainer extends Component {
                   Home
                 </Menu.Item>
                 <Menu.Item position='right'>
-                  <Button as={Link} to='/app/home' inverted={!fixed}>
+                  <Button as={Link} to='/app/home' inverted={fixed}>
                     Log in
                   </Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                  <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em' }}>
                     Sign Up
                   </Button>
                 </Menu.Item>
@@ -210,33 +222,44 @@ ResponsiveContainer.propTypes = {
 }
 
 const HomepageLayout = () => (
-  <ResponsiveContainer>
+  <ResponsiveContainer style={landingStyle}>
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              We Help Companies and Companions
+            <Header as='h6' style={{ fontSize: '1em' }}>
+              FOR NONPROFITS
             </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              We can give your company superpowers to do things that they never thought possible.
-              Let us delight your customers and empower your needs... through pure data analytics.
-            </p>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              We Make Bananas That Can Dance
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-              bioengineered.
-            </p>
+            <h1 style={{ fontSize: '4em' }}>
+              Provide a platform to to analyze your data
+            </h1>
+            <Button as='a' size='large'>
+              Read More
+            </Button>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
             <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
           </Grid.Column>
         </Grid.Row>
+      </Grid>
+    </Segment>
+
+    <Segment style={{ padding: '8em 0em' }} vertical>
+      <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
-          <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+        <Grid.Column floated='right' width={6}>
+            <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <Header as='h6' style={{ fontSize: '1em' }}>
+              FOR INDIVIDUALS
+            </Header>
+            <h1 style={{ fontSize: '4em' }}>
+              Start your life-changing journey
+            </h1>
+            <Button as='a' size='large'>
+              Read More
+            </Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
