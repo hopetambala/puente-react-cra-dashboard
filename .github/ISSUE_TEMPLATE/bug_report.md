@@ -5,7 +5,7 @@ about: Tell us what is broken
 ---
 
 ### Description
-Describe your issue here.
+_Describe your issue here._
 
 ### Environment
 - version of Puente-React-Dashboard?
@@ -15,10 +15,10 @@ Describe your issue here.
   - RxJS
 
 ### Steps to reproduce
-Tell us how to recreate your issue.
+_Tell us how to recreate your issue._
 
 ### Expected results
-What did you think would happen?
+_What did you think would happen?_
 
 ### Actual results
-What **really** happened?
+_What **really** happened?_
