@@ -10,6 +10,7 @@ import { ApolloProvider} from "react-apollo";
 //Components and Pages
 import App from './js/App';
 import HomepageLayout  from './landing-page/landing';
+import LoginForm from './js/pages/Login';
 
 //REQUIRED STYLES
 import './index.css';
@@ -25,12 +26,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <Router>
-        <Switch>
-            <Route component={HomepageLayout} exact path="/" />
-            <ApolloProvider client={client}>
-                <Route exactly path='/app' render={(props) => <App {...props} routePath="/app" />} />
-            </ApolloProvider>
-        </Switch>
+        <Route component={HomepageLayout} exact path="/" />
+        <ApolloProvider client={client}>
+            <Route exactly path='/app' render={(props) => <App {...props} routePath="/app" />} />
+        </ApolloProvider>
+        <Route component={LoginForm} path="/login" />
     </Router>
     ,app
 );
