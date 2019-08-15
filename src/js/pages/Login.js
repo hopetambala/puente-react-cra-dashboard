@@ -2,7 +2,11 @@ import React from 'react';
 import Parse from 'parse';
 import { Redirect } from "react-router-dom";
 
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+
+//Redux
+import { connect } from "react-redux";
+import { setAuth } from '../reducers/login';
 
 class LoginForm extends React.Component{
     constructor(props){
@@ -29,7 +33,8 @@ class LoginForm extends React.Component{
             console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
             that.setState({
 				toDashboard:true
-			});
+            });
+            this.props.setAuth(true);
         })/*.catch(function(error){
             console.log("Error: " + error.code + " " + error.message);
         });*/
@@ -73,6 +78,16 @@ class LoginForm extends React.Component{
         )
     }
 }  
-{/* as={Link} to='/app/home' */}
 
-export default LoginForm;
+const mapStateToProps = (state) => {
+    return {
+      
+    };
+  };
+  
+  const mapDispatchToProps = {
+    setAuth
+  };
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);
+  

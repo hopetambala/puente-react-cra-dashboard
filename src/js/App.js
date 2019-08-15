@@ -7,13 +7,9 @@ import { Route, Link, Switch} from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "../configure-store";
 
-
-
-
 //Style
 import { Nav, Navbar } from 'react-bootstrap'
 import styled from 'styled-components'
-
 
 //Pages
 import { HomePage } from "./pages/Home";
@@ -49,7 +45,8 @@ const store = configureStore();
 export default class App extends React.Component {
 	constructor(props){
 		super(props);
-		console.log(Parse.User);
+		Parse.initialize(process.env.REACT_APP_parseAppId , process.env.REACT_APP_parseJavascriptKey);
+        Parse.serverURL = process.env.REACT_APP_parseServerUrl;
 	}
 	render() {
 		return (
@@ -69,7 +66,7 @@ export default class App extends React.Component {
 					</Navbar.Collapse>
 				</StyledNavBar>
 
-				<Switch>
+				<Switch >
 					<Route path={`${this.props.routePath}/home`} component={HomePage} />
 					<Route path={`${this.props.routePath}/dataexport`}  component={ExportPage} />
 					<Route path={`${this.props.routePath}/map`}  component={MapPage} />

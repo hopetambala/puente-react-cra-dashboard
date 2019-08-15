@@ -19,10 +19,10 @@ const reducer = handleActions(
     [setPassword]: (state, { payload }) => ({ ...state, password: payload }),
     [setAuth]: (state, { payload }) => {
         if (payload === true){
-            return { ...state, authenticated:true }; 
+            return { ...state, isAuthenticated:true }; 
         }
         else{
-            return { ...state, authenticated:false }; 
+            return { ...state, isAuthenticated:false }; 
         }  
     },
   },
