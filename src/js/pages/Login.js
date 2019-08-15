@@ -34,7 +34,7 @@ class LoginForm extends React.Component{
             that.setState({
 				toDashboard:true
             });
-            this.props.setAuth(true);
+            that.props.setAuth(true);
         })/*.catch(function(error){
             console.log("Error: " + error.code + " " + error.message);
         });*/
@@ -79,15 +79,10 @@ class LoginForm extends React.Component{
     }
 }  
 
-const mapStateToProps = (state) => {
-    return {
-      
-    };
-  };
   
   const mapDispatchToProps = {
     setAuth
   };
   
-  export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);
+  export default connect(null,mapDispatchToProps)(LoginForm);
   

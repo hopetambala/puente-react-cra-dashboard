@@ -2,7 +2,11 @@ import { createAction, handleActions } from "redux-actions";
 
 const defaultState = {
   username:"",
-  password:"",
+  email:"",
+  firstName:"",
+  lastName:"",
+  role:"",
+  organization:"",
   isAuthenticated: false,
   admin:false
 };
@@ -16,7 +20,6 @@ const setAuth = createAction("SET_AUTHENTICATION")
 const reducer = handleActions(
   {
     [setUsername]: (state, { payload }) => ({ ...state, username: payload }),
-    [setPassword]: (state, { payload }) => ({ ...state, password: payload }),
     [setAuth]: (state, { payload }) => {
         if (payload === true){
             return { ...state, isAuthenticated:true }; 
