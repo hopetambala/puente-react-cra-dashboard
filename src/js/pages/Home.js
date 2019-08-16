@@ -1,13 +1,23 @@
 import React from 'react';
 import { Row, Container, Nav, Navbar } from 'react-bootstrap';
 import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom";
+
+//Styling
+import homeStyle from './Home.module.css';
 import styled from 'styled-components';
+
+//Redux
+import { connect } from "react-redux";
+import { getAuthInfo } from '../reducers/login';
 
 //Pages
 import MedicalEvalAnalytics from '../pages/MedicalEval';
 import EnvironHealthAnalytics  from '../pages/EnvironHealth';
 import { VitalsAnalytics } from '../pages/Vitals';
 import DemographicsAnalytics  from '../pages/Demographics';
+
+//Components
+import DashboardManagerControls from '../components/dashboard-manager/DashboardManager';
 
 const styles = {
 	container: {
@@ -39,13 +49,12 @@ const StyledLink = styled(Link)`
 	margin: 0%;
 `;
 
-export class HomePage extends React.Component {
+class HomePage extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
 			organization:"All"
-		}
-		
+		}		
 	}
 
 
@@ -60,7 +69,8 @@ export class HomePage extends React.Component {
 		return (
 			<Router>
 				<Container style={styles.container}>
-					<h1>Dashboard</h1>
+					<h1 className={homeStyle.header1}>Welcome {this.props.authInfo.username}</h1>
+					<h2 className={homeStyle.header2}>Here's an automated analysis of data collected for {this.props.authInfo.organization}</h2>
 					<Navbar style={{padding:"0"}} collapseOnSelect expand="sm">
 						<Navbar.Brand>Analytics ></Navbar.Brand>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -81,9 +91,11 @@ export class HomePage extends React.Component {
 							</Nav>
 						</Navbar.Collapse>
 					</Navbar>
+					
+					<DashboardManagerControls className={homeStyle.zIndex2} />
 															
 					<Row style={styles.row}>
-						<Switch>
+						<Switch className={homeStyle.zIndex1} >
 							<Route
 								path='/demographicanalytics'
 								render={()=><DemographicsAnalytics/>}
@@ -101,3 +113,11 @@ export class HomePage extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return { 
+		authInfo: getAuthInfo(state)
+	}
+};
+
+export default connect(mapStateToProps,null)(HomePage);
