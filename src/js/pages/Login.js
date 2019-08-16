@@ -1,12 +1,12 @@
 import React from 'react';
 import Parse from 'parse';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 
 //Redux
 import { connect } from "react-redux";
-import { setAuth } from '../reducers/login';
+import { getAuthInfo, setAuth,setProfile } from '../reducers/login';
 
 class LoginForm extends React.Component{
     constructor(props){
@@ -34,10 +34,19 @@ class LoginForm extends React.Component{
             that.setState({
 				toDashboard:true
             });
+
+            const loggedInUser = {
+                username: user.get("username"),
+                email: user.get("email"),
+                first_name: user.get("firstname"),
+                last_name: user.get("lastname"),
+                role: user.get("role"),
+                organization: user.get("organization"), 
+            };
+
             that.props.setAuth(true);
-        })/*.catch(function(error){
-            console.log("Error: " + error.code + " " + error.message);
-        });*/
+            that.props.setProfile(loggedInUser);
+        })
     }
     render(){
         if (this.state.toDashboard === true) {
@@ -49,7 +58,7 @@ class LoginForm extends React.Component{
         return(
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as='h2' color='teal' textAlign='center'>
+                <Header as='h2' as={Link} to="/" color='teal' textAlign='center'>
                      Log-in to your account
                 </Header>
                 <Form size='large' onSubmit={this.handleSubmit}>
@@ -78,11 +87,16 @@ class LoginForm extends React.Component{
         )
     }
 }  
-
+    const mapStateToProps = (state) => {
+        return { 
+            authInfo: getAuthInfo(state)
+        }
+    };
   
-  const mapDispatchToProps = {
-    setAuth
-  };
+    const mapDispatchToProps = {
+        setAuth,
+        setProfile
+    };
   
-  export default connect(null,mapDispatchToProps)(LoginForm);
+  export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);
   
