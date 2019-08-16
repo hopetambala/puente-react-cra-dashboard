@@ -4,7 +4,7 @@ import Parse from 'parse';
 import { Route, Link, Switch} from "react-router-dom";
 
 //Style
-import { Nav, Navbar, Button } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine, faMap, faClipboardList, faFileExport, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
@@ -23,14 +23,6 @@ const StyledNavBarBrand = styled(Navbar.Brand)`
 	//background: #1a2a6c !important;
 	color: #f8af1e !important;
 	//}
-`;
-
-const StyledLink = styled(Link)`
-	color: white !important;
-	&:hover {
-		//background: #1a2a6c !important;
-		color: #f8af1e !important;
-	}
 `;
 
 
