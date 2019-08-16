@@ -1,51 +1,17 @@
-body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
-  background: #F5F8FD;
+p  {
+  /*font-family: "Roboto", "Helvetica Neue", sans-serif;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; //Apple*/
+  font-family: "Roboto", sans-serif !important;
+}
+h1 , h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Slab', serif !important;
+  font-weight: 550 !important;
 }
 
 ol, ul {
   padding-left: 30px;
 }
 
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.status {
-  margin-bottom: 10px;
-}
-
-.square {
-  background: #F5F8FD;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
-}
-
-.square:focus {
-  outline: none;
-}
-
-.kbd-navigation .square:focus {
-  background: #F5F8FD;
-}
-
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.game-info {
-  margin-left: 20px;
+body {
+  background-color: #f5f5f5 !important;
 }
