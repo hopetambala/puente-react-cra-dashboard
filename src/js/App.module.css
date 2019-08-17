@@ -1,33 +1,45 @@
+.background{
+}
 .navbar{
-    /*background: #1a2a6c !important;*/
-    background: white;
-	color: rgb(255, 209, 3)af1e;
+    /*background: #1b1c1d;*/
+    background: #222B3C !important;
+    color: rgb(255, 209, 3);
+    /*margin-left: 80px;*/
+    height: 60px;
+    
 }
 
 .navbutton{
-    margin: 5px 10px 5px 10px;
+    margin: 2.5px 2.5px 2.5px 2.5px;
     text-align: center;
     text-align: center;
     font-size: 25px;
-    color: white;
+    color: rgb(255, 209, 3) !important;
     /*background-color: #f8af1e;*/
-    background-color: rgb(255, 209, 3);
+    background-color: #FFFFFF;
     /*background-color: rgb(255 , 156, 0);*/
-    box-shadow: 0 3px 4px 0 whitesmoke;
+    
     transition: 0.3s;
-    border-radius: 5px;
     padding: 7px 10px 7px 10px ;
+    text-align: center !important;
+
  
 }
 
 .navbutton:hover {
-    color:whitesmoke;
-    box-shadow: 0px 1px 1px 1px rgb(201, 201, 201);
     transition: 0.3s;
 }
 
+.sidebar {
+    box-shadow: 0 0px 0px 0 white !important;
+    background: #222B3C !important;
+    width: inherit;
+    margin:0;
+    padding-top: 60px;
+}
+
 .signoutbutton{
-    margin: 5px 10px 5px 10px;
+    /*margin: 5px 10px 5px 10px;
     text-align: center;
     text-align: center;
     font-size: 25px;
@@ -36,10 +48,19 @@
     box-shadow: 0 3px 4px 0 whitesmoke;
     transition: 0.3s;
     border-radius: 5px;
-    padding: 7px 10px 7px 10px ;
+    padding: 7px 10px 7px 10px ;*/
+    color: rgb(255, 209, 3);
+    font-size: 25px;
 }
 
 .signoutbutton:hover{
     color:white;
     background-color: rgb(238, 53, 6);
+}
+
+.image{
+    margin-left: 7px !important;
+    display: block;
+    height: 45px !important;
+    width: 45px !important;
 }

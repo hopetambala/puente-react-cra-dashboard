@@ -19,7 +19,7 @@
     color: #f8af1e !important;
     background-color: white !important;
     border-radius: 10px;
-    box-shadow: 4px 0px 0px 0px grey;
+    /*box-shadow: 4px 0px 0px 0px grey;*/
 }
 
   
@@ -43,7 +43,7 @@
     position: fixed;
     top: 100px;
     right: -275px;
-    box-shadow: 0 4px 8px 0 grey;
+    /*box-shadow: 4px 0px 0px 0px grey;*/
     transition: 0.3s;
     border-radius: 10px;
     padding: 5px;

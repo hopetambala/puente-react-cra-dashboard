@@ -1,11 +1,46 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Dashboard",
+  "name": "Puente Development Dashboard",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "icon1.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "icon2.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icon3.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "icon4.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "icon5.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "icon6.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon7.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "start_url": ".",
