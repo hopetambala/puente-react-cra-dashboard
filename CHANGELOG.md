@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.0...v0.2.1) (2019-08-18)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([e293dd2](https://github.com/hopetambala/puente-react-dashboard/commit/e293dd2))
+* **deps:** update apollo graphql packages ([1ec8605](https://github.com/hopetambala/puente-react-dashboard/commit/1ec8605))
+* **deps:** update dependency d3-scale to v3.0.1 ([2cdb816](https://github.com/hopetambala/puente-react-dashboard/commit/2cdb816))
+* **deps:** update dependency final-form to v4.18.4 ([08cabcb](https://github.com/hopetambala/puente-react-dashboard/commit/08cabcb))
+* **deps:** update dependency material-table to v1.45.0 ([a6887e0](https://github.com/hopetambala/puente-react-dashboard/commit/a6887e0))
+* **deps:** update dependency parse to v2.6.0 ([022c6a8](https://github.com/hopetambala/puente-react-dashboard/commit/022c6a8))
+* **deps:** update dependency react-bootstrap to v1.0.0-beta.11 ([1a9c550](https://github.com/hopetambala/puente-react-dashboard/commit/1a9c550))
+* **deps:** update dependency recharts to v1.7.0 ([6ce8894](https://github.com/hopetambala/puente-react-dashboard/commit/6ce8894))
+* **deps:** update dependency recharts to v1.7.1 ([df8d5ca](https://github.com/hopetambala/puente-react-dashboard/commit/df8d5ca))
+* add link to login page ([6022b72](https://github.com/hopetambala/puente-react-dashboard/commit/6022b72))
+* add login page UI ([97cde6c](https://github.com/hopetambala/puente-react-dashboard/commit/97cde6c))
+* authentication with login screen ([c669f2e](https://github.com/hopetambala/puente-react-dashboard/commit/c669f2e))
+* bring provider to index level ([f6384bc](https://github.com/hopetambala/puente-react-dashboard/commit/f6384bc))
+* homepage ([6ca3b49](https://github.com/hopetambala/puente-react-dashboard/commit/6ca3b49))
+* incorrectly rendered route ([68f459b](https://github.com/hopetambala/puente-react-dashboard/commit/68f459b))
+* login ([ed00ea7](https://github.com/hopetambala/puente-react-dashboard/commit/ed00ea7))
+* login page ([4d25d81](https://github.com/hopetambala/puente-react-dashboard/commit/4d25d81))
+
+
+### Features
+
+* beta roll-out of dashboard v1 ([82ce43a](https://github.com/hopetambala/puente-react-dashboard/commit/82ce43a))
+* roll-out of mapManager feature ([3864b35](https://github.com/hopetambala/puente-react-dashboard/commit/3864b35))
+* sidenav ([04bc1f9](https://github.com/hopetambala/puente-react-dashboard/commit/04bc1f9))
+
 ## 0.2.0 (2019-07-27)
 
 
