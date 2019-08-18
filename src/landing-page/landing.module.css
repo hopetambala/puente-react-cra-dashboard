@@ -1,3 +1,32 @@
 h1 {
   color: #f8af1e !important;
 }
+
+.heropic{
+  flex-shrink: 0;
+  width: 100% !important;
+  left: 30%;
+}
+
+.heropicdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+
+.colPic{
+  width: 70% !important;
+}
+
+.menu{
+  background: white !important;
+  color: black !important;
+}
+
+.logopic{
+  height: 60px !important;
+  width: 60px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

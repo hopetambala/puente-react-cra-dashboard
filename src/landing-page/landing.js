@@ -20,6 +20,9 @@ import {
 
 import landingStyle from './landing.module.css';
 
+import heroPic from '../assets/landing/hero_final.png';
+import logo from '../assets/goldClear.png';
+
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
 // For more advanced usage please check Responsive docs under the "Usage" section.
@@ -34,41 +37,42 @@ const getWidth = () => {
  * such things.
  */
 const HomepageHeading = ({ mobile }) => (
-  <Container>
-    <Grid>
-        <Grid.Column width={10}>
-          <Header
-            as='h1'
-            content='Smarter International Development'
-            //inverted
-            textAlign='left'
-            style={{
-              fontSize: mobile ? '2em' : '4em',
-              fontWeight: 'normal',
-              marginBottom: 0,
-              marginTop: mobile ? '1.5em' : '3em',
-            }}
-          />
-          <Header
-            as='p'
-            content="Puente's digital technology empowers people to achieve more sustainable community development."
-            //inverted
-            textAlign='left'
-            style={{
-              fontSize: mobile ? '1.5em' : '1.7em',
-              fontWeight: 'normal',
-              marginTop: mobile ? '0.5em' : '1.5em',
-            }}
-          />
-          <Button primary size='huge'>
-            Get Started
-            <Icon name='right arrow' />
-          </Button>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-        </Grid.Column>
-  </Grid>
+  <Container style={{marginTop:"60px"}}>
+    <Grid verticalAlign='left'  columns={2}>
+    <Grid.Row >
+      <Grid.Column floated='left' width={4} >
+        <Header
+          as='h1'
+          content='Digital International Development'
+          textAlign='left'
+          style={{
+            fontSize: mobile ? '2em' : '4em',
+            fontWeight: 'normal',
+            marginBottom: 0,
+            marginTop: mobile ? '1.5em' : '3em',
+          }}
+        />
+        <Header
+          as='p'
+          content="Puente's digital technology empowers people to achieve more sustainable community development."
+          //inverted
+          textAlign='left'
+          style={{
+            fontSize: mobile ? '1.5em' : '1.7em',
+            fontWeight: 'normal',
+            marginTop: mobile ? '0.5em' : '1.5em',
+          }}
+        />
+        <Button primary size='huge'>
+          Get Started
+          <Icon name='right arrow' />
+        </Button>
+      </Grid.Column >
+      <Grid.Column floated="right" className={landingStyle.colPic}>
+        <Image className={landingStyle.heropic} src={heroPic} />
+      </Grid.Column>
+      </Grid.Row>
+    </Grid>
     
   </Container>
 )
@@ -105,15 +109,17 @@ class DesktopContainer extends Component {
             vertical
           >
             <Menu
-              fixed={fixed ? 'top' : null}
-              inverted={!fixed}
+              fixed={'top'}
               pointing={!fixed}
               secondary={!fixed}
               size='large'
+              className={landingStyle.menu}
+              text
             >
               <Container>
-                <Menu.Item position='left' as='a' active>
-                  Home
+                <Image className={landingStyle.logopic} src={logo} />
+                <Menu.Item position='left'>
+                  <h1>Puente</h1>
                 </Menu.Item>
                 <Menu.Item position='right'>
                   <Button as={Link} to='/login' inverted={fixed}>
@@ -167,9 +173,9 @@ class MobileContainer extends Component {
           <Menu.Item as='a' active>
             Home
           </Menu.Item>
-          <Menu.Item as='a'>Work</Menu.Item>
+          {/*<Menu.Item as='a'>Work</Menu.Item>
           <Menu.Item as='a'>Company</Menu.Item>
-          <Menu.Item as='a'>Careers</Menu.Item>
+          <Menu.Item as='a'>Careers</Menu.Item>*/}
           <Menu.Item as={Link} to='/login'>Log in</Menu.Item>
           <Menu.Item as='a'>Sign Up</Menu.Item>
         </Sidebar>
@@ -223,7 +229,7 @@ ResponsiveContainer.propTypes = {
 
 const HomepageLayout = () => (
   <ResponsiveContainer style={landingStyle}>
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    {/*<Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
@@ -357,7 +363,7 @@ const HomepageLayout = () => (
           </Grid.Row>
         </Grid>
       </Container>
-    </Segment>
+    </Segment> */}
   </ResponsiveContainer>
 )
 
