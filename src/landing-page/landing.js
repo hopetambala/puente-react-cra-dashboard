@@ -5,12 +5,10 @@ import { Link } from "react-router-dom";
 import {
   Button,
   Container,
-  Divider,
   Grid,
   Header,
   Icon,
   Image,
-  List,
   Menu,
   Responsive,
   Segment,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
+import { Row, Container, Col, ProgressBar } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';

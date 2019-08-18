@@ -1,10 +1,9 @@
 import React from 'react';
-import { Row, Container, Nav, Navbar, Dropdown} from 'react-bootstrap';
+import { Row, Container, Dropdown} from 'react-bootstrap';
 import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom";
 
 //Styling
 import homeStyle from './Home.module.css';
-import styled from 'styled-components';
 
 //Redux
 import { connect } from "react-redux";
@@ -36,18 +35,6 @@ const styles = {
 	}, 
 
 }
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-	
-	color: #1a2a6c !important;
-    &:focus, &:hover, &:visited, &:link, &:active {
-        &:hover {
-			//background: #1a2a6c !important;
-			color: #f8af1e !important;
-	}
-	margin: 0%;
-`;
 
 class HomePage extends React.Component {
 	constructor(props){

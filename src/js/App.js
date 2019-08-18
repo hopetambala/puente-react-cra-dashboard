@@ -16,7 +16,7 @@ import appStyle from './App.module.css';
 import HomePage from "./pages/Home";
 import { ExportPage } from "./pages/DataExport";
 import FormCreator from './pages/FormCreator';
-import { MapPage } from './pages/Map';
+import MapPage from './pages/Map';
 import PatientList from './pages/Patient/PatientList';
 
 export default class App extends React.Component {

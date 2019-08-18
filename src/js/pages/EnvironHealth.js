@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
+import { Row, Container, Col, ProgressBar } from 'react-bootstrap';
 import { withApollo } from 'react-apollo';
 
 import * as d3 from 'd3';
@@ -12,7 +12,7 @@ import { Pie180ChartComponent } from '../components/recharts/PieChart';
 import { ThreeDimenEnvComponent } from '../components/recharts/Scatter_Env';
 
 //Query
-import { allEnvs, allEnvsByOrganization} from '../queries/records';
+import { allEnvsByOrganization} from '../queries/records';
 
 
 const styles = {

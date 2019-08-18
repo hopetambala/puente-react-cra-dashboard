@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar, Dropdown } from 'react-bootstrap';
+import { Row, Container, Col, ProgressBar } from 'react-bootstrap';
 import { withApollo } from 'react-apollo';
 import * as d3 from 'd3';
 import * as _ from "underscore";
@@ -12,7 +12,7 @@ import { StatsBox } from '../components/widget/StatsBox/StatsBox';
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
 
 //Query
-import { allEvalMedicalsByOrganization, allEvalMedicals} from '../queries/records';
+import { allEvalMedicalsByOrganization } from '../queries/records';
 
 const styles = {
 	container: {

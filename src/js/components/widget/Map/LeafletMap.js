@@ -2,12 +2,6 @@ import React from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
-/*type State = {
-  lat: number,
-  lng: number,
-  zoom: number,
-}*/
-
 export class LeafletMap extends React.Component{
   constructor(props){
     super(props)
@@ -40,14 +34,27 @@ export class LeafletMap extends React.Component{
   render() {
     const { places } = this.state;
     return (
-      <Map center={this.props.center} zoom={this.props.zoom} style={{ height: '100vh', width: '100%' }}>
+      <Map center={this.props.center} zoom={this.props.zoom} style={{ height: '100vh', width: '100%',zIndex:0 }}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
         <MarkerClusterGroup>
-        {places.map(place => (
+        {this.props.sex === "" && places.map(place => (
+            <Marker position={[place.latitude,place.longitude]}>
+              <Popup>
+                <div>
+                  <h3>{place.fname} {place.lname}</h3>
+                  <h5>{place.communityname}</h5>
+                  <p>{place.city}, {place.province}</p>
+                </div>
+              </Popup>
+            </Marker>
+        ))}
+        {this.props.sex !== "" &&
+          places.map(place => (
+            place.sex === this.props.sex &&
             <Marker position={[place.latitude,place.longitude]}>
               <Popup>
                 <div>
