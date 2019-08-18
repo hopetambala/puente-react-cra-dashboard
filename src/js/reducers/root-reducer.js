@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import login from "./login";
-import dashboard from "./dashboard";
+import dashboardControls from "./dashboardControls";
 
 export default combineReducers({
  login,
- dashboard
+ dashboardControls
 });

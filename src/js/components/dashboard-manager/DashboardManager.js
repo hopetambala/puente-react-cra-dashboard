@@ -109,24 +109,15 @@ class DashboardManagerControls extends React.Component {
             <p>Fellow</p>
           </div>
         
-          {this.props.data && this.props.data.fieldValue &&
-            <div>
-              <h3>Header 3</h3>
-            </div>
-          }
-        
           <p onClick={this.toggleShowNote}>
-            Notes {!showNote && <FontAwesomeIcon icon={faAngleDoubleDown} />}{showNote && <FontAwesomeIcon  onClick={this.toggleShowNote} icon={faAngleDoubleUp} />}
+            Additional Filters {!showNote && <FontAwesomeIcon icon={faAngleDoubleDown} />}{showNote && <FontAwesomeIcon  onClick={this.toggleShowNote} icon={faAngleDoubleUp} />}
           </p>
 
           {showNote === true &&
             <div>
-              <p>Hello </p>
-              <p>Fellow</p>
-              <p>Hello </p>
-              <p>Fellow</p>
-              <p>Hello </p>
-              <p>Fellow</p>
+              <p>Community</p>
+              <p>Sex</p>
+              <p>Age</p>
             </div>
             /*<div>
               <b><h1><input className={dashboardManagerStyle.inputStyle} type="text" value={this.state.note.note.title} onChange={this.handleChangeTitle} placeholder="Title"/></h1></b>

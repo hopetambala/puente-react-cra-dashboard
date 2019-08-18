@@ -20,12 +20,7 @@ const reducer = handleActions(
       console.log(payload)
       return  {
         ...state, 
-        /*username: payload.username,
-        email:payload.email,
-        firstName:payload.first_name,
-        lastName: payload.last_name,
-        role: payload.role,
-        organization:payload.organization*/
+        model:payload.model
       }
     },
     [setFilters]: (state, { payload }) => {

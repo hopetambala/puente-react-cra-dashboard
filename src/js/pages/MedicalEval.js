@@ -44,15 +44,26 @@ class MedicalEvalAnalytics extends React.Component {
 	}
 
 	componentDidMount = async () => {
-		const {client} = this.props;
-	
-		let res = await client.query({query: allEvalMedicals});
-		this.setState({
-			data: res.data.getEvalMedicalRecords,
+		const { client, organization } = this.props;
+		let res = await client.query({query: allEvalMedicalsByOrganization ,variables: {organization: organization }});
+		this.setState({data: res.data.getEvalMedicalByOrganization});
+		await this.dataWrangle();
+		await this.setState({
 			progress: 100
-		})
-		await this.dataWrangle()
+		});
 	
+	}
+
+	componentDidUpdate = async(prevProps) => {
+		if((this.props.organization !== prevProps.organization)){
+			const { client, organization } = this.props;
+			let res = await client.query({query: allEvalMedicalsByOrganization ,variables: {organization: organization }});
+			this.setState({data: res.data.getEvalMedicalByOrganization});
+			await this.dataWrangle();
+			await this.setState({
+				progress: 100
+			});
+		}
 	}
 
 	async dataWrangle(){
@@ -169,157 +180,114 @@ class MedicalEvalAnalytics extends React.Component {
 
 	}
 
-	async onSubmit(organization){
-		if (organization !== "All"){
-			await this.setState({
-				organization: organization,
-				progress:40
-			})
-
-			const {client} = this.props;
-
-			let res = await client.query({query: allEvalMedicalsByOrganization ,variables: {organization:this.state.organization }});
-			this.setState({data: res.data.getEvalMedicalByOrganization})
-			await this.dataWrangle()
-		}
-		else{
-			await this.setState({
-				organization: organization,
-				progress:40
-			})
-			const {client} = this.props;
-			let res = await client.query({query: allEvalMedicals});
-			this.setState({
-				data: res.data.getEvalMedicalRecords,
-				progress: 65
-			})
-			//console.log(this.state.results);
-			await this.dataWrangle()
-		}
-		
-	}
-
 	render() {
 		return (
-				<Container style={styles.container}>
-					<Dropdown>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
-							{this.state.organization}
-						</Dropdown.Toggle>
-
-						<Dropdown.Menu>
-							<Dropdown.Item onClick={()=>{this.onSubmit("All")}}>All</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.onSubmit("Puente")}}>Puente</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.onSubmit("One World Surgery")}}>One World Surgery</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.onSubmit("WOF")}}>World Outreach Foundation</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.onSubmit("Constanza Medical Mission")}}>Constanza Medical Mission</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
-					{ this.state.progress < 95 && this.state &&
-						<ProgressBar animated now={this.state.progress} />
+			<Container style={styles.container}>
+			{ this.state.progress < 95 && this.state &&
+				<ProgressBar animated now={this.state.progress} />
+			}
+			{ this.state.progress === 100 && this.state && this.state.medicalFollowupcounts && this.state.allCounts &&
+			<>
+				<Row style={styles.row}>
+					<Col>
+						<StatsBox
+							Cardsubtitle={"All Evaluations"}
+							Cardtitle={" All Evaluations Completed: " + this.state.allCounts}
+							Cardtext={""}
+							height="150px"
+						>
+							{/*<Pie180ChartComponent 
+								data={this.state.sexes}
+								valueKey="value" 
+							/>*/}
+						</StatsBox>
+						<StatsBox
+							Cardsubtitle={"Patients"}
+							Cardtitle={"Patients Identified: " + this.state.allUniqueCounts}
+							Cardtext={""}
+							height="150px"
+						>
+							{/*<Pie180ChartComponent 
+								data={this.state.sexes}
+								valueKey="value" 
+							/>*/}
+						</StatsBox>
+							
+					</Col>
+					<Col>
+						<StatsBox
+							Cardsubtitle={"All Evaluations: Doctor Visits"}
+							Cardtitle={"Seen Doctor Regarding Issue: " + this.state.view_seendoctorcounts.Yes}
+							Cardtext={""}
+							height="300px"
+						>
+							<Pie180ChartComponent 
+							data={this.state.seendoctorcounts}
+							valueKey="value" />
+						</StatsBox>
+					</Col>
+					<Col>
+						<StatsBox
+							Cardsubtitle={"All Evaluations: Parts of Body"}
+							Cardtitle={"Biggest Problem: " + this.state.partofbodycounts[0].key}
+							Cardtext={this.state.partofbodycounts[0].value}
+							height="300px"
+						>
+							<Pie180ChartComponent 
+							data={this.state.partofbodycounts}
+							valueKey="value" />
+						</StatsBox>
+					</Col>
+				</Row>
+				<Row style={styles.row}>
+					<Col>
+						<StatsBox
+							Cardsubtitle={"All Evaluations: Assessments"}
+							Cardtitle={"Medical Follow-Up Requested : " + this.state.view_medicalFollowupcounts.Yes}
+							Cardtext={""}
+							height="300px"
+						>
+							<Pie180ChartComponent 
+							data={this.state.medicalFollowupcounts}
+							valueKey="value" />
+						</StatsBox>
+					</Col>
+					<Col>
+						<StatsBox
+							Cardsubtitle={"All Evaluations: Assessments"}
+							Cardtitle={"Surgical Follow-Up Requested : " + this.state.view_surgicalFollowupcounts.Yes}
+							Cardtext={""}
+							height="300px"
+						>
+							<Pie180ChartComponent 
+							data={this.state.surgicalFollowupcounts}
+							valueKey="value" />
+						</StatsBox>
+					</Col>
+					<Col>
+						<StatsBox
+							Cardsubtitle={"All Evaluations: Assessments"}
+							Cardtitle={"Immediate Follow-Up Requested : " + this.state.view_immediateFollowupcounts.Yes}
+							Cardtext={""}
+							height="300px"
+						>
+							<Pie180ChartComponent 
+							data={this.state.immediateFollowupcounts}
+							valueKey="value" />
+						</StatsBox>
+					</Col>
+				</Row>
+			</>
+				
+			}
+				<Row style={styles.row}>
+					{ this.state.data !== null &&
+					<Col>
+						<BrushBarChronicComponent data={this.state.data} />
+					</Col>
 					}
-				{ this.state.progress === 100 && this.state && this.state.medicalFollowupcounts && this.state.allCounts &&
-				<>
-					<Row style={styles.row}>
-						<Col>
-							<StatsBox
-								Cardsubtitle={"All Evaluations"}
-								Cardtitle={" All Evaluations Completed: " + this.state.allCounts}
-								Cardtext={""}
-								height="150px"
-							>
-								{/*<Pie180ChartComponent 
-									data={this.state.sexes}
-									valueKey="value" 
-								/>*/}
-							</StatsBox>
-							<StatsBox
-								Cardsubtitle={"Patients"}
-								Cardtitle={"Patients Identified: " + this.state.allUniqueCounts}
-								Cardtext={""}
-								height="150px"
-							>
-								{/*<Pie180ChartComponent 
-									data={this.state.sexes}
-									valueKey="value" 
-								/>*/}
-							</StatsBox>
-								
-						</Col>
-						<Col>
-							<StatsBox
-								Cardsubtitle={"All Evaluations: Doctor Visits"}
-								Cardtitle={"Seen Doctor Regarding Issue: " + this.state.view_seendoctorcounts.Yes}
-								Cardtext={""}
-								height="300px"
-							>
-								<Pie180ChartComponent 
-								data={this.state.seendoctorcounts}
-								valueKey="value" />
-							</StatsBox>
-						</Col>
-						<Col>
-							<StatsBox
-								Cardsubtitle={"All Evaluations: Parts of Body"}
-								Cardtitle={"Biggest Problem: " + this.state.partofbodycounts[0].key}
-								Cardtext={this.state.partofbodycounts[0].value}
-								height="300px"
-							>
-								<Pie180ChartComponent 
-								data={this.state.partofbodycounts}
-								valueKey="value" />
-							</StatsBox>
-						</Col>
-					</Row>
-					<Row style={styles.row}>
-						<Col>
-							<StatsBox
-								Cardsubtitle={"All Evaluations: Assessments"}
-								Cardtitle={"Medical Follow-Up Requested : " + this.state.view_medicalFollowupcounts.Yes}
-								Cardtext={""}
-								height="300px"
-							>
-								<Pie180ChartComponent 
-								data={this.state.medicalFollowupcounts}
-								valueKey="value" />
-							</StatsBox>
-						</Col>
-						<Col>
-							<StatsBox
-								Cardsubtitle={"All Evaluations: Assessments"}
-								Cardtitle={"Surgical Follow-Up Requested : " + this.state.view_surgicalFollowupcounts.Yes}
-								Cardtext={""}
-								height="300px"
-							>
-								<Pie180ChartComponent 
-								data={this.state.surgicalFollowupcounts}
-								valueKey="value" />
-							</StatsBox>
-						</Col>
-						<Col>
-							<StatsBox
-								Cardsubtitle={"All Evaluations: Assessments"}
-								Cardtitle={"Immediate Follow-Up Requested : " + this.state.view_immediateFollowupcounts.Yes}
-								Cardtext={""}
-								height="300px"
-							>
-								<Pie180ChartComponent 
-								data={this.state.immediateFollowupcounts}
-								valueKey="value" />
-							</StatsBox>
-						</Col>
-					</Row>
-				</>
-					
-				}
-					<Row style={styles.row}>
-						{ this.state.data !== null &&
-						<Col>
-							<BrushBarChronicComponent data={this.state.data} />
-						</Col>
-						}
-					</Row>
-				</Container>		
+				</Row>
+			</Container>		
 		);
 	}
 }

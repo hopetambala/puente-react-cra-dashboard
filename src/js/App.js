@@ -71,7 +71,10 @@ export default class App extends React.Component {
 					</Menu.Item>
 				</Sidebar>
 				<Sidebar.Pusher>
-					<Route path={`${this.props.routePath}/home`} component={HomePage} />
+					<Route 
+						path={`${this.props.routePath}/home`} component={HomePage} 
+						render={(props) => <HomePage {...props} routePath="/app/home" />}
+					/>
 					<Route path={`${this.props.routePath}/dataexport`}  component={ExportPage} />
 					<Route path={`${this.props.routePath}/map`}  component={MapPage} />
 					<Route path={`${this.props.routePath}/patients`}  component={PatientList} />

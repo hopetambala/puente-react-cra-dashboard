@@ -16,8 +16,8 @@
     line-height: 2rem;
     border-radius: 10px;
     display: block;
-    color: #f8af1e !important;
-    background-color: white !important;
+    color: rgb(255, 209, 3) !important;
+    background-color: #222B3C !important;
     border-radius: 10px;
     /*box-shadow: 4px 0px 0px 0px grey;*/
 }
@@ -34,7 +34,8 @@
     transition: 0.3s;
     border-radius: 10px;
     padding: 5px;
-    background: white;
+    color:rgb(255, 209, 3);
+    background: #222B3C !important;;
     width:290px  
 }
       
@@ -47,7 +48,7 @@
     transition: 0.3s;
     border-radius: 10px;
     padding: 5px;
-    background: white;
+    background: #222B3C !important;;
     width:290px  
 }
     

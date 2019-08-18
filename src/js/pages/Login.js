@@ -2,7 +2,9 @@ import React from 'react';
 import Parse from 'parse';
 import { Redirect, Link } from "react-router-dom";
 
+//Styles
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import loginStyles from './Login.module.css';
 
 //Redux
 import { connect } from "react-redux";
@@ -41,7 +43,7 @@ class LoginForm extends React.Component{
                 first_name: user.get("firstname"),
                 last_name: user.get("lastname"),
                 role: user.get("role"),
-                organization: user.get("organization"), 
+                organization: String(user.get("organization")), 
             };
 
             that.props.setAuth(true);
@@ -56,10 +58,10 @@ class LoginForm extends React.Component{
         const { username, password } = this.state;
 
         return(
-            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle' className={loginStyles.grid}>
                 <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as={Link} to="/" color='teal' textAlign='center'>
-                     Log-in to your account
+                <Header as={Link} to="/" className={loginStyles.header} textAlign='center'>
+                    <h1>PUENTE</h1>
                 </Header>
                 <Form size='large' onSubmit={this.handleSubmit}>
                     <Segment stacked>
@@ -74,7 +76,7 @@ class LoginForm extends React.Component{
                             value={password}
                             onChange={this.handleChange}
                         />
-                        <Button onClick={this.logIn} color='teal' fluid size='large'>
+                        <Button onClick={this.logIn} className={loginStyles.button} fluid size='large'>
                             Login
                         </Button>
                     </Segment>

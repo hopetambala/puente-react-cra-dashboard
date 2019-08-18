@@ -50,11 +50,26 @@ class EnvironHealthAnalytics extends React.Component {
 	}
 	/*https://github.com/apollographql/react-apollo/issues/1411*/
 	componentDidMount = async () => {
-		const {client} = this.props;
-		let res = await client.query({query: allEnvs});
+		const { client, organization } = this.props;
+		let res = await client.query({query: allEnvsByOrganization ,variables: {organization: organization }});
+		this.setState({data: res.data.getEnvByOrganization});
+		await this.dataWrangle();
+		await this.setState({
+			progress: 100
+		});
+	
+	}
 
-		this.setState({data: res.data.getEnvRecords})
-		await this.dataWrangle()
+	componentDidUpdate = async(prevProps) => {
+		if((this.props.organization !== prevProps.organization)){
+			const { client, organization } = this.props;
+			let res = await client.query({query: allEnvsByOrganization ,variables: {organization: organization }});
+			this.setState({data: res.data.getEnvByOrganization});
+			await this.dataWrangle();
+			await this.setState({
+				progress: 100
+			});
+		}
 	}
 
 	async dataWrangle(){
@@ -155,52 +170,9 @@ class EnvironHealthAnalytics extends React.Component {
 
 	}
 
-	async onSubmit(organization){
-		if (organization !== "All"){
-			await this.setState({
-				organization: organization,
-				progress:40
-			})
-
-			const {client} = this.props;
-
-			let res = await client.query({query: allEnvsByOrganization ,variables: {organization:this.state.organization }});
-			this.setState({data: res.data.getEnvByOrganization})
-			await this.dataWrangle()
-		}
-		else{
-			await this.setState({
-				organization: organization,
-				progress:40
-			})
-			const {client} = this.props;
-			let res = await client.query({query: allEnvs});
-			this.setState({
-				data: res.data.getEnvRecords,
-				progress: 65
-			})
-			//console.log(this.state.results);
-			await this.dataWrangle()
-		}
-		
-	}
-
 	render() {
 		return (
 			<Container style={styles.container}>
-				<Dropdown>
-					<Dropdown.Toggle variant="success" id="dropdown-basic">
-						{this.state.organization}
-					</Dropdown.Toggle>
-
-					<Dropdown.Menu>
-						<Dropdown.Item onClick={()=>{this.onSubmit("All")}}>All</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmit("Puente")}}>Puente</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmit("One World Surgery")}}>One World Surgery</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmit("WOF")}}>World Outreach Foundation</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmit("Constanza Medical Mission")}}>Constanza Medical Mission</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown>
 				{ this.state.progress < 95 && this.state &&
 					<ProgressBar animated now={this.state.progress} />
 				}
@@ -248,11 +220,6 @@ class EnvironHealthAnalytics extends React.Component {
 					</Row>
 					<Row style={styles.row}>
 						<Col>
-							<ThreeDimenEnvComponent data={this.state.data} />
-						</Col>
-					</Row>
-					<Row style={styles.row}>
-						<Col>
 							<StatsBox
 								Cardsubtitle={"Accessibility: Health"}
 								Cardtitle={"Clinic Access: " + this.state.view_clinicCounts.Y}
@@ -290,6 +257,11 @@ class EnvironHealthAnalytics extends React.Component {
 									valueKey="value" 
 									/>
 							</StatsBox>
+						</Col>
+					</Row>
+					<Row style={styles.row}>
+						<Col>
+							<ThreeDimenEnvComponent data={this.state.data} />
 						</Col>
 					</Row>
 					

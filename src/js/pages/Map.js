@@ -8,6 +8,8 @@ import { LeafletMap } from '../components/widget/Map/LeafletMap';
 import { Query } from 'react-apollo';
 import { all_records } from '../queries/records';
 
+//Style 
+import { mapStyles } from './Map.module.css';
 
 const styles = {
 	container: {
@@ -31,7 +33,7 @@ export class MapPage extends React.Component {
 	render() {
 		return (
 				<Container style={styles.container}>
-					<h1>Map</h1>
+					<h1 className={mapStyles.header1}>Map</h1>
 					<Row style={styles.row}>
 						<Query query={all_records}>
 							{({ data, loading, error }) => {

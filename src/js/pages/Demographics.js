@@ -7,6 +7,10 @@ import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 //Components
 import { StatsBox } from '../components/widget/StatsBox/StatsBox';
 
+//Redux
+import { connect } from "react-redux";
+import { getAuthInfo } from '../reducers/login';
+
 //Charts 
 import { LineChartGeneralComponent } from '../components/recharts/LineChart_General';
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
@@ -51,19 +55,31 @@ class DemographicsAnalytics extends React.Component {
 	}
 
 	/*https://github.com/apollographql/react-apollo/issues/1411*/
-	componentDidMount = async () => {
-		const { client } = this.props;
+	/*componentDidMount = async () => {
+		const { client, organization } = this.props;
 	
-		let res = await client.query({query: all_records});
-		await this.setState({
-			results: res.data.getPeople,
-			progress: 100
-		})
+		let res = await client.query({query: allRecordsByOrganization, variables: {organization: organization }});
+		this.setState({results: res.data.getPeopleByOrganization});
 		//console.log(this.state.results);
-		await this.dataWrangle()
-	
-		
-	}
+		await this.dataWrangle();
+		await this.setState({
+			progress: 100
+		});
+	}*/
+
+	componentDidUpdate = async(prevProps) => {
+		if((this.props.organization !== prevProps.organization)){
+
+			const { client, organization } = this.props;
+			let res = await client.query({query: allRecordsByOrganization, variables: {organization: organization }});
+			this.setState({results: res.data.getPeopleByOrganization});
+
+			await this.dataWrangle();
+			await this.setState({
+				progress: 100
+			});
+		}
+	} 
 
 	async dataWrangle(){
 		var modData = await this.state.results
@@ -159,43 +175,12 @@ class DemographicsAnalytics extends React.Component {
 				progress: 100
 			})
 		}
-		console.log(this.state.educations)
-		console.log(this.state.sexes)
+		/*console.log(this.state.educations)
+		console.log(this.state.sexes)*/
 
 	}
-	
-	onSubmit = async values => {
-		if (values.organization !== "All"){
-			await this.setState({
-				organization: values.organization,
-				progress:40
-			})
 
-			const {client} = this.props;
-
-			let res = await client.query({query: allRecordsByOrganization ,variables: {organization:this.state.organization }});
-			this.setState({results: res.data.getPeopleByOrganization})
-			//console.log(this.state.results);
-			await this.dataWrangle()
-		}
-		else{
-			await this.setState({
-				organization: values.organization,
-				progress:40
-			})
-			const {client} = this.props;
-			let res = await client.query({query: all_records});
-			this.setState({
-				results: res.data.getPeople,
-				progress: 65
-			})
-			//console.log(this.state.results);
-			await this.dataWrangle()
-		}
-		
-	}
-
-	async onSubmitz(organization){
+	async onSubmit(organization){
 		if (organization !== "All"){
 			await this.setState({
 				organization: organization,
@@ -227,7 +212,7 @@ class DemographicsAnalytics extends React.Component {
 	render() {
 		return (
 			<Container style={styles.container}>
-				<Dropdown>
+				{/*<Dropdown>
 					<Dropdown.Toggle variant="success" id="dropdown-basic">
 						{this.state.organization}
 					</Dropdown.Toggle>
@@ -239,7 +224,7 @@ class DemographicsAnalytics extends React.Component {
 						<Dropdown.Item onClick={()=>{this.onSubmitz("WOF")}}>World Outreach Foundation</Dropdown.Item>
 						<Dropdown.Item onClick={()=>{this.onSubmitz("Constanza Medical Mission")}}>Constanza Medical Mission</Dropdown.Item>
 					</Dropdown.Menu>
-				</Dropdown>
+				</Dropdown>*/}
 			{ this.state.progress < 95 && this.state &&
 				<>
 					<ProgressBar animated now={this.state.progress} />
@@ -330,5 +315,10 @@ class DemographicsAnalytics extends React.Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+	return { 
+		authInfo: getAuthInfo(state)
+	}
+};
 
-export default withApollo(DemographicsAnalytics);
+export default connect(mapStateToProps,null)(withApollo(DemographicsAnalytics));

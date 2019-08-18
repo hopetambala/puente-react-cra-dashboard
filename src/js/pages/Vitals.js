@@ -1,17 +1,13 @@
 import React from 'react';
-import { Row, Container, Dropdown } from 'react-bootstrap';
-import { Query } from 'react-apollo';
-
-//Components
-import { PivotTableComponent } from '../components/pivottable/PivotTable';
+import { Row, Container } from 'react-bootstrap';
 
 //Query
-import { vitals as vits} from '../queries/records';
+import { withApollo } from 'react-apollo';
+import { allVitalsByOrganization } from '../queries/records';
 
-//Styles
-import { styles } from '../components/styles/Theme';
+import { styles } from '../../styles';
 
-export class VitalsAnalytics extends React.Component {
+class VitalsAnalytics extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
@@ -19,31 +15,38 @@ export class VitalsAnalytics extends React.Component {
 		}
 	}
 
-	async onSubmit(value){
+	componentDidMount = async () => {
+		const { client, organization } = this.props;
+		let res = await client.query({query: allVitalsByOrganization ,variables: {organization: organization }});
+		this.setState({data: res.data.getVitalByOrganization});
+		await this.dataWrangle();
 		await this.setState({
-			organization: value
-		})
-		console.log(this.state.organization)
+			progress: 100
+		});
+	
+	}
+
+	componentDidUpdate = async(prevProps) => {
+		if((this.props.organization !== prevProps.organization)){
+			const { client, organization } = this.props;
+			let res = await client.query({query: allVitalsByOrganization ,variables: {organization: organization }});
+			this.setState({data: res.data.getVitalByOrganization});
+			await this.dataWrangle();
+			await this.setState({
+				progress: 100
+			});
+		}
+	}
+
+	dataWrangle = () =>{
+		console.log('Vitals')
 	}
 	
 	render() {
 		return (
 				<Container >
-					<Dropdown>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
-							{this.state.organization}
-						</Dropdown.Toggle>
-
-						<Dropdown.Menu>
-							<Dropdown.Item onClick={()=>{this.onSubmit("All")}}>All</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.onSubmit("Puente")}}>Puente</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.onSubmit("One World Surgery")}}>One World Surgery</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.onSubmit("WOF")}}>World Outreach Foundation</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.onSubmit("Constanza Medical Mission")}}>Constanza Medical Mission</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
-					<Row style={styles.row}>
-						<Query query={vits}>
+					{/* <Row style={styles.row}>
+						<Query query={allVitalsByOrganization} variables={{organization:this.props.organization}}>
 							{({ data, loading, error }) => {
 								if (loading) return <p>Loading...</p>;
 								if (error) return <p>Error :(</p>;
@@ -53,8 +56,13 @@ export class VitalsAnalytics extends React.Component {
 								);
 							}}
 						</Query>
+						</Row> */}
+					<Row style={styles.row}>
+						<h1>Coming Soon!</h1>
 					</Row>
 				</Container>		
 		);
 	}
 }
+
+export default withApollo(VitalsAnalytics);
