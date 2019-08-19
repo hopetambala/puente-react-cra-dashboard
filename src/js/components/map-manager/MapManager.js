@@ -10,7 +10,7 @@ import dashboardManagerStyle from './MapManager.module.css';
 
 ///Redux
 import { connect } from "react-redux";
-import { setSex } from '../../reducers/mapControls';
+import { setSex, setEducation } from '../../reducers/mapControls';
 
 
 class MapManagerControls extends React.Component {
@@ -46,15 +46,20 @@ class MapManagerControls extends React.Component {
       showNote: !this.state.showNote,
     });
   }
-
   sendSex = (value) => {
     /*const filters = {
       sex: value
     }*/
     this.props.setSex(value);
   }
+  sendEducation = (value) => {
+    /*const filters = {
+      sex: value
+    }*/
+    this.props.setEducation(value);
+  }
+
   render() {
-    /*const showNote = this.state.showNote;*/
     return (
         <div className={ this.state.show ? dashboardManagerStyle.show : dashboardManagerStyle.hide }>
           <div>
@@ -71,6 +76,19 @@ class MapManagerControls extends React.Component {
 							<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
+          {/*<Dropdown style={{marginBottom:"1em"}}>
+						<Dropdown.Toggle variant="success" id="dropdown-basic">
+							Education Level
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+            <Dropdown.Item onClick={()=>{this.sendEducation('')}}>All</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.sendEducation('lessThanprimary')}}>Less Than Primary School</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.sendEducation('someHighSchool')}}>Some High School</Dropdown.Item>
+              <Dropdown.Item onClick={()=>{this.sendEducation('highschool')}}>High School</Dropdown.Item>
+              <Dropdown.Item onClick={()=>{this.sendEducation('someCollege')}}>Some College</Dropdown.Item>
+              <Dropdown.Item onClick={()=>{this.sendEducation('college')}}>College</Dropdown.Item>
+						</Dropdown.Menu>
+            </Dropdown>*/}
         
           {/*<p onClick={this.toggleShowNote}>
             Additional Filters {!showNote && <FontAwesomeIcon icon={faAngleDoubleDown} />}{showNote && <FontAwesomeIcon  onClick={this.toggleShowNote} icon={faAngleDoubleUp} />}
@@ -107,7 +125,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  setSex
+  setSex,
+  setEducation
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(MapManagerControls);

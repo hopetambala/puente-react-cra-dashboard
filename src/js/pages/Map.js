@@ -54,7 +54,7 @@ class MapPage extends React.Component {
 								if (loading) return <p>Loading...</p>;
 								if (error) return <p>Error :(</p>;
 								return (
-									<LeafletMap data={data} sex={this.props.filters.sex} className={mapStyles.map}/>
+									<LeafletMap data={data} sex={this.props.filters.sex} education={this.props.filters.education} className={mapStyles.map}/>
 								);
 							}}
 						</Query>

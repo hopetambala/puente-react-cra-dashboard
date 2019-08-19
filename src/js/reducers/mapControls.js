@@ -3,6 +3,7 @@ import { createAction, handleActions } from "redux-actions";
 const defaultState = {
   model:"",
   sex:"",
+  education:""
 
 };
 
@@ -10,6 +11,7 @@ const defaultState = {
 
 const setModel = createAction("SET_MODEL");
 const setSex = createAction("SET_SEX");
+const setEducation = createAction("SET_EDUCATION");
 
 const reducer = handleActions(
   {
@@ -27,6 +29,13 @@ const reducer = handleActions(
         sex:payload
       }
     },
+    [setEducation]: (state, { payload }) => {
+      console.log(payload);
+      return  {
+        ...state, 
+        education:payload
+      }
+    },
   },
   defaultState
 );
@@ -34,4 +43,4 @@ const reducer = handleActions(
 const getMapFiltersInfo = (state) => state.mapControls;
 
 export default reducer;
-export { setModel, setSex, getMapFiltersInfo };
+export { setModel, setSex, setEducation, getMapFiltersInfo };
