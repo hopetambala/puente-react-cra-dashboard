@@ -7,7 +7,7 @@ import { Route, Link} from "react-router-dom";
 import { Nav, Navbar} from 'react-bootstrap';
 import { Image, Menu, Sidebar } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine, faMap, faClipboardList, faFileExport, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faMap, faClipboardList, faFileExport, faSignOutAlt, faUserFriends} from '@fortawesome/free-solid-svg-icons';
 
 import goldClear from '../assets/goldClear.png';
 import appStyle from './App.module.css';
@@ -59,6 +59,9 @@ export default class App extends React.Component {
 					visible={visible}>
 					<Menu.Item>
 						<Link to={`${this.props.routePath}/home`} className={appStyle.navbutton}><FontAwesomeIcon icon={faChartLine} /></Link>
+					</Menu.Item>
+					<Menu.Item>
+						<Link to={`${this.props.routePath}/patients`} className={appStyle.navbutton}><FontAwesomeIcon icon={faUserFriends} /></Link>
 					</Menu.Item>
 					<Menu.Item>
 						<Link to={`${this.props.routePath}/map`} className={appStyle.navbutton}><FontAwesomeIcon icon={faMap} /></Link>
