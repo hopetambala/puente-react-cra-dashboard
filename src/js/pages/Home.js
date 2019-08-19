@@ -16,7 +16,7 @@ import VitalsAnalytics from '../pages/Vitals';
 import DemographicsAnalytics  from '../pages/Demographics';
 
 //Components
-import DashboardManagerControls from '../components/dashboard-manager/DashboardManager';
+//import DashboardManagerControls from '../components/dashboard-manager/DashboardManager';
 
 const styles = {
 	container: {
