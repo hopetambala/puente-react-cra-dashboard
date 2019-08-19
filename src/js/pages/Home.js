@@ -64,7 +64,7 @@ class HomePage extends React.Component {
 						</Dropdown.Menu>
 					</Dropdown>
 					
-					<DashboardManagerControls className={homeStyle.zIndex2} />
+					{/*<DashboardManagerControls className={homeStyle.zIndex2} />*/}
 															
 					<Row style={styles.row}>
 						<Switch className={homeStyle.zIndex1} >
