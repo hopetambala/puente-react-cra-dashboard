@@ -49,7 +49,8 @@
     "semantic-ui-css": "2.4.1",
     "semantic-ui-react": "0.87.3",
     "styled-components": "4.3.2",
-    "underscore": "1.9.1"
+    "underscore": "1.9.1",
+    "snyk": "^1.230.5"
   },
   "scripts": {
     "start": "node server.js",
@@ -62,7 +63,8 @@
     "reinstall": "rm -rf node_modules/ && npm install",
     "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done",
     "release": "standard-version",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "pre-commit": {
     "run": [
