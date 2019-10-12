@@ -18,7 +18,6 @@ import {
 
 import landingStyle from './landing.module.css';
 
-import heroPic from '../assets/landing/hero_final.png';
 import logo from '../assets/goldClear.png';
 
 // Heads up!
