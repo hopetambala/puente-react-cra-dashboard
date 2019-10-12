@@ -40,7 +40,7 @@ const HomepageHeading = ({ mobile }) => (
       <Grid.Column floated='left' width={8} >
         <Header
           as='h1'
-          content='Discover Insights for Solutions in Development.'
+          content='Discover Insights to Drive Better Development.'
           textAlign='left'
           style={{
             fontSize: mobile ? '2em' : '4em',
