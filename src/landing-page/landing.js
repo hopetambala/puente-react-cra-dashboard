@@ -57,10 +57,17 @@ const HomepageHeading = ({ mobile }) => (
           style={{
             fontSize: mobile ? '1.5em' : '1.7em',
             fontWeight: 'normal',
-            marginTop: mobile ? '0.5em' : '1.5em',
+            marginTop: mobile ? '0.5em' : '2em',
+            color: mobile ? 'white' : 'black',
           }}
         />
-        <Button as={Link} to='/login' primary size='huge' style={{backgroundColor:"#FDD00C"}}>
+        <Button 
+          as={Link} 
+          to='/login' 
+          primary size='huge' 
+          style={{
+            backgroundColor:"#FDD00C"
+          }}>
           Get Started
           <Icon name='right arrow' />
         </Button>
