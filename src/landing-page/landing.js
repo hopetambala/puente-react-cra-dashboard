@@ -38,16 +38,16 @@ const HomepageHeading = ({ mobile }) => (
   <Container style={{marginTop:"60px"}}>
     <Grid verticalAlign='left'  columns={2}>
     <Grid.Row >
-      <Grid.Column floated='left' width={4} >
+      <Grid.Column floated='left' width={8} >
         <Header
           as='h1'
-          content='Digital International Development'
+          content='Discover Insights for Solutions in Development.'
           textAlign='left'
           style={{
             fontSize: mobile ? '2em' : '4em',
             fontWeight: 'normal',
             marginBottom: 0,
-            marginTop: mobile ? '1.5em' : '3em',
+            marginTop: mobile ? '1.5em' : '1em',
           }}
         />
         <Header
@@ -66,9 +66,6 @@ const HomepageHeading = ({ mobile }) => (
           <Icon name='right arrow' />
         </Button>
       </Grid.Column >
-      <Grid.Column floated="right" className={landingStyle.colPic}>
-        <Image className={landingStyle.heropic} src={heroPic} />
-      </Grid.Column>
       </Grid.Row>
     </Grid>
     

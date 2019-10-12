@@ -1,6 +1,6 @@
 export const styles = {
     theme: {
-		primaryAppColor: "#f8af1e",
+		primaryAppColor: "#FDD00C",
         primaryDashboardColor : "rgb(255, 209, 3)",
         darkBg : "#222B3C"
 
