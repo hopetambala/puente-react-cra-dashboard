@@ -60,7 +60,7 @@ const HomepageHeading = ({ mobile }) => (
             marginTop: mobile ? '0.5em' : '1.5em',
           }}
         />
-        <Button as={Link} to='/login' primary size='huge'>
+        <Button as={Link} to='/login' primary size='huge' style={{backgroundColor:"#FDD00C"}}>
           Get Started
           <Icon name='right arrow' />
         </Button>
@@ -119,7 +119,7 @@ class DesktopContainer extends Component {
                   <Button as={Link} to='/login' inverted={fixed}>
                     Log in
                   </Button>
-                  <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em' }}>
+                  <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em', backgroundColor:"#FDD00C"}}>
                     Sign Up
                   </Button>
                 </Menu.Item>
