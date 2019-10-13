@@ -212,7 +212,7 @@ export class ExportPage extends React.Component {
 		return (
 			<>
 			<Styles style={styles.container}>
-			<h1><span role="img" aria-labelledby="dataExport">🏁</span> Data Exporter</h1>
+			<h1>Data Exporter</h1>
 			<Form
 				onSubmit={this.onSubmit}
 				initialValues={{ type: 'Demographics', organization: '' }}

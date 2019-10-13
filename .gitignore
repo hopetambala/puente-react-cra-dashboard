@@ -8,7 +8,7 @@
 # testing
 /coverage
 
-# production
+# productio
 /build
 
 # misc
@@ -22,3 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 # src/js/providers/Environments/Local.js
+development.env
+.env

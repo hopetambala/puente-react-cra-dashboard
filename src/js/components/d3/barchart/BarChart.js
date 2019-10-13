@@ -3,8 +3,6 @@ import { scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 import { select } from 'd3-selection';
 
-import * as d3 from 'd3';
-
 export class BarChart extends React.Component {
     constructor(props){
         super(props)

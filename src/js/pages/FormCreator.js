@@ -46,7 +46,7 @@ class FormCreator extends React.Component{
     render(){
         return(
 			<Styles style={styles.container}>
-			<h1><span role="img" aria-labelledby="formCreator">🏁</span> Form Creator</h1>
+			<h1>Form Creator</h1>
 			<Form
 				onSubmit={this.submitCustomForm}
 				initialValues={{ 

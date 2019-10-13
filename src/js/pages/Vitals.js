@@ -1,49 +1,52 @@
 import React from 'react';
 import { Row, Container } from 'react-bootstrap';
-import { Query } from 'react-apollo';
-
-//Components
-import { PivotTableComponent } from '../components/pivottable/PivotTable';
 
 //Query
-import { vitals as vits} from '../queries/records';
+import { withApollo } from 'react-apollo';
+import { allVitalsByOrganization } from '../queries/records';
 
+import { styles } from '../../styles';
 
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		alignContent: 'flex-start',
-		paddingTop: '5%'
-		
-	},
-	row: {
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	}
-}
-
-
-export class VitalsAnalytics extends React.Component {
+class VitalsAnalytics extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
 			data:null
 		}
 	}
+
+	componentDidMount = async () => {
+		const { client, organization } = this.props;
+		let res = await client.query({query: allVitalsByOrganization ,variables: {organization: organization }});
+		this.setState({data: res.data.getVitalByOrganization});
+		await this.dataWrangle();
+		await this.setState({
+			progress: 100
+		});
+	
+	}
+
+	componentDidUpdate = async(prevProps) => {
+		if((this.props.organization !== prevProps.organization)){
+			const { client, organization } = this.props;
+			let res = await client.query({query: allVitalsByOrganization ,variables: {organization: organization }});
+			this.setState({data: res.data.getVitalByOrganization});
+			await this.dataWrangle();
+			await this.setState({
+				progress: 100
+			});
+		}
+	}
+
+	dataWrangle = () =>{
+		console.log('Vitals')
+	}
 	
 	render() {
 		return (
-				<Container style={styles.container}>
-					{/*<Row style={styles.row}>
-						<Boxx/>
-						<Boxx/>
-					</Row>*/}
-					<Row style={styles.row}>
-						<Query query={vits}>
+				<Container >
+					{/* <Row style={styles.row}>
+						<Query query={allVitalsByOrganization} variables={{organization:this.props.organization}}>
 							{({ data, loading, error }) => {
 								if (loading) return <p>Loading...</p>;
 								if (error) return <p>Error :(</p>;
@@ -53,8 +56,13 @@ export class VitalsAnalytics extends React.Component {
 								);
 							}}
 						</Query>
+						</Row> */}
+					<Row style={styles.row}>
+						<h1>Coming Soon!</h1>
 					</Row>
 				</Container>		
 		);
 	}
 }
+
+export default withApollo(VitalsAnalytics);

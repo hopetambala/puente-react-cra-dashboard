@@ -2,27 +2,40 @@ import { createAction, handleActions } from "redux-actions";
 
 const defaultState = {
   username:"",
-  password:"",
+  email:"",
+  firstName:"",
+  lastName:"",
+  role:"",
+  organization:"",
   isAuthenticated: false,
   admin:false
 };
 
 // ACTIONS
 
-const setUsername = createAction("SET_USERNAME");
-const setPassword = createAction("SET_PASSWORD");
+const setProfile = createAction("SET_PROFILE");
 const setAuth = createAction("SET_AUTHENTICATION")
 
 const reducer = handleActions(
   {
-    [setUsername]: (state, { payload }) => ({ ...state, username: payload }),
-    [setPassword]: (state, { payload }) => ({ ...state, password: payload }),
+    [setProfile]: (state, { payload }) => {
+      console.log(payload)
+      return  {
+        ...state, 
+        username: payload.username,
+        email:payload.email,
+        firstName:payload.first_name,
+        lastName: payload.last_name,
+        role: payload.role,
+        organization:payload.organization
+      }
+    },
     [setAuth]: (state, { payload }) => {
         if (payload === true){
-            return { ...state, authenticated:true }; 
+            return { ...state, isAuthenticated:true }; 
         }
         else{
-            return { ...state, authenticated:false }; 
+            return { ...state, isAuthenticated:false }; 
         }  
     },
   },
@@ -32,4 +45,4 @@ const reducer = handleActions(
 const getAuthInfo = (state) => state.login;
 
 export default reducer;
-export { setUsername, setPassword, setAuth, getAuthInfo };
+export { setProfile, setAuth, getAuthInfo };

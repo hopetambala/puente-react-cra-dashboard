@@ -1,0 +1,15 @@
+.header1 {
+    font-size: 70px;
+}
+
+.header2 {
+    font-size: 20px;
+}
+
+.zIndex1{
+    z-index: 1 !important;
+}
+
+.zIndex2{
+    z-index: 2 !important;
+}

@@ -1,13 +1,22 @@
 import React from 'react';
-import { Row, Container, Nav, Navbar } from 'react-bootstrap';
+import { Row, Container, Dropdown} from 'react-bootstrap';
 import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom";
-import styled from 'styled-components';
+
+//Styling
+import homeStyle from './Home.module.css';
+
+//Redux
+import { connect } from "react-redux";
+import { getAuthInfo } from '../reducers/login';
 
 //Pages
 import MedicalEvalAnalytics from '../pages/MedicalEval';
 import EnvironHealthAnalytics  from '../pages/EnvironHealth';
-import { VitalsAnalytics } from '../pages/Vitals';
+import VitalsAnalytics from '../pages/Vitals';
 import DemographicsAnalytics  from '../pages/Demographics';
+
+//Components
+//import DashboardManagerControls from '../components/dashboard-manager/DashboardManager';
 
 const styles = {
 	container: {
@@ -27,71 +36,55 @@ const styles = {
 
 }
 
-const StyledLink = styled(Link)`
-    text-decoration: none;
-	
-	color: #1a2a6c !important;
-    &:focus, &:hover, &:visited, &:link, &:active {
-        &:hover {
-			//background: #1a2a6c !important;
-			color: #f8af1e !important;
-	}
-	margin: 0%;
-`;
-
-export class HomePage extends React.Component {
+class HomePage extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
 			organization:"All"
 		}
-		
-	}
-
-
-	async onSubmit(value){
-		await this.setState({
-			organization: value
-		})
-		console.log(this.state.organization)
+		console.log(this.props.authInfo.organization)
 	}
 
 	render() {
 		return (
 			<Router>
 				<Container style={styles.container}>
-					<h1>Dashboard</h1>
-					<Navbar style={{padding:"0"}} collapseOnSelect expand="sm">
-						<Navbar.Brand>Analytics ></Navbar.Brand>
-						<Navbar.Toggle aria-controls="basic-navbar-nav" />
-						<Navbar.Collapse id="basic-navbar-nav">
-							<Nav className="mr-auto">
-								<StyledLink className="nav-link" to={`/demographicanalytics`}>
-									General
-								</StyledLink>
-								<StyledLink className="nav-link" to={`/medicalanalytics`}>
-									Medical Evaluation
-								</StyledLink>
-								<StyledLink className="nav-link" to="/vitalanalytics">
-									Vitals
-								</StyledLink>
-								<StyledLink className="nav-link" to="/envalanalytics">
-									Environmental Analytics
-								</StyledLink>
-							</Nav>
-						</Navbar.Collapse>
-					</Navbar>
+					<h1 className={homeStyle.header1}>Welcome {this.props.authInfo.username}</h1>
+					<h2 className={homeStyle.header2}>Here's an automated analysis of data collected for {this.props.authInfo.organization}</h2>
+					<Dropdown style={{marginBottom:"1em"}}>
+						<Dropdown.Toggle variant="success" id="dropdown-basic">
+							Community Health Records Forms
+						</Dropdown.Toggle>
+
+						<Dropdown.Menu>
+							<Dropdown.Item as={Link} to={`/demographicanalytics`}>Demographics</Dropdown.Item>
+							<Dropdown.Item as={Link} to={`/medicalanalytics`}>Medical Evaluation</Dropdown.Item>
+							<Dropdown.Item as={Link} to={`/vitalanalytics`}>Vitals Analytics</Dropdown.Item>
+							<Dropdown.Item as={Link} to={`/envalanalytics`}>Environmental Health Analytics</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+					
+					{/*<DashboardManagerControls className={homeStyle.zIndex2} />*/}
 															
 					<Row style={styles.row}>
-						<Switch>
+						<Switch className={homeStyle.zIndex1} >
 							<Route
 								path='/demographicanalytics'
-								render={()=><DemographicsAnalytics/>}
+								render={()=><DemographicsAnalytics organization={this.props.authInfo.organization}/>}
 							/>
-							<Route path={`/medicalanalytics`} component={MedicalEvalAnalytics} />
-							<Route path="/envalanalytics" component={EnvironHealthAnalytics} />
-							<Route path="/vitalanalytics" component={VitalsAnalytics} />
-							<Route render={()=><DemographicsAnalytics />}/>
+							<Route 
+								path={`/medicalanalytics`} 
+								render={()=> <MedicalEvalAnalytics organization={this.props.authInfo.organization}/>} 
+							/>
+							<Route 
+								path="/envalanalytics" 
+								render={()=> <EnvironHealthAnalytics organization={this.props.authInfo.organization}/>}
+							/>
+							<Route 
+								path="/vitalanalytics" 
+								render={()=> <VitalsAnalytics organization={this.props.authInfo.organization} />} 
+							/>
+							<Route render={()=><DemographicsAnalytics organization={this.props.authInfo.organization} />}/>
 						</Switch>
 					</Row>
 					
@@ -101,3 +94,11 @@ export class HomePage extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return { 
+		authInfo: getAuthInfo(state)
+	}
+};
+
+export default connect(mapStateToProps,null)(HomePage);

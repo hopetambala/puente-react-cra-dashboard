@@ -1,0 +1,12 @@
+.header1 {
+    font-size: 70px;
+}
+
+.map {
+    z-index: 0 !important;
+
+}
+.mapcontrols {
+    z-index: 2 !important;
+}
+
