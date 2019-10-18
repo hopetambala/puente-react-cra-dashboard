@@ -108,6 +108,7 @@ export const allEnvs = gql`
             yearsLivedinThisHouse
             waterAccess
             typeofWaterdoyoudrink
+            bathroomAccess
             latrineAccess
             clinicAccess
             conditionoRoofinyourhouse
@@ -152,6 +153,7 @@ export const env_age_latrines_clinic = gql`
         getEnvRecords{
             sex
             dob
+            bathroomAccess
             latrineAccess
             clinicAccess
             numberofIndividualsLivingintheHouse
@@ -274,6 +276,7 @@ export const allEnvsByOrganization = gql`
             yearsLivedinThisHouse
             waterAccess
             typeofWaterdoyoudrink
+            bathroomAccess
             latrineAccess
             clinicAccess
             conditionoRoofinyourhouse
@@ -434,6 +437,7 @@ export const personalEnvironmentalHealth = gql`
             yearsLivedinThisHouse
             waterAccess
             typeofWaterdoyoudrink
+            bathroomAccess
             latrineAccess
             clinicAccess
             conditionoRoofinyourhouse
