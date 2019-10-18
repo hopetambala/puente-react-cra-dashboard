@@ -95,7 +95,7 @@
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.7.0",
     "jsdom-global": "3.0.2",
-    "mocha": "6.2.0",
+    "mocha": "6.2.2",
     "nyc": "14.1.1",
     "pre-commit": "1.2.2",
     "standard-version": "7.0.0"
