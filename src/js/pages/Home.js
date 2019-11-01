@@ -4,6 +4,7 @@ import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom
 
 //Styling
 import homeStyle from './Home.module.css';
+import { styles } from '../../styles';
 
 //Redux
 import { connect } from "react-redux";
@@ -18,23 +19,24 @@ import DemographicsAnalytics  from '../pages/Demographics';
 //Components
 //import DashboardManagerControls from '../components/dashboard-manager/DashboardManager';
 
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		alignContent: 'flex-start',
-		paddingTop: '60px'
+// const styles = {
+// 	container: {
+// 		flexDirection: 'row',
+// 		flexWrap: 'wrap',
+// 		justifyContent: 'center',
+// 		alignContent: 'flex-start',
+// 		paddingTop: '60px'
 		
-	},
-	row: {
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	}, 
+		
+// 	},
+// 	row: {
+// 		justifyContent: 'center',
+// 		flex:1,
+// 		marginBottom:0,
+// 		paddingBottom:0
+// 	}, 
 
-}
+// }
 
 class HomePage extends React.Component {
 	constructor(props){

@@ -6,7 +6,7 @@ import { all_records } from '../../queries/records';
 
 import Patient from '../Patient/Patient';
 
-import { styles } from "../../components/styles/Theme";
+import { styles } from "../../../styles";
 
 
 

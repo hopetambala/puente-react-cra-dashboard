@@ -10,7 +10,9 @@ export const styles = {
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		alignContent: 'flex-start',
-		paddingTop: '5%'
+		paddingTop: '5%',
+		// marginRight:'15px',
+		// marginLeft:'15px'
 		
 	},
 	row: {

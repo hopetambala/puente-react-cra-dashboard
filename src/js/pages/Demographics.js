@@ -18,26 +18,7 @@ import { Pie180ChartComponent } from '../components/recharts/PieChart';
 //Query
 import { allRecordsByOrganization, all_records} from '../queries/records';
 
-
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		//alignItems: 'flex-center',
-		alignContent: 'flex-start',
-		//paddingTop: '5%'
-		
-	},
-	row: {
-		//height:'100vh',
-		//alignItems: 'flex-center',
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	}
-}
+import { styles } from "../../styles";
 
 class DemographicsAnalytics extends React.Component {
 	constructor(props){
