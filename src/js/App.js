@@ -5,7 +5,7 @@ import { Route, Link} from "react-router-dom";
 
 //Style
 import { Nav, Navbar} from 'react-bootstrap';
-import { Image, Menu, Sidebar } from 'semantic-ui-react'
+import { Image, Menu } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine, faMap, faClipboardList, faFileExport, faSignOutAlt, faUserFriends} from '@fortawesome/free-solid-svg-icons';
 
@@ -32,8 +32,6 @@ export default class App extends React.Component {
 	handleHideClick = () => this.setState({ visible: !this.state.visible })
 	
 	render() {
-		const { visible } = this.state
-
 		return (
 			<div className={appStyle.background}>
 				{/*<StyledNav  className="navbar navbar-expand-lg fixed-top is-white is-dark-text bg-light">*/}
