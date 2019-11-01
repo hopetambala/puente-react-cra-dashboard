@@ -85,7 +85,7 @@
     "@babel/register": "7.5.5",
     "@fortawesome/fontawesome-free": "5.11.2",
     "chai": "4.2.0",
-    "codecov": "3.5.0",
+    "codecov": "3.6.1",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "eslint-config-react-app": "4.0.1",
