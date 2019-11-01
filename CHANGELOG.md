@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.1...v0.2.2) (2019-11-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency d3-array to v2.3.2 ([7aa8ee5](https://github.com/hopetambala/puente-react-dashboard/commit/7aa8ee5))
+* **deps:** update dependency graphql to v14.5.8 ([1fa2f8d](https://github.com/hopetambala/puente-react-dashboard/commit/1fa2f8d))
+* **deps:** update dependency react-apollo to v3 ([2412021](https://github.com/hopetambala/puente-react-dashboard/commit/2412021))
+* **deps:** update dependency semantic-ui-react to v0.88.1 ([ad37fbf](https://github.com/hopetambala/puente-react-dashboard/commit/ad37fbf))
+* missing bathroomAccess ([8d875bd](https://github.com/hopetambala/puente-react-dashboard/commit/8d875bd))
+* remove heropic ([6ed855b](https://github.com/hopetambala/puente-react-dashboard/commit/6ed855b))
+* remove unused dasboardmanager controls ([9e83f86](https://github.com/hopetambala/puente-react-dashboard/commit/9e83f86))
+* **deps:** update dependency styled-components to v4.4.1 ([66bb2fd](https://github.com/hopetambala/puente-react-dashboard/commit/66bb2fd))
+* remove unused imports ([975f63d](https://github.com/hopetambala/puente-react-dashboard/commit/975f63d))
+
+
+### Features
+
+* add education reducers ([b779bf4](https://github.com/hopetambala/puente-react-dashboard/commit/b779bf4))
+
 ### [0.2.1](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.0...v0.2.1) (2019-08-18)
 
 
