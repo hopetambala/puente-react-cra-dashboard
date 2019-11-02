@@ -15,23 +15,7 @@ import { getMapFiltersInfo } from '../reducers/mapControls';
 
 //Style 
 import mapStyles from './Map.module.css';
-
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		alignContent: 'flex-start',
-		paddingTop: '5%'
-		
-	},
-	row: {
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	}
-}
+import { styles } from '../../styles';
 
 
 class MapPage extends React.Component {
@@ -44,7 +28,7 @@ class MapPage extends React.Component {
 		console.log(this.props.filters)
 		return (
 				<Container style={styles.container}>
-					<h1 className={mapStyles.header1}>Map</h1>
+					<h1 style={styles.header1}>Map</h1>
 
 					<MapManagerControls className={mapStyles.mapcontrols}/>
 

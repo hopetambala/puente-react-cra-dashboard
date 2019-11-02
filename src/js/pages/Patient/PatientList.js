@@ -7,6 +7,8 @@ import { all_records } from '../../queries/records';
 import Patient from '../Patient/Patient';
 
 import { styles } from "../../../styles";
+import { Container} from 'react-bootstrap';
+
 
 
 
@@ -36,8 +38,8 @@ class PatientList extends React.Component{
 
     render() {
         return(
-            <div style={styles.container}>
-                <h1>Patient List</h1>
+            <Container style={styles.container} >
+                <h1 style={styles.header1} >Patient List</h1>
                 { this.state.results === null &&
                     <div>Loading</div>
                 }
@@ -68,7 +70,7 @@ class PatientList extends React.Component{
                     //onRowClick={(event, rowData, togglePanel) => togglePanel()}
                 /> 
                 }
-            </div>
+            </Container>
         )
 
     }

@@ -4,6 +4,7 @@
 
 .map {
     z-index: 0 !important;
+    width: 100vw;
 
 }
 .mapcontrols {
