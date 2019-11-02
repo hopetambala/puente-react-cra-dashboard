@@ -94,7 +94,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-flowtype": "4.2.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react": "7.16.0",
     "eslint-plugin-react-hooks": "1.7.0",
     "jsdom-global": "3.0.2",
     "mocha": "6.2.2",
