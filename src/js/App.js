@@ -16,8 +16,6 @@ import Button from '@material-ui/core/Button';
 import appStyle from './App.module.css';
 import {styles} from '../styles';
 
-
-
 // import goldClear from '../assets/goldClear.png';
 
 //Pages
