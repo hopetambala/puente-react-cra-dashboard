@@ -10,15 +10,22 @@ export const styles = {
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		alignContent: 'flex-start',
-		paddingTop: '5%',
-		// marginRight:'15px',
-		// marginLeft:'15px'
-		
+		paddingLeft:0,
+		paddingRight:0,
+		// marginLeft:0,
+		// marginRight:0,
+		paddingTop: '20px',
 	},
 	row: {
 		justifyContent: 'center',
 		flex:1,
 		marginBottom:0,
 		paddingBottom:0
-	}
+	},
+	header1:{
+		fontSize: "70px"
+	},
+	header2:{
+		fontSize: "20px"
+	},
 }
