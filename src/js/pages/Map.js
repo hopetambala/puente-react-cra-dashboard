@@ -1,5 +1,6 @@
 import React from 'react';
-import { Row, Container } from 'react-bootstrap';
+import { Row, Container, Card } from 'react-bootstrap';
+
 
 //Components
 import { LeafletMap } from '../components/widget/Map/LeafletMap';
