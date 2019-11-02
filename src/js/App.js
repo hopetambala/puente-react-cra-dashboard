@@ -5,7 +5,7 @@ import { Route, Link} from "react-router-dom";
 
 //Style
 import { Nav, Navbar} from 'react-bootstrap';
-import { Image, Menu, Sidebar } from 'semantic-ui-react'
+import { Image, Menu } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine, faMap, faClipboardList, faFileExport, faSignOutAlt, faUserFriends} from '@fortawesome/free-solid-svg-icons';
 
@@ -32,22 +32,38 @@ export default class App extends React.Component {
 	handleHideClick = () => this.setState({ visible: !this.state.visible })
 	
 	render() {
-		const { visible } = this.state
-
 		return (
 			<div className={appStyle.background}>
 				{/*<StyledNav  className="navbar navbar-expand-lg fixed-top is-white is-dark-text bg-light">*/}
 				<Navbar className={appStyle.navbar} fixed="top" collapseOnSelect expand="md" variant="dark" >
 					<Nav className="mr-auto">
-					<Menu.Item onClick={this.handleHideClick}>
-						<Image src={goldClear} size='medium' circular className={appStyle.image} />
-					</Menu.Item>
+						<Menu.Item onClick={this.handleHideClick}>
+							<Image src={goldClear} size='medium' circular className={appStyle.image} />
+						</Menu.Item>
+					</Nav>
+					<Nav className="mr-auto">
+						<Nav.Link>
+							<Link to={`${this.props.routePath}/home`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faChartLine} /></Link>
+						</Nav.Link>
+						<Nav.Link>
+							<Link to={`${this.props.routePath}/patients`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faUserFriends} /></Link>
+						</Nav.Link>
+						<Nav.Link>
+							<Link to={`${this.props.routePath}/map`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faMap} /></Link>
+						</Nav.Link>
+						<Nav.Link>
+							<Link to={`${this.props.routePath}/formcreation`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faClipboardList} /></Link>
+						</Nav.Link>
+						<Nav.Link>
+							<Link to={`${this.props.routePath}/dataexport`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faFileExport} /></Link>
+						</Nav.Link>
+						
 					</Nav>
 					<Nav>
 						<Link to="/login" className={appStyle.signoutbutton}><FontAwesomeIcon icon={faSignOutAlt} /></Link>
 					</Nav>
 				</Navbar>
-				<Sidebar.Pushable>
+				{/* <Sidebar.Pushable>
 				<Sidebar
 					as={Menu}
 					animation='push'
@@ -73,7 +89,7 @@ export default class App extends React.Component {
 						<Link to={`${this.props.routePath}/dataexport`} className={appStyle.navbutton}><FontAwesomeIcon icon={faFileExport} /></Link>
 					</Menu.Item>
 				</Sidebar>
-				<Sidebar.Pusher>
+				<Sidebar.Pusher> */}
 					<Route 
 						path={`${this.props.routePath}/home`} component={HomePage} 
 						render={(props) => <HomePage {...props} routePath="/app/home" />}
@@ -82,8 +98,8 @@ export default class App extends React.Component {
 					<Route path={`${this.props.routePath}/map`}  component={MapPage} />
 					<Route path={`${this.props.routePath}/patients`}  component={PatientList} />
 					<Route path={`${this.props.routePath}/formcreation`} component={FormCreator} />
-				</Sidebar.Pusher>
-				</Sidebar.Pushable>
+				{/* </Sidebar.Pusher>
+				</Sidebar.Pushable> */}
 			</div>
 		);
 	}

@@ -1,6 +1,6 @@
 export const styles = {
     theme: {
-		primaryAppColor: "#f8af1e",
+		primaryAppColor: "#FDD00C",
         primaryDashboardColor : "rgb(255, 209, 3)",
         darkBg : "#222B3C"
 
@@ -10,7 +10,9 @@ export const styles = {
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		alignContent: 'flex-start',
-		paddingTop: '5%'
+		paddingTop: '5%',
+		// marginRight:'15px',
+		// marginLeft:'15px'
 		
 	},
 	row: {

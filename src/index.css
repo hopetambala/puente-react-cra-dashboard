@@ -2,9 +2,10 @@ p  {
   /*font-family: "Roboto", "Helvetica Neue", sans-serif;
   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; //Apple*/
   font-family: "Roboto", sans-serif !important;
+  
 }
 h1 , h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Slab', serif !important;
+  font-family: 'Roboto Black', serif !important;
   font-weight: 550 !important;
 }
 
@@ -13,5 +14,6 @@ ol, ul {
 }
 
 body {
+  /* background-color: #f5f5f5 !important; */
   background-color: #f5f5f5 !important;
 }

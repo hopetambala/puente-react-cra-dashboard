@@ -18,7 +18,6 @@ import {
 
 import landingStyle from './landing.module.css';
 
-import heroPic from '../assets/landing/hero_final.png';
 import logo from '../assets/goldClear.png';
 
 // Heads up!
@@ -38,16 +37,16 @@ const HomepageHeading = ({ mobile }) => (
   <Container style={{marginTop:"60px"}}>
     <Grid verticalAlign='left'  columns={2}>
     <Grid.Row >
-      <Grid.Column floated='left' width={4} >
+      <Grid.Column floated='left' width={8} >
         <Header
           as='h1'
-          content='Digital International Development'
+          content='Discover Insights to Drive Better Development.'
           textAlign='left'
           style={{
             fontSize: mobile ? '2em' : '4em',
             fontWeight: 'normal',
             marginBottom: 0,
-            marginTop: mobile ? '1.5em' : '3em',
+            marginTop: mobile ? '1.5em' : '1em',
           }}
         />
         <Header
@@ -58,17 +57,21 @@ const HomepageHeading = ({ mobile }) => (
           style={{
             fontSize: mobile ? '1.5em' : '1.7em',
             fontWeight: 'normal',
-            marginTop: mobile ? '0.5em' : '1.5em',
+            marginTop: mobile ? '0.5em' : '2em',
+            color: mobile ? 'white' : 'black',
           }}
         />
-        <Button as={Link} to='/login' primary size='huge'>
+        <Button 
+          as={Link} 
+          to='/login' 
+          primary size='huge' 
+          style={{
+            backgroundColor:"#FDD00C"
+          }}>
           Get Started
           <Icon name='right arrow' />
         </Button>
       </Grid.Column >
-      <Grid.Column floated="right" className={landingStyle.colPic}>
-        <Image className={landingStyle.heropic} src={heroPic} />
-      </Grid.Column>
       </Grid.Row>
     </Grid>
     
@@ -123,7 +126,7 @@ class DesktopContainer extends Component {
                   <Button as={Link} to='/login' inverted={fixed}>
                     Log in
                   </Button>
-                  <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em' }}>
+                  <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em', backgroundColor:"#FDD00C"}}>
                     Sign Up
                   </Button>
                 </Menu.Item>
