@@ -5,7 +5,13 @@ import * as d3 from 'd3';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 
 //Components
-import { StatsBox } from '../components/widget/StatsBox/StatsBox';
+import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+// import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+// import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
 
 //Redux
 import { connect } from "react-redux";
@@ -18,7 +24,9 @@ import { Pie180ChartComponent } from '../components/recharts/PieChart';
 //Query
 import { allRecordsByOrganization, all_records} from '../queries/records';
 
-import { styles } from "../../styles";
+import { styles, cardStyle } from "../../styles";
+
+
 
 class DemographicsAnalytics extends React.Component {
 	constructor(props){
@@ -213,69 +221,64 @@ class DemographicsAnalytics extends React.Component {
 			}
 			{ this.state.progress === 100 && this.state && this.state.sexes && this.state.educations &&
 				<Row style={styles.row}>
-				
 					<Col>
-						<StatsBox
-							Cardsubtitle={"Metrics on Records"}
-							Cardtitle={" All Records: " + this.state.all}
-							Cardtext={""}
-							height="300px"
-						>
-							{<Pie180ChartComponent 
-								data={this.state.sexes}
-								valueKey="value" 
-							/>}
-						</StatsBox>
-							
+						<Card style={cardStyle.card}>
+						<CardContent>
+							<Typography  variant="h6" component="h6"  color="textSecondary" gutterBottom>
+								Metrics on Records
+							</Typography>
+							<Typography variant="h4" component="h4">
+								All Records: {this.state.all}
+							</Typography>
+							<Typography style={cardStyle.pos} color="textSecondary">
+								<Pie180ChartComponent data={this.state.sexes} valueKey="value" />
+							</Typography>
+						</CardContent>
+						</Card>	
 					</Col>
 				
 					<Col>
-						<StatsBox
-							Cardsubtitle={"Metrics on Education"}
-							Cardtitle={"Highest: " + this.state.educations[0].key}
-							Cardtext={this.state.educations[0].value}
-							height="300px">
-							<Pie180ChartComponent data={this.state.educations} valueKey="value" />
-						</StatsBox>
+						<Card style={cardStyle.card}>
+						<CardContent>
+							<Typography  variant="h6" component="h6" className={cardStyle.title} color="textSecondary" gutterBottom>
+								Metrics on Education
+							</Typography>
+							<Typography variant="h5" component="h5">
+								Highest: {this.state.educations[0].key}
+							</Typography>
+							<Typography variant="h4" component="h4">
+								{this.state.educations[0].value}
+							</Typography>
+							<Typography className={cardStyle.pos} color="textSecondary">
+								<Pie180ChartComponent data={this.state.educations} valueKey="value" />
+							</Typography>
+						</CardContent>
+						</Card>
 					</Col>
 					<Col>
-						<StatsBox
-							Cardsubtitle={"Metrics on Age"}
-							Cardtitle={" Average: " + this.state.ageMetrics[0]}
-							Cardtext={""}
-							height="150px">
-							{/*<Pie180ChartComponent 
-							data={this.state.ageMetrics[1]}
-							valueKey="value" /> */}
-						</StatsBox>
-						<StatsBox
-							Cardsubtitle={"Metrics on Age"}
-							Cardtitle={"Less Than Age 5: " + this.state.ageMetrics[1]}
-							Cardtext={""}
-							height="150px"
-						>
-							{/*<Pie180ChartComponent 
-							data={this.state.ageMetrics[1]}
-							valueKey="value" /> */}
-						</StatsBox>
-					</Col>
-					{/*<Col>
-						<MaterialTable 	
-							title={"Organization Counts"}
-							columns={[
-								{ title: 'Organization', field: 'key' },
-								{ title: 'Count of Records', field: 'value' },
-							]}
+						<Card style={cardStyle.cardmini}>
+						<CardContent>
+							<Typography  variant="h6" component="h6" className={cardStyle.title} color="textSecondary" gutterBottom>
+								Metrics on Age
+							</Typography>
+							<Typography variant="h5" component="h5">
+								Average: {this.state.ageMetrics[0]}
+							</Typography>
+						</CardContent>
+						</Card>
 
-							options={{
-								search: false
-							}}
-							data={this.state.organizationCounts}        
-						/>
-						</Col>*/}
-						
-				</Row>
-				
+						<Card style={cardStyle.cardmini}>
+						<CardContent>
+							<Typography  variant="h6" component="h6" className={cardStyle.title} color="textSecondary" gutterBottom>
+								Metrics on Age
+							</Typography>
+							<Typography variant="h5" component="h5">
+								Less Than Age 5: {this.state.ageMetrics[1]}
+							</Typography>
+						</CardContent>
+						</Card>
+					</Col>
+				</Row>	
 			}
 				{this.state.organization === "All" && 
 				<Row style={styles.rows}>
@@ -285,7 +288,9 @@ class DemographicsAnalytics extends React.Component {
 						if (error) return <p>Error :(</p>;
 						return (
 							<Col>
-								<LineChartGeneralComponent style={{padding:'5px'}} data={data} />
+								<Paper style={cardStyle.card}>
+									<LineChartGeneralComponent style={{padding:'5px',color:"whitesmoke"}} data={data} />
+								</Paper>
 							</Col>
 						);
 					}}

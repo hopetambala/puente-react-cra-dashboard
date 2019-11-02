@@ -6,7 +6,15 @@ p  {
 }
 h1 , h2, h3, h4, h5, h6 {
   font-family: 'Roboto Black', serif !important;
-  font-weight: 550 !important;
+  /* font-weight: 550 !important; */
+}
+
+h1  {
+  font-size: 70px;
+}
+h2 {
+  font-size: 20px;
+  color: whitesmoke;
 }
 
 ol, ul {
@@ -14,6 +22,6 @@ ol, ul {
 }
 
 body {
+  background-color: #121212 !important;
   /* background-color: #f5f5f5 !important; */
-  background-color: #f5f5f5 !important;
 }

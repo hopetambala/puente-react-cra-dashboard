@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
+import Typography from '@material-ui/core/Typography';
 import {
   Button,
   Container,
@@ -17,6 +18,7 @@ import {
 } from 'semantic-ui-react';
 
 import landingStyle from './landing.module.css';
+import { styles } from '../styles';
 
 import logo from '../assets/goldClear.png';
 
@@ -113,7 +115,9 @@ class DesktopContainer extends Component {
               <Container>
                 <Image className={landingStyle.logopic} src={logo} />
                 <Menu.Item position='left'>
-                  <h1>Puente</h1>
+                  <Typography variant="h4" >
+                    <div style={{color:styles.theme.primaryAppColor}}>Puente</div>
+                  </Typography>
                 </Menu.Item>
                 <Menu.Item position='right'>
                   <Button as={Link} to='/login' inverted={fixed}>

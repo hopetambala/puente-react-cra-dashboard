@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Container } from 'react-bootstrap';
 
+
 //Components
 import { LeafletMap } from '../components/widget/Map/LeafletMap';
 import MapManagerControls from '../components/map-manager/MapManager';

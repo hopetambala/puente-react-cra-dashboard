@@ -12,11 +12,11 @@ export class PivotTableComponent extends React.Component{
 
     render(){
         return(
-            <PivotTableUI
-                data={this.props.data.getVitals}
-                onChange={s => this.setState(s)}
-                {...this.state}
-            />
+        <PivotTableUI
+            data={this.props.data.getVitals}
+            onChange={s => this.setState(s)}
+            {...this.state}
+        />
         )
     }
 }

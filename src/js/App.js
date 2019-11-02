@@ -7,13 +7,15 @@ import { Route, Link} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 // import IconButton from '@material-ui/core/IconButton';
 // import MenuItem from '@material-ui/core/MenuItem';
-import appStyle from './App.module.css';
 
-import Divider from '@material-ui/core/Divider';
+import appStyle from './App.module.css';
+import {styles} from '../styles';
+
 // import goldClear from '../assets/goldClear.png';
 
 //Pages
@@ -64,64 +66,49 @@ export default class App extends React.Component {
 		
 		return (
 			<div className={appStyle.background}>
-				{/* <Navbar className={appStyle.navbar} fixed="top" collapseOnSelect expand="md" variant="dark" >
-					<Nav className="mr-auto">
-						<Menu.Item onClick={this.handleHideClick}>
-							<Image src={goldClear} size='medium' circular className={appStyle.image} />
-						</Menu.Item>
-					</Nav>
-					<Nav className="mr-auto">
-						<Nav.Link>
-							<Link to={`${this.props.routePath}/home`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faChartLine} /></Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link to={`${this.props.routePath}/patients`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faUserFriends} /></Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link to={`${this.props.routePath}/map`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faMap} /></Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link to={`${this.props.routePath}/formcreation`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faClipboardList} /></Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link to={`${this.props.routePath}/dataexport`} className={appStyle.signoutbutton}><FontAwesomeIcon icon={faFileExport} /></Link>
-						</Nav.Link>
-						
-					</Nav>
-					<Nav>
-						<Link to="/login" className={appStyle.signoutbutton}><FontAwesomeIcon icon={faSignOutAlt} /></Link>
-					</Nav>
-				</Navbar> */}
-				{/* <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none'}}> */}
-				<AppBar position="static" style={{ background: 'black'}}>
+				<AppBar position="static" style={{ background: '#333'}}>
 					<Toolbar>
-						{/* <MenuIcon /> */}
-						<Typography variant="h6" className={useStyles.title}>
-							<div className={appStyle.signoutbutton}>Puente</div>
-						</Typography>
-						<Divider orientation="vertical" style={{border: `1px solid whitesmoke`}}/>
-						{/* <Image src={goldClear} size='medium' circular className={appStyle.image} /> */}
-						<Typography variant="h6" className={useStyles.title}>
-							<Link to={`${this.props.routePath}/home`} className={appStyle.signoutbutton}>Home</Link>
-						</Typography>
-						<Typography variant="h6" className={useStyles.title}>
-							<Link to={`${this.props.routePath}/patients`} className={appStyle.signoutbutton}>List of Records</Link>
-						</Typography>
-						<Typography variant="h6" className={useStyles.title}>
-							<Link to={`${this.props.routePath}/map`} className={appStyle.signoutbutton}>Map</Link>
-						</Typography>
-						<Typography variant="h6" className={useStyles.title}>
-							<Link to={`${this.props.routePath}/formcreation`} className={appStyle.signoutbutton}>Form Creator</Link>
-						</Typography>
-						<Typography variant="h6" className={useStyles.title}>
-							<Link to={`${this.props.routePath}/dataexport`} className={appStyle.signoutbutton}>Data Exporter</Link>
-						</Typography>
-
-						<Button variant="contained" style={{backgroundColor:"red"}}>
-							<Typography variant="h6" className={useStyles.title}>
-								<Link to="/login" style={{color:"white"}} >Log out</Link>
-							</Typography>
-						</Button>
+						<Grid justify="flex-start">
+							<Grid item>
+								<Typography variant="h6" className={useStyles.title}>
+									<div className={appStyle.signoutbutton}>Puente</div>
+								</Typography>
+							</Grid>
+						</Grid>
+						<Grid justify="flex-end" container spacing={24}>
+							<Grid item>
+								<Typography variant="h6" className={useStyles.title}>
+									<Link to={`${this.props.routePath}/home`} className={appStyle.signoutbutton}>Home</Link>
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography variant="h6" className={useStyles.title}>
+									<Link to={`${this.props.routePath}/patients`} className={appStyle.signoutbutton}>List of Records</Link>
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography variant="h6" className={useStyles.title}>
+									<Link to={`${this.props.routePath}/map`} className={appStyle.signoutbutton}>Map</Link>
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography variant="h6" className={useStyles.title}>
+									<Link to={`${this.props.routePath}/formcreation`} className={appStyle.signoutbutton}>Form Creator</Link>
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Typography variant="h6" className={useStyles.title}>
+									<Link to={`${this.props.routePath}/dataexport`} className={appStyle.signoutbutton}>Data Exporter</Link>
+								</Typography>
+							</Grid>
+							<Grid item>
+							<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}}>
+								<Typography variant="h6" className={useStyles.title}>
+									<Link to="/login" style={{color:"white"}} >Log out</Link>
+								</Typography>
+							</Button>
+							</Grid>
+						</Grid>
 					</Toolbar>
 				</AppBar>
 				<Route 
