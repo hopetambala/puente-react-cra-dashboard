@@ -45,3 +45,7 @@ Here are some quick commands to get started:
 - [CSS Boxes](https://www.bypeople.com/css-boxes/)
 - [Flexbox](http://flexbox.buildwithreact.com/)
 - [React Router](https://reacttraining.com/react-router/web/example/basic)
+
+## Standards
+[![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
