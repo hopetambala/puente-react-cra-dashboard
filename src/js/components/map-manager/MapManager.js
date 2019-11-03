@@ -1,17 +1,24 @@
 //React
 import React from "react";
 
-//Styling
+//Components
+import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+// import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+// import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight, faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'react-bootstrap';
 
+//Styling
 import dashboardManagerStyle from './MapManager.module.css';
+import { styles, cardStyle } from "../../../styles";
 
 ///Redux
 import { connect } from "react-redux";
 import { setSex, setEducation } from '../../reducers/mapControls';
-
 
 class MapManagerControls extends React.Component {
   constructor(props){
@@ -47,72 +54,54 @@ class MapManagerControls extends React.Component {
     });
   }
   sendSex = (value) => {
-    /*const filters = {
-      sex: value
-    }*/
     this.props.setSex(value);
   }
   sendEducation = (value) => {
-    /*const filters = {
-      sex: value
-    }*/
     this.props.setEducation(value);
   }
 
   render() {
     return (
-        <div className={ this.state.show ? dashboardManagerStyle.show : dashboardManagerStyle.hide }>
-          <div>
-            {!this.state.show && <p className={dashboardManagerStyle.hidden}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleLeft} /> </p>}{this.state.show && <p className={dashboardManagerStyle.shown}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleRight} /></p>}
-          </div>
+        // <div className={ this.state.show ? dashboardManagerStyle.show : dashboardManagerStyle.hide }>
+        //   <div>
+        //     {!this.state.show && <p className={dashboardManagerStyle.hidden}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleLeft} /> </p>}{this.state.show && <p className={dashboardManagerStyle.shown}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleRight} /></p>}
+        //   </div>
 
-          <Dropdown style={{marginBottom:"1em"}}>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
-							Sex
-						</Dropdown.Toggle>
-						<Dropdown.Menu>
-            <Dropdown.Item onClick={()=>{this.sendSex('')}}>All</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.sendSex('Male')}}>Male</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
-          {/*<Dropdown style={{marginBottom:"1em"}}>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
-							Education Level
-						</Dropdown.Toggle>
-						<Dropdown.Menu>
-            <Dropdown.Item onClick={()=>{this.sendEducation('')}}>All</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.sendEducation('lessThanprimary')}}>Less Than Primary School</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.sendEducation('someHighSchool')}}>Some High School</Dropdown.Item>
-              <Dropdown.Item onClick={()=>{this.sendEducation('highschool')}}>High School</Dropdown.Item>
-              <Dropdown.Item onClick={()=>{this.sendEducation('someCollege')}}>Some College</Dropdown.Item>
-              <Dropdown.Item onClick={()=>{this.sendEducation('college')}}>College</Dropdown.Item>
-						</Dropdown.Menu>
-            </Dropdown>*/}
-        
-          {/*<p onClick={this.toggleShowNote}>
-            Additional Filters {!showNote && <FontAwesomeIcon icon={faAngleDoubleDown} />}{showNote && <FontAwesomeIcon  onClick={this.toggleShowNote} icon={faAngleDoubleUp} />}
-          </p>
-
-          {showNote === true &&
+        //   <Dropdown style={{marginBottom:"1em"}}>
+				// 		<Dropdown.Toggle variant="success" id="dropdown-basic">
+				// 			Sex
+				// 		</Dropdown.Toggle>
+				// 		<Dropdown.Menu>
+        //     <Dropdown.Item onClick={()=>{this.sendSex('')}}>All</Dropdown.Item>
+				// 			<Dropdown.Item onClick={()=>{this.sendSex('Male')}}>Male</Dropdown.Item>
+				// 			<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
+				// 		</Dropdown.Menu>
+				// 	</Dropdown>
+        // </div>
+        <Card className={ this.state.show ? dashboardManagerStyle.hide : dashboardManagerStyle.show }>
             <div>
-              <p>Community</p>
-              <p>Age</p>
+              {!this.state.show && <p className={dashboardManagerStyle.hidden}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleLeft} /> </p>}{this.state.show && <p className={dashboardManagerStyle.shown}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleRight} /></p>}
             </div>
-            /*<div>
-              <b><h1><input className={dashboardManagerStyle.inputStyle} type="text" value={this.state.note.note.title} onChange={this.handleChangeTitle} placeholder="Title"/></h1></b>
-              <p><textarea className={dashboardManagerStyle.inputStyle} type="text" value={this.state.note.note.content} onChange={this.handleChangeContent} placeholder="Take a note..."/></p>
-              <div style={{textAlign:"center"}}>
-                <label className="button circular">
-                  <FontAwesomeIcon style={{margin:"2.5px"}} icon={faSave} />
-                </label>
-                <label className="button circular">
-                  <FontAwesomeIcon style={{margin:"2.5px"}} icon={faTrashAlt}/>
-                </label>
-              </div>
-            </div>*/
-          }
-        </div>
+
+            <CardContent>
+              <Typography  variant="h6" component="h6"  color="textSecondary" gutterBottom>
+                Metrics on Records
+              </Typography>
+              <Typography variant="h4" component="h4">
+                Hello
+              </Typography>
+              <Dropdown style={{marginBottom:"1em"}}>
+				 		<Dropdown.Toggle variant="success" id="dropdown-basic">
+							Sex
+				 		</Dropdown.Toggle>
+				 		<Dropdown.Menu>
+             <Dropdown.Item onClick={()=>{this.sendSex('')}}>All</Dropdown.Item>
+				 			<Dropdown.Item onClick={()=>{this.sendSex('Male')}}>Male</Dropdown.Item>
+				 			<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
+				 		</Dropdown.Menu>
+				 	</Dropdown>
+            </CardContent>
+          </Card>	
     );
   }
 }

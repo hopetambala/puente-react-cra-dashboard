@@ -14,9 +14,13 @@ import Button from '@material-ui/core/Button';
 // import MenuItem from '@material-ui/core/MenuItem';
 
 import appStyle from './App.module.css';
-import {styles} from '../styles';
+import { styles } from '../styles';
 
 // import goldClear from '../assets/goldClear.png';
+
+//Components
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 //Pages
 import HomePage from "./pages/Home";

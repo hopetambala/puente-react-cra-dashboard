@@ -45,18 +45,6 @@ class VitalsAnalytics extends React.Component {
 	render() {
 		return (
 				<Container >
-					{/* <Row style={styles.row}>
-						<Query query={allVitalsByOrganization} variables={{organization:this.props.organization}}>
-							{({ data, loading, error }) => {
-								if (loading) return <p>Loading...</p>;
-								if (error) return <p>Error :(</p>;
-								//console.log(data.getVitals);
-								return (
-									<PivotTableComponent data={data} />
-								);
-							}}
-						</Query>
-						</Row> */}
 					<Row style={styles.row}>
 						<h1>Coming Soon!</h1>
 					</Row>

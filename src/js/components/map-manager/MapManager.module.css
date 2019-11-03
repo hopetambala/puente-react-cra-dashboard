@@ -30,7 +30,7 @@
     z-index: 1;
     top: 100px;
     right: 10px;
-    box-shadow: 0 4px 8px 0 grey;
+    /* box-shadow: 0 4px 8px 0 grey; */
     transition: 0.3s;
     border-radius: 10px;
     padding: 5px;
