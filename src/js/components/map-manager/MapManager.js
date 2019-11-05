@@ -1,17 +1,33 @@
 //React
 import React from "react";
 
-//Styling
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleRight, faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
-import { Dropdown } from 'react-bootstrap';
-
-import dashboardManagerStyle from './MapManager.module.css';
-
 ///Redux
 import { connect } from "react-redux";
-import { setSex, setEducation } from '../../reducers/mapControls';
+import { setQuery, setVariables, setMapType } from '../../reducers/mapControls';
+import { allRecordsByOrganization,
+  allVitalsByOrganization,
+  allEnvsByOrganization,
+  allEvalMedicalsByOrganization,
+  allHistoryMedicalsByOrganization,
 
+} from '../../queries/records';
+
+//Components
+import Card from '@material-ui/core/Card';
+// import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faAngleDoubleRight, faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
+// import { Dropdown } from 'react-bootstrap';
+
+//Styling
+import dashboardManagerStyle from './MapManager.module.css';
+import labelStyle from './Label.module.css';
+import { cardStyle, styles } from "../../../styles";
+
+
+// import { Button } from "@material-ui/core";
 
 class MapManagerControls extends React.Component {
   constructor(props){
@@ -31,7 +47,8 @@ class MapManagerControls extends React.Component {
 
   get initialState(){
     return {
-      sex:''
+      query: null,
+      variables:{}
     }
   }
 
@@ -46,73 +63,46 @@ class MapManagerControls extends React.Component {
       showNote: !this.state.showNote,
     });
   }
-  sendSex = (value) => {
-    /*const filters = {
-      sex: value
-    }*/
-    this.props.setSex(value);
+  sendQuery = (value) => {
+    this.props.setQuery(value);
   }
-  sendEducation = (value) => {
-    /*const filters = {
-      sex: value
-    }*/
-    this.props.setEducation(value);
+  sendVariables = (value) => {
+    this.props.setVariables(value);
+  }
+
+  sendMapType = (value) => {
+    this.props.setMapType(value);
   }
 
   render() {
     return (
-        <div className={ this.state.show ? dashboardManagerStyle.show : dashboardManagerStyle.hide }>
-          <div>
-            {!this.state.show && <p className={dashboardManagerStyle.hidden}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleLeft} /> </p>}{this.state.show && <p className={dashboardManagerStyle.shown}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleRight} /></p>}
-          </div>
+        <Card className={ this.state.show ? dashboardManagerStyle.hide : dashboardManagerStyle.show } style={cardStyle.card}>
+            {/* <div>
+              {!this.state.show && <p className={dashboardManagerStyle.hidden}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleLeft} /> </p>}{this.state.show && <p className={dashboardManagerStyle.shown}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleRight} /></p>}
+            </div> */}
 
-          <Dropdown style={{marginBottom:"1em"}}>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
-							Sex
-						</Dropdown.Toggle>
-						<Dropdown.Menu>
-            <Dropdown.Item onClick={()=>{this.sendSex('')}}>All</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.sendSex('Male')}}>Male</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
-          {/*<Dropdown style={{marginBottom:"1em"}}>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
-							Education Level
-						</Dropdown.Toggle>
-						<Dropdown.Menu>
-            <Dropdown.Item onClick={()=>{this.sendEducation('')}}>All</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.sendEducation('lessThanprimary')}}>Less Than Primary School</Dropdown.Item>
-							<Dropdown.Item onClick={()=>{this.sendEducation('someHighSchool')}}>Some High School</Dropdown.Item>
-              <Dropdown.Item onClick={()=>{this.sendEducation('highschool')}}>High School</Dropdown.Item>
-              <Dropdown.Item onClick={()=>{this.sendEducation('someCollege')}}>Some College</Dropdown.Item>
-              <Dropdown.Item onClick={()=>{this.sendEducation('college')}}>College</Dropdown.Item>
-						</Dropdown.Menu>
-            </Dropdown>*/}
-        
-          {/*<p onClick={this.toggleShowNote}>
-            Additional Filters {!showNote && <FontAwesomeIcon icon={faAngleDoubleDown} />}{showNote && <FontAwesomeIcon  onClick={this.toggleShowNote} icon={faAngleDoubleUp} />}
-          </p>
-
-          {showNote === true &&
-            <div>
-              <p>Community</p>
-              <p>Age</p>
-            </div>
-            /*<div>
-              <b><h1><input className={dashboardManagerStyle.inputStyle} type="text" value={this.state.note.note.title} onChange={this.handleChangeTitle} placeholder="Title"/></h1></b>
-              <p><textarea className={dashboardManagerStyle.inputStyle} type="text" value={this.state.note.note.content} onChange={this.handleChangeContent} placeholder="Take a note..."/></p>
-              <div style={{textAlign:"center"}}>
-                <label className="button circular">
-                  <FontAwesomeIcon style={{margin:"2.5px"}} icon={faSave} />
-                </label>
-                <label className="button circular">
-                  <FontAwesomeIcon style={{margin:"2.5px"}} icon={faTrashAlt}/>
-                </label>
+            <CardContent>
+              <Typography  variant="h6" >
+                <div style={{color:styles.theme.primaryAppColor}}>Type of Map</div>
+              </Typography>
+              <div className={labelStyle.tags}>
+                <span className={labelStyle.tag} onClick={()=>{this.sendMapType("scatter")}}>scatter</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendMapType("hex")}}>3d-heatmap</span>
               </div>
-            </div>*/
-          }
-        </div>
+              <Typography  variant="h6" >
+                <div style={{color:styles.theme.primaryAppColor}}>Form</div>
+              </Typography>
+              <div className={labelStyle.tags}>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allRecordsByOrganization)}}>all</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allEnvsByOrganization)}}>enviromental-health</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allVitalsByOrganization)}}>vitals</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allEvalMedicalsByOrganization)}}>medical-evaluation</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allHistoryMedicalsByOrganization)}}>medical-history</span>
+                
+              </div>
+           
+            </CardContent>
+          </Card>	
     );
   }
 }
@@ -125,8 +115,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  setSex,
-  setEducation
+  setQuery,
+  setVariables,
+  setMapType
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(MapManagerControls);

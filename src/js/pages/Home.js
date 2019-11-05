@@ -4,7 +4,7 @@ import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom
 
 //Styling
 import homeStyle from './Home.module.css';
-import { styles } from '../../styles';
+import { styles, cardStyle } from '../../styles';
 
 //Redux
 import { connect } from "react-redux";
@@ -51,10 +51,10 @@ class HomePage extends React.Component {
 		return (
 			<Router>
 				<Container style={styles.container}>
-					<h1 className={homeStyle.header1}>Welcome {this.props.authInfo.username}</h1>
-					<h2 className={homeStyle.header2}>Here's an automated analysis of data collected for {this.props.authInfo.organization}</h2>
+					<h1>Welcome {this.props.authInfo.username}</h1>
+					<h2 style={{color:"white"}}>Here's an automated analysis of data collected for {this.props.authInfo.organization}</h2>
 					<Dropdown style={{marginBottom:"1em"}}>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
+						<Dropdown.Toggle style={cardStyle.card} id="dropdown-basic">
 							Community Health Records Forms
 						</Dropdown.Toggle>
 

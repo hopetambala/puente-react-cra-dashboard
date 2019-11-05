@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar } from 'react-bootstrap';
+import { Row, Container, Col } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
@@ -11,6 +11,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 // import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import LoadingDots from '../components/styles/LoadingDots';
 
 
 //Redux
@@ -25,6 +26,7 @@ import { Pie180ChartComponent } from '../components/recharts/PieChart';
 import { allRecordsByOrganization, all_records} from '../queries/records';
 
 import { styles, cardStyle } from "../../styles";
+import labelStyle from "../components/map-manager/Label.module.css";
 
 
 
@@ -216,7 +218,7 @@ class DemographicsAnalytics extends React.Component {
 				</Dropdown>*/}
 			{ this.state.progress < 95 && this.state &&
 				<>
-					<ProgressBar animated now={this.state.progress} />
+					<LoadingDots />
 				</>
 			}
 			{ this.state.progress === 100 && this.state && this.state.sexes && this.state.educations &&
@@ -224,9 +226,11 @@ class DemographicsAnalytics extends React.Component {
 					<Col>
 						<Card style={cardStyle.card}>
 						<CardContent>
-							<Typography  variant="h6" component="h6"  color="textSecondary" gutterBottom>
-								Metrics on Records
-							</Typography>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on records
+								</Typography>
+							</span>
 							<Typography variant="h4" component="h4">
 								All Records: {this.state.all}
 							</Typography>
@@ -240,9 +244,11 @@ class DemographicsAnalytics extends React.Component {
 					<Col>
 						<Card style={cardStyle.card}>
 						<CardContent>
-							<Typography  variant="h6" component="h6" className={cardStyle.title} color="textSecondary" gutterBottom>
-								Metrics on Education
-							</Typography>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on education
+								</Typography>
+							</span>
 							<Typography variant="h5" component="h5">
 								Highest: {this.state.educations[0].key}
 							</Typography>
@@ -256,22 +262,26 @@ class DemographicsAnalytics extends React.Component {
 						</Card>
 					</Col>
 					<Col>
-						<Card style={cardStyle.cardmini}>
+						<Card style={cardStyle.card}>
 						<CardContent>
-							<Typography  variant="h6" component="h6" className={cardStyle.title} color="textSecondary" gutterBottom>
-								Metrics on Age
-							</Typography>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on age
+								</Typography>
+							</span>
 							<Typography variant="h5" component="h5">
 								Average: {this.state.ageMetrics[0]}
 							</Typography>
 						</CardContent>
 						</Card>
 
-						<Card style={cardStyle.cardmini}>
+						<Card style={cardStyle.card}>
 						<CardContent>
-							<Typography  variant="h6" component="h6" className={cardStyle.title} color="textSecondary" gutterBottom>
-								Metrics on Age
-							</Typography>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on age
+								</Typography>
+							</span>
 							<Typography variant="h5" component="h5">
 								Less Than Age 5: {this.state.ageMetrics[1]}
 							</Typography>
@@ -284,7 +294,7 @@ class DemographicsAnalytics extends React.Component {
 				<Row style={styles.rows}>
 					<Query query={all_records}>
 					{({ data, loading, error }) => {
-						if (loading) return <p>Loading...</p>;
+						if (loading) return null;
 						if (error) return <p>Error :(</p>;
 						return (
 							<Col>

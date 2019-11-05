@@ -94,7 +94,7 @@ export class LineChartGeneralComponent extends React.Component{
 		let getWOF = (x)=>{return x.values.WOF;}
 		return (
 		<div>
-			<h1>Number of Records Collected Throughout Time</h1>
+			<h2>Number of Records Collected Throughout Time</h2>
 			  <ResponsiveContainer width="100%"height={400}>
 				<LineChart
 					data={this.state.modded}

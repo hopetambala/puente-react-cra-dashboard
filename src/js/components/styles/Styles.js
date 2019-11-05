@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { styles } from '../../../styles';
 
 const btn = (light, dark) => css`
   white-space: nowrap;
@@ -36,12 +37,12 @@ export default styled.div`
 
   h1 {
     text-align: center;
-    color: #222;
+    color: rgba(255, 255, 255);
   }
 
   h2 {
     text-align: center;
-    color: #222;
+    color: rgba(255, 255, 255);
   }
 
   & > div {
@@ -51,18 +52,20 @@ export default styled.div`
   a {
     display: block;
     text-align: center;
-    color: #222;
+    color: rgba(255, 255, 255);
     margin-bottom: 10px;
   }
 
   form {
     max-width: 500px;
     margin: 10px auto;
-    border: 1px solid #ccc;
+    // border: 1px solid #ccc;
     padding: 20px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     position: relative;
+    background-color: ${styles.theme.lighter_darkbg};
+   
 
     & > div {
       display: flex;
@@ -70,7 +73,7 @@ export default styled.div`
       line-height: 2em;
       margin: 5px;
       & > label {
-        color: #333;
+        color: ${styles.theme.primaryAppColor};
         width: 110px;
         font-size: 1em;
         line-height: 32px;
@@ -100,7 +103,7 @@ export default styled.div`
       & > span {
         line-height: 32px;
         margin-left: 10px;
-        color: #800;
+        color: #000;
         font-weight: bold;
       }
     }
@@ -120,7 +123,8 @@ export default styled.div`
       }
     }
     pre {
-      border: 1px solid #ccc;
+      // border: 1px solid #ccc;
+      color: ${styles.theme.primaryAppColor};
       background: rgba(0, 0, 0, 0.1);
       box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
       padding: 20px;

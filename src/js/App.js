@@ -1,7 +1,11 @@
 //REACT + PARSE
 import React from 'react';
 import Parse from 'parse';
-import { Route, Link} from "react-router-dom";
+import { Route, Link, Redirect} from "react-router-dom";
+
+//REDUX
+import { getAuthInfo} from './reducers/login';
+import { connect } from "react-redux";
 
 //Style
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,11 +14,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuItem from '@material-ui/core/MenuItem';
-
 import appStyle from './App.module.css';
-import {styles} from '../styles';
+import { styles } from '../styles';
 
 // import goldClear from '../assets/goldClear.png';
 
@@ -49,21 +50,22 @@ const useStyles = makeStyles(theme => ({
 	  },
 }));
 
-export default class App extends React.Component {
+class App extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = { 
 			visible: false
 		}
-		
 		Parse.initialize(process.env.REACT_APP_parseAppId , process.env.REACT_APP_parseJavascriptKey);
         Parse.serverURL = process.env.REACT_APP_parseServerUrl;
 	}
 	  
 	handleHideClick = () => this.setState({ visible: !this.state.visible })
 	
-	render() {
-		
+	render() {		
+		if(this.props.authInfo.isAuthenticated === false){
+			return <Redirect to='/login' />
+		}
 		return (
 			<div className={appStyle.background}>
 				<AppBar position="static" style={{ background: '#333'}}>
@@ -111,6 +113,8 @@ export default class App extends React.Component {
 						</Grid>
 					</Toolbar>
 				</AppBar>
+
+				<>
 				<Route 
 					path={`${this.props.routePath}/home`} component={HomePage} 
 					render={(props) => <HomePage {...props} routePath="/app/home" />}
@@ -119,8 +123,18 @@ export default class App extends React.Component {
 				<Route path={`${this.props.routePath}/map`}  component={MapPage} />
 				<Route path={`${this.props.routePath}/patients`}  component={PatientList} />
 				<Route path={`${this.props.routePath}/formcreation`} component={FormCreator} />
+				</>
+			
 			</div>
 			
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return { 
+		authInfo: getAuthInfo(state)
+	}
+};
+
+export default connect(mapStateToProps,null)(App);

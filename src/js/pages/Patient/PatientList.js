@@ -7,6 +7,7 @@ import { all_records } from '../../queries/records';
 import Patient from '../Patient/Patient';
 
 import { styles } from "../../../styles";
+import LoadingDots  from '../../components/styles/LoadingDots';
 import { Container} from 'react-bootstrap';
 
 
@@ -41,7 +42,7 @@ class PatientList extends React.Component{
             <Container style={styles.container} >
                 <h1 style={styles.header1} >Patient List</h1>
                 { this.state.results === null &&
-                    <div>Loading</div>
+                    <LoadingDots /> 
                 }
                 {this.state.results && 
                 <MaterialTable

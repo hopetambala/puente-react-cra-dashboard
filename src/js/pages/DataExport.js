@@ -1,11 +1,17 @@
 import React from 'react';
-import { Button } from 'react-bootstrap'
+// import { Button } from 'react-bootstrap'
 import { Query } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 
+// Styles
+// import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import {  styles } from '../../styles';
 
 //Components
 import { DataTable } from '../components/widget/Table/DataTable';
+import LoadingDots from '../components/styles/LoadingDots';
+
 //Queries
 import { 
 	allRecordsByOrganization,
@@ -22,26 +28,26 @@ import { CSVLink } from "react-csv";
 import Styles from '../components/styles/Styles'
 import 'bootstrap/dist/css/bootstrap.css';
 
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		//alignItems: 'flex-center',
-		alignContent: 'flex-start',
-		paddingTop: '5%'
-	},
-	row: {
-		//height:'100vh',	
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	},
-	button: {
-		backgroundColor:'white'
-	}
-  }
+// const styles = {
+// 	container: {
+// 		flexDirection: 'row',
+// 		flexWrap: 'wrap',
+// 		justifyContent: 'center',
+// 		//alignItems: 'flex-center',
+// 		alignContent: 'flex-start',
+// 		paddingTop: '5%'
+// 	},
+// 	row: {
+// 		//height:'100vh',	
+// 		justifyContent: 'center',
+// 		flex:1,
+// 		marginBottom:0,
+// 		paddingBottom:0
+// 	},
+// 	button: {
+// 		backgroundColor:'white'
+// 	}
+//   }
 
 const Dem = ({ organization }) => (
 	<Query
@@ -51,12 +57,12 @@ const Dem = ({ organization }) => (
 	>
 		{({ loading, error, data, refetch, networkStatus }) => {
 		if (networkStatus === 4) return "Refetching!";
-		if (loading) return null;
+		if (loading) return <LoadingDots />;
 		if (error) return `Error!: ${error}`;
 
 		return (
 			<>
-				<Button style={styles.button}>
+				<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}}>
 				{console.log(data)}
 					<CSVLink data={data.getPeopleByOrganization}>
 						Download
@@ -76,7 +82,7 @@ const Vitals = ({ organization }) => (
 	>
 		{({ loading, error, data, refetch, networkStatus }) => {
 		if (networkStatus === 4) return "Refetching!";
-		if (loading) return null;
+		if (loading) return <LoadingDots />;
 		if (error) return `Error!: ${error}`;
 
 		return (
@@ -102,7 +108,7 @@ const EnvHealth = ({ organization }) => (
 	>
 		{({ loading, error, data, refetch, networkStatus }) => {
 		if (networkStatus === 4) return "Refetching!";
-		if (loading) return null;
+		if (loading) return <LoadingDots />;
 		if (error) return `Error!: ${error}`;
 
 		return (
@@ -128,12 +134,12 @@ const EvalMedical = ({ organization }) => (
 	>
 		{({ loading, error, data, refetch, networkStatus }) => {
 		if (networkStatus === 4) return "Refetching!";
-		if (loading) return null;
+		if (loading) return <LoadingDots />;
 		if (error) return `Error!: ${error}`;
 
 		return (
 			<>
-				<Button style={styles.button}>
+				<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}}>
 				{console.log(data)}
 					<CSVLink data={data.getEvalMedicalByOrganization}>
 						Download
@@ -154,7 +160,7 @@ const HistoryMedical = ({ organization }) => (
 	>
 		{({ loading, error, data, refetch, networkStatus }) => {
 		if (networkStatus === 4) return "Refetching!";
-		if (loading) return null;
+		if (loading) return <LoadingDots />;
 		if (error) return `Error!: ${error}`;
 
 		return (
@@ -217,7 +223,7 @@ export class ExportPage extends React.Component {
 				onSubmit={this.onSubmit}
 				initialValues={{ type: 'Demographics', organization: '' }}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} style={{backgroundColor: styles.theme.lighter_darkbg}} >
 				<div>
 					<label>Record Type</label>
 					<Field name="type" component="select">
@@ -259,7 +265,7 @@ export class ExportPage extends React.Component {
 			)}
 			/>
 			</Styles>
-				<div>
+				<div style={{margin:"20px"}}>
 					{aThing}
 				</div>
 			</>
