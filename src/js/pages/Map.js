@@ -11,7 +11,6 @@ import { Query } from 'react-apollo';
 // Components
 import MapManagerControls from '../components/map-manager/MapManager';
 import { Container } from 'react-bootstrap';
-import mapIcon from '../../assets/icon-atlas.png'
 
 
 // //Style 
@@ -27,9 +26,6 @@ import {IconLayer} from '@deck.gl/layers';
 import DeckGL from '@deck.gl/react';
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoiaHBiYWxhIiwiYSI6ImNrMXZyNWFscjB2N2szY3FmMHdodXZ2NjMifQ.PZQEuVD4WAHGTPd4yT5YFQ"; // eslint-disable-line
-
-// Source data CSV
-const REST_URL = "https://puente-api.herokuapp.com/records/"
 
 const ambientLight = new AmbientLight({
   color: [255, 255, 255],
@@ -125,10 +121,10 @@ class MapPage extends React.Component {
 
 	_renderScatterLayers(data) {
 		//const data = this.state.data;
-		const {radius = 30} = this.props;
-		const icon_mapping = {
-			marker: {x: 0, y: 0, width: 32, height: 32, mask: true}
-		  };
+		// const {radius = 30} = this.props;
+		// const icon_mapping = {
+		// 	marker: {x: 0, y: 0, width: 32, height: 32, mask: true}
+		//   };
 
 		return [
 			new IconLayer({

@@ -3,7 +3,7 @@ import Parse from 'parse';
 import { Redirect, Link } from "react-router-dom";
 
 //Styles
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 import loginStyles from './Login.module.css';
 import { styles } from '../../styles';
 import Typography from '@material-ui/core/Typography';

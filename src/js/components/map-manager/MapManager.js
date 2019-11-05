@@ -16,7 +16,7 @@ import { allRecordsByOrganization,
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-// import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faAngleDoubleRight, faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
 // import { Dropdown } from 'react-bootstrap';
@@ -24,10 +24,10 @@ import CardContent from '@material-ui/core/CardContent';
 //Styling
 import dashboardManagerStyle from './MapManager.module.css';
 import labelStyle from './Label.module.css';
-import { cardStyle } from "../../../styles";
+import { cardStyle, styles } from "../../../styles";
 
 
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 
 class MapManagerControls extends React.Component {
   constructor(props){
@@ -98,11 +98,16 @@ class MapManagerControls extends React.Component {
             </div> */}
 
             <CardContent>
-            <div className={labelStyle.tags}>
+              <Typography  variant="h6" >
+                <div style={{color:styles.theme.primaryAppColor}}>Type of Map</div>
+              </Typography>
+              <div className={labelStyle.tags}>
                 <span className={labelStyle.tag} onClick={()=>{this.sendMapType("scatter")}}>scatter</span>
                 <span className={labelStyle.tag} onClick={()=>{this.sendMapType("hex")}}>3d-heatmap</span>
               </div>
-              <div></div>
+              <Typography  variant="h6" >
+                <div style={{color:styles.theme.primaryAppColor}}>Form</div>
+              </Typography>
               <div className={labelStyle.tags}>
                 <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allRecordsByOrganization)}}>all</span>
                 <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allEnvsByOrganization)}}>enviromental-health</span>
