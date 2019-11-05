@@ -3,7 +3,7 @@ import React from "react";
 
 ///Redux
 import { connect } from "react-redux";
-import { setQuery, setVariables } from '../../reducers/mapControls';
+import { setQuery, setVariables, setMapType } from '../../reducers/mapControls';
 import { allRecordsByOrganization,
   allVitalsByOrganization,
   allEnvsByOrganization,
@@ -16,15 +16,15 @@ import { allRecordsByOrganization,
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleRight, faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
-import { Dropdown } from 'react-bootstrap';
+// import Typography from '@material-ui/core/Typography';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faAngleDoubleRight, faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
+// import { Dropdown } from 'react-bootstrap';
 
 //Styling
 import dashboardManagerStyle from './MapManager.module.css';
 import labelStyle from './Label.module.css';
-import { styles, cardStyle } from "../../../styles";
+import { cardStyle } from "../../../styles";
 
 
 import { Button } from "@material-ui/core";
@@ -70,6 +70,10 @@ class MapManagerControls extends React.Component {
     this.props.setVariables(value);
   }
 
+  sendMapType = (value) => {
+    this.props.setMapType(value);
+  }
+
   render() {
     return (
         // <div className={ this.state.show ? dashboardManagerStyle.show : dashboardManagerStyle.hide }>
@@ -94,8 +98,19 @@ class MapManagerControls extends React.Component {
             </div> */}
 
             <CardContent>
-              <span className={labelStyle.tag}>sex</span>
-              <span className={labelStyle.tag}>education</span>
+            <div className={labelStyle.tags}>
+                <span className={labelStyle.tag} onClick={()=>{this.sendMapType("scatter")}}>scatter</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendMapType("hex")}}>3d-heatmap</span>
+              </div>
+              <div></div>
+              <div className={labelStyle.tags}>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allRecordsByOrganization)}}>all</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allEnvsByOrganization)}}>enviromental-health</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allVitalsByOrganization)}}>vitals</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allEvalMedicalsByOrganization)}}>medical-evaluation</span>
+                <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allHistoryMedicalsByOrganization)}}>medical-history</span>
+                
+              </div>
               
               {/* <Typography  variant="h6" component="h6"  color="textSecondary" gutterBottom>
                 Metrics on Records
@@ -113,7 +128,7 @@ class MapManagerControls extends React.Component {
 				 			<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
 				 		</Dropdown.Menu>
            </Dropdown> */}
-            <Button onClick={()=>{this.sendQuery('')}} />
+            {/* <Button onClick={()=>{this.sendQuery('')}} /> */}
            
             </CardContent>
           </Card>	
@@ -130,7 +145,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   setQuery,
-  setVariables
+  setVariables,
+  setMapType
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(MapManagerControls);

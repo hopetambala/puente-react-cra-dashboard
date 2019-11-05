@@ -189,7 +189,7 @@ class MapPage extends React.Component {
 					{console.log(Object.values(data)[0])}
 						<DeckGL
 							// layers={this._renderLayers(Object.values(data)[0])}
-							layers={this.conditionalRendering(Object.values(data)[0], "scatter")}
+							layers={this.conditionalRendering(Object.values(data)[0], this.props.mapType)}
 							effects={[lightingEffect]}
 							initialViewState={INITIAL_VIEW_STATE}
 							controller={true}>
@@ -216,7 +216,8 @@ const mapStateToProps = (state) => {
 	  /*position: getPosition(state),
 	  data: getSelectedDatum(state),
 	  notes: getNotesIndexedByHash(state),*/
-	  query: getMapQueryInfo(state).query
+	  query: getMapQueryInfo(state).query,
+	  mapType: getMapQueryInfo(state).mapType
 	};
   };
   
