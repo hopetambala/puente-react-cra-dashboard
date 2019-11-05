@@ -89,9 +89,9 @@ class LoginForm extends React.Component{
                         </Button>
                     </Segment>
                 </Form>
-                <Message>
+                {/* <Message>
                     New to us? <a href='/'>Sign Up</a>
-                </Message>
+                </Message> */}
                 </Grid.Column>
             </Grid>
         )

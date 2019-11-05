@@ -1,7 +1,12 @@
 //REACT + PARSE
 import React from 'react';
 import Parse from 'parse';
-import { Route, Link} from "react-router-dom";
+import { Route, Link, Redirect} from "react-router-dom";
+
+
+//REDUX
+import { getAuthInfo} from './reducers/login';
+import { connect } from "react-redux";
 
 //Style
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,9 +23,6 @@ import { styles } from '../styles';
 
 // import goldClear from '../assets/goldClear.png';
 
-//Components
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 
 //Pages
 import HomePage from "./pages/Home";
@@ -53,7 +55,7 @@ const useStyles = makeStyles(theme => ({
 	  },
 }));
 
-export default class App extends React.Component {
+class App extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = { 
@@ -67,6 +69,14 @@ export default class App extends React.Component {
 	handleHideClick = () => this.setState({ visible: !this.state.visible })
 	
 	render() {
+		// if (!this.props.isLoggedIn) {
+        //     return <Redirect to="/login" />
+		// }
+		
+		if(this.props.authInfo.isAuthenticated === false){
+			return <Redirect to='/login' />
+		}
+
 		
 		return (
 			<div className={appStyle.background}>
@@ -115,6 +125,8 @@ export default class App extends React.Component {
 						</Grid>
 					</Toolbar>
 				</AppBar>
+
+				<>
 				<Route 
 					path={`${this.props.routePath}/home`} component={HomePage} 
 					render={(props) => <HomePage {...props} routePath="/app/home" />}
@@ -123,8 +135,18 @@ export default class App extends React.Component {
 				<Route path={`${this.props.routePath}/map`}  component={MapPage} />
 				<Route path={`${this.props.routePath}/patients`}  component={PatientList} />
 				<Route path={`${this.props.routePath}/formcreation`} component={FormCreator} />
+				</>
+			
 			</div>
 			
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return { 
+		authInfo: getAuthInfo(state)
+	}
+};
+
+export default connect(mapStateToProps,null)(App);
