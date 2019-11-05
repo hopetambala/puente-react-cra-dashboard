@@ -11,6 +11,7 @@ import { Query } from 'react-apollo';
 // Components
 import MapManagerControls from '../components/map-manager/MapManager';
 import { Container } from 'react-bootstrap';
+import mapIcon from '../../assets/icon-atlas.png'
 
 
 // //Style 
@@ -22,7 +23,7 @@ import { StaticMap } from 'react-map-gl';
 import { PhongMaterial } from '@luma.gl/core';
 import { AmbientLight, PointLight, LightingEffect } from '@deck.gl/core';
 import { HexagonLayer } from '@deck.gl/aggregation-layers';
-import {ScatterplotLayer} from '@deck.gl/layers';
+import {IconLayer} from '@deck.gl/layers';
 import DeckGL from '@deck.gl/react';
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoiaHBiYWxhIiwiYSI6ImNrMXZyNWFscjB2N2szY3FmMHdodXZ2NjMifQ.PZQEuVD4WAHGTPd4yT5YFQ"; // eslint-disable-line
@@ -61,9 +62,9 @@ const material = new PhongMaterial({
 const INITIAL_VIEW_STATE = {
   longitude: -70.1627,
   latitude: 18.7357,
-  zoom: 6.6,
-  minZoom: 1,
-  maxZoom: 15,
+  zoom: 7,
+  minZoom: 0,
+  maxZoom: 25,
   pitch: 40.5,
   bearing: -27.396674584323023
 };
@@ -125,23 +126,27 @@ class MapPage extends React.Component {
 	_renderScatterLayers(data) {
 		//const data = this.state.data;
 		const {radius = 30} = this.props;
+		const icon_mapping = {
+			marker: {x: 0, y: 0, width: 32, height: 32, mask: true}
+		  };
 
 		return [
-			new ScatterplotLayer({
-				id: 'scatterplot-layer',
+			new IconLayer({
+				id: 'icon-layer',
 				data,
 				pickable: true,
-				opacity: 0.8,
-				stroked: true,
-				filled: true,
-				radiusScale: 6,
-				radiusMinPixels: 1,
-				radiusMaxPixels: 100,
-				lineWidthMinPixels: 1,
+				getIcon: d => ({
+					url: "https://raw.githubusercontent.com/hopetambala/puente-react-dashboard/master/src/assets/man.png",
+					width: 90,
+					height: 90,
+					anchorY: 128,
+					mask: true
+				  }),
+				sizeScale: 7,
 				getPosition: d => [ parseFloat(d.longitude), parseFloat(d.latitude), 0],
-				// getRadius: d => Math.sqrt(d.exits),
-				getFillColor: d => [255, 140, 0],
-				getLineColor: d => [0, 0, 0],
+				getSize: d => 5,
+				// getColor: d => [Math.sqrt(d.exits), 140, 0],
+				getColor: d => [200, 140, 0],
 				// onHover: ({object, x, y}) => {
 				// const tooltip = `${object.fname}\n${object.lname}`;
 				// /* Update tooltip
