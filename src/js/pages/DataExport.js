@@ -4,9 +4,9 @@ import { Query } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 
 // Styles
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import { cardStyle, styles } from '../../styles';
+import {  styles } from '../../styles';
 
 //Components
 import { DataTable } from '../components/widget/Table/DataTable';
