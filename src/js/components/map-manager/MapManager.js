@@ -1,12 +1,21 @@
 //React
 import React from "react";
 
+///Redux
+import { connect } from "react-redux";
+import { setQuery, setVariables } from '../../reducers/mapControls';
+import { allRecordsByOrganization,
+  allVitalsByOrganization,
+  allEnvsByOrganization,
+  allEvalMedicalsByOrganization,
+  allHistoryMedicalsByOrganization,
+
+} from '../../queries/records';
+
 //Components
-import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight, faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
@@ -14,11 +23,11 @@ import { Dropdown } from 'react-bootstrap';
 
 //Styling
 import dashboardManagerStyle from './MapManager.module.css';
+import labelStyle from './Label.module.css';
 import { styles, cardStyle } from "../../../styles";
 
-///Redux
-import { connect } from "react-redux";
-import { setSex, setEducation } from '../../reducers/mapControls';
+
+import { Button } from "@material-ui/core";
 
 class MapManagerControls extends React.Component {
   constructor(props){
@@ -38,7 +47,8 @@ class MapManagerControls extends React.Component {
 
   get initialState(){
     return {
-      sex:''
+      query: null,
+      variables:{}
     }
   }
 
@@ -53,11 +63,11 @@ class MapManagerControls extends React.Component {
       showNote: !this.state.showNote,
     });
   }
-  sendSex = (value) => {
-    this.props.setSex(value);
+  sendQuery = (value) => {
+    this.props.setQuery(value);
   }
-  sendEducation = (value) => {
-    this.props.setEducation(value);
+  sendVariables = (value) => {
+    this.props.setVariables(value);
   }
 
   render() {
@@ -78,13 +88,16 @@ class MapManagerControls extends React.Component {
 				// 		</Dropdown.Menu>
 				// 	</Dropdown>
         // </div>
-        <Card className={ this.state.show ? dashboardManagerStyle.hide : dashboardManagerStyle.show }>
-            <div>
+        <Card className={ this.state.show ? dashboardManagerStyle.hide : dashboardManagerStyle.show } style={cardStyle.card}>
+            {/* <div>
               {!this.state.show && <p className={dashboardManagerStyle.hidden}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleLeft} /> </p>}{this.state.show && <p className={dashboardManagerStyle.shown}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleRight} /></p>}
-            </div>
+            </div> */}
 
             <CardContent>
-              <Typography  variant="h6" component="h6"  color="textSecondary" gutterBottom>
+              <span className={labelStyle.tag}>sex</span>
+              <span className={labelStyle.tag}>education</span>
+              
+              {/* <Typography  variant="h6" component="h6"  color="textSecondary" gutterBottom>
                 Metrics on Records
               </Typography>
               <Typography variant="h4" component="h4">
@@ -99,7 +112,9 @@ class MapManagerControls extends React.Component {
 				 			<Dropdown.Item onClick={()=>{this.sendSex('Male')}}>Male</Dropdown.Item>
 				 			<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
 				 		</Dropdown.Menu>
-				 	</Dropdown>
+           </Dropdown> */}
+            <Button onClick={()=>{this.sendQuery('')}} />
+           
             </CardContent>
           </Card>	
     );
@@ -114,8 +129,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  setSex,
-  setEducation
+  setQuery,
+  setVariables
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(MapManagerControls);

@@ -1,46 +1,39 @@
 import { createAction, handleActions } from "redux-actions";
+import { allRecordsByOrganization } from '../queries/records'
 
 const defaultState = {
-  model:"",
-  sex:"",
-  education:""
+  query: allRecordsByOrganization,
+  variables: {}
 
 };
 
 // ACTIONS
-
-const setModel = createAction("SET_MODEL");
-const setSex = createAction("SET_SEX");
-const setEducation = createAction("SET_EDUCATION");
+const setQuery = createAction("SET_QUERY");
+const setVariables = createAction("SET_VARIABLES");
+// const setMapType = createAction("SET_MAPTYPE");
 
 const reducer = handleActions(
   {
-    [setModel]: (state, { payload }) => {
+    [setQuery]: (state, { payload }) => {
       console.log(payload)
       return  {
         ...state, 
-        model:payload.model
+        query:payload.query
       }
     },
-    [setSex]: (state, { payload }) => {
+    [setVariables]: (state, { payload }) => {
       console.log(payload);
       return  {
         ...state, 
-        sex:payload
+        variables:payload
       }
     },
-    [setEducation]: (state, { payload }) => {
-      console.log(payload);
-      return  {
-        ...state, 
-        education:payload
-      }
-    },
+   
   },
   defaultState
 );
 
-const getMapFiltersInfo = (state) => state.mapControls;
+const getMapQueryInfo = (state) => state.mapControls;
 
 export default reducer;
-export { setModel, setSex, setEducation, getMapFiltersInfo };
+export { setQuery, setVariables, getMapQueryInfo };

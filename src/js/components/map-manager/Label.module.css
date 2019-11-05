@@ -12,7 +12,8 @@
 .tag {
   background: #eee;
   border-radius: 6px 6px 6px 6px;
-  color: #999;
+  /* color: #999; */
+  color: black;
   display: inline-block;
   height: 26px;
   line-height: 26px;

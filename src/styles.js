@@ -1,3 +1,5 @@
+import { border, borderRadius } from "@material-ui/system";
+
 //import { makeStyles } from '@material-ui/core/styles'; 
 
 
@@ -44,7 +46,8 @@ export const cardStyle = {
 		minWidth: 275,
 		margin: 10,
 		color: "whitesmoke",
-		backgroundColor: styles.theme.light_darkbg
+		background: styles.theme.light_darkbg,
+		borderRadius:"6px 6px 6px 6px"
 	},
 	cardmini: {
 		minWidth: 150,
