@@ -31,10 +31,11 @@ class LoginForm extends React.Component{
         [name]: value 
     })
 
-    logIn =  () => {
+    logIn =  async () => {
         // Create a new instance of the user class
         var that = this;
-        Parse.User.logIn(this.state.username, this.state.password).then(function(user)  {
+        await Parse.User.logIn(this.state.username, this.state.password).then(async function(user)  {
+            await that.props.setAuth(true);
             console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
             that.setState({
 				toDashboard:true
@@ -49,7 +50,7 @@ class LoginForm extends React.Component{
                 organization: String(user.get("organization")), 
             };
 
-            that.props.setAuth(true);
+            
             that.props.setProfile(loggedInUser);
         })
     }

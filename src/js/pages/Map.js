@@ -1,9 +1,11 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Redux
 import { connect } from "react-redux";
 import { getMapQueryInfo } from '../reducers/mapControls';
+import { getAuthInfo } from '../reducers/login';
 
 // Apollo
 import { Query } from 'react-apollo';
@@ -11,11 +13,14 @@ import { Query } from 'react-apollo';
 // Components
 import MapManagerControls from '../components/map-manager/MapManager';
 import { Container } from 'react-bootstrap';
+import LoadingDots from '../components/styles/LoadingDots'
 
 
 // //Style 
 import mapStyles from './Map.module.css';
 import { styles } from '../../styles';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 // Deck.gl
 import { StaticMap } from 'react-map-gl';
@@ -76,7 +81,6 @@ const colorRange = [
 
 const elevationScale = {min: 1, max: 50};
 
-
 class MapPage extends React.Component {
 	static get defaultColorRange() {
 		return colorRange;
@@ -120,11 +124,6 @@ class MapPage extends React.Component {
 	}
 
 	_renderScatterLayers(data) {
-		//const data = this.state.data;
-		// const {radius = 30} = this.props;
-		// const icon_mapping = {
-		// 	marker: {x: 0, y: 0, width: 32, height: 32, mask: true}
-		//   };
 
 		return [
 			new IconLayer({
@@ -148,9 +147,7 @@ class MapPage extends React.Component {
 				// /* Update tooltip
 				// 	http://deck.gl/#/documentation/developer-guide/adding-interactivity?section=example-display-a-tooltip-for-hovered-object
 				// */
-				// }
-				
-				
+				// }	
 			})
 		];
 	}
@@ -172,12 +169,12 @@ class MapPage extends React.Component {
 			<Container style={styles.container}>
 				<Query
 					query={this.props.query}
-					variables={{organization:this.state.organization}}
+					variables={{organization:this.props.userInfo.organization}}
 					notifyOnNetworkStatusChange
 				>
 				{({ loading, error, data, refetch, networkStatus }) => {
 					if (networkStatus === 4) return "Refetching!";
-					if (loading) return null;
+					if (loading) return <LoadingDots />;
 					if (error) return `Error!: ${error}`;
 
 					return (
@@ -196,11 +193,22 @@ class MapPage extends React.Component {
 								mapboxApiAccessToken={MAPBOX_TOKEN}
 							/>
 						</DeckGL>
+						<MapManagerControls className={mapStyles.mapcontrols}/>
+						<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}} className={mapStyles.backbutton}>
+							<Typography variant="h4" >
+								<Link to="/app/home" style={{color: styles.theme.primaryAppColor}}>Back</Link>
+							</Typography>
+						</Button>
 					</>
 					);
 				}}
 				</Query>
-			<MapManagerControls className={mapStyles.mapcontrols}/>
+			{/* <MapManagerControls className={mapStyles.mapcontrols}/>
+			<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}} className={mapStyles.backbutton}>
+				<Typography variant="h4" >
+					<Link to="/app/home" style={{color: styles.theme.primaryAppColor}}>Back</Link>
+				</Typography>
+			</Button> */}
 			</Container>
 
 		);
@@ -209,17 +217,11 @@ class MapPage extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-	  /*position: getPosition(state),
-	  data: getSelectedDatum(state),
-	  notes: getNotesIndexedByHash(state),*/
 	  query: getMapQueryInfo(state).query,
-	  mapType: getMapQueryInfo(state).mapType
+	  mapType: getMapQueryInfo(state).mapType,
+	  userInfo: getAuthInfo(state)
 	};
   };
-  
-  /*const mapDispatchToProps = {
-	setSex
-  };*/
   
   export default connect(mapStateToProps,null)(MapPage);
 	

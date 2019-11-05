@@ -1,11 +1,12 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar } from 'react-bootstrap';
+import { Row, Container, Col } from 'react-bootstrap';
 import { withApollo } from 'react-apollo';
 
 import * as d3 from 'd3';
 
 //Components
 import { StatsBox } from '../components/widget/StatsBox/StatsBox';
+import LoadingDots from '../components/styles/LoadingDots';
 
 //Charts
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
@@ -174,7 +175,7 @@ class EnvironHealthAnalytics extends React.Component {
 		return (
 			<Container style={styles.container}>
 				{ this.state.progress < 95 && this.state &&
-					<ProgressBar animated now={this.state.progress} />
+					<LoadingDots />
 				}
 				{ this.state.progress === 100 && this.state.data && this.state.allCounts &&
 				<>

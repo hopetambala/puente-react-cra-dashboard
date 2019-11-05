@@ -76,22 +76,6 @@ class MapManagerControls extends React.Component {
 
   render() {
     return (
-        // <div className={ this.state.show ? dashboardManagerStyle.show : dashboardManagerStyle.hide }>
-        //   <div>
-        //     {!this.state.show && <p className={dashboardManagerStyle.hidden}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleLeft} /> </p>}{this.state.show && <p className={dashboardManagerStyle.shown}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleRight} /></p>}
-        //   </div>
-
-        //   <Dropdown style={{marginBottom:"1em"}}>
-				// 		<Dropdown.Toggle variant="success" id="dropdown-basic">
-				// 			Sex
-				// 		</Dropdown.Toggle>
-				// 		<Dropdown.Menu>
-        //     <Dropdown.Item onClick={()=>{this.sendSex('')}}>All</Dropdown.Item>
-				// 			<Dropdown.Item onClick={()=>{this.sendSex('Male')}}>Male</Dropdown.Item>
-				// 			<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
-				// 		</Dropdown.Menu>
-				// 	</Dropdown>
-        // </div>
         <Card className={ this.state.show ? dashboardManagerStyle.hide : dashboardManagerStyle.show } style={cardStyle.card}>
             {/* <div>
               {!this.state.show && <p className={dashboardManagerStyle.hidden}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleLeft} /> </p>}{this.state.show && <p className={dashboardManagerStyle.shown}><FontAwesomeIcon onClick={this.handleShowHide} icon={faAngleDoubleRight} /></p>}
@@ -116,24 +100,6 @@ class MapManagerControls extends React.Component {
                 <span className={labelStyle.tag} onClick={()=>{this.sendQuery(allHistoryMedicalsByOrganization)}}>medical-history</span>
                 
               </div>
-              
-              {/* <Typography  variant="h6" component="h6"  color="textSecondary" gutterBottom>
-                Metrics on Records
-              </Typography>
-              <Typography variant="h4" component="h4">
-                Hello
-              </Typography>
-              <Dropdown style={{marginBottom:"1em"}}>
-				 		<Dropdown.Toggle variant="success" id="dropdown-basic">
-							Sex
-				 		</Dropdown.Toggle>
-				 		<Dropdown.Menu>
-             <Dropdown.Item onClick={()=>{this.sendSex('')}}>All</Dropdown.Item>
-				 			<Dropdown.Item onClick={()=>{this.sendSex('Male')}}>Male</Dropdown.Item>
-				 			<Dropdown.Item onClick={()=>{this.sendSex('Female')}}>Female</Dropdown.Item>
-				 		</Dropdown.Menu>
-           </Dropdown> */}
-            {/* <Button onClick={()=>{this.sendQuery('')}} /> */}
            
             </CardContent>
           </Card>	

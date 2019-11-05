@@ -3,7 +3,6 @@ import React from 'react';
 import Parse from 'parse';
 import { Route, Link, Redirect} from "react-router-dom";
 
-
 //REDUX
 import { getAuthInfo} from './reducers/login';
 import { connect } from "react-redux";
@@ -15,14 +14,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuItem from '@material-ui/core/MenuItem';
-
 import appStyle from './App.module.css';
 import { styles } from '../styles';
 
 // import goldClear from '../assets/goldClear.png';
-
 
 //Pages
 import HomePage from "./pages/Home";
@@ -61,23 +56,16 @@ class App extends React.Component {
 		this.state = { 
 			visible: false
 		}
-		
 		Parse.initialize(process.env.REACT_APP_parseAppId , process.env.REACT_APP_parseJavascriptKey);
         Parse.serverURL = process.env.REACT_APP_parseServerUrl;
 	}
 	  
 	handleHideClick = () => this.setState({ visible: !this.state.visible })
 	
-	render() {
-		// if (!this.props.isLoggedIn) {
-        //     return <Redirect to="/login" />
-		// }
-		
+	render() {		
 		if(this.props.authInfo.isAuthenticated === false){
 			return <Redirect to='/login' />
 		}
-
-		
 		return (
 			<div className={appStyle.background}>
 				<AppBar position="static" style={{ background: '#333'}}>

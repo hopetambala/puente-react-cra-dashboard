@@ -11,3 +11,8 @@
     z-index: 2 !important;
 }
 
+.backbutton {
+    top: -50px; 
+    right: 100px;
+}
+
