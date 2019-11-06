@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import {
   Button,
   Container,
-  Grid,
+  // Grid,
   Header,
   Icon,
   Image,
@@ -29,7 +29,7 @@ const getWidth = () => {
 }
 
 const HomepageHeading = ({ mobile }) => (
-  <Container style={{marginTop:"60px"}} style={{backgroundColor: "whitesmoke"}} >
+  <Container style={{backgroundColor: "whitesmoke"}} >
     <Header
       as='h1'
       content='Discover Insights to Drive Better Development'
