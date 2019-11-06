@@ -29,47 +29,40 @@ const getWidth = () => {
 }
 
 const HomepageHeading = ({ mobile }) => (
-  <Container style={{marginTop:"60px"}}>
-    <Grid verticalAlign='left'  columns={2}>
-    <Grid.Row >
-      <Grid.Column floated='left' width={8} >
-        <Header
-          as='h1'
-          content='Discover Insights to Drive Better Development.'
-          textAlign='left'
-          style={{
-            fontSize: mobile ? '2em' : '4em',
-            fontWeight: 'normal',
-            marginBottom: 0,
-            marginTop: mobile ? '1.5em' : '1em',
-          }}
-        />
-        <Header
-          as='p'
-          content="Puente's digital technology empowers people to achieve more sustainable community development."
-          //inverted
-          textAlign='left'
-          style={{
-            fontSize: mobile ? '1.5em' : '1.7em',
-            fontWeight: 'normal',
-            marginTop: mobile ? '0.5em' : '2em',
-            color: mobile ? 'white' : 'black',
-          }}
-        />
-        <Button 
-          as={Link} 
-          to='/login' 
-          primary size='huge' 
-          style={{
-            backgroundColor:"#FDD00C"
-          }}>
-          Get Started
-          <Icon name='right arrow' />
-        </Button>
-      </Grid.Column >
-      </Grid.Row>
-    </Grid>
-    
+  <Container style={{marginTop:"60px"}} style={{backgroundColor: "whitesmoke"}} >
+    <Header
+      as='h1'
+      content='Discover Insights to Drive Better Development'
+      textAlign='center'
+      style={{
+        fontSize: mobile ? '2em' : '4em',
+        fontWeight: 'normal',
+        marginBottom: 0,
+        marginTop: mobile ? '1.5em' : '3em',
+      }}
+    />
+    <Header
+      as='h2'
+      content="Puente's digital technology empowers people to achieve more sustainable community development."
+      //inverted
+      textAlign='center'
+      style={{
+        fontSize: mobile ? '1.5em' : '1.7em',
+        fontWeight: 'normal',
+        marginTop: mobile ? '0.5em' : '2em',
+        color: mobile ? 'white' : 'black',
+      }}
+    />
+    <Button 
+      as={Link} 
+      to='/login' 
+      primary size='huge' 
+      style={{
+        backgroundColor:"#FDD00C"
+      }}>
+      Get Started
+      <Icon name='right arrow' />
+    </Button>
   </Container>
 )
 
@@ -92,7 +85,7 @@ class DesktopContainer extends Component {
     const { fixed } = this.state
 
     return (
-      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} style={{backgroundColor: "whitesmoke"}}>
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -123,9 +116,9 @@ class DesktopContainer extends Component {
                   <Button as={Link} to='/login' inverted={fixed}>
                     Log in
                   </Button>
-                  <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em', backgroundColor:"#FDD00C"}}>
+                  {/* <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em', backgroundColor:"#FDD00C"}}>
                     Sign Up
-                  </Button>
+                  </Button> */}
                 </Menu.Item>
               </Container>
             </Menu>
@@ -216,8 +209,8 @@ MobileContainer.propTypes = {
 
 const ResponsiveContainer = ({ children }) => (
   <div>
-    <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
+    <DesktopContainer style={{backgroundColor: "white"}}>{children}</DesktopContainer>
+    <MobileContainer style={{backgroundColor: "white"}}>{children}</MobileContainer>
   </div>
 )
 
