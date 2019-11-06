@@ -15,7 +15,7 @@
     "apollo-client": "2.6.4",
     "apollo-link-http": "1.5.15",
     "bootstrap": "4.3.1",
-    "cors": "^2.8.5",
+    "cors": "2.8.5",
     "d3": "5.9.7",
     "d3-array": "2.3.2",
     "d3-scale": "3.0.1",
