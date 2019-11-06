@@ -70,14 +70,14 @@ class App extends React.Component {
 			<div className={appStyle.background}>
 				<AppBar position="static" style={{ background: '#333'}}>
 					<Toolbar>
-						<Grid justify="flex-start">
+						<Grid>
 							<Grid item>
 								<Typography variant="h6" className={useStyles.title}>
 									<div className={appStyle.signoutbutton}>Puente</div>
 								</Typography>
 							</Grid>
 						</Grid>
-						<Grid justify="flex-end" container spacing={24}>
+						<Grid justify="flex-end" container >
 							<Grid item>
 								<Typography variant="h6" className={useStyles.title}>
 									<Link to={`${this.props.routePath}/home`} className={appStyle.signoutbutton}>Home</Link>

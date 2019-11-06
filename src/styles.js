@@ -42,7 +42,7 @@ export const cardStyle = {
 		Inline Styles
 	*/
 	card: {
-		minWidth: 275,
+		minWidth: 150,
 		margin: 10,
 		color:"white",
 		background: styles.theme.light_darkbg,

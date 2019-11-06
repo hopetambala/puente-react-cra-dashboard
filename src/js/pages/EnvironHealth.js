@@ -4,9 +4,15 @@ import { withApollo } from 'react-apollo';
 
 import * as d3 from 'd3';
 
-//Components
-import { StatsBox } from '../components/widget/StatsBox/StatsBox';
+// Components
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import LoadingDots from '../components/styles/LoadingDots';
+
+// Styles
+import { styles, cardStyle } from "../../styles";
+import labelStyle from "../components/map-manager/Label.module.css";
 
 //Charts
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
@@ -14,28 +20,6 @@ import { ThreeDimenEnvComponent } from '../components/recharts/Scatter_Env';
 
 //Query
 import { allEnvsByOrganization} from '../queries/records';
-
-
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		//alignItems: 'flex-center',
-		//alignContent: 'flex-start',
-		alignContent: 'flex-center',
-		//paddingTop: '5%'
-		
-	},
-	row: {
-		//height:'100vh',
-		alignItems: 'flex-center',
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	}
-}
 
 
 class EnvironHealthAnalytics extends React.Component {
@@ -181,47 +165,72 @@ class EnvironHealthAnalytics extends React.Component {
 				<>
 					<Row style={styles.row}>
 						<Col>
-							<StatsBox
-								Cardsubtitle={"All Population Surveys"}
-								Cardtitle={" Environmental Surveys Completed: " + this.state.allCounts}
-								Cardtext={""}
-								height="300px"
-							>
-								
-							</StatsBox>
-						
+							<Card style={cardStyle.card}>
+							<CardContent>
+								<span className={labelStyle.tag} >
+									<Typography  variant="h6" component="h6"  gutterBottom>
+										metrics on pop. survey
+									</Typography>
+								</span>
+								<Typography variant="h4" component="h4">
+									Environmental Health Surveys Completed: {this.state.allCounts}
+								</Typography>
+								<Typography style={cardStyle.pos} color="textSecondary">
+									<Pie180ChartComponent data={this.state.sexes} valueKey="value" />
+								</Typography>
+							</CardContent>
+							</Card>
 						</Col>
 						<Col>
-							<StatsBox
-								Cardsubtitle={"All Population Surveys"}
-								Cardtitle={"Average Family Size: " + this.state.averageFamily}
-								Cardtext={""}
-								height="150px"
-							></StatsBox>
-							<StatsBox
-								Cardsubtitle={"All Population Surveys"}
-								Cardtitle={"Average Number of Children (Less than Age 5): " + this.state.averageFamilyUnder5}
-								Cardtext={""}
-								height="150px"
-							></StatsBox>
+							<Card style={cardStyle.card}>
+							<CardContent>
+								<span className={labelStyle.tag} >
+									<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on pop. survey
+									</Typography>
+								</span>
+								<Typography variant="h5" component="h5">
+									Average Family Size: {this.state.averageFamily}
+								</Typography>
+							</CardContent>
+							</Card>
+							<Card style={cardStyle.card}>
+								<CardContent>
+									<span className={labelStyle.tag} >
+										<Typography  variant="h6" component="h6"  gutterBottom>
+										metrics on pop. survey
+										</Typography>
+									</span>
+									<Typography variant="h5" component="h5">
+									Average Number of Children (Less than Age 5): {this.state.averageFamilyUnder5}
+									</Typography>
+								</CardContent>
+							</Card>
 						</Col>
 						<Col>
-							<StatsBox
-								Cardsubtitle={"Accessibility: Health"}
-								Cardtitle={"Latrine/Toilet Access: " + this.state.view_latrineCounts.Y}
-								Cardtext={""}
-								height="300px"
-							>
+							<Card style={cardStyle.card}>
+							<CardContent>
+								<span className={labelStyle.tag} >
+									<Typography  variant="h6" component="h6"  gutterBottom>
+										metrics on health access
+									</Typography>
+								</span>
+								<Typography variant="h4" component="h4">
+									Latrine/Toilet Access: {this.state.view_latrineCounts.Y}
+								</Typography>
+								<Typography style={cardStyle.pos} color="textSecondary">
 								<Pie180ChartComponent 
 									data={this.state.latrineCounts}
 									valueKey="value" 
 									/>
-							</StatsBox>
+								</Typography>
+							</CardContent>
+							</Card>
 						</Col>
 					</Row>
 					<Row style={styles.row}>
 						<Col>
-							<StatsBox
+							{/* <StatsBox
 								Cardsubtitle={"Accessibility: Health"}
 								Cardtitle={"Clinic Access: " + this.state.view_clinicCounts.Y}
 								Cardtext={""}
@@ -231,33 +240,65 @@ class EnvironHealthAnalytics extends React.Component {
 									data={this.state.clinicCounts}
 									valueKey="value" 
 									/>
-							</StatsBox>
+							</StatsBox> */}
+							<Card style={cardStyle.card}>
+								<CardContent>
+									<span className={labelStyle.tag} >
+										<Typography  variant="h6" component="h6"  gutterBottom>
+											metrics on health access
+										</Typography>
+									</span>
+									<Typography variant="h4" component="h4">
+										Clinic Access: {this.state.view_clinicCounts.Y}
+									</Typography>
+									<Typography style={cardStyle.pos} color="textSecondary">
+										<Pie180ChartComponent 
+											data={this.state.clinicCounts}
+											valueKey="value" 
+										/>
+									</Typography>
+								</CardContent>
+							</Card>
 						</Col>
 						<Col>
-							<StatsBox
-								Cardsubtitle={"Accessibility: Enviro"}
-								Cardtitle={"Highest Prevalence of Water Access: " + this.state.waterCounts[0].key}
-								Cardtext={""}
-								height="300px"
-							>
-								<Pie180ChartComponent 
-									data={this.state.waterCounts}
-									valueKey="value" 
-									/>
-							</StatsBox>
+							<Card style={cardStyle.card}>
+								<CardContent>
+									<span className={labelStyle.tag} >
+										<Typography  variant="h6" component="h6"  gutterBottom>
+											metrics on enviro. access
+										</Typography>
+									</span>
+									<Typography variant="h4" component="h4">
+										Highest Prevalence of Water Access: {this.state.waterCounts[0].key}
+									</Typography>
+									<Typography style={cardStyle.pos} color="textSecondary">
+										<Pie180ChartComponent 
+											data={this.state.waterCounts}
+											valueKey="value" 
+										/>
+									</Typography>
+								</CardContent>
+							</Card>
 						</Col>
 						<Col>
-							<StatsBox
-								Cardsubtitle={"Accessibility: Enviro"}
-								Cardtitle={"Highest Prevalence of Water Type: " + this.state.typeofWaterCounts[0].key}
-								Cardtext={""}
-								height="300px"
-							>
-								<Pie180ChartComponent 
-									data={this.state.typeofWaterCounts}
-									valueKey="value" 
-									/>
-							</StatsBox>
+							<Card style={cardStyle.card}>
+								<CardContent>
+									<span className={labelStyle.tag} >
+										<Typography  variant="h6" component="h6"  gutterBottom>
+											metrics on enviro. access
+										</Typography>
+									</span>
+									<Typography variant="h4" component="h4">
+										Highest Prevalence of Water Type: {this.state.typeofWaterCounts[0].key}
+									</Typography>
+									<Typography style={cardStyle.pos} color="textSecondary">
+										<Pie180ChartComponent 
+											data={this.state.typeofWaterCounts}
+											valueKey="value" 
+										/>
+									</Typography>
+								</CardContent>
+							</Card>
 						</Col>
 					</Row>
 					<Row style={styles.row}>

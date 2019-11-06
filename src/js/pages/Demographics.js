@@ -203,19 +203,6 @@ class DemographicsAnalytics extends React.Component {
 	render() {
 		return (
 			<Container style={styles.container}>
-				{/*<Dropdown>
-					<Dropdown.Toggle variant="success" id="dropdown-basic">
-						{this.state.organization}
-					</Dropdown.Toggle>
-
-					<Dropdown.Menu>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("All")}}>All</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("Puente")}}>Puente</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("One World Surgery")}}>One World Surgery</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("WOF")}}>World Outreach Foundation</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("Constanza Medical Mission")}}>Constanza Medical Mission</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown>*/}
 			{ this.state.progress < 95 && this.state &&
 				<>
 					<LoadingDots />
@@ -234,9 +221,7 @@ class DemographicsAnalytics extends React.Component {
 							<Typography variant="h4" component="h4">
 								All Records: {this.state.all}
 							</Typography>
-							<Typography style={cardStyle.pos} color="textSecondary">
-								<Pie180ChartComponent data={this.state.sexes} valueKey="value" />
-							</Typography>
+							<Pie180ChartComponent data={this.state.sexes} valueKey="value" />
 						</CardContent>
 						</Card>	
 					</Col>
@@ -255,9 +240,7 @@ class DemographicsAnalytics extends React.Component {
 							<Typography variant="h4" component="h4">
 								{this.state.educations[0].value}
 							</Typography>
-							<Typography className={cardStyle.pos} color="textSecondary">
-								<Pie180ChartComponent data={this.state.educations} valueKey="value" />
-							</Typography>
+							<Pie180ChartComponent data={this.state.educations} valueKey="value" />
 						</CardContent>
 						</Card>
 					</Col>
