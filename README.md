@@ -1,6 +1,6 @@
 # Puente React
 
-[![Build Status](https://travis-ci.org/hopetambala/puente-react-dashboard.svg?branch=master)](https://travis-ci.org/hopetambala/puente-react-dashboard)
+[![Build Status](https://travis-ci.com/hopetambala/puente-react-dashboard.svg?branch=master)](https://travis-ci.com/hopetambala/puente-react-dashboard)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/505de309137b4acabb8def858cf7a6e8)](https://www.codacy.com/app/hopetambala/puente-react-dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hopetambala/puente-react-dashboard&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/hopetambala/puente-react-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/hopetambala/puente-react-dashboard)
 ![](https://img.shields.io/badge/react-✓-blue.svg)
