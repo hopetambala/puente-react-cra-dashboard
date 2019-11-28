@@ -7,7 +7,7 @@
 ![](https://img.shields.io/badge/apollo_server-✓-blueviolet.svg)
 ![](https://img.shields.io/badge/parse_server-✓-blueviolet.svg)
 
-Puente React is a web dashboard used to visualize data collected on the ground in developing countries. It's still an early prototype and it's still under development. 
+Puente React is a web dashboard used to visualize data collected on the ground in developing countries. It's still an early prototype and it's still under development.  
 
 For more details, please see our [blog website](https://puente-dr.com) to see how we build technology to equip the resource-challenged.
 
