@@ -1,13 +1,13 @@
 # Puente React
 
-[![Build Status](https://travis-ci.org/hopetambala/puente-react-dashboard.svg?branch=master)](https://travis-ci.org/hopetambala/puente-react-dashboard)
+[![Build Status](https://travis-ci.com/hopetambala/puente-react-dashboard.svg?branch=master)](https://travis-ci.com/hopetambala/puente-react-dashboard)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/505de309137b4acabb8def858cf7a6e8)](https://www.codacy.com/app/hopetambala/puente-react-dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hopetambala/puente-react-dashboard&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/hopetambala/puente-react-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/hopetambala/puente-react-dashboard)
 ![](https://img.shields.io/badge/react-✓-blue.svg)
 ![](https://img.shields.io/badge/apollo_server-✓-blueviolet.svg)
 ![](https://img.shields.io/badge/parse_server-✓-blueviolet.svg)
 
-Puente React is a web dashboard used to visualize data collected on the ground in developing countries. It's still an early prototype and it's still under development. 
+Puente React is a web dashboard used to visualize data collected on the ground in developing countries. It's still an early prototype and it's still under development.  
 
 For more details, please see our [blog website](https://puente-dr.com) to see how we build technology to equip the resource-challenged.
 
