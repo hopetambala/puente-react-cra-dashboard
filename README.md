@@ -25,7 +25,7 @@ For a live demo, please check out [here](https://puente-dashboard.herokuapp.com/
 
 ## Development
 
-This project is built with [ReactJS](https://reactjs.org), [Redux](https://redux.js.org/), and [Apollo's GraphQL](https://www.apollographql.com/docs/). The visualizations are built using [Recharts](http://recharts.org/).
+This project is built with [ReactJS](https://reactjs.org), [Redux](https://redux.js.org/), and [Apollo's GraphQL](https://www.apollographql.com/docs/) using a [JAM Stack architecture](https://jamstack.org/). The visualizations are built using [Recharts](http://recharts.org/).
 
 This project is a bootstrapped using [create-react-app](https://github.com/facebook/create-react-app).
 

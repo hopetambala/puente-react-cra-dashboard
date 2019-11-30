@@ -95,6 +95,16 @@ class MapPage extends React.Component {
 		};
 	}
 
+	// _renderTooltip() {
+	// 	const { hoveredObject, pointerX, pointerY } = this.state || {};
+	// 	console.log(hoveredObject, pointerX, pointerY)
+	// 	return hoveredObject && (
+	// 		<div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY}}>
+	// 		{ hoveredObject.message }
+	// 		</div>
+	// 	);
+	// }
+
 	_renderLayers(data) {
 		//const data = this.state.data;
 		const {radius = 1000, upperPercentile = 100, coverage = 1} = this.props;
@@ -124,30 +134,26 @@ class MapPage extends React.Component {
 	}
 
 	_renderScatterLayers(data) {
-
 		return [
 			new IconLayer({
 				id: 'icon-layer',
 				data,
-				pickable: true,
 				getIcon: d => ({
 					url: "https://raw.githubusercontent.com/hopetambala/puente-react-dashboard/master/src/assets/man.png",
 					width: 90,
 					height: 90,
 					anchorY: 128,
 					mask: true
-				  }),
+				}),
 				sizeScale: 7,
 				getPosition: d => [ parseFloat(d.longitude), parseFloat(d.latitude), 0],
 				getSize: d => 5,
 				// getColor: d => [Math.sqrt(d.exits), 140, 0],
 				getColor: d => [200, 140, 0],
-				// onHover: ({object, x, y}) => {
-				// const tooltip = `${object.fname}\n${object.lname}`;
-				// /* Update tooltip
-				// 	http://deck.gl/#/documentation/developer-guide/adding-interactivity?section=example-display-a-tooltip-for-hovered-object
-				// */
-				// }	
+				pickable: true,
+    			onHover: (info, event) => {
+					console.log('Hovered:', info, event);
+				}
 			})
 		];
 	}
@@ -179,19 +185,23 @@ class MapPage extends React.Component {
 
 					return (
 					<>
-					{console.log(Object.values(data)[0])}
+					{/* {console.log(Object.values(data)[0])} */}
 						<DeckGL
 							// layers={this._renderLayers(Object.values(data)[0])}
+							
 							layers={this.conditionalRendering(Object.values(data)[0], this.props.mapType)}
 							effects={[lightingEffect]}
 							initialViewState={INITIAL_VIEW_STATE}
-							controller={true}>
+							controller={true}
+							onHover={this._onHover}>
 							<StaticMap
+								
 								reuseMaps
 								mapStyle={mapStyle}
 								preventStyleDiffing={true}
 								mapboxApiAccessToken={MAPBOX_TOKEN}
 							/>
+							
 						</DeckGL>
 						<MapManagerControls className={mapStyles.mapcontrols}/>
 						<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}} className={mapStyles.backbutton}>

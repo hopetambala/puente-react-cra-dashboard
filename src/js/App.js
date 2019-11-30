@@ -69,7 +69,7 @@ class App extends React.Component {
 		return (
 			<div className={appStyle.background}>
 				<AppBar position="static" style={{ background: '#333'}}>
-					<Toolbar>
+					<Toolbar >
 						<Grid>
 							<Grid item>
 								<Typography variant="h6" className={useStyles.title}>
@@ -77,31 +77,53 @@ class App extends React.Component {
 								</Typography>
 							</Grid>
 						</Grid>
-						<Grid justify="flex-end" container >
+						<Grid container
+								direction="row"
+								justify="flex-end"
+								alignItems="center" >
 							<Grid item>
-								<Typography variant="h6" className={useStyles.title}>
+								{/* <Typography variant="h6" className={useStyles.title}>
 									<Link to={`${this.props.routePath}/home`} className={appStyle.signoutbutton}>Home</Link>
-								</Typography>
+								</Typography> */}
+								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+									<Typography variant="h6" className={useStyles.title} >
+										<Link to={`${this.props.routePath}/home`} style={{color:styles.theme.primaryAppColor}}>Home</Link>
+									</Typography>
+								</Button>
 							</Grid>
 							<Grid item>
-								<Typography variant="h6" className={useStyles.title}>
+								{/* <Typography variant="h6" className={useStyles.title}>
 									<Link to={`${this.props.routePath}/patients`} className={appStyle.signoutbutton}>List of Records</Link>
-								</Typography>
+								</Typography> */}
+								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+									<Typography variant="h6" className={useStyles.title} >
+										<Link to={`${this.props.routePath}/patients`} style={{color:styles.theme.primaryAppColor}}>Records List</Link>
+									</Typography>
+								</Button>
 							</Grid>
 							<Grid item>
-								<Typography variant="h6" className={useStyles.title}>
+								{/* <Typography variant="h6" className={useStyles.title}>
 									<Link to={`${this.props.routePath}/map`} className={appStyle.signoutbutton}>Map</Link>
-								</Typography>
+								</Typography> */}
+								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+									<Typography variant="h6" className={useStyles.title} >
+										<Link to={`${this.props.routePath}/map`} style={{color:styles.theme.primaryAppColor}}>Map</Link>
+									</Typography>
+								</Button>
 							</Grid>
 							<Grid item>
-								<Typography variant="h6" className={useStyles.title}>
-									<Link to={`${this.props.routePath}/formcreation`} className={appStyle.signoutbutton}>Form Creator</Link>
-								</Typography>
+								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+									<Typography variant="h6" className={useStyles.title} >
+										<Link to={`${this.props.routePath}/formcreation`} style={{color:styles.theme.primaryAppColor}}>Form Creator</Link>
+									</Typography>
+								</Button>
 							</Grid>
 							<Grid item>
-								<Typography variant="h6" className={useStyles.title}>
-									<Link to={`${this.props.routePath}/dataexport`} className={appStyle.signoutbutton}>Data Exporter</Link>
-								</Typography>
+								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+									<Typography variant="h6" className={useStyles.title} >
+										<Link to={`${this.props.routePath}/dataexport`} style={{color:styles.theme.primaryAppColor}}>Data Exporter</Link>
+									</Typography>
+								</Button>
 							</Grid>
 							<Grid item>
 							<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}}>
