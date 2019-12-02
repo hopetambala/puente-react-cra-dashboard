@@ -1,7 +1,6 @@
 import React from 'react';
 // import { Button } from 'react-bootstrap'
 import { Query, withApollo} from 'react-apollo';
-import { useQuery } from '@apollo/react-hooks';
 import { Form, Field } from 'react-final-form';
 
 // Styles
