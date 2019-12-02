@@ -216,10 +216,13 @@ const HistoryMedical = ({ organization }) => (
 		var cleaned_data = await data;
 		for (let i = 0; i < cleaned_data['getCustomFormResultsbyId'].length; i++) {
 			for (let j = 0; j < cleaned_data['getCustomFormResultsbyId'][i]['fields'].length; j++){
+				var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@_`{|}~]/g;
+
 				var question = String(cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].title)
-				var question = question.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-				var answer  =  String(cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].answer)
-				var answer = answer.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+				question = question.replace(punctRE, '');
+				var answer = String(cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].answer)
+				answer = answer.replace(punctRE, '');
+
 				cleaned_data['getCustomFormResultsbyId'][i][question] = answer
 			}
 			 delete cleaned_data['getCustomFormResultsbyId'][i]['fields']
@@ -343,7 +346,8 @@ export class ExportPage extends React.Component {
 
 							return (
 								<>
-								<option ></option>
+								{loading && <LoadingDots />}
+								<option></option>
 									{data.getCustomFormSpec.map((opt) => {
 										return <option key={opt.objectId} value={opt.objectId}>{opt.title}</option>
 									})} 
