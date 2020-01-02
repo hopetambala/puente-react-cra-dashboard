@@ -50,7 +50,7 @@
     "react-scripts": "3.2.0",
     "react-test-renderer": "16.9.0",
     "react-window": "1.8.5",
-    "recharts": "1.7.1",
+    "recharts": "1.8.5",
     "redux": "4.0.4",
     "redux-actions": "2.6.5",
     "semantic-ui-css": "2.4.1",
