@@ -107,7 +107,7 @@
     "mocha": "6.2.2",
     "nyc": "14.1.1",
     "pre-commit": "1.2.2",
-    "standard-version": "7.0.0"
+    "standard-version": "7.0.1"
   },
   "snyk": true
 }
