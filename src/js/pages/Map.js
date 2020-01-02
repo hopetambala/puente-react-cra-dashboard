@@ -99,9 +99,12 @@ class MapPage extends React.Component {
 		const { hoveredObject, pointerX, pointerY } = this.state || {};
 		console.log(hoveredObject, pointerX, pointerY)
 		return hoveredObject && (
-			<div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY}}>
-			{ hoveredObject.fname }
-			{ hoveredObject.lname }
+			<div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY-200}}>
+				{Object.entries(hoveredObject).map(([key, value])=>{
+                  return(
+                    <p><b>{key}: </b>{value}</p>
+                    );
+                })}
 			</div>
 		);
 	}
@@ -212,12 +215,6 @@ class MapPage extends React.Component {
 					);
 				}}
 				</Query>
-			{/* <MapManagerControls className={mapStyles.mapcontrols}/>
-			<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}} className={mapStyles.backbutton}>
-				<Typography variant="h4" >
-					<Link to="/app/home" style={{color: styles.theme.primaryAppColor}}>Back</Link>
-				</Typography>
-			</Button> */}
 			</Container>
 
 		);
@@ -233,49 +230,3 @@ const mapStateToProps = (state) => {
   };
   
   export default connect(mapStateToProps,null)(MapPage);
-	
-// 	componentDidUpdate = (prevProps) => {
-// 		if (prevProps.filters !== this.props.filters) {
-// 			console.log(this.props.filters)
-// 		} 
-// 	}
-// 	render() {
-// 		console.log(this.props.filters)
-// 		return (
-// 				// <Container style={styles.container}>
-// 				// 	<h1 style={styles.header1}>Map</h1>
-
-// 				// 	<MapManagerControls className={mapStyles.mapcontrols}/>
-
-// 				// 	<Row style={styles.row} >
-// 				// 		<Query query={all_records}>
-// 				// 			{({ data, loading, error }) => {
-// 				// 				if (loading) return <p>Loading...</p>;
-// 				// 				if (error) return <p>Error :(</p>;
-// 				// 				return (
-// 				// 					<LeafletMap data={data} sex={this.props.filters.sex} education={this.props.filters.education} className={mapStyles.map}/>
-// 				// 				);
-// 				// 			}}
-// 				// 		</Query>
-// 				// 	</Row>
-
-// 				// </Container>	
-
-// 		);
-// 	}
-// }
-
-// const mapStateToProps = (state) => {
-// 	return {
-// 	  /*position: getPosition(state),
-// 	  data: getSelectedDatum(state),
-// 	  notes: getNotesIndexedByHash(state),*/
-// 	  filters: getMapFiltersInfo(state)
-// 	};
-//   };
-  
-//   /*const mapDispatchToProps = {
-// 	setSex
-//   };*/
-  
-//   export default connect(mapStateToProps,null)(MapPage);
