@@ -453,3 +453,60 @@ export const personalEnvironmentalHealth = gql`
         }
     }  
 `;
+
+export const allCustomSpecs = gql`
+    query{
+        getCustomFormSpec{
+            objectId
+            title
+            organizations
+        }
+    }  
+`;
+
+export const allCustomResults = gql`
+    query{
+        getCustomFormResults{
+            objectId
+            title
+            fields {
+                title
+                answer
+            }
+        }
+    }  
+`;
+
+export const allCustomResultsByFormId = gql`
+    query($id:String!){
+        getCustomFormResultsbyId(id:$id){
+            objectId
+            fname
+            lname
+            nickname
+            sex
+            dob
+            age
+            telephoneNumber
+            educationLevel
+            occupation
+            communityname
+            city
+            province
+            insuranceNumber
+            insuranceProvider
+            clinicProvider
+            cedulaNumber
+            surveyingUser
+            surveyingOrganization
+            latitude
+            longitude
+            title
+            fields {
+                title
+                answer
+            }
+        }
+    }  
+`;
+

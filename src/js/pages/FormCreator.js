@@ -50,17 +50,17 @@ class FormCreator extends React.Component{
 			<Form
 				onSubmit={this.submitCustomForm}
 				initialValues={{ 
-					properties:{
-						question_1:{
+					fields:[
+						{
 						   type:"input"
 						},
-						question_2:{
+						{
 							type:"input"
 						},
-						question_3:{
+						{
 							type:"input"
 						}
-					}
+					]
 				}}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit}>
@@ -85,22 +85,22 @@ class FormCreator extends React.Component{
 					</div>
 					<div>
 						<label>Question Field 1</label>
-						<Field name="properties.question_1.title" component="textarea" placeholder="First Question" />
-						<Field name="properties.question_1.type" type="select" component="select">
+						<Field name="fields[0].title" component="textarea" placeholder="First Question" />
+						<Field name="fields[0].titletype" type="select" component="select">
 							<option value="input">Input</option>
 						</Field>
 					</div>
 					<div>
 						<label>Question Field 2</label>
-						<Field name="properties.question_2.title" component="textarea" placeholder="Second Question" />
-						<Field name="properties.question_2.type" type="select" component="select">
+						<Field name="fields[1].title" component="textarea" placeholder="Second Question" />
+						<Field name="fields[1].type" type="select" component="select">
 							<option value="input">Input</option>
 						</Field>
 					</div>
 					<div>
 						<label>Question Field 3</label>
-						<Field name="properties.question_3.title" component="textarea" placeholder="Third Question" />
-						<Field name="properties.question_3.type" type="select" component="select">
+						<Field name="fields[2].title" component="textarea" placeholder="Third Question" />
+						<Field name="fields[2].type" type="select" component="select">
 							<option value="input">Input</option>
 						</Field>
 					</div>

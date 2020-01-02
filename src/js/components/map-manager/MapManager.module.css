@@ -30,12 +30,12 @@
     z-index: 1;
     top: 100px;
     right: 10px;
-    box-shadow: 0 4px 8px 0 grey;
+    /* box-shadow: 0 4px 8px 0 grey; */
     transition: 0.3s;
     border-radius: 10px;
     padding: 5px;
     color:rgb(255, 209, 3);
-    background: #222B3C !important;;
+    /* background: #222B3C !important;; */
     width:290px  
 }
       
@@ -48,7 +48,7 @@
     transition: 0.3s;
     border-radius: 10px;
     padding: 5px;
-    background: #222B3C !important;;
+    /* background: #222B3C !important; */
     width:290px  
 }
     
@@ -59,6 +59,6 @@
     font-family: inherit;
     font-size: inherit;
     padding: 0.5rem 0.75rem;
-    width: 80%;
+    /* width: 80%; */
 }
     

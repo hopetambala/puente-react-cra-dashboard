@@ -4,7 +4,7 @@ import { Switch, BrowserRouter as  Router, Route, Link  } from "react-router-dom
 
 //Styling
 import homeStyle from './Home.module.css';
-import { styles } from '../../styles';
+import { styles, cardStyle } from '../../styles';
 
 //Redux
 import { connect } from "react-redux";
@@ -42,27 +42,33 @@ class HomePage extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			organization:"All"
+			form:"Community Health Records Forms"
 		}
 		console.log(this.props.authInfo.organization)
+	}
+
+	setButtonTitle = (value) =>{
+		this.setState({
+			form:value
+		})
 	}
 
 	render() {
 		return (
 			<Router>
 				<Container style={styles.container}>
-					<h1 className={homeStyle.header1}>Welcome {this.props.authInfo.username}</h1>
-					<h2 className={homeStyle.header2}>Here's an automated analysis of data collected for {this.props.authInfo.organization}</h2>
+					<h1>Welcome {this.props.authInfo.username}</h1>
+					<h4 style={{color:"white"}}>Here's an automated analysis of data collected for {this.props.authInfo.organization}</h4>
 					<Dropdown style={{marginBottom:"1em"}}>
-						<Dropdown.Toggle variant="success" id="dropdown-basic">
-							Community Health Records Forms
+						<Dropdown.Toggle style={cardStyle.card} id="dropdown-basic">
+							{this.state.form}
 						</Dropdown.Toggle>
 
 						<Dropdown.Menu>
-							<Dropdown.Item as={Link} to={`/demographicanalytics`}>Demographics</Dropdown.Item>
-							<Dropdown.Item as={Link} to={`/medicalanalytics`}>Medical Evaluation</Dropdown.Item>
-							<Dropdown.Item as={Link} to={`/vitalanalytics`}>Vitals Analytics</Dropdown.Item>
-							<Dropdown.Item as={Link} to={`/envalanalytics`}>Environmental Health Analytics</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.setButtonTitle("Demographics")}} as={Link} to={`/demographicanalytics`}>Demographics</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.setButtonTitle("Medical Evaluation")}} as={Link} to={`/medicalanalytics`}>Medical Evaluation</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.setButtonTitle("Environmental Health Analytics")}} as={Link} to={`/envalanalytics`}>Environmental Health Analytics</Dropdown.Item>
+							<Dropdown.Item onClick={()=>{this.setButtonTitle("Vitals Analytics")}} as={Link} to={`/vitalanalytics`}>Vitals Analytics</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
 					
