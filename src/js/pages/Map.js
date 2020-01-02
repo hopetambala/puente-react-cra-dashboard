@@ -152,7 +152,6 @@ class MapPage extends React.Component {
 				sizeScale: 7,
 				getPosition: d => [ parseFloat(d.longitude), parseFloat(d.latitude), 0],
 				getSize: d => 5,
-				// getColor: d => [Math.sqrt(d.exits), 140, 0],
 				getColor: d => [200, 140, 0],
 				pickable: true,
     			onHover: info => this.setState({
@@ -176,7 +175,6 @@ class MapPage extends React.Component {
 	render() {
 		const {mapStyle = 'mapbox://styles/mapbox/dark-v9'} = this.props;
 		console.log(this.props.query)
-
 		return (
 			<Container style={styles.container}>
 				<Query
