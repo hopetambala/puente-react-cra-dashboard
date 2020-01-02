@@ -1,11 +1,18 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar } from 'react-bootstrap';
+import { Row, Container, Col } from 'react-bootstrap';
 import { Query, withApollo } from 'react-apollo';
 import * as d3 from 'd3';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 
 //Components
-import { StatsBox } from '../components/widget/StatsBox/StatsBox';
+import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+// import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+// import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import LoadingDots from '../components/styles/LoadingDots';
+
 
 //Redux
 import { connect } from "react-redux";
@@ -18,26 +25,10 @@ import { Pie180ChartComponent } from '../components/recharts/PieChart';
 //Query
 import { allRecordsByOrganization, all_records} from '../queries/records';
 
+import { styles, cardStyle } from "../../styles";
+import labelStyle from "../components/map-manager/Label.module.css";
 
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		//alignItems: 'flex-center',
-		alignContent: 'flex-start',
-		//paddingTop: '5%'
-		
-	},
-	row: {
-		//height:'100vh',
-		//alignItems: 'flex-center',
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	}
-}
+
 
 class DemographicsAnalytics extends React.Component {
 	constructor(props){
@@ -212,99 +203,87 @@ class DemographicsAnalytics extends React.Component {
 	render() {
 		return (
 			<Container style={styles.container}>
-				{/*<Dropdown>
-					<Dropdown.Toggle variant="success" id="dropdown-basic">
-						{this.state.organization}
-					</Dropdown.Toggle>
-
-					<Dropdown.Menu>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("All")}}>All</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("Puente")}}>Puente</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("One World Surgery")}}>One World Surgery</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("WOF")}}>World Outreach Foundation</Dropdown.Item>
-						<Dropdown.Item onClick={()=>{this.onSubmitz("Constanza Medical Mission")}}>Constanza Medical Mission</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown>*/}
 			{ this.state.progress < 95 && this.state &&
 				<>
-					<ProgressBar animated now={this.state.progress} />
+					<LoadingDots />
 				</>
 			}
 			{ this.state.progress === 100 && this.state && this.state.sexes && this.state.educations &&
 				<Row style={styles.row}>
-				
 					<Col>
-						<StatsBox
-							Cardsubtitle={"Metrics on Records"}
-							Cardtitle={" All Records: " + this.state.all}
-							Cardtext={""}
-							height="300px"
-						>
-							{<Pie180ChartComponent 
-								data={this.state.sexes}
-								valueKey="value" 
-							/>}
-						</StatsBox>
-							
+						<Card style={cardStyle.card}>
+						<CardContent>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on records
+								</Typography>
+							</span>
+							<Typography variant="h4" component="h4">
+								All Records: {this.state.all}
+							</Typography>
+							<Pie180ChartComponent data={this.state.sexes} valueKey="value" />
+						</CardContent>
+						</Card>	
 					</Col>
 				
 					<Col>
-						<StatsBox
-							Cardsubtitle={"Metrics on Education"}
-							Cardtitle={"Highest: " + this.state.educations[0].key}
-							Cardtext={this.state.educations[0].value}
-							height="300px">
+						<Card style={cardStyle.card}>
+						<CardContent>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on education
+								</Typography>
+							</span>
+							<Typography variant="h5" component="h5">
+								Highest: {this.state.educations[0].key}
+							</Typography>
+							<Typography variant="h4" component="h4">
+								{this.state.educations[0].value}
+							</Typography>
 							<Pie180ChartComponent data={this.state.educations} valueKey="value" />
-						</StatsBox>
+						</CardContent>
+						</Card>
 					</Col>
 					<Col>
-						<StatsBox
-							Cardsubtitle={"Metrics on Age"}
-							Cardtitle={" Average: " + this.state.ageMetrics[0]}
-							Cardtext={""}
-							height="150px">
-							{/*<Pie180ChartComponent 
-							data={this.state.ageMetrics[1]}
-							valueKey="value" /> */}
-						</StatsBox>
-						<StatsBox
-							Cardsubtitle={"Metrics on Age"}
-							Cardtitle={"Less Than Age 5: " + this.state.ageMetrics[1]}
-							Cardtext={""}
-							height="150px"
-						>
-							{/*<Pie180ChartComponent 
-							data={this.state.ageMetrics[1]}
-							valueKey="value" /> */}
-						</StatsBox>
-					</Col>
-					{/*<Col>
-						<MaterialTable 	
-							title={"Organization Counts"}
-							columns={[
-								{ title: 'Organization', field: 'key' },
-								{ title: 'Count of Records', field: 'value' },
-							]}
+						<Card style={cardStyle.card}>
+						<CardContent>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on age
+								</Typography>
+							</span>
+							<Typography variant="h5" component="h5">
+								Average: {this.state.ageMetrics[0]}
+							</Typography>
+						</CardContent>
+						</Card>
 
-							options={{
-								search: false
-							}}
-							data={this.state.organizationCounts}        
-						/>
-						</Col>*/}
-						
-				</Row>
-				
+						<Card style={cardStyle.card}>
+						<CardContent>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+									metrics on age
+								</Typography>
+							</span>
+							<Typography variant="h5" component="h5">
+								Less Than Age 5: {this.state.ageMetrics[1]}
+							</Typography>
+						</CardContent>
+						</Card>
+					</Col>
+				</Row>	
 			}
 				{this.state.organization === "All" && 
 				<Row style={styles.rows}>
 					<Query query={all_records}>
 					{({ data, loading, error }) => {
-						if (loading) return <p>Loading...</p>;
+						if (loading) return null;
 						if (error) return <p>Error :(</p>;
 						return (
 							<Col>
-								<LineChartGeneralComponent style={{padding:'5px'}} data={data} />
+								<Paper style={cardStyle.card}>
+									<LineChartGeneralComponent style={{padding:'5px',color:"whitesmoke"}} data={data} />
+								</Paper>
 							</Col>
 						);
 					}}

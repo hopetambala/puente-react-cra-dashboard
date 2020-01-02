@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.2...v0.2.3) (2019-11-06)
+
+
+### Features
+
+* authenticated application! ([4eae5c5](https://github.com/hopetambala/puente-react-dashboard/commit/4eae5c5d2ba645c7e36cf0b9e7717a8fbb88113d))
+* fix styling and add better loading animations ([de7ab3d](https://github.com/hopetambala/puente-react-dashboard/commit/de7ab3d8523d11ba5c856a55e2a287c85f6a81ce))
+* querying with deck.gl map works :confetti_ball: ([ae178a8](https://github.com/hopetambala/puente-react-dashboard/commit/ae178a8aff652c179bc1de164a8367708d0b3a67))
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([653c836](https://github.com/hopetambala/puente-react-dashboard/commit/653c836e3f8f80d9ed64a2268db9d738177c9c83))
+* **deps:** update dependency material-table to v1.53.0 ([dfe9ea1](https://github.com/hopetambala/puente-react-dashboard/commit/dfe9ea1e07599abaf533d92901217f7616b4bac6))
+* **deps:** update dependency react-bootstrap to v1.0.0-beta.14 ([a27c5a1](https://github.com/hopetambala/puente-react-dashboard/commit/a27c5a155d2e5c2b2fbb7d2ce5a2063449057d4d))
+* **deps:** update dependency react-scripts to v3 ([ab966f4](https://github.com/hopetambala/puente-react-dashboard/commit/ab966f405cf7fcbd520da1cbe66b108d5ea75192))
+* add iconlayer as an option! ([9418f40](https://github.com/hopetambala/puente-react-dashboard/commit/9418f40cb6608d46a6365bf880def4a344dd1b42))
+* add package-lock ([29b6ad0](https://github.com/hopetambala/puente-react-dashboard/commit/29b6ad0730d5439a25d64093ae677e5de8a07762))
+* consistency of styling across multiple pages ([4178986](https://github.com/hopetambala/puente-react-dashboard/commit/41789864e05ad2a76729ef3476174b7c2c826b6e))
+* eslint issue ([9053b79](https://github.com/hopetambala/puente-react-dashboard/commit/9053b7926b94c3b86ff5385693fbf3ac4f4270b2))
+* linting ([a6c3d36](https://github.com/hopetambala/puente-react-dashboard/commit/a6c3d36a10c5fd08775e765eefe87835f59830b5))
+* styling consistency across the application ([b1d60de](https://github.com/hopetambala/puente-react-dashboard/commit/b1d60de2b55ae2b8b2d1c3d65d3853e88ab80db3))
+
+### [0.2.2](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.1...v0.2.2) (2019-11-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency d3-array to v2.3.2 ([7aa8ee5](https://github.com/hopetambala/puente-react-dashboard/commit/7aa8ee5))
+* **deps:** update dependency graphql to v14.5.8 ([1fa2f8d](https://github.com/hopetambala/puente-react-dashboard/commit/1fa2f8d))
+* **deps:** update dependency react-apollo to v3 ([2412021](https://github.com/hopetambala/puente-react-dashboard/commit/2412021))
+* **deps:** update dependency semantic-ui-react to v0.88.1 ([ad37fbf](https://github.com/hopetambala/puente-react-dashboard/commit/ad37fbf))
+* missing bathroomAccess ([8d875bd](https://github.com/hopetambala/puente-react-dashboard/commit/8d875bd))
+* remove heropic ([6ed855b](https://github.com/hopetambala/puente-react-dashboard/commit/6ed855b))
+* remove unused dasboardmanager controls ([9e83f86](https://github.com/hopetambala/puente-react-dashboard/commit/9e83f86))
+* **deps:** update dependency styled-components to v4.4.1 ([66bb2fd](https://github.com/hopetambala/puente-react-dashboard/commit/66bb2fd))
+* remove unused imports ([975f63d](https://github.com/hopetambala/puente-react-dashboard/commit/975f63d))
+
+
+### Features
+
+* add education reducers ([b779bf4](https://github.com/hopetambala/puente-react-dashboard/commit/b779bf4))
+
 ### [0.2.1](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.0...v0.2.1) (2019-08-18)
 
 

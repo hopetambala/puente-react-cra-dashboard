@@ -1,7 +1,15 @@
+// https://standardjs.com/
+
+
+
 {
-  "extends": "react-app",
+  "parser": "babel-eslint",
+  // "extends": ["standard", "standard-react"]
+  // "extends": [
+  //   // "eslint:recommended",
+  //   // "plugin:react/recommended"
+  // ],
   "rules": {
-        "no-unused-vars": [1, {"args": "none", "ignoreVarsPattern": "_"}],
-        "jsx-a11y/href-no-hash": [0]
-    }
+    "jsx-a11y/href-no-hash": [0]
+  }
 }
