@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.4...v0.3.0) (2020-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* homepage not working because homepage was in package.json
+
+### Bug Fixes
+
+* homepage not working because homepage was in package.json ([0efc20f](https://github.com/hopetambala/puente-react-dashboard/commit/0efc20f49ab9d5d98675446530897f47deb16db3))
+
 ### [0.2.4](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.3...v0.2.4) (2020-01-03)
 
 
