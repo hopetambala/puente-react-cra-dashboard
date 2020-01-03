@@ -18,16 +18,19 @@ import LoadingDots from '../components/styles/LoadingDots'
 
 // //Style 
 import mapStyles from './Map.module.css';
-import { styles } from '../../styles';
+import patientManagerStyle from '../components/map-manager/MapManager.module.css';
+import { cardStyle, styles } from '../../styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 // Deck.gl
 import { StaticMap } from 'react-map-gl';
 import { PhongMaterial } from '@luma.gl/core';
 import { AmbientLight, PointLight, LightingEffect } from '@deck.gl/core';
 import { HexagonLayer } from '@deck.gl/aggregation-layers';
-import {IconLayer} from '@deck.gl/layers';
+import { IconLayer } from '@deck.gl/layers';
 import DeckGL from '@deck.gl/react';
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoiaHBiYWxhIiwiYSI6ImNrMXZyNWFscjB2N2szY3FmMHdodXZ2NjMifQ.PZQEuVD4WAHGTPd4yT5YFQ"; // eslint-disable-line
@@ -95,15 +98,28 @@ class MapPage extends React.Component {
 		};
 	}
 
-	// _renderTooltip() {
-	// 	const { hoveredObject, pointerX, pointerY } = this.state || {};
-	// 	console.log(hoveredObject, pointerX, pointerY)
-	// 	return hoveredObject && (
-	// 		<div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY}}>
-	// 		{ hoveredObject.message }
-	// 		</div>
-	// 	);
-	// }
+	_renderTooltip() {
+		const { hoveredObject, pointerX, pointerY } = this.state || {};
+		console.log(hoveredObject, pointerX, pointerY)
+		var cardModStyle = {
+			left: "10px",
+			maxHeight: 400, 
+			overflow: 'auto',
+			zIndex: 1, 
+			// pointerEvents: 'none',
+		}
+		return hoveredObject && (
+			<Card className={patientManagerStyle.show } style={{...cardStyle.card, ...cardModStyle}}>
+				<CardContent style={{}}>
+				{Object.entries(hoveredObject).map(([key, value])=>{
+                  return(
+                    <p><b>{key}: </b>{value}</p>
+                    );
+                })}
+				</CardContent>
+			</Card>
+		);
+	}
 
 	_renderLayers(data) {
 		//const data = this.state.data;
@@ -148,12 +164,13 @@ class MapPage extends React.Component {
 				sizeScale: 7,
 				getPosition: d => [ parseFloat(d.longitude), parseFloat(d.latitude), 0],
 				getSize: d => 5,
-				// getColor: d => [Math.sqrt(d.exits), 140, 0],
 				getColor: d => [200, 140, 0],
 				pickable: true,
-    			onHover: (info, event) => {
-					console.log('Hovered:', info, event);
-				}
+    			onClick: info => this.setState({
+					hoveredObject: info.object,
+					pointerX: info.x,
+					pointerY: info.y
+				})
 			})
 		];
 	}
@@ -170,7 +187,6 @@ class MapPage extends React.Component {
 	render() {
 		const {mapStyle = 'mapbox://styles/mapbox/dark-v9'} = this.props;
 		console.log(this.props.query)
-
 		return (
 			<Container style={styles.container}>
 				<Query
@@ -185,17 +201,13 @@ class MapPage extends React.Component {
 
 					return (
 					<>
-					{/* {console.log(Object.values(data)[0])} */}
-						<DeckGL
-							// layers={this._renderLayers(Object.values(data)[0])}
-							
+						<DeckGL							
 							layers={this.conditionalRendering(Object.values(data)[0], this.props.mapType)}
 							effects={[lightingEffect]}
 							initialViewState={INITIAL_VIEW_STATE}
 							controller={true}
-							onHover={this._onHover}>
+						>
 							<StaticMap
-								
 								reuseMaps
 								mapStyle={mapStyle}
 								preventStyleDiffing={true}
@@ -203,6 +215,7 @@ class MapPage extends React.Component {
 							/>
 							
 						</DeckGL>
+						{ this._renderTooltip() }
 						<MapManagerControls className={mapStyles.mapcontrols}/>
 						<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}} className={mapStyles.backbutton}>
 							<Typography variant="h4" >
@@ -213,12 +226,6 @@ class MapPage extends React.Component {
 					);
 				}}
 				</Query>
-			{/* <MapManagerControls className={mapStyles.mapcontrols}/>
-			<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}} className={mapStyles.backbutton}>
-				<Typography variant="h4" >
-					<Link to="/app/home" style={{color: styles.theme.primaryAppColor}}>Back</Link>
-				</Typography>
-			</Button> */}
 			</Container>
 
 		);
@@ -234,49 +241,3 @@ const mapStateToProps = (state) => {
   };
   
   export default connect(mapStateToProps,null)(MapPage);
-	
-// 	componentDidUpdate = (prevProps) => {
-// 		if (prevProps.filters !== this.props.filters) {
-// 			console.log(this.props.filters)
-// 		} 
-// 	}
-// 	render() {
-// 		console.log(this.props.filters)
-// 		return (
-// 				// <Container style={styles.container}>
-// 				// 	<h1 style={styles.header1}>Map</h1>
-
-// 				// 	<MapManagerControls className={mapStyles.mapcontrols}/>
-
-// 				// 	<Row style={styles.row} >
-// 				// 		<Query query={all_records}>
-// 				// 			{({ data, loading, error }) => {
-// 				// 				if (loading) return <p>Loading...</p>;
-// 				// 				if (error) return <p>Error :(</p>;
-// 				// 				return (
-// 				// 					<LeafletMap data={data} sex={this.props.filters.sex} education={this.props.filters.education} className={mapStyles.map}/>
-// 				// 				);
-// 				// 			}}
-// 				// 		</Query>
-// 				// 	</Row>
-
-// 				// </Container>	
-
-// 		);
-// 	}
-// }
-
-// const mapStateToProps = (state) => {
-// 	return {
-// 	  /*position: getPosition(state),
-// 	  data: getSelectedDatum(state),
-// 	  notes: getNotesIndexedByHash(state),*/
-// 	  filters: getMapFiltersInfo(state)
-// 	};
-//   };
-  
-//   /*const mapDispatchToProps = {
-// 	setSex
-//   };*/
-  
-//   export default connect(mapStateToProps,null)(MapPage);
