@@ -2,7 +2,6 @@
   "name": "puente-react",
   "version": "0.2.4",
   "private": true,
-  "homepage": "http://hopetambala.github.io/puente-react-dashboard",
   "dependencies": {
     "@fortawesome/fontawesome": "1.1.8",
     "@fortawesome/fontawesome-svg-core": "1.2.25",
