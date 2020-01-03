@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.3...v0.2.4) (2020-01-03)
+
+
+### Features
+
+* :confetti_ball: clicking icons brings up community member info ([8f9d546](https://github.com/hopetambala/puente-react-dashboard/commit/8f9d54681d1d5406fc47c602924529bd8b8da333))
+* custom form data retrieval ([f017391](https://github.com/hopetambala/puente-react-dashboard/commit/f0173918e32ffb7bad1eec58d2c61c0cafd94d07))
+* Hovering works on scatter charts ([f1572db](https://github.com/hopetambala/puente-react-dashboard/commit/f1572dbfe3c604224c24a591dc9497d32b49c295))
+
+
+### Bug Fixes
+
+* form creation tool needs to set array ([6f1a551](https://github.com/hopetambala/puente-react-dashboard/commit/6f1a55121fccc344d6a1b936fe2e74e50858679f))
+* issue with no-useless-escape ([c8d6cac](https://github.com/hopetambala/puente-react-dashboard/commit/c8d6cacdb73e84ae8abed5b89637d4c4870b63b5))
+* make landing page straightforward ([b25e4b4](https://github.com/hopetambala/puente-react-dashboard/commit/b25e4b4bd83e61e33dbaa83a3f96b197945ca38d))
+* package.json & package-lock.json to reduce vulnerabilities ([e91f7c4](https://github.com/hopetambala/puente-react-dashboard/commit/e91f7c42e5a84969db074320f4beab2c81baf401))
+* **deps:** pin dependency cors to 2.8.5 ([64e3eed](https://github.com/hopetambala/puente-react-dashboard/commit/64e3eed13d69c9da4e67f838c12e05e76d88d807))
+* **deps:** update dependency d3 to v5.15.0 ([ac7c1ba](https://github.com/hopetambala/puente-react-dashboard/commit/ac7c1bab84f93edb7554736b925a8fe63786960f))
+* **deps:** update dependency d3-array to v2.4.0 ([08cdb30](https://github.com/hopetambala/puente-react-dashboard/commit/08cdb3075059cb8d71acf8b9e6702e8f6b266e76))
+* **deps:** update dependency final-form to v4.18.6 ([f0f3a47](https://github.com/hopetambala/puente-react-dashboard/commit/f0f3a47b7a65e2807ac8e4d490a09466276f6b9d))
+* **deps:** update dependency material-table to v1.54.1 ([18fdf85](https://github.com/hopetambala/puente-react-dashboard/commit/18fdf85843a5d2f2eceb08c2f2d77f1deec9b4c2))
+* **deps:** update dependency parse to v2.11.0 ([760dffc](https://github.com/hopetambala/puente-react-dashboard/commit/760dffcf8625f5f184fa8d6e84b8acd73720d407))
+* **deps:** update dependency react-csv to v1.1.2 ([4e70183](https://github.com/hopetambala/puente-react-dashboard/commit/4e70183e83a4783099f81ac1d310d6013a824f4a))
+
 ### [0.2.3](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.2...v0.2.3) (2019-11-06)
 
 
