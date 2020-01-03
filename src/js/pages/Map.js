@@ -18,9 +18,12 @@ import LoadingDots from '../components/styles/LoadingDots'
 
 // //Style 
 import mapStyles from './Map.module.css';
-import { styles } from '../../styles';
+import patientManagerStyle from '../components/map-manager/MapManager.module.css';
+import { cardStyle, styles } from '../../styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 // Deck.gl
 import { StaticMap } from 'react-map-gl';
@@ -98,14 +101,23 @@ class MapPage extends React.Component {
 	_renderTooltip() {
 		const { hoveredObject, pointerX, pointerY } = this.state || {};
 		console.log(hoveredObject, pointerX, pointerY)
+		var cardModStyle = {
+			left: "10px",
+			maxHeight: 400, 
+			overflow: 'auto',
+			zIndex: 1, 
+			// pointerEvents: 'none',
+		}
 		return hoveredObject && (
-			<div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY-200}}>
+			<Card className={patientManagerStyle.show } style={{...cardStyle.card, ...cardModStyle}}>
+				<CardContent style={{}}>
 				{Object.entries(hoveredObject).map(([key, value])=>{
                   return(
                     <p><b>{key}: </b>{value}</p>
                     );
                 })}
-			</div>
+				</CardContent>
+			</Card>
 		);
 	}
 
@@ -154,7 +166,7 @@ class MapPage extends React.Component {
 				getSize: d => 5,
 				getColor: d => [200, 140, 0],
 				pickable: true,
-    			onHover: info => this.setState({
+    			onClick: info => this.setState({
 					hoveredObject: info.object,
 					pointerX: info.x,
 					pointerY: info.y
@@ -201,8 +213,9 @@ class MapPage extends React.Component {
 								preventStyleDiffing={true}
 								mapboxApiAccessToken={MAPBOX_TOKEN}
 							/>
-							{ this._renderTooltip() }
+							
 						</DeckGL>
+						{ this._renderTooltip() }
 						<MapManagerControls className={mapStyles.mapcontrols}/>
 						<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}} className={mapStyles.backbutton}>
 							<Typography variant="h4" >
