@@ -57,17 +57,15 @@ class FormCreator extends React.Component{
 		postObjectsToClass(values, "FormSpecifications");
 	}
 
-	handleChange(i, event) {
-		let values = [...this.state.values];
-		values[i] = event.target.value;
-		this.setState({ values });
+	addClick = () =>{
+		this.setState(function(previousState, currentProps) {
+			return {
+				values: [...previousState.values,'']
+			};
+		  });
 	}
 
-	addClick(){
-		this.setState(prevState => ({ values: [...prevState.values, '']}))
-	}
-
-	removeClick(i){
+	removeClick= (i) =>{
 		let values = [...this.state.values];
 		values.splice(i,1);
 		this.setState({ values });
@@ -110,7 +108,7 @@ class FormCreator extends React.Component{
 						<Field name="description" component="input" placeholder="Description of Form" />
 					</div>
 					<div>
-						<input type='button' value='Add Question' onClick={this.addClick.bind(this)}/>
+						<input type='button' value='Add Question' onClick={this.addClick}/>
 					</div>
 					{this.variableQuestionLengthUI()}
 					
