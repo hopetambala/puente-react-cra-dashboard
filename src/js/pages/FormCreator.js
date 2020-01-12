@@ -31,18 +31,65 @@ const styles = {
 	button: {
 		backgroundColor:'white'
 	}
-  }
+}
+
+// const required = value => (value ? undefined : 'Required')
+// const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined)
+// const minValue = min => value => isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`
+// const maxValue = max => value => isNaN(value) || value <= max ? undefined : `Should be less than ${max}`
+
+// const composeValidators = (...validators) => value =>
+//   validators.reduce((error, validator) => error || validator(value), undefined)
+
 
 class FormCreator extends React.Component{
-    onSubmit = async (values) => {
-		alert(values)
+	constructor(props){
+		super(props)
+		this.state = {
+			values:[]
+		}
+		console.log(this.props.authInfo.organization)
 	}
 
-	submitCustomForm = async (values) =>{
+	submitCustomForm = async (values) => {
 		console.log(values)
 		alert("Form Sent")
-		postObjectsToClass(values, "FormSpecifications")
+		postObjectsToClass(values, "FormSpecifications");
+	}
 
+	handleChange(i, event) {
+		let values = [...this.state.values];
+		values[i] = event.target.value;
+		this.setState({ values });
+	}
+
+	addClick(){
+		this.setState(prevState => ({ values: [...prevState.values, '']}))
+	}
+
+	removeClick(i){
+		let values = [...this.state.values];
+		values.splice(i,1);
+		this.setState({ values });
+	}
+
+	variableQuestionLengthUI(){
+		return this.state.values.map((element, i) =>
+			<div key={i}>
+				<label>Question Field {i+1}</label>
+				<Field
+					name={"fields["+i+"].title"}
+					component="textarea"
+				/>
+				<Field
+					name={"fields["+i+"].titletype"}
+					type="select" component="select">
+					<option value="input">Input</option>
+				</Field>
+				<div>
+					<input type='button' value='remove' onClick={this.removeClick.bind(this, i)}/>
+				</div>
+			</div>)
 	}
 
     render(){
@@ -52,18 +99,7 @@ class FormCreator extends React.Component{
 			<Form
 				onSubmit={this.submitCustomForm}
 				initialValues={{ 
-					organizations:[this.props.authInfo.organization],
-					fields:[
-						{
-						   type:"input"
-						},
-						{
-							type:"input"
-						},
-						{
-							type:"input"
-						}
-					]
+					organizations:[this.props.authInfo.organization]
 				}}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit}>
@@ -74,26 +110,9 @@ class FormCreator extends React.Component{
 						<Field name="description" component="input" placeholder="Description of Form" />
 					</div>
 					<div>
-						<label>Question Field 1</label>
-						<Field name="fields[0].title" component="textarea" placeholder="First Question" />
-						<Field name="fields[0].titletype" type="select" component="select">
-							<option value="input">Input</option>
-						</Field>
+						<input type='button' value='Add Question' onClick={this.addClick.bind(this)}/>
 					</div>
-					<div>
-						<label>Question Field 2</label>
-						<Field name="fields[1].title" component="textarea" placeholder="Second Question" />
-						<Field name="fields[1].type" type="select" component="select">
-							<option value="input">Input</option>
-						</Field>
-					</div>
-					<div>
-						<label>Question Field 3</label>
-						<Field name="fields[2].title" component="textarea" placeholder="Third Question" />
-						<Field name="fields[2].type" type="select" component="select">
-							<option value="input">Input</option>
-						</Field>
-					</div>
+					{this.variableQuestionLengthUI()}
 					
 					<div className="buttons">
 						<button type="submit" disabled={submitting || pristine}>
@@ -109,7 +128,6 @@ class FormCreator extends React.Component{
 
 					</div>
 					<pre>{JSON.stringify(values, 0, 2)}</pre>
-				
 				</form>	
 			)}
 			/>
