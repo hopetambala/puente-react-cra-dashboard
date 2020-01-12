@@ -26,9 +26,6 @@ import dashboardManagerStyle from './MapManager.module.css';
 import labelStyle from './Label.module.css';
 import { cardStyle, styles } from "../../../styles";
 
-
-// import { Button } from "@material-ui/core";
-
 class MapManagerControls extends React.Component {
   constructor(props){
     super(props)
@@ -106,7 +103,7 @@ class MapManagerControls extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {
     /*position: getPosition(state),
     data: getSelectedDatum(state),
