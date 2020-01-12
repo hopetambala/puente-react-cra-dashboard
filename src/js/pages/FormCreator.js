@@ -1,8 +1,12 @@
 import React from 'react';
+import { Form, Field } from 'react-final-form';
 
+//Parse
 import { postObjectsToClass } from '../providers/ParseProvider'
 
-import { Form, Field } from 'react-final-form';
+//Redux
+import { connect } from "react-redux";
+import { getAuthInfo } from '../reducers/login';
 
 //Styling
 import Styles from '../components/styles/Styles';
@@ -28,8 +32,6 @@ const styles = {
 		backgroundColor:'white'
 	}
   }
-  
-
 
 class FormCreator extends React.Component{
     onSubmit = async (values) => {
@@ -50,6 +52,7 @@ class FormCreator extends React.Component{
 			<Form
 				onSubmit={this.submitCustomForm}
 				initialValues={{ 
+					organizations:[this.props.authInfo.organization],
 					fields:[
 						{
 						   type:"input"
@@ -64,19 +67,6 @@ class FormCreator extends React.Component{
 				}}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit}>
-					<div>
-						<label>Organizations</label>
-						<Field name="organizations" type="select" component="select" multiple>
-							<option ></option>
-							<option value="Puente">Puente</option>
-							<option value="One World Surgery">One World Surgery</option>
-							<option value="WOF">World Outreach Foundation</option>
-							<option value="Constanza Medical Mission">Constanza Medical Mission</option>
-							<option value="DR Missions">DR Missions</option>
-							<option value="testORG">Test</option>
-						</Field>
-					</div>
-					<div>---</div>
 					<div>
 						<Field name="title" component="input" placeholder="Name of Form" />
 					</div>
@@ -128,4 +118,10 @@ class FormCreator extends React.Component{
     }
 }
 
-export default FormCreator;
+const mapStateToProps = (state) => {
+	return { 
+		authInfo: getAuthInfo(state)
+	}
+};
+
+export default connect(mapStateToProps,null)(FormCreator);
