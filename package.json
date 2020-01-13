@@ -30,7 +30,7 @@
     "leaflet": "1.6.0",
     "leaflet.markercluster": "1.4.1",
     "material-table": "1.54.1",
-    "node-sass": "4.12.0",
+    "node-sass": "4.13.0",
     "parse": "2.11.0",
     "prop-types": "15.7.2",
     "react": "16.9.0",
