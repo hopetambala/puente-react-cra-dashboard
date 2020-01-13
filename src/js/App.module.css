@@ -1,8 +1,7 @@
-.background{
-}
 .navbar{
-    /*background: #1b1c1d;*/
-    background: #222B3C !important;
+    background: #1b1c1d;
+    /* background: #222B3C !important; */
+    /* background: #434959 !important; */
     color: rgb(255, 209, 3);
     /*margin-left: 80px;*/
     height: 60px;
@@ -39,8 +38,8 @@
 }
 
 .signoutbutton{
-    /*margin: 5px 10px 5px 10px;
-    text-align: center;
+    margin: 5px 40px;
+    /* text-align: center;
     text-align: center;
     font-size: 25px;
     color: white;
@@ -48,14 +47,15 @@
     box-shadow: 0 3px 4px 0 whitesmoke;
     transition: 0.3s;
     border-radius: 5px;
-    padding: 7px 10px 7px 10px ;*/
+    padding: 7px 10px 7px 10px ; */
     color: rgb(255, 209, 3);
     font-size: 25px;
 }
 
 .signoutbutton:hover{
-    color:white;
-    background-color: rgb(238, 53, 6);
+    color: rgb(151, 123, 0);
+    border-radius: 2px;
+    
 }
 
 .image{

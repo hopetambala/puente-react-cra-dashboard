@@ -36,5 +36,21 @@ export function removeBlanksByKey(arrObjects, key) {
     };
     return arrObjects
 }
+/*
+* Acts as range like in python
+*
+*/ 
+export function range(size, startAt = 0) {
+    return [...Array(size).keys()].map(i => i + startAt);
+}
+
+/*
+* Acts as range like in python with characters
+*
+*/ 
+export function characterRange(startChar, endChar) {
+    return String.fromCharCode(...range(endChar.charCodeAt(0) -
+            startChar.charCodeAt(0), startChar.charCodeAt(0)))
+}
 
 export {get_age}

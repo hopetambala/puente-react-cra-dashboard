@@ -3,25 +3,25 @@ import * as func from '../../providers/Functions';
 import * as d3 from 'd3'
 
 import * as _ from 'underscore';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 import {
 	LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Brush, ResponsiveContainer
 } from 'recharts';
 
-const Div = styled.div`
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-		border-radius: 10px; 
-		background: white;
+// const Div = styled.div`
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+// 		border-radius: 10px; 
+// 		background: white;
 
-    margin: 1%;
+//     margin: 1%;
 
-    &:hover {
-        border-radius: 20px; 
-        box-shadow: 1px 12px 20px 1px rgba(0, 0, 0, 0.2);
-    }
-`;
+//     &:hover {
+//         border-radius: 20px; 
+//         box-shadow: 1px 12px 20px 1px rgba(0, 0, 0, 0.2);
+//     }
+// `;
 
 export class LineChartGeneralComponent extends React.Component{
 	constructor(props){
@@ -93,8 +93,8 @@ export class LineChartGeneralComponent extends React.Component{
 		let getOWS = (x)=>{return x.values['One World Surgery'];}
 		let getWOF = (x)=>{return x.values.WOF;}
 		return (
-		<Div>
-			<h1>Number of Records Collected Throughout Time</h1>
+		<div>
+			<h2>Number of Records Collected Throughout Time</h2>
 			  <ResponsiveContainer width="100%"height={400}>
 				<LineChart
 					data={this.state.modded}
@@ -114,7 +114,7 @@ export class LineChartGeneralComponent extends React.Component{
 			</LineChart> 
 		  </ResponsiveContainer>
 
-		</Div>
+		</div>
 		);
 	}
 }

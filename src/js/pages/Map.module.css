@@ -4,9 +4,15 @@
 
 .map {
     z-index: 0 !important;
+    width: 100vw;
 
 }
 .mapcontrols {
     z-index: 2 !important;
+}
+
+.backbutton {
+    top: -50px; 
+    right: 100px;
 }
 

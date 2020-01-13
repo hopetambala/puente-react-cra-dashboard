@@ -3,8 +3,11 @@ import Parse from 'parse';
 import { Redirect, Link } from "react-router-dom";
 
 //Styles
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 import loginStyles from './Login.module.css';
+import { styles } from '../../styles';
+import Typography from '@material-ui/core/Typography';
+
 
 //Redux
 import { connect } from "react-redux";
@@ -28,10 +31,11 @@ class LoginForm extends React.Component{
         [name]: value 
     })
 
-    logIn =  () => {
+    logIn =  async () => {
         // Create a new instance of the user class
         var that = this;
-        Parse.User.logIn(this.state.username, this.state.password).then(function(user)  {
+        await Parse.User.logIn(this.state.username, this.state.password).then(async function(user)  {
+            await that.props.setAuth(true);
             console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
             that.setState({
 				toDashboard:true
@@ -46,7 +50,7 @@ class LoginForm extends React.Component{
                 organization: String(user.get("organization")), 
             };
 
-            that.props.setAuth(true);
+            
             that.props.setProfile(loggedInUser);
         })
     }
@@ -60,8 +64,13 @@ class LoginForm extends React.Component{
         return(
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle' className={loginStyles.grid}>
                 <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as={Link} to="/" className={loginStyles.header} textAlign='center'>
+                {/* <Header as={Link} to="/" className={loginStyles.header} textAlign='center'>
                     <h1>PUENTE</h1>
+                </Header> */}
+                <Header as={Link} to="/">
+                    <Typography  variant="h1" >
+                        <div style={{color:styles.theme.primaryAppColor}}>PUENTE</div>
+                    </Typography>
                 </Header>
                 <Form size='large' onSubmit={this.handleSubmit}>
                     <Segment stacked>
@@ -81,9 +90,9 @@ class LoginForm extends React.Component{
                         </Button>
                     </Segment>
                 </Form>
-                <Message>
+                {/* <Message>
                     New to us? <a href='/'>Sign Up</a>
-                </Message>
+                </Message> */}
                 </Grid.Column>
             </Grid>
         )
