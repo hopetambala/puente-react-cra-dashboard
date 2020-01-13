@@ -16,28 +16,6 @@ import EnvironHealthAnalytics  from '../pages/EnvironHealth';
 import VitalsAnalytics from '../pages/Vitals';
 import DemographicsAnalytics  from '../pages/Demographics';
 
-//Components
-//import DashboardManagerControls from '../components/dashboard-manager/DashboardManager';
-
-// const styles = {
-// 	container: {
-// 		flexDirection: 'row',
-// 		flexWrap: 'wrap',
-// 		justifyContent: 'center',
-// 		alignContent: 'flex-start',
-// 		paddingTop: '60px'
-		
-		
-// 	},
-// 	row: {
-// 		justifyContent: 'center',
-// 		flex:1,
-// 		marginBottom:0,
-// 		paddingBottom:0
-// 	}, 
-
-// }
-
 class HomePage extends React.Component {
 	constructor(props){
 		super(props)

@@ -1,10 +1,12 @@
 import React from 'react';
-// import { Button } from 'react-bootstrap'
 import { Query, withApollo} from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 
+//Redux
+import { connect } from "react-redux";
+import { getAuthInfo } from '../reducers/login';
+
 // Styles
-// import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import {  styles } from '../../styles';
 
@@ -160,51 +162,7 @@ const HistoryMedical = ({ organization }) => (
 	</Query>
 );
 
-// function CustomData({id}) {
-// 	const { loading, error, data, networkStatus } = useQuery(allCustomResultsByFormId, {
-// 		variables: { id },
-// 	})
-
-// 	useEffect(() => {
-// 		async function cleanData(data) {
-// 			let cleaned_data = data;
-// 			for (let i = 0; i < cleaned_data['getCustomFormResultsbyId'].length; i++) {
-// 				for (let j = 0; j < cleaned_data['getCustomFormResultsbyId'][i]['fields'].length; j++){
-// 					let question = cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].title
-// 					let answer  = cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].answer
-// 					cleaned_data['getCustomFormResultsbyId'][i][question] = await answer
-// 				}
-// 			}
-// 			return(cleaned_data)
-// 		}
-// 		cleanData(data);
-// 	 }, [])
-
-// 	// for (let i = 0; i < data['getCustomFormResultsbyId'].length; i++) {
-// 	// 	for (let j = 0; j < data['getCustomFormResultsbyId'][i]['fields'].length; j++){
-// 	// 		let question = data['getCustomFormResultsbyId'][i]['fields'][j].title
-// 	// 		let answer  = data['getCustomFormResultsbyId'][i]['fields'][j].answer
-// 	// 		data['getCustomFormResultsbyId'][i][question] = answer
-// 	// 	}
-// 	// }
-
-// 	if (networkStatus === 4) return "Refetching!";
-// 	if (loading) return <LoadingDots />;
-// 	if (error) return `Error!: ${error}`;
-
-// 	return(
-// 		<>
-// 		<Button style={styles.button}>
-// 		{console.log(data)}
-// 			<CSVLink data={data['getCustomFormResultsbyId']}>
-// 				Download
-// 			</CSVLink>
-// 		</Button>
-// 		<DataTable data={data['getCustomFormResultsbyId']} />
-// 		</>) 	
-// }
-
- class CustomData extends React.Component {
+class CustomData extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
@@ -225,7 +183,7 @@ const HistoryMedical = ({ organization }) => (
 
 				cleaned_data['getCustomFormResultsbyId'][i][question] = answer
 			}
-			 delete cleaned_data['getCustomFormResultsbyId'][i]['fields']
+				delete cleaned_data['getCustomFormResultsbyId'][i]['fields']
 		}
 		console.log(cleaned_data)
 		this.setState({
@@ -255,9 +213,9 @@ const HistoryMedical = ({ organization }) => (
 			</>);
 		
 	}
-  }
+}
 
-export class ExportPage extends React.Component {
+class ExportPage extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
@@ -305,20 +263,9 @@ export class ExportPage extends React.Component {
 			<h1>Data Exporter</h1>
 			<Form
 				onSubmit={this.onSubmit}
-				initialValues={{ type: 'Demographics', organization: '' }}
+				initialValues={{ type: 'Demographics', organization: this.props.authInfo.organization }}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit} style={{backgroundColor: styles.theme.lighter_darkbg}} >
-				<div>
-					<label>Organizations</label>
-					<Field name="organization" component="select" >
-						<option ></option>
-						<option value="Puente">Puente</option>
-						<option value="One World Surgery">One World Surgery</option>
-						<option value="WOF">World Outreach Foundation</option>
-						<option value="Constanza Medical Mission">Constanza Medical Mission</option>
-						<option value="DR Missions">DR Missions & Good Samaritan</option>
-					</Field>
-				</div>
 				<div>
 					<label>Record Type</label>
 					<Field name="type" component="select">
@@ -387,4 +334,10 @@ export class ExportPage extends React.Component {
 	}
 }
 
-// export default withApollo(CustomData);
+const mapStateToProps = (state) => {
+	return { 
+		authInfo: getAuthInfo(state)
+	}
+};
+
+export default connect(mapStateToProps,null)(ExportPage);
