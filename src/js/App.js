@@ -21,7 +21,7 @@ import { styles } from '../styles';
 
 //Pages
 import HomePage from "./pages/Home";
-import { ExportPage } from "./pages/DataExport";
+import ExportPage from "./pages/DataExport";
 import FormCreator from './pages/FormCreator';
 import MapPage from './pages/Map';
 import PatientList from './pages/Patient/PatientList';
