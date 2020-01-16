@@ -14,7 +14,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Icon } from 'semantic-ui-react'
+import { Icon, Dropdown } from 'semantic-ui-react'
 import appStyle from './App.module.css';
 import { styles } from '../styles';
 
@@ -49,6 +49,17 @@ const useStyles = makeStyles(theme => ({
 		},
 	  },
 }));
+
+const trigger = (
+	<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+		<Typography variant="h6" className={useStyles.title} >
+			<div style={{color:"white"}}>
+				<Icon name='user circle' style={{margin:"0"}}/>
+				<h6>Me <Icon name="angle down"/></h6>
+			</div>
+		</Typography>
+	</Button>
+  )
 
 class App extends React.Component {
 	constructor(props){
@@ -132,11 +143,21 @@ class App extends React.Component {
 								</Button>
 							</Grid>
 							<Grid item>
-							<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}}>
+							<Dropdown item trigger={trigger} icon={null}>
+								<Dropdown.Menu direction="left">
+									<Dropdown.Header content='Account' />
+									<Dropdown.Item>Settings and privacy</Dropdown.Item>
+									<Dropdown.Header content='Need Help?' />
+									<Dropdown.Item>Open Puente website</Dropdown.Item>
+									<Dropdown.Divider />
+									<Dropdown.Item><Link to="/login" >Log out</Link></Dropdown.Item>
+								</Dropdown.Menu>
+							</Dropdown>
+							{/* <Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}}>
 								<Typography variant="h6" className={useStyles.title}>
 									<Link to="/login" style={{color:"white"}}>Log out <Icon name="sign-out alternate" /></Link>
 								</Typography>
-							</Button>
+							</Button> */}
 							</Grid>
 						</Grid>
 					</Toolbar>
