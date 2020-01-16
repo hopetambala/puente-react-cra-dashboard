@@ -148,7 +148,7 @@ class App extends React.Component {
 									<Dropdown.Header content='Account' />
 									<Dropdown.Item>Settings and privacy</Dropdown.Item>
 									<Dropdown.Header content='Need Help?' />
-									<Dropdown.Item>Open Puente website</Dropdown.Item>
+									<Dropdown.Item target="_blank" href={'https://puente-dr.com/'}>Open Puente website</Dropdown.Item>
 									<Dropdown.Divider />
 									<Dropdown.Item><Link to="/login" >Log out</Link></Dropdown.Item>
 								</Dropdown.Menu>
