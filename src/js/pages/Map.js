@@ -103,6 +103,7 @@ class MapPage extends React.Component {
 		console.log(hoveredObject, pointerX, pointerY)
 		var cardModStyle = {
 			left: "10px",
+			top:"150px",
 			maxHeight: 400, 
 			overflow: 'auto',
 			zIndex: 1, 

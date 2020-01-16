@@ -79,7 +79,7 @@ class App extends React.Component {
 		}
 		return (
 			<div className={appStyle.background}>
-				<AppBar position="static" style={{ background: '#333'}}>
+				<AppBar position="relative" style={{ background: '#333',zIndex:'100'}}>
 					<Toolbar >
 						<Grid>
 							<Grid item>
@@ -96,7 +96,7 @@ class App extends React.Component {
 								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
 										<Link to={`${this.props.routePath}/home`} style={{color:styles.theme.primaryAppColor}}>
-											<Icon name='home' />
+											<Icon name='home' style={{margin:"0"}}/>
 											<h6>Home</h6>
 										</Link>
 									</Typography>
@@ -106,7 +106,7 @@ class App extends React.Component {
 								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
 										<Link to={`${this.props.routePath}/patients`} style={{color:styles.theme.primaryAppColor}}>
-											<Icon name='book' />
+											<Icon name='book' style={{margin:"0"}}/>
 											<h6>Records List</h6>
 										</Link>
 									</Typography>
@@ -116,7 +116,7 @@ class App extends React.Component {
 								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
 										<Link to={`${this.props.routePath}/map`} style={{color:styles.theme.primaryAppColor}}>
-											<Icon name='map' />
+											<Icon name='map' style={{margin:"0"}}/>
 											<h6>Map</h6>
 										</Link>
 									</Typography>
@@ -126,7 +126,7 @@ class App extends React.Component {
 								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
 										<Link to={`${this.props.routePath}/formcreation`} style={{color:styles.theme.primaryAppColor}}>
-											<Icon name='clipboard list' />
+											<Icon name='clipboard list' style={{margin:"0"}}/>
 											<h6>Form Creator</h6>
 										</Link>
 									</Typography>
@@ -136,7 +136,7 @@ class App extends React.Component {
 								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
 										<Link to={`${this.props.routePath}/dataexport`} style={{color:styles.theme.primaryAppColor}}>
-											<Icon name='database' />
+											<Icon name='database' style={{margin:"0"}}/>
 											<h6>Data Exporter</h6>
 										</Link>
 									</Typography>
@@ -145,6 +145,8 @@ class App extends React.Component {
 							<Grid item>
 							<Dropdown item trigger={trigger} icon={null}>
 								<Dropdown.Menu direction="left">
+										{/* {this.props.authInfo.username} */}
+									<Dropdown.Item disabled className={useStyles.title} icon='user' text={this.props.authInfo.username} />
 									<Dropdown.Header content='Account' />
 									<Dropdown.Item>Settings and privacy</Dropdown.Item>
 									<Dropdown.Header content='Need Help?' />
@@ -164,14 +166,14 @@ class App extends React.Component {
 				</AppBar>
 
 				<>
-				<Route 
-					path={`${this.props.routePath}/home`} component={HomePage} 
-					render={(props) => <HomePage {...props} routePath="/app/home" />}
-				/>
-				<Route path={`${this.props.routePath}/dataexport`}  component={ExportPage} />
-				<Route path={`${this.props.routePath}/map`}  component={MapPage} />
-				<Route path={`${this.props.routePath}/patients`}  component={PatientList} />
-				<Route path={`${this.props.routePath}/formcreation`} component={FormCreator} />
+					<Route 
+						path={`${this.props.routePath}/home`} component={HomePage} 
+						render={(props) => <HomePage {...props} routePath="/app/home" />}
+					/>
+					<Route path={`${this.props.routePath}/dataexport`}  component={ExportPage} />
+					<Route path={`${this.props.routePath}/map`}  component={MapPage} />
+					<Route path={`${this.props.routePath}/patients`}  component={PatientList} />
+					<Route path={`${this.props.routePath}/formcreation`} component={FormCreator} />
 				</>
 			
 			</div>

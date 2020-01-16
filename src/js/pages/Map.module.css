@@ -12,7 +12,8 @@
 }
 
 .backbutton {
-    top: -50px; 
-    right: 100px;
+    position: absolute;
+    top: 0px; 
+    left: -40px !important;
 }
 
