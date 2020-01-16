@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // Redux
 import { connect } from "react-redux";
@@ -20,8 +19,6 @@ import LoadingDots from '../components/styles/LoadingDots'
 import mapStyles from './Map.module.css';
 import patientManagerStyle from '../components/map-manager/MapManager.module.css';
 import { cardStyle, styles } from '../../styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
@@ -103,7 +100,6 @@ class MapPage extends React.Component {
 		console.log(hoveredObject, pointerX, pointerY)
 		var cardModStyle = {
 			left: "10px",
-			top:"150px",
 			maxHeight: 400, 
 			overflow: 'auto',
 			zIndex: 1, 
@@ -218,11 +214,6 @@ class MapPage extends React.Component {
 						</DeckGL>
 						{ this._renderTooltip() }
 						<MapManagerControls className={mapStyles.mapcontrols}/>
-						<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}} className={mapStyles.backbutton}>
-							<Typography variant="h4" >
-								<Link to="/app/home" style={{color: styles.theme.primaryAppColor}}>Back</Link>
-							</Typography>
-						</Button>
 					</>
 					);
 				}}
