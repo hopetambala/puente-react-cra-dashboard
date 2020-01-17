@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/hopetambala/puente-react-dashboard/compare/v0.3.0...v0.3.1) (2020-01-17)
+
+
+### Features
+
+* can change variable form length! ([5f9978c](https://github.com/hopetambala/puente-react-dashboard/commit/5f9978c95447780b875e6810e2a3e583e3cc937d))
+* more user friendly navbar ([7d6bc8a](https://github.com/hopetambala/puente-react-dashboard/commit/7d6bc8ab96fb9c1fa41743d957c650178e625c3d))
+
+
+### Bug Fixes
+
+* **deps:** update dependency d3-scale to v3.2.1 ([d44f353](https://github.com/hopetambala/puente-react-dashboard/commit/d44f3531121f777d9ffa7d42944ec75784a892fd))
+* **deps:** update dependency deck.gl to v7.3.13 ([8780cbf](https://github.com/hopetambala/puente-react-dashboard/commit/8780cbf7abceb880cee41449a8fcf5a925cd6836))
+* **deps:** update dependency leaflet to v1.6.0 ([5bafb75](https://github.com/hopetambala/puente-react-dashboard/commit/5bafb7523be8093f0fd680a2eb5bf5e130e4a780))
+* **deps:** update dependency material-table to v1.55.0 ([b3f79cd](https://github.com/hopetambala/puente-react-dashboard/commit/b3f79cdbc8995aa65b2c8ecc1118480aed3198a4))
+* **deps:** update dependency react-map-gl to v5.2.0 ([d02a461](https://github.com/hopetambala/puente-react-dashboard/commit/d02a4617da8d9660dfa45cc957504cf3974e0e12))
+* **deps:** update dependency react-router-dom to v5.1.2 ([ce541a8](https://github.com/hopetambala/puente-react-dashboard/commit/ce541a84a0acd9208f70c88aa9c28ef83bdd4584))
+* **deps:** update dependency recharts to v1.8.5 ([f9f2999](https://github.com/hopetambala/puente-react-dashboard/commit/f9f29991dee1d1147efdf6eb855bbb12a74d2e78))
+* Open puente website opens puente-dr.com ([ad4afdb](https://github.com/hopetambala/puente-react-dashboard/commit/ad4afdb535a8bb0434cf19883dfb8649ba964784))
+* package.json & package-lock.json to reduce vulnerabilities ([b521665](https://github.com/hopetambala/puente-react-dashboard/commit/b5216651801fd064dd864c1a6d89c2b7024e4f81))
+* package.json & package-lock.json to reduce vulnerabilities ([2714493](https://github.com/hopetambala/puente-react-dashboard/commit/271449370e7838e5764b2a7751a05ffeb8d9ac53))
+
 ## [0.3.0](https://github.com/hopetambala/puente-react-dashboard/compare/v0.2.4...v0.3.0) (2020-01-03)
 
 
