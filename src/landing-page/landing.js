@@ -105,15 +105,15 @@ class DesktopContainer extends Component {
               className={landingStyle.menu}
               text
             >
-              <Container>
-                <Image className={landingStyle.logopic} src={logo} />
+              <Container style={{textAlign:'center !important'}}>
+                <Image verticalAlign='middle' className={landingStyle.logopic} src={logo} />
                 <Menu.Item position='left'>
                   <Typography variant="h4" >
                     <div style={{color:styles.theme.primaryAppColor}}>Puente</div>
                   </Typography>
                 </Menu.Item>
                 <Menu.Item position='right'>
-                  <Button as={Link} to='/login' inverted={fixed}>
+                  <Button style={{marginTop:0,marginBottom:0}} as={Link} to='/login' inverted={fixed}>
                     Log in
                   </Button>
                   {/* <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em', backgroundColor:"#FDD00C"}}>
