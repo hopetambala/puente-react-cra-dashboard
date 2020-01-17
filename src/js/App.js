@@ -14,9 +14,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Icon, Dropdown } from 'semantic-ui-react'
+import { Icon, Dropdown, Image } from 'semantic-ui-react'
 import appStyle from './App.module.css';
 import { styles } from '../styles';
+import landingStyle from '../landing-page/landing.module.css';
+
+import logo from '../assets/goldClear.png';
 
 
 //Pages
@@ -81,12 +84,18 @@ class App extends React.Component {
 			<div className={appStyle.background}>
 				<AppBar position="relative" style={{ background: '#333',zIndex:'100'}}>
 					<Toolbar >
-						<Grid>
+						<Grid container
+								direction="row"
+								justify="flex-start"
+								alignItems="center" >
 							<Grid item>
+								<Image verticalAlign='middle' className={landingStyle.logopic} src={logo}/>
+							</Grid>
+							{/* <Grid item>
 								<Typography variant="h6" className={useStyles.title}>
 									<div className={appStyle.signoutbutton}>Puente</div>
 								</Typography>
-							</Grid>
+							</Grid> */}
 						</Grid>
 						<Grid container
 								direction="row"
