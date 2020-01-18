@@ -37,7 +37,7 @@ class HomePage extends React.Component {
 				<Container style={styles.container}>
 					{/* <h1>Welcome {this.props.authInfo.username}</h1> */}
 					<h4 style={{color:"white"}}>Here's an automated analysis of data collected for {this.props.authInfo.organization}</h4>
-					<Dropdown style={{marginBottom:"1em"}}>
+					<Dropdown inline style={{marginBottom:"1em"}}>
 						<Dropdown.Toggle style={cardStyle.card} id="dropdown-basic">
 							{this.state.form}
 						</Dropdown.Toggle>
