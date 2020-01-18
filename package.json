@@ -62,6 +62,7 @@
     "build": "react-scripts build",
     "coverage": "react-scripts test --coverage && codecov --token='84aec1b2-dbab-453c-b321-49f9fbd650ab'",
     "test": "react-scripts test",
+    "test-run": "react-scripts test --watchAll=false",
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
     "start-local": "react-scripts start",
@@ -72,7 +73,7 @@
   },
   "pre-commit": {
     "run": [
-      "lint"
+      "lint","test-run"
     ]
   },
   "eslintConfig": {
