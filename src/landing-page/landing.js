@@ -34,26 +34,28 @@ const HomepageHeading = ({ mobile }) => (
       <Grid.Row columns={2}>
         <Grid.Column>
           <Header
-            as='h1'
+            as='h2'
             content='The Future of International Development'
             textAlign='left'
             style={{
-              fontSize: mobile ? '1.8em' : '3.6em',
+              fontSize: mobile ? '1.6em' : '3.2em',
               fontWeight: 'normal',
               marginBottom: 0,
-              marginTop: mobile ? '0.8em' : '1.6em',
+              marginTop: mobile ? '1em' : '2em',
+              color:"#3d4852 !important"
             }}
           />
           <Header
-            as='h4'
+            as='h2'
             content=" Use Puente's digital technology to collect and analyze data to empower communities to achieve more sustainable development."
             //inverted
             textAlign='left'
             style={{
-              fontSize: mobile ? '1.2em' : '1.4em',
+              fontSize: mobile ? '1.3em' : '1.5em',
               fontWeight: 'normal',
               marginTop: mobile ? '0.5em' : '1em',
-              color: mobile ? 'white' : 'black',
+              marginBottom: mobile ? '0.5em' : '1em',
+              color:"#3d4852"
             }}
           />
           <Button 
@@ -100,35 +102,30 @@ class DesktopContainer extends Component {
           onBottomPassedReverse={this.hideFixedMenu}
         >
           <Segment
-            //inverted
             textAlign='center'
             style={{ minHeight: 700, padding: '1em 0em' }}
             vertical
           >
             <Menu
               fixed={'top'}
-              pointing={!fixed}
-              secondary={!fixed}
+              secondary
               size='large'
               className={landingStyle.menu}
               text
-            >
-              <Container style={{textAlign:'center !important'}}>
+            > 
+              <Menu.Item>
                 <Image verticalAlign='middle' className={landingStyle.logopic} src={logo} />
-                <Menu.Item position='left'>
-                  <Typography variant="h4" >
-                    <div style={{color:styles.theme.primaryAppColor}}>Puente</div>
-                  </Typography>
-                </Menu.Item>
-                <Menu.Item position='right'>
-                  <Button style={{marginTop:0,marginBottom:0}} as={Link} to='/login' inverted={fixed}>
-                    Log in
-                  </Button>
-                  {/* <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em', backgroundColor:"#FDD00C"}}>
-                    Sign Up
-                  </Button> */}
-                </Menu.Item>
-              </Container>
+              </Menu.Item>
+              <Menu.Item position='left'>
+                <Typography variant="h4" >
+                  <div style={{color:styles.theme.primaryAppColor}}>Puente</div>
+                </Typography>
+              </Menu.Item>
+              <Menu.Item position='right'>
+                <Button style={{marginTop:0,marginBottom:0}} as={Link} to='/login' inverted={fixed}>
+                  Log in
+                </Button>
+              </Menu.Item>
             </Menu>
             <HomepageHeading />
           </Segment>
