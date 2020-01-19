@@ -41,7 +41,7 @@ const HomepageHeading = ({ mobile }) => (
               fontSize: mobile ? '1.6em' : '3.2em',
               fontWeight: 'normal',
               marginBottom: 0,
-              marginTop: mobile ? '1em' : '2em',
+              marginTop: mobile ? '1.5em' : '3em',
               color:"#3d4852 !important"
             }}
           />
@@ -69,7 +69,7 @@ const HomepageHeading = ({ mobile }) => (
             <Icon name='right arrow' />
           </Button>
         </Grid.Column>
-        <Grid.Column style={{alignItems: "center",marginTop: mobile ? '0.7em' : '1.4em'}}>
+        <Grid.Column style={{alignItems: "center",marginTop: mobile ? '1em' : '2em'}}>
           <DataDashboardLottie />
         </Grid.Column>
       </Grid.Row>
