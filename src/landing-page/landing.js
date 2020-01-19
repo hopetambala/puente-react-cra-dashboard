@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import {
   Button,
   Container,
-  // Grid,
+  Grid,
   Header,
   Icon,
   Image,
@@ -20,6 +20,7 @@ import {
 import landingStyle from './landing.module.css';
 import { styles } from '../styles';
 
+import DataDashboardLottie from "../js/components/lotties/landing_lottie";
 import logo from '../assets/goldClear.png';
 
 const getWidth = () => {
@@ -29,41 +30,48 @@ const getWidth = () => {
 }
 
 const HomepageHeading = ({ mobile }) => (
-  <Container style={{backgroundColor: "whitesmoke"}} >
-    <Header
-      as='h1'
-      content='Discover Insights to Drive Better Development'
-      textAlign='center'
-      style={{
-        fontSize: mobile ? '2em' : '4em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
-      }}
-    />
-    <Header
-      as='h2'
-      content="Puente's digital technology empowers people to achieve more sustainable community development."
-      //inverted
-      textAlign='center'
-      style={{
-        fontSize: mobile ? '1.5em' : '1.7em',
-        fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '2em',
-        color: mobile ? 'white' : 'black',
-      }}
-    />
-    <Button 
-      as={Link} 
-      to='/login' 
-      primary size='huge' 
-      style={{
-        backgroundColor:"#FDD00C"
-      }}>
-      Get Started
-      <Icon name='right arrow' />
-    </Button>
-  </Container>
+    <Grid textAlign='left' container style={{backgroundColor: "whitesmoke"}} >
+      <Grid.Row columns={2}>
+        <Grid.Column>
+          <Header
+            as='h1'
+            content='The Future of International Development'
+            textAlign='left'
+            style={{
+              fontSize: mobile ? '1.8em' : '3.6em',
+              fontWeight: 'normal',
+              marginBottom: 0,
+              marginTop: mobile ? '0.8em' : '1.6em',
+            }}
+          />
+          <Header
+            as='h4'
+            content=" Use Puente's digital technology to collect and analyze data to empower communities to achieve more sustainable development."
+            //inverted
+            textAlign='left'
+            style={{
+              fontSize: mobile ? '1.2em' : '1.4em',
+              fontWeight: 'normal',
+              marginTop: mobile ? '0.5em' : '1em',
+              color: mobile ? 'white' : 'black',
+            }}
+          />
+          <Button 
+            as={Link} 
+            to='/login' 
+            primary size='huge' 
+            style={{
+              backgroundColor:"#FDD00C"
+            }}>
+            Get Started
+            <Icon name='right arrow' />
+          </Button>
+        </Grid.Column>
+        <Grid.Column style={{alignItems: "center",marginTop: mobile ? '0.7em' : '1.4em'}}>
+          <DataDashboardLottie />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
 )
 
 HomepageHeading.propTypes = {
