@@ -42,11 +42,12 @@
     "react-final-form": "6.3.3",
     "react-leaflet": "1.9.1",
     "react-leaflet-markercluster": "1.1.8",
+    "react-lottie": "^1.2.3",
     "react-map-gl": "5.2.0",
     "react-pivottable": "0.9.0",
-    "react-scripts": "3.3.0",
     "react-redux": "7.1.3",
     "react-router-dom": "5.1.2",
+    "react-scripts": "3.3.0",
     "react-test-renderer": "16.12.0",
     "react-window": "1.8.5",
     "recharts": "1.8.5",
@@ -73,7 +74,8 @@
   },
   "pre-commit": {
     "run": [
-      "lint","test-run"
+      "lint",
+      "test-run"
     ]
   },
   "eslintConfig": {
