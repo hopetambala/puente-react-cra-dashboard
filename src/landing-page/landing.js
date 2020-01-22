@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
+import Typography from '@material-ui/core/Typography';
 import {
   Button,
   Container,
@@ -17,65 +18,62 @@ import {
 } from 'semantic-ui-react';
 
 import landingStyle from './landing.module.css';
+import { styles } from '../styles';
 
+import DataDashboardLottie from "../js/components/lotties/landing_lottie";
 import logo from '../assets/goldClear.png';
 
-// Heads up!
-// We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
-// For more advanced usage please check Responsive docs under the "Usage" section.
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
 
   return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
 }
 
-/* eslint-disable react/no-multi-comp */
-/* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
- * such things.
- */
 const HomepageHeading = ({ mobile }) => (
-  <Container style={{marginTop:"60px"}}>
-    <Grid verticalAlign='left'  columns={2}>
-    <Grid.Row >
-      <Grid.Column floated='left' width={8} >
-        <Header
-          as='h1'
-          content='Discover Insights to Drive Better Development.'
-          textAlign='left'
-          style={{
-            fontSize: mobile ? '2em' : '4em',
-            fontWeight: 'normal',
-            marginBottom: 0,
-            marginTop: mobile ? '1.5em' : '1em',
-          }}
-        />
-        <Header
-          as='p'
-          content="Puente's digital technology empowers people to achieve more sustainable community development."
-          //inverted
-          textAlign='left'
-          style={{
-            fontSize: mobile ? '1.5em' : '1.7em',
-            fontWeight: 'normal',
-            marginTop: mobile ? '0.5em' : '2em',
-            color: mobile ? 'white' : 'black',
-          }}
-        />
-        <Button 
-          as={Link} 
-          to='/login' 
-          primary size='huge' 
-          style={{
-            backgroundColor:"#FDD00C"
-          }}>
-          Get Started
-          <Icon name='right arrow' />
-        </Button>
-      </Grid.Column >
+    <Grid textAlign='left' container style={{backgroundColor: "whitesmoke"}} >
+      <Grid.Row columns={2}>
+        <Grid.Column>
+          <Header
+            as='h2'
+            content='The Future of International Development'
+            textAlign='left'
+            style={{
+              fontSize: mobile ? '1.6em' : '3.2em',
+              fontWeight: 'normal',
+              marginBottom: 0,
+              marginTop: mobile ? '1.5em' : '3em',
+              color:"#3d4852 !important"
+            }}
+          />
+          <Header
+            as='h2'
+            content=" Use Puente's digital technology to collect and analyze data to empower communities to achieve more sustainable development."
+            //inverted
+            textAlign='left'
+            style={{
+              fontSize: mobile ? '1.3em' : '1.5em',
+              fontWeight: 'normal',
+              marginTop: mobile ? '0.5em' : '1em',
+              marginBottom: mobile ? '0.5em' : '1em',
+              color:"#3d4852"
+            }}
+          />
+          <Button 
+            as={Link} 
+            to='/login' 
+            primary size='huge' 
+            style={{
+              backgroundColor:"#FDD00C"
+            }}>
+            Get Started
+            <Icon name='right arrow' />
+          </Button>
+        </Grid.Column>
+        <Grid.Column style={{alignItems: "center",marginTop: mobile ? '1em' : '2em'}}>
+          <DataDashboardLottie />
+        </Grid.Column>
       </Grid.Row>
     </Grid>
-    
-  </Container>
 )
 
 HomepageHeading.propTypes = {
@@ -97,40 +95,37 @@ class DesktopContainer extends Component {
     const { fixed } = this.state
 
     return (
-      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} style={{backgroundColor: "whitesmoke"}}>
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
           onBottomPassedReverse={this.hideFixedMenu}
         >
           <Segment
-            //inverted
             textAlign='center'
             style={{ minHeight: 700, padding: '1em 0em' }}
             vertical
           >
             <Menu
               fixed={'top'}
-              pointing={!fixed}
-              secondary={!fixed}
+              secondary
               size='large'
               className={landingStyle.menu}
               text
-            >
-              <Container>
-                <Image className={landingStyle.logopic} src={logo} />
-                <Menu.Item position='left'>
-                  <h1>Puente</h1>
-                </Menu.Item>
-                <Menu.Item position='right'>
-                  <Button as={Link} to='/login' inverted={fixed}>
-                    Log in
-                  </Button>
-                  <Button as='a' inverted={fixed} primary={!fixed} style={{ marginLeft: '0.5em', backgroundColor:"#FDD00C"}}>
-                    Sign Up
-                  </Button>
-                </Menu.Item>
-              </Container>
+            > 
+              <Menu.Item>
+                <Image verticalAlign='middle' className={landingStyle.logopic} src={logo} />
+              </Menu.Item>
+              <Menu.Item position='left'>
+                <Typography variant="h4" >
+                  <div style={{color:styles.theme.primaryAppColor}}>Puente</div>
+                </Typography>
+              </Menu.Item>
+              <Menu.Item position='right'>
+                <Button style={{marginTop:0,marginBottom:0}} as={Link} to='/login' inverted={fixed}>
+                  Log in
+                </Button>
+              </Menu.Item>
             </Menu>
             <HomepageHeading />
           </Segment>
@@ -219,8 +214,8 @@ MobileContainer.propTypes = {
 
 const ResponsiveContainer = ({ children }) => (
   <div>
-    <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
+    <DesktopContainer style={{backgroundColor: "white"}}>{children}</DesktopContainer>
+    <MobileContainer style={{backgroundColor: "white"}}>{children}</MobileContainer>
   </div>
 )
 

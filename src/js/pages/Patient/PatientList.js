@@ -1,13 +1,18 @@
 import React from 'react';
 
+//Redux
+import { connect } from "react-redux";
+import { getAuthInfo } from '../../reducers/login';
+
 import MaterialTable from 'material-table';
 import { withApollo } from 'react-apollo';
-import { all_records } from '../../queries/records';
+import { allRecordsByOrganization } from '../../queries/records';
 
 import Patient from '../Patient/Patient';
 
-import { styles } from "../../components/styles/Theme";
-
+import { styles } from "../../../styles";
+import LoadingDots  from '../../components/styles/LoadingDots';
+import { Container} from 'react-bootstrap';
 
 
 class PatientList extends React.Component{
@@ -21,11 +26,11 @@ class PatientList extends React.Component{
     }
 
     componentDidMount = async () => {
-		const {client} = this.props;
+		const {client, authInfo} = this.props;
 	
-		let res = await client.query({query: all_records});
+		let res = await client.query({query: allRecordsByOrganization, variables: {organization: authInfo.organization }});
 		await this.setState({
-			results: res.data.getPeople,
+			results: res.data.getPeopleByOrganization,
 			progress: 100
         })
         
@@ -36,10 +41,10 @@ class PatientList extends React.Component{
 
     render() {
         return(
-            <div style={styles.container}>
-                <h1>Patient List</h1>
+            <Container style={styles.container} >
+                <h1 style={styles.header1} >Patient List</h1>
                 { this.state.results === null &&
-                    <div>Loading</div>
+                    <LoadingDots /> 
                 }
                 {this.state.results && 
                 <MaterialTable
@@ -65,13 +70,19 @@ class PatientList extends React.Component{
                           </div>
                         )
                       }}
-                    //onRowClick={(event, rowData, togglePanel) => togglePanel()}
                 /> 
                 }
-            </div>
+            </Container>
         )
 
     }
 }
 
-export default withApollo(PatientList);
+// export default withApollo(PatientList);
+const mapStateToProps = (state) => {
+	return { 
+		authInfo: getAuthInfo(state)
+	}
+};
+
+export default connect(mapStateToProps,null)(withApollo(PatientList));

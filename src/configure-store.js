@@ -7,7 +7,7 @@ import rootReducer from './js/reducers/root-reducer';
 const configureStore = (initialState = {}) => {
 
   const store = createStore(rootReducer,
-    initialState,
+    initialState
   );
 
   return store;

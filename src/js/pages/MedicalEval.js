@@ -1,36 +1,26 @@
 import React from 'react';
-import { Row, Container, Col, ProgressBar } from 'react-bootstrap';
+import { Row, Container, Col } from 'react-bootstrap';
 import { withApollo } from 'react-apollo';
 import * as d3 from 'd3';
 import * as _ from "underscore";
 
-//Components
-import { BrushBarChronicComponent } from '../components/recharts/BrushBar_Chronic';
-import { StatsBox } from '../components/widget/StatsBox/StatsBox';
+// Components
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import LoadingDots from '../components/styles/LoadingDots';
+// import { BrushBarChronicComponent } from '../components/recharts/BrushBar_Chronic';
+
+// Styles
+import { styles, cardStyle } from "../../styles";
+import labelStyle from "../components/map-manager/Label.module.css";
+
 
 //Charts
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
 
 //Query
 import { allEvalMedicalsByOrganization } from '../queries/records';
-
-const styles = {
-	container: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		alignContent: 'flex-start',
-		
-	},
-	row: {
-		alignItems: 'flex-center',
-		justifyContent: 'center',
-		flex:1,
-		marginBottom:0,
-		paddingBottom:0
-	}
-}
-
 
 class MedicalEvalAnalytics extends React.Component {
 	constructor(props){
@@ -184,38 +174,41 @@ class MedicalEvalAnalytics extends React.Component {
 		return (
 			<Container style={styles.container}>
 			{ this.state.progress < 95 && this.state &&
-				<ProgressBar animated now={this.state.progress} />
+				<LoadingDots />
 			}
 			{ this.state.progress === 100 && this.state && this.state.medicalFollowupcounts && this.state.allCounts &&
 			<>
 				<Row style={styles.row}>
 					<Col>
-						<StatsBox
-							Cardsubtitle={"All Evaluations"}
-							Cardtitle={" All Evaluations Completed: " + this.state.allCounts}
-							Cardtext={""}
-							height="150px"
-						>
-							{/*<Pie180ChartComponent 
-								data={this.state.sexes}
-								valueKey="value" 
-							/>*/}
-						</StatsBox>
-						<StatsBox
-							Cardsubtitle={"Patients"}
-							Cardtitle={"Patients Identified: " + this.state.allUniqueCounts}
-							Cardtext={""}
-							height="150px"
-						>
-							{/*<Pie180ChartComponent 
-								data={this.state.sexes}
-								valueKey="value" 
-							/>*/}
-						</StatsBox>
+				
+						<Card style={cardStyle.card}>
+						<CardContent>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+								metrics on all evaluations
+								</Typography>
+							</span>
+							<Typography variant="h5" component="h5">
+								All Evaluations Completed: {this.state.allCounts}
+							</Typography>
+						</CardContent>
+						</Card>
+						<Card style={cardStyle.card}>
+						<CardContent>
+							<span className={labelStyle.tag} >
+								<Typography  variant="h6" component="h6"  gutterBottom>
+								metrics on all patients
+								</Typography>
+							</span>
+							<Typography variant="h5" component="h5">
+								Patients Identified: {this.state.allUniqueCounts}
+							</Typography>
+						</CardContent>
+						</Card>
 							
 					</Col>
 					<Col>
-						<StatsBox
+						{/* <StatsBox
 							Cardsubtitle={"All Evaluations: Doctor Visits"}
 							Cardtitle={"Seen Doctor Regarding Issue: " + this.state.view_seendoctorcounts.Yes}
 							Cardtext={""}
@@ -224,69 +217,108 @@ class MedicalEvalAnalytics extends React.Component {
 							<Pie180ChartComponent 
 							data={this.state.seendoctorcounts}
 							valueKey="value" />
-						</StatsBox>
+						</StatsBox> */}
+						<Card style={cardStyle.card}>
+							<CardContent>
+								<span className={labelStyle.tag} >
+									<Typography  variant="h6" component="h6"  gutterBottom>
+										metrics on doctor visits
+									</Typography>
+								</span>
+								<Typography variant="h4" component="h4">
+									Seen Doctor Regarding Issue:: {this.state.view_seendoctorcounts.Yes}
+								</Typography>
+								<Pie180ChartComponent 
+								data={this.state.seendoctorcounts}
+								valueKey="value" />
+							</CardContent>
+						</Card>
 					</Col>
 					<Col>
-						<StatsBox
-							Cardsubtitle={"All Evaluations: Parts of Body"}
-							Cardtitle={"Biggest Problem: " + this.state.partofbodycounts[0].key}
-							Cardtext={this.state.partofbodycounts[0].value}
-							height="300px"
-						>
-							<Pie180ChartComponent 
-							data={this.state.partofbodycounts}
-							valueKey="value" />
-						</StatsBox>
+						<Card style={cardStyle.card}>
+							<CardContent>
+								<span className={labelStyle.tag} >
+									<Typography  variant="h6" component="h6"  gutterBottom>
+										metrics on problem areas
+									</Typography>
+								</span>
+								<Typography variant="h4" component="h4">
+									Biggest Problem: {this.state.partofbodycounts[0].key}
+								</Typography>
+								<Typography variant="h6" component="h6">
+									{this.state.partofbodycounts[0].value}
+								</Typography>
+								<Pie180ChartComponent 
+									data={this.state.partofbodycounts}
+									valueKey="value" 
+								/>
+							</CardContent>
+						</Card>
 					</Col>
 				</Row>
 				<Row style={styles.row}>
 					<Col>
-						<StatsBox
-							Cardsubtitle={"All Evaluations: Assessments"}
-							Cardtitle={"Medical Follow-Up Requested : " + this.state.view_medicalFollowupcounts.Yes}
-							Cardtext={""}
-							height="300px"
-						>
-							<Pie180ChartComponent 
-							data={this.state.medicalFollowupcounts}
-							valueKey="value" />
-						</StatsBox>
+						<Card style={cardStyle.card}>
+							<CardContent>
+								<span className={labelStyle.tag} >
+									<Typography  variant="h6" component="h6"  gutterBottom>
+										metrics on assessments
+									</Typography>
+								</span>
+								<Typography variant="h4" component="h4">
+									Medical Follow-Up Requested: {this.state.view_medicalFollowupcounts.Yes}
+								</Typography>
+								<Pie180ChartComponent 
+								data={this.state.medicalFollowupcounts}
+								valueKey="value" />
+							</CardContent>
+						</Card>
 					</Col>
 					<Col>
-						<StatsBox
-							Cardsubtitle={"All Evaluations: Assessments"}
-							Cardtitle={"Surgical Follow-Up Requested : " + this.state.view_surgicalFollowupcounts.Yes}
-							Cardtext={""}
-							height="300px"
-						>
-							<Pie180ChartComponent 
-							data={this.state.surgicalFollowupcounts}
-							valueKey="value" />
-						</StatsBox>
+						<Card style={cardStyle.card}>
+							<CardContent>
+								<span className={labelStyle.tag} >
+									<Typography  variant="h6" component="h6"  gutterBottom>
+										metrics on assessments
+									</Typography>
+								</span>
+								<Typography variant="h4" component="h4">
+									Surgical Follow-Up Requested: {this.state.view_surgicalFollowupcounts.Yes}
+								</Typography>
+								<Pie180ChartComponent 
+								data={this.state.surgicalFollowupcounts}
+								valueKey="value" />
+							</CardContent>
+						</Card>
 					</Col>
 					<Col>
-						<StatsBox
-							Cardsubtitle={"All Evaluations: Assessments"}
-							Cardtitle={"Immediate Follow-Up Requested : " + this.state.view_immediateFollowupcounts.Yes}
-							Cardtext={""}
-							height="300px"
-						>
-							<Pie180ChartComponent 
-							data={this.state.immediateFollowupcounts}
-							valueKey="value" />
-						</StatsBox>
+						<Card style={cardStyle.card}>
+							<CardContent>
+								<span className={labelStyle.tag} >
+									<Typography  variant="h6" component="h6"  gutterBottom>
+										metrics on assessments
+									</Typography>
+								</span>
+								<Typography variant="h4" component="h4">
+									Surgical Follow-Up Requested: {this.state.view_immediateFollowupcounts.Yes}
+								</Typography>
+								<Pie180ChartComponent 
+								data={this.state.immediateFollowupcounts}
+								valueKey="value" />
+							</CardContent>
+						</Card>
 					</Col>
 				</Row>
 			</>
 				
 			}
-				<Row style={styles.row}>
+				{/* <Row style={styles.row}>
 					{ this.state.data !== null &&
 					<Col>
 						<BrushBarChronicComponent data={this.state.data} />
 					</Col>
 					}
-				</Row>
+				</Row> */}
 			</Container>		
 		);
 	}
