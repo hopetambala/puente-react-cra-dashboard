@@ -22,6 +22,8 @@ import { styles } from '../styles';
 
 import DataDashboardLottie from "../js/components/lotties/landing_lottie";
 import logo from '../assets/goldClear.png';
+import appGif from '../assets/landing/mockAppCropped.gif';
+import dashGif from '../assets/landing/mockDashCropped.gif';
 
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
@@ -30,7 +32,7 @@ const getWidth = () => {
 }
 
 const HomepageHeading = ({ mobile }) => (
-    <Grid textAlign='left' container style={{backgroundColor: "whitesmoke"}} >
+    <Grid textAlign='left' container style={{backgroundColor: "whitesmoke",marginBottom:"70px"}} >
       <Grid.Row columns={2}>
         <Grid.Column>
           <Header
@@ -58,22 +60,115 @@ const HomepageHeading = ({ mobile }) => (
               color:"#3d4852"
             }}
           />
-          <Button 
-            as={Link} 
-            to='/login' 
-            primary size='huge' 
-            style={{
-              backgroundColor:"#FDD00C"
-            }}>
-            Get Started
-            <Icon name='right arrow' />
-          </Button>
         </Grid.Column>
         <Grid.Column style={{alignItems: "center",marginTop: mobile ? '1em' : '2em'}}>
           <DataDashboardLottie />
         </Grid.Column>
       </Grid.Row>
     </Grid>
+)
+
+const DataCollectionSegment = ({ mobile }) => (
+  <Grid textAlign='left' style={{backgroundColor: "#F4F1F4",padding:50}} >
+    <Grid.Row columns={2} >
+    <Grid.Column style={{alignItems: "center",marginTop: mobile ? '1em' : '2em', borderRadius:"10px"}}>
+          <Image rounded centered src={appGif} />
+      </Grid.Column>
+      <Grid.Column>
+        <Header
+          as='h2'
+          content='Collect Data Smarter'
+          textAlign='left'
+          style={{
+            fontSize: mobile ? '1.6em' : '3.2em',
+            fontWeight: 'normal',
+            marginBottom: 0,
+            marginTop: mobile ? '1.5em' : '3em',
+            color:"#3d4852 !important"
+          }}
+        />
+        <Header
+          as='h2'
+          content="Use standardized mobile data collection application. Collect data on the field, track data over time, incorporate photos and collect in multiple languages."
+          //inverted
+          textAlign='left'
+          style={{
+            fontSize: mobile ? '1.3em' : '1.5em',
+            fontWeight: 'normal',
+            marginTop: mobile ? '0.5em' : '1em',
+            marginBottom: mobile ? '0.5em' : '1em',
+            color:"#3d4852"
+          }}
+        />
+      </Grid.Column> 
+    </Grid.Row>
+  </Grid>
+)
+
+const DashboardSegment = ({ mobile }) => (
+  <Grid textAlign='left' style={{backgroundColor: "#F4F1F4", padding:50}} >
+    <Grid.Row columns={2} >
+      <Grid.Column >
+        <Header
+          as='h2'
+          content='Visualize Insights Faster'
+          textAlign='left'
+          style={{
+            fontSize: mobile ? '1.6em' : '3.2em',
+            fontWeight: 'normal',
+            marginBottom: 0,
+            marginTop: mobile ? '1.5em' : '3em',
+            color:"#3d4852 !important"
+          }}
+        />
+        <Header
+          as='h2'
+          content="Visualize community health insights quicker, create custom forms for monitoring and evaluation, geolocate previously collected records, and download everything collected on the field."
+          //inverted
+          textAlign='left'
+          style={{
+            fontSize: mobile ? '1.3em' : '1.5em',
+            fontWeight: 'normal',
+            marginTop: mobile ? '0.5em' : '1em',
+            marginBottom: mobile ? '0.5em' : '1em',
+            color:"#3d4852"
+          }}
+        />
+      </Grid.Column>
+      <Grid.Column style={{alignItems: "center",marginTop: mobile ? '1em' : '2em', borderRadius:"10px"}}>
+          <Image rounded centered src={dashGif} />
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
+)
+
+const HomepageEnding = ({ mobile }) => (
+  <Grid textAlign='center' container style={{backgroundColor: "whitesmoke",marginBottom:"70px"}} >
+    <Grid.Row >
+      <Grid.Column>
+        <Header
+          as='h2'
+          content='Ready to empower more communities?'
+          textAlign='center'
+          style={{
+            fontSize: mobile ? '1.6em' : '3.2em',
+            fontWeight: 'normal',
+            marginBottom: 0,
+            marginTop: mobile ? '.75em' : '1.5em',
+            color:"#3d4852 !important"
+          }}
+        />
+   
+        <Button 
+          outline
+          href='https://puente-dr.com/"' 
+          size='huge' 
+          >
+          Get Started
+        </Button>
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
 )
 
 HomepageHeading.propTypes = {
@@ -103,13 +198,13 @@ class DesktopContainer extends Component {
         >
           <Segment
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            style={{ minHeight: 700, padding: '1em 1em' }}
             vertical
           >
             <Menu
               fixed={'top'}
               secondary
-              size='large'
+              size='medium'
               className={landingStyle.menu}
               text
             > 
@@ -128,6 +223,9 @@ class DesktopContainer extends Component {
               </Menu.Item>
             </Menu>
             <HomepageHeading />
+            <DataCollectionSegment />
+            <DashboardSegment />
+            <HomepageEnding />
           </Segment>
         </Visibility>
 
