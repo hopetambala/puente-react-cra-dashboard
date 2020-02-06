@@ -14,6 +14,7 @@ import { ApolloProvider} from "react-apollo";
 
 //Components and Pages
 import App from './js/App';
+import CacheBuster from './cacheBuster';
 import HomepageLayout  from './landing-page/landing';
 import LoginForm from './js/pages/Login';
 
@@ -33,15 +34,26 @@ const store = configureStore();
 
 
 ReactDOM.render(
-    <Router>
-        <Provider store={store}>
-            <Route component={HomepageLayout} exact path="/" />
-            <ApolloProvider client={client}>
-                <Route exactly path='/app' render={(props) => <App {...props} routePath="/app" />} />
-            </ApolloProvider>
-            <Route component={LoginForm} path="/login" />
-        </Provider>
-    </Router>
+    <CacheBuster>
+        {({ loading, isLatestVersion, refreshCacheAndReload }) => {
+            if (loading) return null;
+            if (!loading && !isLatestVersion) {
+                refreshCacheAndReload();
+            }
+
+            return (
+                <Router>
+                    <Provider store={store}>
+                        <Route component={HomepageLayout} exact path="/" />
+                        <ApolloProvider client={client}>
+                            <Route exactly path='/app' render={(props) => <App {...props} routePath="/app" />} />
+                        </ApolloProvider>
+                        <Route component={LoginForm} path="/login" />
+                    </Provider>
+                </Router>
+            );
+        }}
+    </CacheBuster>
     ,app
 );
 
