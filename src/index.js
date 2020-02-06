@@ -20,7 +20,7 @@ import LoginForm from './js/pages/Login';
 //REQUIRED STYLES
 import './index.css';
 import "bootstrap/dist/css/bootstrap.css";
-import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.min.css';
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 
 const app =  document.getElementById('root')
