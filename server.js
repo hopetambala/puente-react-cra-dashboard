@@ -15,7 +15,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  var options = {
+    root: 'build',
+    headers: {
+      "/**": { 
+        "Cache-Control": "no-store, no-cache" 
+      } 
+    }
+  }
+  res.sendFile(path.join(__dirname, options, 'index.html'));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

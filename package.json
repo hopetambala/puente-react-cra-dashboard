@@ -60,7 +60,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build": "react-scripts build",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "coverage": "react-scripts test --coverage && codecov --token='84aec1b2-dbab-453c-b321-49f9fbd650ab'",
     "test": "react-scripts test",
     "test-run": "react-scripts test --watchAll=false",
