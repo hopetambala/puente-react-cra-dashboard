@@ -98,7 +98,7 @@ class App extends React.Component {
 								justify="flex-end"
 								alignItems="center" >
 							<Grid item>
-								<Button as={ Link } to={`${this.props.routePath}/home`} style={{color:styles.theme.primaryAppColor}}style={{backgroundColor: styles.theme.light_darkbg}}>
+								<Button as={ Link } to={`${this.props.routePath}/home`} style={{backgroundColor: styles.theme.light_darkbg, color:styles.theme.primaryAppColor}}>
 									<Typography variant="h6" className={useStyles.title} >
 										<div style={{color:styles.theme.primaryAppColor}}>
 											<Icon  name='home' style={{margin:"0"}}/>
