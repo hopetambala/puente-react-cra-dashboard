@@ -1,11 +1,10 @@
 import React from 'react';
 import { Row, Container, Col } from 'react-bootstrap';
-import { Query, withApollo } from 'react-apollo';
+import {  withApollo } from 'react-apollo';
 import * as d3 from 'd3';
 import { removeBlanksByKey, get_age, sum } from '../providers/Functions';
 
 //Components
-import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -19,7 +18,7 @@ import { connect } from "react-redux";
 import { getAuthInfo } from '../reducers/login';
 
 //Charts 
-import { LineChartGeneralComponent } from '../components/recharts/LineChart_General';
+// import { LineChartGeneralComponent } from '../components/recharts/LineChart_General';
 import { Pie180ChartComponent } from '../components/recharts/PieChart';
 
 //Query
@@ -273,7 +272,7 @@ class DemographicsAnalytics extends React.Component {
 					</Col>
 				</Row>	
 			}
-				{this.state.organization === "All" && 
+				{/* {this.state.organization === "All" && 
 				<Row style={styles.rows}>
 					<Query query={all_records}>
 					{({ data, loading, error }) => {
@@ -288,7 +287,7 @@ class DemographicsAnalytics extends React.Component {
 						);
 					}}
 					</Query>
-				</Row>}
+				</Row>} */}
 			</Container>		
 		);
 	}
