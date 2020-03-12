@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://github.com/hopetambala/puente-react-dashboard/compare/v0.3.1...v0.3.3) (2020-02-06)
+
+
+### Features
+
+* add react-lottie animation to landing page ([b99569f](https://github.com/hopetambala/puente-react-dashboard/commit/b99569fd196d8afadf229dc31aef943bf9cbf95f))
+
+
+### Bug Fixes
+
+* add organization info to patientlist ([77d4e97](https://github.com/hopetambala/puente-react-dashboard/commit/77d4e9770c7ff96fed43ac26747f4fa51d6b730e))
+* **deps:** update dependency node-sass to v4.13.1 ([b495d69](https://github.com/hopetambala/puente-react-dashboard/commit/b495d6981e7279351fbcaa63f2277e265c757ed0))
+* **deps:** update dependency react-map-gl to v5.2.1 ([75aa724](https://github.com/hopetambala/puente-react-dashboard/commit/75aa724908110944075e23f7267ce4c0b6aeb8cb))
+* **deps:** update dependency styled-components to v5 ([125b565](https://github.com/hopetambala/puente-react-dashboard/commit/125b5654bc76a1ada3224ce31f1823e006ed6089))
+
+### [0.3.2](https://github.com/hopetambala/puente-react-dashboard/compare/v0.3.1...v0.3.2) (2020-02-06)
+
+
+### Features
+
+* add react-lottie animation to landing page ([b99569f](https://github.com/hopetambala/puente-react-dashboard/commit/b99569fd196d8afadf229dc31aef943bf9cbf95f))
+
+
+### Bug Fixes
+
+* add organization info to patientlist ([77d4e97](https://github.com/hopetambala/puente-react-dashboard/commit/77d4e9770c7ff96fed43ac26747f4fa51d6b730e))
+* **deps:** update dependency node-sass to v4.13.1 ([b495d69](https://github.com/hopetambala/puente-react-dashboard/commit/b495d6981e7279351fbcaa63f2277e265c757ed0))
+* **deps:** update dependency react-map-gl to v5.2.1 ([75aa724](https://github.com/hopetambala/puente-react-dashboard/commit/75aa724908110944075e23f7267ce4c0b6aeb8cb))
+* **deps:** update dependency styled-components to v5 ([125b565](https://github.com/hopetambala/puente-react-dashboard/commit/125b5654bc76a1ada3224ce31f1823e006ed6089))
+
 ### [0.3.1](https://github.com/hopetambala/puente-react-dashboard/compare/v0.3.0...v0.3.1) (2020-01-17)
 
 

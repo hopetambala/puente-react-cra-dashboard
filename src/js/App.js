@@ -13,8 +13,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { Icon, Dropdown, Image } from 'semantic-ui-react'
+// import Button from '@material-ui/core/Button';
+import { Icon, Dropdown, Image, Button } from 'semantic-ui-react'
 import appStyle from './App.module.css';
 import { styles } from '../styles';
 import landingStyle from '../landing-page/landing.module.css';
@@ -91,63 +91,59 @@ class App extends React.Component {
 							<Grid item>
 								<Image verticalAlign='middle' className={landingStyle.logopic} src={logo}/>
 							</Grid>
-							{/* <Grid item>
-								<Typography variant="h6" className={useStyles.title}>
-									<div className={appStyle.signoutbutton}>Puente</div>
-								</Typography>
-							</Grid> */}
+						
 						</Grid>
 						<Grid container
 								direction="row"
 								justify="flex-end"
 								alignItems="center" >
 							<Grid item>
-								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+								<Button as={ Link } to={`${this.props.routePath}/home`} style={{backgroundColor: styles.theme.light_darkbg, color:styles.theme.primaryAppColor}}>
 									<Typography variant="h6" className={useStyles.title} >
-										<Link to={`${this.props.routePath}/home`} style={{color:styles.theme.primaryAppColor}}>
-											<Icon name='home' style={{margin:"0"}}/>
+										<div style={{color:styles.theme.primaryAppColor}}>
+											<Icon  name='home' style={{margin:"0"}}/>
 											<h6>Home</h6>
-										</Link>
+										</div>
 									</Typography>
 								</Button>
 							</Grid>
 							<Grid item>
-								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+								<Button as={ Link } to={`${this.props.routePath}/patients`} style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
-										<Link to={`${this.props.routePath}/patients`} style={{color:styles.theme.primaryAppColor}}>
+										<div style={{color:styles.theme.primaryAppColor}}>
 											<Icon name='book' style={{margin:"0"}}/>
 											<h6>Records List</h6>
-										</Link>
+										</div>
 									</Typography>
 								</Button>
 							</Grid>
 							<Grid item>
-								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+								<Button as={ Link } to={`${this.props.routePath}/map`} style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
-										<Link to={`${this.props.routePath}/map`} style={{color:styles.theme.primaryAppColor}}>
+										<div style={{color:styles.theme.primaryAppColor}}>
 											<Icon name='map' style={{margin:"0"}}/>
 											<h6>Map</h6>
-										</Link>
+										</div>
 									</Typography>
 								</Button>
 							</Grid>
 							<Grid item>
-								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+								<Button as={ Link } to={`${this.props.routePath}/formcreation`} style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
-										<Link to={`${this.props.routePath}/formcreation`} style={{color:styles.theme.primaryAppColor}}>
+										<div style={{color:styles.theme.primaryAppColor}}>
 											<Icon name='clipboard list' style={{margin:"0"}}/>
 											<h6>Form Creator</h6>
-										</Link>
+										</div>
 									</Typography>
 								</Button>
 							</Grid>
 							<Grid item>
-								<Button  style={{backgroundColor: styles.theme.light_darkbg}}>
+								<Button as={ Link } to={`${this.props.routePath}/dataexport`} style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
-										<Link to={`${this.props.routePath}/dataexport`} style={{color:styles.theme.primaryAppColor}}>
+										<div style={{color:styles.theme.primaryAppColor}}>
 											<Icon name='database' style={{margin:"0"}}/>
 											<h6>Data Exporter</h6>
-										</Link>
+										</div>
 									</Typography>
 								</Button>
 							</Grid>

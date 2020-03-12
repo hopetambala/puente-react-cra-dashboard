@@ -236,19 +236,19 @@ class ExportPage extends React.Component {
 	render() {
 		let aThing;
 		if (this.state.type === "Demographics") {
-			aThing = <Dem organization={this.state.org} />;
+			aThing = <Dem organization={this.props.authInfo.organization} />;
 		} 
 		else if (this.state.type === "Medical Evaluation") {
-			aThing = <EvalMedical organization={this.state.org} />;
+			aThing = <EvalMedical organization={this.props.authInfo.organization} />;
 		}
 		else if (this.state.type === "Environmental Health") {
-			aThing = <EnvHealth organization={this.state.org} />;
+			aThing = <EnvHealth organization={this.props.authInfo.organization} />;
 		}
 		else if (this.state.type === "Vitals") {
-			aThing = <Vitals organization={this.state.org} />;
+			aThing = <Vitals organization={this.props.authInfo.organization} />;
 		}
 		else if (this.state.type === "Medical History") {
-			aThing = <HistoryMedical organization={this.state.org} />;
+			aThing = <HistoryMedical organization={this.props.authInfo.organization} />;
 		}
 		else if (this.state.type === "Custom") {
 			const CustomWithApollo = withApollo(CustomData);

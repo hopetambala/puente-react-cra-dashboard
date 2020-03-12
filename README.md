@@ -9,12 +9,16 @@
 
 Puente React is a web dashboard used to visualize data collected on the ground in developing countries. It's still an early prototype and it's still under development.  
 
-For more details, please see our [blog website](https://puente-dr.com) to see how we build technology to equip the resource-challenged.
+For more details, please see our [website](https://puente-dr.com) to see how we build technology to equip the resource-challenged.
 
 For a live demo, please check out [here](https://puente-dashboard.herokuapp.com/) 
 Use the credentials 
 Username: Test
 Password: test
+
+[AWS S3 URL](http://dashboard-react-cra-clientside.s3-website.us-east-1.amazonaws.com/)
+
+[Heroku Endpoint (using the server.js)](https://puente-dashboard.herokuapp.com/)
 
 ![screencap](public/tour_high.gif)
 
@@ -40,8 +44,29 @@ Here are some quick commands to get started:
 - `npm build`: Build a production optimized bundle of the app.
 - `npm lint`: Run the ESLinter.
 
-# Known Issues
-- Performance with Graphql
+### AWS + s3
+
+Get this React App working on AWS by [installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html#cliv2-mac-install-cmd).
+
+#### Deploy in your terminal
+
+Create a s3 bucket
+```
+$ aws s3 mb s3://your-bucket-name
+```
+
+List to see your s3 buckets.
+```
+$ aws s3 ls
+```
+
+Build and deploy your app!
+```
+$ npm run build && aws s3 sync build/ s3://your-bucket-name
+```
+
+#### Permissions and Settings
+There's a decent amount that'll be necessary to get this publically consumed on the AWS website itself. Follow [this](https://www.newline.co/fullstack-react/articles/deploying-a-react-app-to-s3/) guide to get those hammered out.
 
 ## Resources
 

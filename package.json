@@ -1,6 +1,6 @@
 {
   "name": "puente-react",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "1.1.8",
@@ -59,14 +59,16 @@
     "underscore": "1.9.2"
   },
   "scripts": {
-    "start": "node server.js",
-    "build": "react-scripts build",
+    "generate-build-version": "node generate-build-version",
+    "prebuild": "npm run generate-build-version",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "coverage": "react-scripts test --coverage && codecov --token='84aec1b2-dbab-453c-b321-49f9fbd650ab'",
     "test": "react-scripts test",
     "test-run": "react-scripts test --watchAll=false",
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
     "start-local": "react-scripts start",
+    "start": "node server.js",
     "reinstall": "rm package-lock.json && rm -rf node_modules/ && npm install",
     "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done",
     "release": "standard-version",
