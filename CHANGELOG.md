@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.5](https://github.com/hopetambala/puente-react-dashboard/compare/v0.3.4...v0.3.5) (2020-05-28)
+
+### [0.3.4](https://github.com/hopetambala/puente-react-dashboard/compare/v0.3.3...v0.3.4) (2020-03-14)
+
+
+### Features
+
+* semantic variation and cache busting! ([2fc3b5e](https://github.com/hopetambala/puente-react-dashboard/commit/2fc3b5edcd3fa9644b4d83f16d01b631fb2a4581))
+
+
+### Bug Fixes
+
+* ability to click entire icon/text (not just the words) ([1ade8f8](https://github.com/hopetambala/puente-react-dashboard/commit/1ade8f824db59f9323a4dd2c267b3d943cf8ee46))
+* use redux auth to retrieve organization information ([b7d6507](https://github.com/hopetambala/puente-react-dashboard/commit/b7d650703fe11bcdf8526d761b1f249fda20058a))
+
 ### [0.3.3](https://github.com/hopetambala/puente-react-dashboard/compare/v0.3.1...v0.3.3) (2020-02-06)
 
 
