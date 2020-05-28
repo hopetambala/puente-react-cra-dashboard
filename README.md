@@ -36,10 +36,11 @@ This project is built with [ReactJS](https://reactjs.org), [Redux](https://redux
 
 This project is a bootstrapped using [create-react-app](https://github.com/facebook/create-react-app).
 
-Here are some quick commands to get started:
+Here are some quick npm commands to get started:
 
 - `npm install`: Install Node dependencies
-- `npm start`: Start the hot reloading development server.
+- `npm start-local`: Start the hot reloading development server.
+- `npm start`: Start the Node + Express server.
 - `npm test`: Run the test suit and watch for changes.
 - `npm build`: Build a production optimized bundle of the app.
 - `npm lint`: Run the ESLinter.

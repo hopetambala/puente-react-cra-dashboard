@@ -6,6 +6,7 @@ export const all_records = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
@@ -36,6 +37,7 @@ export const allEvalMedicals = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
@@ -85,6 +87,7 @@ export const allEnvs = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
@@ -183,6 +186,7 @@ export const allRecordsByOrganization = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
@@ -212,6 +216,7 @@ export const allVitalsByOrganization = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
@@ -253,6 +258,7 @@ export const allEnvsByOrganization = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
@@ -301,6 +307,7 @@ export const allEvalMedicalsByOrganization = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
@@ -351,6 +358,7 @@ export const allHistoryMedicalsByOrganization = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
@@ -483,6 +491,7 @@ export const allCustomResultsByFormId = gql`
             objectId
             fname
             lname
+            relationship
             nickname
             sex
             dob
