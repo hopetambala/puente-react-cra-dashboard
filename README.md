@@ -18,8 +18,6 @@ Password: test
 
 [AWS S3 URL](http://dashboard-react-cra-clientside.s3-website.us-east-1.amazonaws.com/)
 
-[Heroku Endpoint (using the server.js)](https://puente-dashboard.herokuapp.com/)
-
 ![screencap](public/tour_high.gif)
 
 ## Project Layout
