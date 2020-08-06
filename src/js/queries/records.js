@@ -477,8 +477,12 @@ export const allCustomResults = gql`
         getCustomFormResults{
             objectId
             title
-            createdAt
             surveyingUser
+            surveyingUserCustomForm
+            surveyingOrganization
+            surveyingOrganizationCustomForm
+            createdAt
+            createdAtCustomForm
             fields {
                 title
                 answer
@@ -509,7 +513,11 @@ export const allCustomResultsByFormId = gql`
             clinicProvider
             cedulaNumber
             surveyingUser
+            surveyingUserCustomForm
             surveyingOrganization
+            surveyingOrganizationCustomForm
+            createdAt
+            createdAtCustomForm
             latitude
             longitude
             title
