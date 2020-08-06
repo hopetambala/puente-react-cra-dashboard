@@ -477,6 +477,8 @@ export const allCustomResults = gql`
         getCustomFormResults{
             objectId
             title
+            createdAt
+            surveyingUser
             fields {
                 title
                 answer
