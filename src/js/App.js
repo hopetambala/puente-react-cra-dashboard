@@ -77,9 +77,9 @@ class App extends React.Component {
 	handleHideClick = () => this.setState({ visible: !this.state.visible })
 	
 	render() {		
-		// if(this.props.authInfo.isAuthenticated === false){
-		// 	return <Redirect to='/login' />
-		// }
+		if(this.props.authInfo.isAuthenticated === false){
+			return <Redirect to='/login' />
+		}
 		return (
 			<div className={appStyle.background}>
 				<AppBar position="relative" style={{ background: '#333',zIndex:'100'}}>
