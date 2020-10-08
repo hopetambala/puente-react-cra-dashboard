@@ -33,6 +33,9 @@ const styles = {
 	}
 }
 
+const regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+
+
 const FormCreator = (props) => {
 	const { authInfo } = props;
 	const [form, setForm] = useState({});
@@ -44,29 +47,20 @@ const FormCreator = (props) => {
 
 
 	const submitCustomForm = async (values) => {
-		values.organizations = authInfo.organization
+		values.organizations = [authInfo.organization]
 		let formValues = values
-		formValues.class = formValues.name.replace(/\s/g, '') || ""
+		formValues.fields.map((field)=>{
+			field.formikKey = field.label.replace(regex, '') || "";
+			field.value =  '';
+		})
+		formValues.class = formValues.name.replace(regex, '') || ""
+
 		postObjectsToClass(formValues, "FormSpecificationsV2");
 	}
 
 	const handleAddFields = async () => {
-		const values = [...fields];
-		const field = {
-			label: '',
-			formikKey: '',
-			value: '',
-			fieldType: '',
-			// fieldType: 'select',
-			// options: [
-			//   'lessThan1',
-			//   '1_2',
-			//   '3_4',
-			//   '5_10',
-			//   'moreThan10'
-			// ]
-		}		
-		values.push(field);
+		const values = [...fields];	
+		values.push({});
 		setFields(values);
 	  };
 
