@@ -45,40 +45,40 @@ const styles = {
 const FormCreator = (props) => {
 	const { authInfo } = props;
 	const [form, setForm] = useState({});
-	let [fields, setFields] = useState([]);
+	const [fields, setFields] = useState([]);
+
+	useEffect(()=>{
+		console.log(fields);
+	},[fields])
 
 
 	const submitCustomForm = async (values) => {
-		alert("Form Sent")
+		values.organizations = authInfo.organization
 		let formValues = values
-		formValues.class = formValues.name.replace(/\s/g, '')
+		formValues.class = formValues.name.replace(/\s/g, '') || ""
 		console.log(formValues)
+		alert("Form Sent")
+
 		// postObjectsToClass(values, "FormSpecifications");
 	}
 
-	const addClick = () => {
+	const handleAddFields = async () => {
+		const values = [...fields];
 		const field = {
 			label: '',
 			formikKey: '',
 			value: '',
-			fieldType: 'select',
-			options: [
-			  'lessThan1',
-			  '1_2',
-			  '3_4',
-			  '5_10',
-			  'moreThan10'
-			]
-		}
-		
-		let zip = [...fields,field]
-		setFields(zip)
-		console.log(fields)
-	}
-
-	const handleAddFields = () => {
-		const values = [...fields];
-		values.push({ firstName: '', lastName: '' });
+			fieldType: '',
+			// fieldType: 'select',
+			// options: [
+			//   'lessThan1',
+			//   '1_2',
+			//   '3_4',
+			//   '5_10',
+			//   'moreThan10'
+			// ]
+		}		
+		values.push(field);
 		setFields(values);
 	  };
 
@@ -88,18 +88,16 @@ const FormCreator = (props) => {
 		setFields(values);
 	  };
 
-		const removeClick = (i) => {
-			fields.splice(i,1);
-		}
 
         return(
 			<Styles style={styles.container}>
 			<h1>Form Creator</h1>
 			<Form
 				onSubmit={submitCustomForm}
-				initialValues={{ 
-					organizations:[authInfo.organization]
-				}}
+				// initialValues={{ 
+				// 	organizations:[authInfo.organization],
+				// 	fields:[]
+				// }}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit}>
 					<div>
@@ -109,19 +107,19 @@ const FormCreator = (props) => {
 						<Field name="description" component="input" placeholder="Description of Form" />
 					</div>
 					<div>
-						<input type='button' value='Add Question' onClick={handleAddFields}/>
+						<input type='button' value='Add Question' onClick={() => handleAddFields()}/>
 					</div>
 					{fields.map((field, index) => {
 						return(
-						<div key={index}>
-							<label>Question Field {index}</label>
+						<div key={`${field}~${index}`}>
+							<label>Question Field {index+1}</label>
 							<Field
 								name={`fields[${index}].label`}
 								component="textarea"
 							/>
 							<Field
-								name={`fields[${index}].fieldType`}
-								type="select" component="select">
+								name="fields[${index}].fieldType"
+								component="select">
 								<option value="input">Input</option>
 							</Field>
 							<div>
