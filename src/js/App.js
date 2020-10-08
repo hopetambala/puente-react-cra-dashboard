@@ -77,9 +77,9 @@ class App extends React.Component {
 	handleHideClick = () => this.setState({ visible: !this.state.visible })
 	
 	render() {		
-		if(this.props.authInfo.isAuthenticated === false){
-			return <Redirect to='/login' />
-		}
+		// if(this.props.authInfo.isAuthenticated === false){
+		// 	return <Redirect to='/login' />
+		// }
 		return (
 			<div className={appStyle.background}>
 				<AppBar position="relative" style={{ background: '#333',zIndex:'100'}}>
@@ -97,7 +97,7 @@ class App extends React.Component {
 								direction="row"
 								justify="flex-end"
 								alignItems="center" >
-							<Grid item>
+							{/* <Grid item>
 								<Button as={ Link } to={`${this.props.routePath}/home`} style={{backgroundColor: styles.theme.light_darkbg, color:styles.theme.primaryAppColor}}>
 									<Typography variant="h6" className={useStyles.title} >
 										<div style={{color:styles.theme.primaryAppColor}}>
@@ -126,7 +126,7 @@ class App extends React.Component {
 										</div>
 									</Typography>
 								</Button>
-							</Grid>
+							</Grid> */}
 							<Grid item>
 								<Button as={ Link } to={`${this.props.routePath}/formcreation`} style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
@@ -150,7 +150,6 @@ class App extends React.Component {
 							<Grid item>
 							<Dropdown item trigger={trigger} icon={null}>
 								<Dropdown.Menu direction="left">
-										{/* {this.props.authInfo.username} */}
 									<Dropdown.Item disabled className={useStyles.title} icon='user' text={this.props.authInfo.username} />
 									<Dropdown.Header content='Account' />
 									<Dropdown.Item>Settings and privacy</Dropdown.Item>
@@ -171,13 +170,13 @@ class App extends React.Component {
 				</AppBar>
 
 				<>
-					<Route 
+					{/* <Route 
 						path={`${this.props.routePath}/home`} component={HomePage} 
 						render={(props) => <HomePage {...props} routePath="/app/home" />}
-					/>
+					/> */}
 					<Route path={`${this.props.routePath}/dataexport`}  component={ExportPage} />
-					<Route path={`${this.props.routePath}/map`}  component={MapPage} />
-					<Route path={`${this.props.routePath}/patients`}  component={PatientList} />
+					{/* <Route path={`${this.props.routePath}/map`}  component={MapPage} /> */}
+					{/* <Route path={`${this.props.routePath}/patients`}  component={PatientList} /> */}
 					<Route path={`${this.props.routePath}/formcreation`} component={FormCreator} />
 				</>
 			

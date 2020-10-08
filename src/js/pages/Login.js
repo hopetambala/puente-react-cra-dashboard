@@ -56,7 +56,7 @@ class LoginForm extends React.Component{
     }
     render(){
         if (this.state.toDashboard === true) {
-            return <Redirect to='/app/home' />
+            return <Redirect to='/app/formcreation' />
         }
 
         const { username, password } = this.state;

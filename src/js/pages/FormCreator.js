@@ -19,7 +19,7 @@ const styles = {
 		justifyContent: 'center',
 		//alignItems: 'flex-center',
 		alignContent: 'flex-start',
-		paddingTop: '5%'
+		paddingTop: '5%',
 	},
 	row: {
 		//height:'100vh',	
@@ -32,15 +32,6 @@ const styles = {
 		backgroundColor:'white'
 	}
 }
-
-// const required = value => (value ? undefined : 'Required')
-// const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined)
-// const minValue = min => value => isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`
-// const maxValue = max => value => isNaN(value) || value <= max ? undefined : `Should be less than ${max}`
-
-// const composeValidators = (...validators) => value =>
-//   validators.reduce((error, validator) => error || validator(value), undefined)
-
 
 const FormCreator = (props) => {
 	const { authInfo } = props;
@@ -94,12 +85,8 @@ const FormCreator = (props) => {
 			<h1>Form Creator</h1>
 			<Form
 				onSubmit={submitCustomForm}
-				// initialValues={{ 
-				// 	organizations:[authInfo.organization],
-				// 	fields:[]
-				// }}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} >
 					<div>
 						<Field name="name" component="input" placeholder="Name of Form" />
 					</div>
@@ -111,20 +98,22 @@ const FormCreator = (props) => {
 					</div>
 					{fields.map((field, index) => {
 						return(
-						<div key={`${field}~${index}`}>
+						<div key={`${field}~${index}`} >
 							<label>Question Field {index+1}</label>
-							<Field
-								name={`fields[${index}].label`}
-								component="textarea"
-							/>
-							<Field
-								name="fields[${index}].fieldType"
-								component="select">
-								<option value="input">Input</option>
-							</Field>
-							<div>
+								<Field
+									name={`fields[${index}].label`}
+									component="textarea"
+								/>
+								<Field
+									name={`fields[${index}].fieldtype`}
+									component="select">
+									<option value=""></option>
+									<option value="input">Open-Ended Response</option>
+									<option value="number">Number Response</option>
+								</Field>
+							<span>
 								<input type='button' value='remove' onClick={()=> handleRemoveFields(index)}/>
-							</div>
+							</span>
 						</div>)
 					})}
 					

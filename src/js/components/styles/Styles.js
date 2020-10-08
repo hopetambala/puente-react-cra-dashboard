@@ -78,9 +78,16 @@ export default styled.div`
         font-size: 1em;
         line-height: 32px;
       }
-      & > input,
       & > select,
       & > textarea {
+        padding: 3px 5px;
+        font-size: 1em;
+        margin-left: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      & > input {
         flex: 1;
         padding: 3px 5px;
         font-size: 1em;
