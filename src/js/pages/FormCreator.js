@@ -47,10 +47,7 @@ const FormCreator = (props) => {
 		values.organizations = authInfo.organization
 		let formValues = values
 		formValues.class = formValues.name.replace(/\s/g, '') || ""
-		console.log(formValues)
-		alert("Form Sent")
-
-		// postObjectsToClass(values, "FormSpecifications");
+		postObjectsToClass(formValues, "FormSpecificationsV2");
 	}
 
 	const handleAddFields = async () => {
@@ -130,7 +127,7 @@ const FormCreator = (props) => {
 						</button>
 
 					</div>
-					<pre>{JSON.stringify(values, 0, 2)}</pre>
+					{/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
 				</form>	
 			)}
 			/>
