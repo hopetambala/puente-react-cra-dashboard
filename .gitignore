@@ -24,3 +24,5 @@ yarn-error.log*
 # src/js/providers/Environments/Local.js
 development.env
 .env
+.env.prod
+.env.dev
