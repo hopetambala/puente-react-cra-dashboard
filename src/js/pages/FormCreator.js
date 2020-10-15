@@ -38,7 +38,6 @@ const regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
 
 const FormCreator = (props) => {
 	const { authInfo } = props;
-	const [form, setForm] = useState({});
 	const [fields, setFields] = useState([]);
 
 	useEffect(()=>{
@@ -56,6 +55,7 @@ const FormCreator = (props) => {
 		formValues.class = formValues.name.replace(regex, '') || ""
 
 		postObjectsToClass(formValues, "FormSpecificationsV2");
+		alert("Form Sent")
 	}
 
 	const handleAddFields = async () => {
@@ -96,11 +96,11 @@ const FormCreator = (props) => {
 									component="textarea"
 								/>
 								<Field
-									name={`fields[${index}].fieldtype`}
+									name={`fields[${index}].fieldType`}
 									component="select">
 									<option value=""></option>
 									<option value="input">Open-Ended Response</option>
-									<option value="number">Number Response</option>
+									<option value="numberInput">Number Response</option>
 								</Field>
 							<span>
 								<input type='button' value='remove' onClick={()=> handleRemoveFields(index)}/>
