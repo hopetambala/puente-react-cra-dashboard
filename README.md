@@ -61,6 +61,13 @@ $ aws s3 ls
 ```
 
 Build and deploy your app!
+
+Dev
+```
+npm run build-local && aws s3 sync build/ s3://your-bucket-name-dev
+```
+
+Prod
 ```
 $ npm run build && aws s3 sync build/ s3://your-bucket-name
 ```

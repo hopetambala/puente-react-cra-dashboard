@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Field } from 'react-final-form';
 
 //Parse
@@ -19,7 +19,7 @@ const styles = {
 		justifyContent: 'center',
 		//alignItems: 'flex-center',
 		alignContent: 'flex-start',
-		paddingTop: '5%'
+		paddingTop: '5%',
 	},
 	row: {
 		//height:'100vh',	
@@ -33,84 +33,80 @@ const styles = {
 	}
 }
 
-// const required = value => (value ? undefined : 'Required')
-// const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined)
-// const minValue = min => value => isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`
-// const maxValue = max => value => isNaN(value) || value <= max ? undefined : `Should be less than ${max}`
-
-// const composeValidators = (...validators) => value =>
-//   validators.reduce((error, validator) => error || validator(value), undefined)
+const regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
 
 
-class FormCreator extends React.Component{
-	constructor(props){
-		super(props)
-		this.state = {
-			values:[]
-		}
-		console.log(this.props.authInfo.organization)
-	}
+const FormCreator = (props) => {
+	const { authInfo } = props;
+	const [fields, setFields] = useState([]);
 
-	submitCustomForm = async (values) => {
-		console.log(values)
+	useEffect(()=>{
+		console.log(fields);
+	},[fields])
+
+
+	const submitCustomForm = async (values) => {
+		values.organizations = [authInfo.organization]
+		let formValues = values
+		formValues.fields.map((field)=>{
+			field.formikKey = field.label.replace(regex, '') || "";
+			field.value =  '';
+		})
+		formValues.class = formValues.name.replace(regex, '') || ""
+
+		postObjectsToClass(formValues, "FormSpecificationsV2");
 		alert("Form Sent")
-		postObjectsToClass(values, "FormSpecifications");
 	}
 
-	addClick = () =>{
-		this.setState(function(previousState, currentProps) {
-			return {
-				values: [...previousState.values,'']
-			};
-		  });
-	}
+	const handleAddFields = async () => {
+		const values = [...fields];	
+		values.push({});
+		setFields(values);
+	  };
 
-	removeClick= (i) =>{
-		let values = [...this.state.values];
-		values.splice(i,1);
-		this.setState({ values });
-	}
+	  const handleRemoveFields = index => {
+		const values = [...fields];
+		values.splice(index, 1);
+		setFields(values);
+	  };
 
-	variableQuestionLengthUI(){
-		return this.state.values.map((element, i) =>
-			<div key={i}>
-				<label>Question Field {i+1}</label>
-				<Field
-					name={"fields["+i+"].title"}
-					component="textarea"
-				/>
-				<Field
-					name={"fields["+i+"].titletype"}
-					type="select" component="select">
-					<option value="input">Input</option>
-				</Field>
-				<div>
-					<input type='button' value='remove' onClick={this.removeClick.bind(this, i)}/>
-				</div>
-			</div>)
-	}
 
-    render(){
         return(
 			<Styles style={styles.container}>
 			<h1>Form Creator</h1>
 			<Form
-				onSubmit={this.submitCustomForm}
-				initialValues={{ 
-					organizations:[this.props.authInfo.organization]
-				}}
+				onSubmit={submitCustomForm}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} >
 					<div>
-						<Field name="title" component="input" placeholder="Name of Form" />
+						<Field name="name" component="input" placeholder="Name of Form" />
 					</div>
 					<div>
 						<Field name="description" component="input" placeholder="Description of Form" />
 					</div>
 					<div>
-						<input type='button' value='Add Question' onClick={this.addClick}/>
+						<input type='button' value='Add Question' onClick={() => handleAddFields()}/>
 					</div>
-					{this.variableQuestionLengthUI()}
+					{fields.map((field, index) => {
+						return(
+						<div key={`${field}~${index}`} >
+							<label>Question Field {index+1}</label>
+								<Field
+									name={`fields[${index}].label`}
+									component="textarea"
+								/>
+								<Field
+									name={`fields[${index}].fieldType`}
+									component="select">
+									<option value=""></option>
+									<option value="input">Open-Ended Response</option>
+									<option value="numberInput">Number Response</option>
+								</Field>
+							<span>
+								<input type='button' value='remove' onClick={()=> handleRemoveFields(index)}/>
+							</span>
+						</div>)
+					})}
 					
 					<div className="buttons">
 						<button type="submit" disabled={submitting || pristine}>
@@ -125,13 +121,12 @@ class FormCreator extends React.Component{
 						</button>
 
 					</div>
-					<pre>{JSON.stringify(values, 0, 2)}</pre>
+					{/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
 				</form>	
 			)}
 			/>
 			</Styles>
         )
-    }
 }
 
 const mapStateToProps = (state) => {
