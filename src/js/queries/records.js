@@ -124,6 +124,11 @@ export const allEnvs = gql`
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
             createdAt
             updatedAt
         }
@@ -295,6 +300,11 @@ export const allEnvsByOrganization = gql`
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
             createdAt
             updatedAt
         }
@@ -458,6 +468,11 @@ export const personalEnvironmentalHealth = gql`
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
         }
     }  
 `;
