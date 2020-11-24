@@ -175,6 +175,9 @@ export const vitals = gql`
     getVitals{
             sex
             dob
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodPressure
@@ -241,6 +244,9 @@ export const allVitalsByOrganization = gql`
             latitude
             longitude
 
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodOxygen
@@ -407,6 +413,9 @@ export const allHistoryMedicalsByOrganization = gql`
 export const personalVitals = gql`
     query($id:String!){
         getPersonVitals(id:$id){
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodOxygen
