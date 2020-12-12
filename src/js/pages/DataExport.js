@@ -211,7 +211,6 @@ class CustomData extends React.Component {
 
 	componentDidMount = async() => {
 		const { client } = this.props;
-		console.log(this.props)
 		let res = await client.query({query: allCustomResultsByFormId, variables: {id: this.props.id }});
 		await this.clean_data(res.data);
 	}
@@ -244,7 +243,6 @@ class ExportPage extends React.Component {
 	}
 	
 	onSubmit = async (values) => {
-		console.log(values)
 		await this.setState({
 			type: values.type,
 			org: values.organization,
