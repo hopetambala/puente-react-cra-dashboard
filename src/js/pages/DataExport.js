@@ -27,8 +27,6 @@ import {
 
 import { CSVLink } from "react-csv";
 
-
-
 //Styling
 import Styles from '../components/styles/Styles'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -185,11 +183,31 @@ class CustomData extends React.Component {
 			}
 				delete cleaned_data['getCustomFormResultsbyId'][i]['fields']
 		}
-		console.log(cleaned_data)
 		this.setState({
 			data:cleaned_data
 		})
 	}
+
+	// async clean_data(data){
+	// 	var cleaned_data = await data;
+	// 	cleaned_data['getCustomFormResultsbyId'].map((results)=>{
+	// 		results['fields'].map((fields)=>{
+	// 			var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@_`{|}~]/g;
+
+	// 			var question = String(fields.title)
+	// 			question = question.replace(punctRE, '');
+	// 			var answer = String(fields.answer)
+	// 			answer = answer.replace(punctRE, '');
+
+	// 			results[question] = answer
+	// 		})	
+	// 		delete cleaned_data['getCustomFormResultsbyId'].results['fields']
+	// 	})
+	// 	console.log(cleaned_data)
+	// 	this.setState({
+	// 		data:cleaned_data
+	// 	})
+	// }
 
 	componentDidMount = async() => {
 		const { client } = this.props;
@@ -228,10 +246,9 @@ class ExportPage extends React.Component {
 		await this.setState({
 			type: values.type,
 			org: values.organization,
-			formId: values.formId
+			objectId: values.objectId
 		})
 	}
-	
 
 	render() {
 		let aThing;
@@ -252,10 +269,8 @@ class ExportPage extends React.Component {
 		}
 		else if (this.state.type === "Custom") {
 			const CustomWithApollo = withApollo(CustomData);
-			aThing = <CustomWithApollo id={this.state.formId} />;
+			aThing = <CustomWithApollo id={this.state.objectId} />;
 		}
-
-
 
 		return (
 			<>
@@ -280,7 +295,7 @@ class ExportPage extends React.Component {
 				{values.type === 'Custom' &&
 					<div>
 					<label>Forms</label>
-					<Field name="formId" component="select" >
+					<Field name="objectId" component="select" >
 						<Query
 							query={allCustomSpecs}
 							// variables={{ organization }}
@@ -296,7 +311,7 @@ class ExportPage extends React.Component {
 								{loading && <LoadingDots />}
 								<option></option>
 									{data.getCustomFormSpec.map((opt) => {
-										return <option key={opt.objectId} value={opt.objectId}>{opt.title}</option>
+										return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
 									})} 
 								</>
 							);
