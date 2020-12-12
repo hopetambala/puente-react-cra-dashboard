@@ -70,6 +70,7 @@
     "lint": "eslint --ext=js --ext=jsx .",
     "eject": "react-scripts eject",
     "start-local": "env-cmd -f .env.dev react-scripts start",
+    "start-local-prod": "env-cmd -f .env.prod react-scripts start",
     "start": "node server.js",
     "reinstall": "rm package-lock.json && rm -rf node_modules/ && npm install",
     "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done",

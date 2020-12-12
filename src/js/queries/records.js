@@ -490,8 +490,15 @@ export const allCustomSpecs = gql`
     query{
         getCustomFormSpec{
             objectId
-            title
+            name
             organizations
+            fields{
+                label
+                options {
+                    label
+                    value
+                }
+            }
         }
     }  
 `;
