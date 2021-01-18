@@ -124,6 +124,11 @@ export const allEnvs = gql`
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
             createdAt
             updatedAt
         }
@@ -170,6 +175,9 @@ export const vitals = gql`
     getVitals{
             sex
             dob
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodPressure
@@ -236,6 +244,9 @@ export const allVitalsByOrganization = gql`
             latitude
             longitude
 
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodOxygen
@@ -295,6 +306,11 @@ export const allEnvsByOrganization = gql`
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
             createdAt
             updatedAt
         }
@@ -397,6 +413,9 @@ export const allHistoryMedicalsByOrganization = gql`
 export const personalVitals = gql`
     query($id:String!){
         getPersonVitals(id:$id){
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodOxygen
@@ -458,6 +477,11 @@ export const personalEnvironmentalHealth = gql`
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
         }
     }  
 `;
@@ -466,8 +490,15 @@ export const allCustomSpecs = gql`
     query{
         getCustomFormSpec{
             objectId
-            title
+            name
             organizations
+            fields{
+                label
+                options {
+                    label
+                    value
+                }
+            }
         }
     }  
 `;
@@ -477,6 +508,12 @@ export const allCustomResults = gql`
         getCustomFormResults{
             objectId
             title
+            surveyingUser
+            surveyingUserCustomForm
+            surveyingOrganization
+            surveyingOrganizationCustomForm
+            createdAt
+            createdAtCustomForm
             fields {
                 title
                 answer
@@ -507,7 +544,11 @@ export const allCustomResultsByFormId = gql`
             clinicProvider
             cedulaNumber
             surveyingUser
+            surveyingUserCustomForm
             surveyingOrganization
+            surveyingOrganizationCustomForm
+            createdAt
+            createdAtCustomForm
             latitude
             longitude
             title
