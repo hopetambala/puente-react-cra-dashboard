@@ -77,6 +77,7 @@ export const allEvalMedicals = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }
 `;
@@ -131,6 +132,7 @@ export const allEnvs = gql`
             houseMaterial
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }
 `;
@@ -259,6 +261,7 @@ export const allVitalsByOrganization = gql`
             painLevels
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -313,6 +316,7 @@ export const allEnvsByOrganization = gql`
             houseMaterial
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -363,6 +367,7 @@ export const allEvalMedicalsByOrganization = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -426,6 +431,7 @@ export const personalVitals = gql`
             pulse
             hemoglobinLevels
             painLevels
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -453,6 +459,7 @@ export const personalEvaluationMedical = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -482,6 +489,7 @@ export const personalEnvironmentalHealth = gql`
             foodSecurity
             electricityAccess
             houseMaterial
+            surveyingUserSupplementary
         }
     }  
 `;
