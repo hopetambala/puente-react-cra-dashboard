@@ -15,8 +15,11 @@ export const all_records = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -46,8 +49,11 @@ export const allEvalMedicals = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -97,8 +103,11 @@ export const allEnvs = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -205,8 +214,11 @@ export const allRecordsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -235,8 +247,11 @@ export const allVitalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -281,8 +296,11 @@ export const allEnvsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -336,8 +354,11 @@ export const allEvalMedicalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -388,8 +409,11 @@ export const allHistoryMedicalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -545,8 +569,11 @@ export const allCustomResultsByFormId = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
