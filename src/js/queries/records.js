@@ -15,8 +15,11 @@ export const all_records = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -46,8 +49,11 @@ export const allEvalMedicals = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -77,6 +83,7 @@ export const allEvalMedicals = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }
 `;
@@ -96,8 +103,11 @@ export const allEnvs = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -131,6 +141,7 @@ export const allEnvs = gql`
             houseMaterial
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }
 `;
@@ -203,8 +214,11 @@ export const allRecordsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -233,8 +247,11 @@ export const allVitalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -259,6 +276,7 @@ export const allVitalsByOrganization = gql`
             painLevels
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -278,8 +296,11 @@ export const allEnvsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -313,6 +334,7 @@ export const allEnvsByOrganization = gql`
             houseMaterial
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -332,8 +354,11 @@ export const allEvalMedicalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -363,6 +388,7 @@ export const allEvalMedicalsByOrganization = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -383,8 +409,11 @@ export const allHistoryMedicalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -426,6 +455,7 @@ export const personalVitals = gql`
             pulse
             hemoglobinLevels
             painLevels
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -453,6 +483,7 @@ export const personalEvaluationMedical = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -482,6 +513,7 @@ export const personalEnvironmentalHealth = gql`
             foodSecurity
             electricityAccess
             houseMaterial
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -537,8 +569,11 @@ export const allCustomResultsByFormId = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty,
+            city, 
+            province, 
+            region,
+            country,
             insuranceNumber
             insuranceProvider
             clinicProvider
