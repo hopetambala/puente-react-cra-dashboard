@@ -595,3 +595,30 @@ export const allCustomResultsByFormId = gql`
     }  
 `;
 
+
+export const allAssetResultsByOrganization = gql`
+    query($organization: String!){
+        getAssetRecordsByOrganization(organization: $organization){
+            objectId
+            name
+            physicalName
+            physicalAsset
+            humanAsset 
+            surveyingUser 
+            surveyingOrganization 
+            latitude
+            longitude 
+            createdAt 
+    
+            FormAssetResultId
+            surveyingOrganizationAssetForm 
+            createdAtAssetForm 
+    
+            formSpecifications
+            title
+            description
+        }
+    }  
+`;
+
+// getAssetRecordsByOrganization
