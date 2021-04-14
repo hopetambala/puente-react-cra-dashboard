@@ -599,24 +599,38 @@ export const allCustomResultsByFormId = gql`
 export const allAssetResultsByOrganization = gql`
     query($organization: String!){
         getAssetRecordsByOrganization(organization: $organization){
-            objectId
-            name
-            physicalName
-            physicalAsset
-            humanAsset 
-            surveyingUser 
-            surveyingOrganization 
-            latitude
-            longitude 
-            createdAt 
-    
-            FormAssetResultId
-            surveyingOrganizationAssetForm 
-            createdAtAssetForm 
-    
-            formSpecifications
-            title
-            description
+            objectId,
+            City,
+            Name,
+            Province,
+            altitude,
+            city,
+            communityName,
+            latitude,
+            longitude,
+            createdAt,
+            name,
+            province,
+            relatedPeople{
+              firstName,
+              lastName,
+              relationship
+            },
+            surveyingOrganization,
+      
+      
+            FormAssetResultId,
+            surveyingOrganizationAssetForm,
+            createdAtAssetForm,
+      
+            formSpecifications,
+            title,
+            description,
+            fields{
+              title,
+              answer,
+              type
+            }
         }
     }  
 `;
