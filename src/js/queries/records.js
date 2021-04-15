@@ -595,3 +595,40 @@ export const allCustomResultsByFormId = gql`
     }  
 `;
 
+
+export const allAssetResultsByOrganization = gql`
+    query($organization: String!){
+        getAssetRecordsByOrganization(organization: $organization){
+            objectId,
+            altitude,
+            city,
+            communityName,
+            latitude,
+            longitude,
+            createdAt,
+            name,
+            province,
+            relatedPeople{
+              firstName,
+              lastName,
+              relationship
+            },
+            surveyingOrganization,
+      
+      
+            FormAssetResultId,
+            surveyingOrganizationAssetForm,
+            createdAtAssetForm,
+      
+            formSpecifications,
+            title,
+            description,
+            fields{
+              title,
+              answer
+            }
+        }
+    }  
+`;
+
+// getAssetRecordsByOrganization

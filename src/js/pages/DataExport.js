@@ -22,7 +22,8 @@ import {
 	allEvalMedicalsByOrganization,
 	allHistoryMedicalsByOrganization,
 	allCustomSpecs,
-	allCustomResultsByFormId
+	allCustomResultsByFormId,
+	allAssetResultsByOrganization
 } from '../queries/records';
 
 import { CSVLink } from "react-csv";
@@ -160,6 +161,38 @@ const HistoryMedical = ({ organization }) => (
 	</Query>
 );
 
+const AssetData = ({ organization }) => (
+	<Query
+		query={allAssetResultsByOrganization}
+		variables={{ organization }}
+		notifyOnNetworkStatusChange
+	>
+		{({ loading, error, data, refetch, networkStatus }) => {
+		if (networkStatus === 4) return "Refetching!";
+		if (loading) return <LoadingDots />;
+		if (error) return `Error!: ${error}`;
+
+		return (
+			<>
+				<Button style={styles.button}>
+				{console.log(data)}
+					<CSVLink data={data.getAssetRecordsByOrganization}>
+						Download
+					</CSVLink>
+				</Button>
+				<DataTable data={data.getAssetRecordsByOrganization}  columns={[{ title: 'Name', field: 'name' },
+          																		{ title: 'Community', field: 'communityName' },
+          																		{ title: 'City', field: 'city' },
+          																		{ title: 'Connected Form', field: 'title' },
+          																		{ title: 'Organization', field: 'surveyingOrganization' },
+          																		{ title: 'Created At', field: 'createdAt' },
+          																		]}/>
+			</>
+		);
+		}}
+	</Query>
+); 
+
 class CustomData extends React.Component {
 	constructor(props) {
 		super(props);
@@ -271,6 +304,10 @@ class ExportPage extends React.Component {
 			const CustomWithApollo = withApollo(CustomData);
 			aThing = <CustomWithApollo id={this.state.objectId} />;
 		}
+		else if (this.state.type === "Asset") {
+			// const AssetWithApollo = withApollo(AssetData)
+			aThing = <AssetData organization={this.props.authInfo.organization} />;
+		}
 
 		return (
 			<>
@@ -290,6 +327,7 @@ class ExportPage extends React.Component {
 						<option value="Vitals">Dem + Vitals</option>
 						<option value="Medical History">Dem + Medical History</option>
 						<option value="Custom">Custom Forms</option>
+						<option value="Asset">Asset Forms</option>
 					</Field>
 				</div>
 				{values.type === 'Custom' &&
