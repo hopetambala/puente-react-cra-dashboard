@@ -6,7 +6,7 @@ export class DataTable extends React.Component {
     return (
       <MaterialTable
         title={this.props.title}
-        columns={[
+        columns={this.props.columns ? this.props.columns : [
           { title: 'First Name', field: 'fname' },
           { title: 'Last Name', field: 'lname' },
           { title: 'Nickname', field: 'nickname' },

@@ -600,9 +600,6 @@ export const allAssetResultsByOrganization = gql`
     query($organization: String!){
         getAssetRecordsByOrganization(organization: $organization){
             objectId,
-            City,
-            Name,
-            Province,
             altitude,
             city,
             communityName,
@@ -628,8 +625,7 @@ export const allAssetResultsByOrganization = gql`
             description,
             fields{
               title,
-              answer,
-              type
+              answer
             }
         }
     }  

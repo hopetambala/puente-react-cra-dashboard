@@ -180,12 +180,18 @@ const AssetData = ({ organization }) => (
 						Download
 					</CSVLink>
 				</Button>
-				<DataTable data={data.getAssetRecordsByOrganization} />
+				<DataTable data={data.getAssetRecordsByOrganization}  columns={[{ title: 'Name', field: 'name' },
+          																		{ title: 'Community', field: 'communityName' },
+          																		{ title: 'City', field: 'city' },
+          																		{ title: 'Connected Form', field: 'title' },
+          																		{ title: 'Organization', field: 'surveyingOrganization' },
+          																		{ title: 'Created At', field: 'createdAt' },
+          																		]}/>
 			</>
 		);
 		}}
 	</Query>
-);
+); 
 
 class CustomData extends React.Component {
 	constructor(props) {
@@ -298,7 +304,7 @@ class ExportPage extends React.Component {
 			const CustomWithApollo = withApollo(CustomData);
 			aThing = <CustomWithApollo id={this.state.objectId} />;
 		}
-		else if (this.state.props === "Asset") {
+		else if (this.state.type === "Asset") {
 			// const AssetWithApollo = withApollo(AssetData)
 			aThing = <AssetData organization={this.props.authInfo.organization} />;
 		}
