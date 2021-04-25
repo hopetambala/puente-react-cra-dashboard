@@ -206,9 +206,11 @@ class CustomData extends React.Component {
 		for (let i = 0; i < cleaned_data['getCustomFormResultsbyId'].length; i++) {
 			for (let j = 0; j < cleaned_data['getCustomFormResultsbyId'][i]['fields'].length; j++){
 				var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@_`{|}~]/g;
+				// allow underscores for multiselect titles
+				var punctTitleRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@`{|}~]/g;
 
 				var question = String(cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].title)
-				question = question.replace(punctRE, '');
+				question = question.replace(punctTitleRE, '');
 				var answer = String(cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].answer)
 				answer = answer.replace(punctRE, '');
 
