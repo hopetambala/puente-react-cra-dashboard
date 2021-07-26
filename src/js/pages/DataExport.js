@@ -23,7 +23,7 @@ import {
 	allHistoryMedicalsByOrganization,
 	allCustomSpecs,
 	allCustomResultsByFormId,
-	allAssetResultsByOrganization
+	allAssetResultsByFormId
 } from '../queries/records';
 
 import { CSVLink } from "react-csv";
@@ -161,38 +161,6 @@ const HistoryMedical = ({ organization }) => (
 	</Query>
 );
 
-const AssetData = ({ organization }) => (
-	<Query
-		query={allAssetResultsByOrganization}
-		variables={{ organization }}
-		notifyOnNetworkStatusChange
-	>
-		{({ loading, error, data, refetch, networkStatus }) => {
-		if (networkStatus === 4) return "Refetching!";
-		if (loading) return <LoadingDots />;
-		if (error) return `Error!: ${error}`;
-
-		return (
-			<>
-				<Button style={styles.button}>
-				{console.log(data)}
-					<CSVLink data={data.getAssetRecordsByOrganization}>
-						Download
-					</CSVLink>
-				</Button>
-				<DataTable data={data.getAssetRecordsByOrganization}  columns={[{ title: 'Name', field: 'name' },
-          																		{ title: 'Community', field: 'communityName' },
-          																		{ title: 'City', field: 'city' },
-          																		{ title: 'Connected Form', field: 'title' },
-          																		{ title: 'Organization', field: 'surveyingOrganization' },
-          																		{ title: 'Created At', field: 'createdAt' },
-          																		]}/>
-			</>
-		);
-		}}
-	</Query>
-); 
-
 class CustomData extends React.Component {
 	constructor(props) {
 		super(props);
@@ -206,9 +174,11 @@ class CustomData extends React.Component {
 		for (let i = 0; i < cleaned_data['getCustomFormResultsbyId'].length; i++) {
 			for (let j = 0; j < cleaned_data['getCustomFormResultsbyId'][i]['fields'].length; j++){
 				var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@_`{|}~]/g;
+				// allow underscores for multiselect titles
+				var punctTitleRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@`{|}~]/g;
 
 				var question = String(cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].title)
-				question = question.replace(punctRE, '');
+				question = question.replace(punctTitleRE, '');
 				var answer = String(cleaned_data['getCustomFormResultsbyId'][i]['fields'][j].answer)
 				answer = answer.replace(punctRE, '');
 
@@ -220,27 +190,6 @@ class CustomData extends React.Component {
 			data:cleaned_data
 		})
 	}
-
-	// async clean_data(data){
-	// 	var cleaned_data = await data;
-	// 	cleaned_data['getCustomFormResultsbyId'].map((results)=>{
-	// 		results['fields'].map((fields)=>{
-	// 			var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@_`{|}~]/g;
-
-	// 			var question = String(fields.title)
-	// 			question = question.replace(punctRE, '');
-	// 			var answer = String(fields.answer)
-	// 			answer = answer.replace(punctRE, '');
-
-	// 			results[question] = answer
-	// 		})	
-	// 		delete cleaned_data['getCustomFormResultsbyId'].results['fields']
-	// 	})
-	// 	console.log(cleaned_data)
-	// 	this.setState({
-	// 		data:cleaned_data
-	// 	})
-	// }
 
 	componentDidMount = async() => {
 		const { client } = this.props;
@@ -259,6 +208,59 @@ class CustomData extends React.Component {
 				</CSVLink>
 			</Button>
 			<DataTable data={this.state.data['getCustomFormResultsbyId']} />
+			</>
+			}
+			</>);
+		
+	}
+}
+
+class AssetData extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { 
+			data: null 
+		};
+	}
+
+	async clean_data(data){
+		var cleaned_data = await data;
+		for (let i = 0; i < cleaned_data['getAssetSuppById'].length; i++) {
+			for (let j = 0; j < cleaned_data['getAssetSuppById'][i]['fields'].length; j++){
+				var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@_`{|}~]/g;
+				var punctTitleRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.:;<=>?@`{|}~]/g;
+
+				var question = String(cleaned_data['getAssetSuppById'][i]['fields'][j].title)
+				question = question.replace(punctTitleRE, '');
+				var answer = String(cleaned_data['getAssetSuppById'][i]['fields'][j].answer)
+				answer = answer.replace(punctRE, '');
+
+				cleaned_data['getAssetSuppById'][i][question] = answer
+			}
+				delete cleaned_data['getAssetSuppById'][i]['fields']
+		}
+		this.setState({
+			data:cleaned_data
+		})
+	}
+
+	componentDidMount = async() => {
+		const { client } = this.props;
+		let res = await client.query({query: allAssetResultsByFormId, variables: {id: this.props.id }});
+		await this.clean_data(res.data);
+	}
+
+	render() {
+		return(
+			<>
+			{this.state.data !== null &&
+			<>
+			<Button style={styles.button}>
+				<CSVLink data={this.state.data['getAssetSuppById']}>
+					Download
+				</CSVLink>
+			</Button>
+			<DataTable data={this.state.data['getAssetSuppById']} />
 			</>
 			}
 			</>);
@@ -305,8 +307,8 @@ class ExportPage extends React.Component {
 			aThing = <CustomWithApollo id={this.state.objectId} />;
 		}
 		else if (this.state.type === "Asset") {
-			// const AssetWithApollo = withApollo(AssetData)
-			aThing = <AssetData organization={this.props.authInfo.organization} />;
+			const AssetWithApollo = withApollo(AssetData)
+			aThing = <AssetWithApollo id={this.state.objectId} />;
 		}
 
 		return (
@@ -330,13 +332,40 @@ class ExportPage extends React.Component {
 						<option value="Asset">Asset Forms</option>
 					</Field>
 				</div>
-				{values.type === 'Custom' &&
+				{values.type === 'Custom'  &&
 					<div>
 					<label>Forms</label>
 					<Field name="objectId" component="select" >
 						<Query
 							query={allCustomSpecs}
-							// variables={{ organization }}
+							notifyOnNetworkStatusChange
+						>
+							{({ loading, error, data, networkStatus }) => {
+							if (networkStatus === 4) return "Refetching!";
+							if (loading) return <LoadingDots />;
+							if (error) return `Error!: ${error}`;
+
+							return (
+								<>
+								{loading && <LoadingDots />}
+								<option></option>
+									{data.getCustomFormSpec.typeOfForm.includes('Custom') && data.getCustomFormSpec.map((opt) => {
+										return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
+									})} 
+								</>
+							);
+							}}
+						</Query>
+					</Field>
+					</div>
+				}
+
+				{values.type === 'Asset'  &&
+					<div>
+					<label>Forms</label>
+					<Field name="objectId" component="select" >
+						<Query
+							query={allCustomSpecs}
 							notifyOnNetworkStatusChange
 						>
 							{({ loading, error, data, networkStatus }) => {
@@ -349,7 +378,7 @@ class ExportPage extends React.Component {
 								{loading && <LoadingDots />}
 								<option></option>
 									{data.getCustomFormSpec.map((opt) => {
-										return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
+										if (opt.typeOfForm.includes('Assets')) return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
 									})} 
 								</>
 							);

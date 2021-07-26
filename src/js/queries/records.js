@@ -15,11 +15,11 @@ export const all_records = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city
+            province
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -49,11 +49,11 @@ export const allEvalMedicals = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -103,11 +103,11 @@ export const allEnvs = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -214,11 +214,11 @@ export const allRecordsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -247,11 +247,11 @@ export const allVitalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -296,11 +296,11 @@ export const allEnvsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -354,11 +354,11 @@ export const allEvalMedicalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -409,11 +409,11 @@ export const allHistoryMedicalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -524,6 +524,7 @@ export const allCustomSpecs = gql`
             objectId
             name
             organizations
+            typeOfForm
             fields{
                 label
                 options {
@@ -569,11 +570,11 @@ export const allCustomResultsByFormId = gql`
             educationLevel
             occupation
             communityname
-            subcounty,
-            city, 
-            province, 
-            region,
-            country,
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -599,36 +600,57 @@ export const allCustomResultsByFormId = gql`
 export const allAssetResultsByOrganization = gql`
     query($organization: String!){
         getAssetRecordsByOrganization(organization: $organization){
-            objectId,
-            altitude,
-            city,
-            communityName,
-            latitude,
-            longitude,
-            createdAt,
-            name,
-            province,
+            objectId
+            altitude
+            city
+            communityName
+            latitude
+            longitude
+            createdAt
+            name
+            province
             relatedPeople{
-              firstName,
-              lastName,
+              firstName
+              lastName
               relationship
-            },
-            surveyingOrganization,
+            }
+            surveyingOrganization
       
       
-            FormAssetResultId,
-            surveyingOrganizationAssetForm,
-            createdAtAssetForm,
+            FormAssetResultId
+            surveyingOrganizationAssetForm
+            createdAtAssetForm
       
-            formSpecifications,
-            title,
-            description,
+            formSpecifications
+            title
+            description
             fields{
-              title,
+              title
               answer
             }
         }
     }  
 `;
 
-// getAssetRecordsByOrganization
+export const allAssetResultsByFormId = gql`
+    query($id:String!){
+        getAssetSuppById(id:$id){
+            objectId
+            name
+            communityName 
+            city 
+            province 
+            latitude
+            longitude 
+            altitude
+            surveyingOrganization
+            surveyingOrganizationAssetSupForm
+            createdAt
+            createdAtAssetSupForm
+            fields {
+                title
+                answer
+            }
+        }
+    }  
+`;
