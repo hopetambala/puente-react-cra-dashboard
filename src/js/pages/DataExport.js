@@ -349,8 +349,8 @@ class ExportPage extends React.Component {
 								<>
 								{loading && <LoadingDots />}
 								<option></option>
-									{data.getCustomFormSpec.typeOfForm.includes('Custom') && data.getCustomFormSpec.map((opt) => {
-										return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
+									{data.getCustomFormSpec.map((opt) => {
+										if (opt.typeOfForm.includes('Custom')) return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
 									})} 
 								</>
 							);
