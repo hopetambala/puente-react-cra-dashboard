@@ -68,7 +68,7 @@ npm run build-local && aws s3 sync build/ s3://your-bucket-name-dev
 
 Prod
 ```
-$ npm run build && aws s3 sync build/ s3://your-bucket-name
+$ npm run build && aws s3 sync build/ s3://dashboard-react-cra-clientside
 ```
 
 #### Permissions and Settings
