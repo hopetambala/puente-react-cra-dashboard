@@ -262,7 +262,7 @@ const ExportPage = (props) => {
 	
 	useEffect(()=>{
 
-	})
+	},[props])
 	
 	function onSubmit(values){
 		setType(values.type)
@@ -333,10 +333,10 @@ const ExportPage = (props) => {
 								<>
 								{loading && <LoadingDots />}
 								<option></option>
-									{data.getCustomFormSpec.map((opt) => {
-										if (opt.typeOfForm.includes('Custom')) return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
-										else return <option>N/A</option>
-									})} 
+									{data.getCustomFormSpec
+									.filter(opt => opt.typeOfForm.includes('Custom'))
+									.map(opt => <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>)
+									})
 								</>
 							);
 							}}
