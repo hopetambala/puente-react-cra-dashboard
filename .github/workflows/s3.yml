@@ -20,7 +20,7 @@ jobs:
         aws-region: us-east-1
     
     - name: Create env file
-        run: |
+        run: 
           touch .env.dev
           echo REACT_APP_parseServerUrl="https://parseapi.back4app.com/" >> .env.dev
           echo REACT_APP_parseAppId=${{ secrets.REACT_APP_parseAppId }} >> .env.dev
