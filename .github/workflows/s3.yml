@@ -24,11 +24,11 @@ jobs:
     - name: Make envfile
       uses: SpicyPizza/create-envfile@v1
       with:
-        envkey_REACT_APP_parseServerUrl: "https://parseapi.back4app.com/"
-        envkey_REACT_APP_parseAppId: ${{ secrets.REACT_APP_parseAppId }}
-        envkey_REACT_APP_parseJavascriptKey: ${{ secrets.REACT_APP_parseJavascriptKey }}
-        envkey_REACT_APP_parseMasterKey: ${{ secrets.REACT_APP_parseMasterKey }}
-        envkey_REACT_APP_graphqlURL: ${{ secrets.REACT_APP_graphqlURL }}
+        envkey_REACT_APP_PARSESERVERURL: "https://parseapi.back4app.com/"
+        envkey_REACT_APP_PARSEAPPID: ${{ secrets.REACT_APP_PARSEAPPID }}
+        envkey_REACT_APP_PARSEJAVASCRIPTKEY: ${{ secrets.REACT_APP_PARSEJAVASCRIPTKEY }}
+        envkey_REACT_APP_PARSEMASTERKEY: ${{ secrets.REACT_APP_PARSEMASTERKEY }}
+        envkey_REACT_APP_GRAPHQLURL: ${{ secrets.REACT_APP_GRAPHQLURL }}
         envkey_REACT_APP_MAPBOX_TOKEN: ${{ secrets.REACT_APP_MAPBOX_TOKEN }}
         file_name: .env.dev
     - run: echo `cat .env.dev`
