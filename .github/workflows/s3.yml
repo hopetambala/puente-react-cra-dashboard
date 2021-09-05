@@ -19,16 +19,26 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
     
-    - name: Create env file
-        run: 
-          touch .env.dev
-          echo REACT_APP_parseServerUrl="https://parseapi.back4app.com/" >> .env.dev
-          echo REACT_APP_parseAppId=${{ secrets.REACT_APP_parseAppId }} >> .env.dev
-          echo REACT_APP_parseJavascriptKey=${{ secrets.REACT_APP_parseJavascriptKey }} >> .env.dev
-          echo REACT_APP_parseMasterKey=${{ secrets.REACT_APP_parseMasterKey }} >> .env.dev
-          echo REACT_APP_graphqlURL=${{ secrets.REACT_APP_graphqlURL }} >> .env.dev
-          echo REACT_APP_MAPBOX_TOKEN=${{ secrets.REACT_APP_MAPBOX_TOKEN }} >> .env.dev
-          cat .env.dev
+    # - name: Create env file
+    #     run: 
+    #       touch .env.dev
+    #       echo REACT_APP_parseServerUrl="https://parseapi.back4app.com/" >> .env.dev
+    #       echo REACT_APP_parseAppId=${{ secrets.REACT_APP_parseAppId }} >> .env.dev
+    #       echo REACT_APP_parseJavascriptKey=${{ secrets.REACT_APP_parseJavascriptKey }} >> .env.dev
+    #       echo REACT_APP_parseMasterKey=${{ secrets.REACT_APP_parseMasterKey }} >> .env.dev
+    #       echo REACT_APP_graphqlURL=${{ secrets.REACT_APP_graphqlURL }} >> .env.dev
+    #       echo REACT_APP_MAPBOX_TOKEN=${{ secrets.REACT_APP_MAPBOX_TOKEN }} >> .env.dev
+    #       cat .env.dev
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_REACT_APP_parseServerUrl: "https://parseapi.back4app.com/"
+        envkey_REACT_APP_parseAppId: ${{ secrets.REACT_APP_parseAppId }}
+        envkey_REACT_APP_parseJavascriptKey: ${{ secrets.REACT_APP_parseJavascriptKey }}
+        envkey_REACT_APP_parseMasterKey: ${{ secrets.REACT_APP_parseMasterKey }}
+        envkey_REACT_APP_graphqlURL: ${{ secrets.REACT_APP_graphqlURL }}
+        envkey_REACT_APP_MAPBOX_TOKEN: ${{ secrets.REACT_APP_MAPBOX_TOKEN }}
+        file_name: .env.dev
 
     - name: Deploy static site to S3 bucket
       run: npm run build-local && aws s3 sync build/ s3://dashboard-react-cra-clientside-dev
