@@ -166,7 +166,7 @@ const CustomData = (props) => {
 		client.query({query: allCustomResultsByFormId, variables: {id }}).then(async(res)=>{
 			await clean_data(res.data)
 		})
-	},[])
+	},[props])
 
 	async function clean_data(data){
 		var cleaned_data = await data;
@@ -257,7 +257,7 @@ const AssetData = (props) => {
 
 const ExportPage = (props) => {
 	const [type, setType] = useState('Demographics')
-	const [org, setOrg] = useState('Puente')
+	const [, setOrg] = useState('Puente')
 	const [objectId, setObjectId] = useState()
 	
 	useEffect(()=>{
@@ -335,6 +335,7 @@ const ExportPage = (props) => {
 								<option></option>
 									{data.getCustomFormSpec.map((opt) => {
 										if (opt.typeOfForm.includes('Custom')) return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
+										else return <option>N/A</option>
 									})} 
 								</>
 							);
@@ -363,6 +364,7 @@ const ExportPage = (props) => {
 								<option></option>
 									{data.getCustomFormSpec.map((opt) => {
 										if (opt.typeOfForm.includes('Assets')) return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
+										else return <option>N/A</option>
 									})} 
 								</>
 							);

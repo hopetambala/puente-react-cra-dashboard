@@ -48,7 +48,7 @@ const FormCreator = (props) => {
 	const submitCustomForm = async (values) => {
 		values.organizations = [authInfo.organization]
 		let formValues = values
-		formValues.fields.map((field)=>{
+		formValues.fields.forEach((field)=>{
 			field.formikKey = field.label.replace(regex, '') || "";
 			field.value =  '';
 		})
