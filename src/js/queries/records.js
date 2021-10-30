@@ -122,17 +122,21 @@ export const allEnvs = gql`
             waterAccess
             typeofWaterdoyoudrink
             bathroomAccess
+            bathroomAccess_v2
             latrineAccess
             clinicAccess
+            clinicAccess_v2
             conditionoRoofinyourhouse
             conditionoFloorinyourhouse
             medicalproblemswheredoyougo
             dentalproblemswheredoyougo
             biggestproblemofcommunity
+            biggestproblemofcommunity_v2
             timesperweektrashcollected
             wheretrashleftbetweenpickups
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
+            numberofChildrenLivinginHouseUndertheAgeof5_v2
             houseownership
             stoveType
             govAssistance
@@ -315,17 +319,21 @@ export const allEnvsByOrganization = gql`
             waterAccess
             typeofWaterdoyoudrink
             bathroomAccess
+            bathroomAccess_v2
             latrineAccess
             clinicAccess
+            clinicAccess_v2
             conditionoRoofinyourhouse
             conditionoFloorinyourhouse
             medicalproblemswheredoyougo
             dentalproblemswheredoyougo
             biggestproblemofcommunity
+            biggestproblemofcommunity_v2
             timesperweektrashcollected
             wheretrashleftbetweenpickups
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
+            numberofChildrenLivinginHouseUndertheAgeof5_v2
             houseownership
             stoveType
             govAssistance

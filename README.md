@@ -63,12 +63,12 @@ Build and deploy your app!
 
 Dev
 ```
-npm run build-local && aws s3 sync build/ s3://your-bucket-name-dev
+npm run build-local && aws s3 sync build/ s3://dashboard-react-cra-clientside-dev
 ```
 
 Prod
 ```
-$ npm run build && aws s3 sync build/ s3://dashboard-react-cra-clientside
+$ npm run build && aws s3 sync build/ s3://your-bucket-name
 ```
 
 #### Permissions and Settings

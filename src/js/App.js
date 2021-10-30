@@ -70,8 +70,8 @@ class App extends React.Component {
 		this.state = { 
 			visible: false
 		}
-		Parse.initialize(process.env.REACT_APP_parseAppId , process.env.REACT_APP_parseJavascriptKey);
-        Parse.serverURL = process.env.REACT_APP_parseServerUrl;
+		Parse.initialize(process.env.REACT_APP_PARSEAPPID , process.env.REACT_APP_PARSEJAVASCRIPTKEY);
+        Parse.serverURL = process.env.REACT_APP_PARSESERVERURL;
 	}
 	  
 	handleHideClick = () => this.setState({ visible: !this.state.visible })

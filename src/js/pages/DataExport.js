@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Query, withApollo} from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 
@@ -47,11 +47,11 @@ const Dem = ({ organization }) => (
 			<>
 				<Button variant="contained" style={{backgroundColor: styles.theme.lighter_darkbg}}>
 				{console.log(data)}
-					<CSVLink data={data.getPeopleByOrganization}>
+					<CSVLink data={data["getPeopleByOrganization"]}>
 						Download
 					</CSVLink>
 				</Button>
-				<DataTable data={data.getPeopleByOrganization} />
+				<DataTable data={data["getPeopleByOrganization"]} />
 			</>
 		);
 		}}
@@ -82,7 +82,6 @@ const Vitals = ({ organization }) => (
 		}}
 	</Query>
 );
-
 const EnvHealth = ({ organization }) => (
 	<Query
 		query={allEnvsByOrganization}
@@ -108,7 +107,6 @@ const EnvHealth = ({ organization }) => (
 		}}
 	</Query>
 );
-
 const EvalMedical = ({ organization }) => (
 	<Query
 		query={allEvalMedicalsByOrganization}
@@ -134,7 +132,6 @@ const EvalMedical = ({ organization }) => (
 		}}
 	</Query>
 );
-
 const HistoryMedical = ({ organization }) => (
 	<Query
 		query={allHistoryMedicalsByOrganization}
@@ -161,15 +158,17 @@ const HistoryMedical = ({ organization }) => (
 	</Query>
 );
 
-class CustomData extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { 
-			data: null 
-		};
-	}
+const CustomData = (props) => {
+	const [data, setData] = useState(null)
 
-	async clean_data(data){
+	useEffect(()=>{
+		const { id, client } = props
+		client.query({query: allCustomResultsByFormId, variables: {id }}).then(async(res)=>{
+			await clean_data(res.data)
+		})
+	},[props])
+
+	async function clean_data(data){
 		var cleaned_data = await data;
 		for (let i = 0; i < cleaned_data['getCustomFormResultsbyId'].length; i++) {
 			for (let j = 0; j < cleaned_data['getCustomFormResultsbyId'][i]['fields'].length; j++){
@@ -186,44 +185,43 @@ class CustomData extends React.Component {
 			}
 				delete cleaned_data['getCustomFormResultsbyId'][i]['fields']
 		}
-		this.setState({
-			data:cleaned_data
-		})
+		setData(cleaned_data)
 	}
 
-	componentDidMount = async() => {
-		const { client } = this.props;
-		let res = await client.query({query: allCustomResultsByFormId, variables: {id: this.props.id }});
-		await this.clean_data(res.data);
-	}
-
-	render() {
-		return(
-			<>
-			{this.state.data !== null &&
-			<>
-			<Button style={styles.button}>
-				<CSVLink data={this.state.data['getCustomFormResultsbyId']}>
-					Download
-				</CSVLink>
-			</Button>
-			<DataTable data={this.state.data['getCustomFormResultsbyId']} />
-			</>
-			}
-			</>);
-		
-	}
+	return(
+		<>
+		{data !== null &&
+		<>
+		<Button style={styles.button}>
+			<CSVLink data={data['getCustomFormResultsbyId']}>
+				Download
+			</CSVLink>
+		</Button>
+		<DataTable data={data['getCustomFormResultsbyId']} />
+		</>
+		}
+		</>
+	)
 }
 
-class AssetData extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { 
-			data: null 
-		};
-	}
+const AssetData = (props) => {
+	const [data, setData] = useState()
 
-	async clean_data(data){
+	useEffect(()=> {
+		const { client, id } = props
+		client.query({
+			query: allAssetResultsByFormId, 
+			variables: {
+				id
+			}
+		}).then(async(res)=>{
+			const cleanedData = await clean_data(res.data)
+			setData(cleanedData)
+		})
+	},[props])
+	
+
+	async function clean_data(data){
 		var cleaned_data = await data;
 		for (let i = 0; i < cleaned_data['getAssetSuppById'].length; i++) {
 			for (let j = 0; j < cleaned_data['getAssetSuppById'][i]['fields'].length; j++){
@@ -239,85 +237,71 @@ class AssetData extends React.Component {
 			}
 				delete cleaned_data['getAssetSuppById'][i]['fields']
 		}
-		this.setState({
-			data:cleaned_data
-		})
+		return cleaned_data
 	}
 
-	componentDidMount = async() => {
-		const { client } = this.props;
-		let res = await client.query({query: allAssetResultsByFormId, variables: {id: this.props.id }});
-		await this.clean_data(res.data);
-	}
-
-	render() {
-		return(
-			<>
-			{this.state.data !== null &&
-			<>
-			<Button style={styles.button}>
-				<CSVLink data={this.state.data['getAssetSuppById']}>
-					Download
-				</CSVLink>
-			</Button>
-			<DataTable data={this.state.data['getAssetSuppById']} />
-			</>
+	return(
+		<div>
+			{data &&
+				<div>
+					<Button style={styles.button}>
+						<CSVLink data={data?.getAssetSuppById}>
+							Download
+						</CSVLink>
+					</Button>
+					<DataTable data={data?.getAssetSuppById} />
+				</div>
 			}
-			</>);
-		
-	}
+		</div>);
 }
 
-class ExportPage extends React.Component {
-	constructor(props){
-		super(props)
-		this.state = {
-			type:"Demographics",
-			org:'Puente',
-		}
-	}
+const ExportPage = (props) => {
+	const [type, setType] = useState('Demographics')
+	const [, setOrg] = useState('Puente')
+	const [objectId, setObjectId] = useState()
 	
-	onSubmit = async (values) => {
-		await this.setState({
-			type: values.type,
-			org: values.organization,
-			objectId: values.objectId
-		})
+	useEffect(()=>{
+
+	},[props])
+	
+	function onSubmit(values){
+		setType(values.type)
+		setOrg(values.organization)
+		setObjectId(values.objectId)
 	}
 
-	render() {
-		let aThing;
-		if (this.state.type === "Demographics") {
-			aThing = <Dem organization={this.props.authInfo.organization} />;
-		} 
-		else if (this.state.type === "Medical Evaluation") {
-			aThing = <EvalMedical organization={this.props.authInfo.organization} />;
-		}
-		else if (this.state.type === "Environmental Health") {
-			aThing = <EnvHealth organization={this.props.authInfo.organization} />;
-		}
-		else if (this.state.type === "Vitals") {
-			aThing = <Vitals organization={this.props.authInfo.organization} />;
-		}
-		else if (this.state.type === "Medical History") {
-			aThing = <HistoryMedical organization={this.props.authInfo.organization} />;
-		}
-		else if (this.state.type === "Custom") {
-			const CustomWithApollo = withApollo(CustomData);
-			aThing = <CustomWithApollo id={this.state.objectId} />;
-		}
-		else if (this.state.type === "Asset") {
-			const AssetWithApollo = withApollo(AssetData)
-			aThing = <AssetWithApollo id={this.state.objectId} />;
-		}
+	let aThing;
+	if (type === "Demographics") {
+		aThing = <Dem organization={props.authInfo.organization} />;
+	} 
+	if (type === "Medical Evaluation") {
+		aThing = <EvalMedical organization={props.authInfo.organization} />;
+	}
+	if (type === "Environmental Health") {
+		aThing = <EnvHealth organization={props.authInfo.organization} />;
+	}
+	if (type === "Vitals") {
+		aThing = <Vitals organization={props.authInfo.organization} />;
+	}
+	if (type === "Medical History") {
+		aThing = <HistoryMedical organization={props.authInfo.organization} />;
+	}
+	if (type === "Custom") {
+		const CustomWithApollo = withApollo(CustomData);
+		aThing = <CustomWithApollo id={objectId} />;
+	}
+	if (type === "Asset") {
+		const AssetWithApollo = withApollo(AssetData)
+		aThing = <AssetWithApollo id={objectId} />;
+	}
 
 		return (
 			<>
 			<Styles style={styles.container}>
 			<h1>Data Exporter</h1>
 			<Form
-				onSubmit={this.onSubmit}
-				initialValues={{ type: 'Demographics', organization: this.props.authInfo.organization }}
+				onSubmit={onSubmit}
+				initialValues={{ type: 'Demographics', organization: props.authInfo.organization }}
 				render={({ handleSubmit, form, submitting, pristine, values }) => (
 				<form onSubmit={handleSubmit} style={{backgroundColor: styles.theme.lighter_darkbg}} >
 				<div>
@@ -349,9 +333,10 @@ class ExportPage extends React.Component {
 								<>
 								{loading && <LoadingDots />}
 								<option></option>
-									{data.getCustomFormSpec.map((opt) => {
-										if (opt.typeOfForm.includes('Custom')) return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
-									})} 
+									{data.getCustomFormSpec
+									.filter(opt => opt.typeOfForm.includes('Custom'))
+									.map(opt => <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>)
+									})
 								</>
 							);
 							}}
@@ -377,9 +362,10 @@ class ExportPage extends React.Component {
 								<>
 								{loading && <LoadingDots />}
 								<option></option>
-									{data.getCustomFormSpec.map((opt) => {
-										if (opt.typeOfForm.includes('Assets')) return <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>
-									})} 
+									{data.getCustomFormSpec
+									.filter(opt => opt.typeOfForm.includes('Assets'))
+									.map(opt => <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>)
+									})
 								</>
 							);
 							}}
@@ -413,7 +399,6 @@ class ExportPage extends React.Component {
 			</>
 
 		);
-	}
 }
 
 const mapStateToProps = (state) => {
