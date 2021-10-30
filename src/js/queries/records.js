@@ -145,8 +145,7 @@ export const allEnvs = gql`
             houseMaterial
             createdAt
             updatedAt
-            surveyingUserSupplementary,
-            floorMaterial
+            surveyingUserSupplementary
         }
     }
 `;
@@ -343,8 +342,7 @@ export const allEnvsByOrganization = gql`
             houseMaterial
             createdAt
             updatedAt
-            surveyingUserSupplementary,
-            floorMaterial
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -523,8 +521,7 @@ export const personalEnvironmentalHealth = gql`
             foodSecurity
             electricityAccess
             houseMaterial
-            surveyingUserSupplementary,
-            floorMaterial
+            surveyingUserSupplementary
         }
     }  
 `;
