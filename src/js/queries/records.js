@@ -662,3 +662,30 @@ export const allAssetResultsByFormId = gql`
         }
     }  
 `;
+
+export const allAssetIdResultsByOrganization = gql`
+    query($organization:String!){
+        getAssetIdsByOrganization(organization: $organization){
+            objectId
+            name
+            communityName
+            communityname
+            city
+            province 
+            country 
+            surveyingOrganization 
+    
+            latitude 
+            longitude
+            altitude
+    
+            createdAt
+            updatedAt
+    
+            phoneOS
+            surveyingUser
+            appVersion
+            relatedPeople
+        }
+    }
+`;
