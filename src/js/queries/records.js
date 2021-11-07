@@ -146,6 +146,7 @@ export const allEnvs = gql`
             createdAt
             updatedAt
             surveyingUserSupplementary
+            floorMaterial
         }
     }
 `;
@@ -343,6 +344,7 @@ export const allEnvsByOrganization = gql`
             createdAt
             updatedAt
             surveyingUserSupplementary
+            floorMaterial
         }
     }  
 `;
@@ -522,6 +524,7 @@ export const personalEnvironmentalHealth = gql`
             electricityAccess
             houseMaterial
             surveyingUserSupplementary
+            floorMaterial
         }
     }  
 `;
