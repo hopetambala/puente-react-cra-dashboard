@@ -536,6 +536,7 @@ export const allCustomSpecs = gql`
             name
             organizations
             typeOfForm
+            active
             fields{
                 label
                 options {
