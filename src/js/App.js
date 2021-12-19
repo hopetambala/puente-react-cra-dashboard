@@ -70,8 +70,8 @@ class App extends React.Component {
 		this.state = { 
 			visible: false
 		}
-		Parse.initialize(process.env.REACT_APP_parseAppId , process.env.REACT_APP_parseJavascriptKey);
-        Parse.serverURL = process.env.REACT_APP_parseServerUrl;
+		Parse.initialize(process.env.REACT_APP_PARSEAPPID , process.env.REACT_APP_PARSEJAVASCRIPTKEY);
+        Parse.serverURL = process.env.REACT_APP_PARSESERVERURL;
 	}
 	  
 	handleHideClick = () => this.setState({ visible: !this.state.visible })
@@ -97,7 +97,7 @@ class App extends React.Component {
 								direction="row"
 								justify="flex-end"
 								alignItems="center" >
-							{/* <Grid item>
+							<Grid item>
 								<Button as={ Link } to={`${this.props.routePath}/home`} style={{backgroundColor: styles.theme.light_darkbg, color:styles.theme.primaryAppColor}}>
 									<Typography variant="h6" className={useStyles.title} >
 										<div style={{color:styles.theme.primaryAppColor}}>
@@ -126,7 +126,7 @@ class App extends React.Component {
 										</div>
 									</Typography>
 								</Button>
-							</Grid> */}
+							</Grid>
 							<Grid item>
 								<Button as={ Link } to={`${this.props.routePath}/formcreation`} style={{backgroundColor: styles.theme.light_darkbg}}>
 									<Typography variant="h6" className={useStyles.title} >
@@ -170,13 +170,13 @@ class App extends React.Component {
 				</AppBar>
 
 				<>
-					{/* <Route 
+					<Route 
 						path={`${this.props.routePath}/home`} component={HomePage} 
 						render={(props) => <HomePage {...props} routePath="/app/home" />}
-					/> */}
+					/>
 					<Route path={`${this.props.routePath}/dataexport`}  component={ExportPage} />
-					{/* <Route path={`${this.props.routePath}/map`}  component={MapPage} /> */}
-					{/* <Route path={`${this.props.routePath}/patients`}  component={PatientList} /> */}
+					<Route path={`${this.props.routePath}/map`}  component={MapPage} />
+					<Route path={`${this.props.routePath}/patients`}  component={PatientList} />
 					<Route path={`${this.props.routePath}/formcreation`} component={FormCreator} />
 				</>
 			

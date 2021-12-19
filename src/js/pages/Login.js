@@ -17,8 +17,8 @@ class LoginForm extends React.Component{
     constructor(props){
 		super(props);
 
-		Parse.initialize(process.env.REACT_APP_parseAppId , process.env.REACT_APP_parseJavascriptKey);
-        Parse.serverURL = process.env.REACT_APP_parseServerUrl;
+		Parse.initialize(process.env.REACT_APP_PARSEAPPID , process.env.REACT_APP_PARSEJAVASCRIPTKEY);
+        Parse.serverURL = process.env.REACT_APP_PARSESERVERURL;
 
         this.state = { 
             username: '', 
@@ -56,7 +56,7 @@ class LoginForm extends React.Component{
     }
     render(){
         if (this.state.toDashboard === true) {
-            return <Redirect to='/app/formcreation' />
+            return <Redirect to='/app/dataexport' />
         }
 
         const { username, password } = this.state;

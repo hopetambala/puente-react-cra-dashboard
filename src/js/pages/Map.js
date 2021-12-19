@@ -110,7 +110,7 @@ class MapPage extends React.Component {
 				<CardContent style={{}}>
 				{Object.entries(hoveredObject).map(([key, value])=>{
                   return(
-                    <p><b>{key}: </b>{value}</p>
+                    <p><b>{key}: </b>{value||""}</p>
                     );
                 })}
 				</CardContent>

@@ -15,8 +15,11 @@ export const all_records = gql`
             educationLevel
             occupation
             communityname
+            subcounty
             city
             province
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -46,8 +49,11 @@ export const allEvalMedicals = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -77,6 +83,7 @@ export const allEvalMedicals = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }
 `;
@@ -96,8 +103,11 @@ export const allEnvs = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -112,20 +122,31 @@ export const allEnvs = gql`
             waterAccess
             typeofWaterdoyoudrink
             bathroomAccess
+            bathroomAccess_v2
             latrineAccess
             clinicAccess
+            clinicAccess_v2
             conditionoRoofinyourhouse
             conditionoFloorinyourhouse
             medicalproblemswheredoyougo
             dentalproblemswheredoyougo
             biggestproblemofcommunity
+            biggestproblemofcommunity_v2
             timesperweektrashcollected
             wheretrashleftbetweenpickups
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
+            numberofChildrenLivinginHouseUndertheAgeof5_v2
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
             createdAt
             updatedAt
+            surveyingUserSupplementary
+            floorMaterial
         }
     }
 `;
@@ -170,6 +191,9 @@ export const vitals = gql`
     getVitals{
             sex
             dob
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodPressure
@@ -195,8 +219,11 @@ export const allRecordsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -225,8 +252,11 @@ export const allVitalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -236,6 +266,9 @@ export const allVitalsByOrganization = gql`
             latitude
             longitude
 
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodOxygen
@@ -248,6 +281,7 @@ export const allVitalsByOrganization = gql`
             painLevels
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -267,8 +301,11 @@ export const allEnvsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -283,20 +320,31 @@ export const allEnvsByOrganization = gql`
             waterAccess
             typeofWaterdoyoudrink
             bathroomAccess
+            bathroomAccess_v2
             latrineAccess
             clinicAccess
+            clinicAccess_v2
             conditionoRoofinyourhouse
             conditionoFloorinyourhouse
             medicalproblemswheredoyougo
             dentalproblemswheredoyougo
             biggestproblemofcommunity
+            biggestproblemofcommunity_v2
             timesperweektrashcollected
             wheretrashleftbetweenpickups
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
+            numberofChildrenLivinginHouseUndertheAgeof5_v2
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
             createdAt
             updatedAt
+            surveyingUserSupplementary
+            floorMaterial
         }
     }  
 `;
@@ -316,8 +364,11 @@ export const allEvalMedicalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -347,6 +398,7 @@ export const allEvalMedicalsByOrganization = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -367,8 +419,11 @@ export const allHistoryMedicalsByOrganization = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -397,6 +452,9 @@ export const allHistoryMedicalsByOrganization = gql`
 export const personalVitals = gql`
     query($id:String!){
         getPersonVitals(id:$id){
+            height
+            weight
+            respRate
             bmi
             bloodSugar
             bloodOxygen
@@ -407,6 +465,7 @@ export const personalVitals = gql`
             pulse
             hemoglobinLevels
             painLevels
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -434,6 +493,7 @@ export const personalEvaluationMedical = gql`
             planOfAction
             createdAt
             updatedAt
+            surveyingUserSupplementary
         }
     }  
 `;
@@ -458,6 +518,13 @@ export const personalEnvironmentalHealth = gql`
             numberofIndividualsLivingintheHouse
             numberofChildrenLivinginHouseUndertheAgeof5
             houseownership
+            stoveType
+            govAssistance
+            foodSecurity
+            electricityAccess
+            houseMaterial
+            surveyingUserSupplementary
+            floorMaterial
         }
     }  
 `;
@@ -466,8 +533,17 @@ export const allCustomSpecs = gql`
     query{
         getCustomFormSpec{
             objectId
-            title
+            name
             organizations
+            typeOfForm
+            active
+            fields{
+                label
+                options {
+                    label
+                    value
+                }
+            }
         }
     }  
 `;
@@ -506,8 +582,11 @@ export const allCustomResultsByFormId = gql`
             educationLevel
             occupation
             communityname
-            city
-            province
+            subcounty
+            city 
+            province 
+            region
+            country
             insuranceNumber
             insuranceProvider
             clinicProvider
@@ -529,3 +608,61 @@ export const allCustomResultsByFormId = gql`
     }  
 `;
 
+
+export const allAssetResultsByOrganization = gql`
+    query($organization: String!){
+        getAssetRecordsByOrganization(organization: $organization){
+            objectId
+            altitude
+            city
+            communityName
+            latitude
+            longitude
+            createdAt
+            name
+            province
+            relatedPeople{
+              firstName
+              lastName
+              relationship
+            }
+            surveyingOrganization
+      
+      
+            FormAssetResultId
+            surveyingOrganizationAssetForm
+            createdAtAssetForm
+      
+            formSpecifications
+            title
+            description
+            fields{
+              title
+              answer
+            }
+        }
+    }  
+`;
+
+export const allAssetResultsByFormId = gql`
+    query($id:String!){
+        getAssetSuppById(id:$id){
+            objectId
+            name
+            communityName 
+            city 
+            province 
+            latitude
+            longitude 
+            altitude
+            surveyingOrganization
+            surveyingOrganizationAssetSupForm
+            createdAt
+            createdAtAssetSupForm
+            fields {
+                title
+                answer
+            }
+        }
+    }  
+`;

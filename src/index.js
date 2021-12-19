@@ -27,7 +27,7 @@ import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 const app =  document.getElementById('root')
 
 const client = new ApolloClient({
-    uri: process.env.REACT_APP_graphqlURL
+    uri: process.env.REACT_APP_GRAPHQLURL
 });
 
 const store = configureStore();
