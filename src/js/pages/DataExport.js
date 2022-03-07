@@ -23,7 +23,8 @@ import {
 	allHistoryMedicalsByOrganization,
 	allCustomSpecs,
 	allCustomResultsByFormId,
-	allAssetResultsByFormId
+	allAssetResultsByFormId,
+	allAssetIdResultsByOrganization
 } from '../queries/records';
 
 import { CSVLink } from "react-csv";
@@ -255,6 +256,32 @@ const AssetData = (props) => {
 		</div>);
 }
 
+const AssetId = ({ organization }) => (
+	<Query
+		query={allAssetIdResultsByOrganization}
+		variables={{ organization }}
+		notifyOnNetworkStatusChange
+	>
+		{({ loading, error, data, refetch, networkStatus }) => {
+		if (networkStatus === 4) return "Refetching!";
+		if (loading) return <LoadingDots />;
+		if (error) return `Error!: ${error}`;
+
+		return (
+			<>
+			<Button style={styles.button}>
+				{console.log(data)}
+					<CSVLink data={data.getAssetIdsByOrganization}>
+						Download
+					</CSVLink>
+				</Button>
+				<DataTable data={data.getAssetIdsByOrganization} />
+			</>
+		);
+		}}
+	</Query>
+);
+
 const ExportPage = (props) => {
 	const [type, setType] = useState('Demographics')
 	const [, setOrg] = useState('Puente')
@@ -294,6 +321,9 @@ const ExportPage = (props) => {
 		const AssetWithApollo = withApollo(AssetData)
 		aThing = <AssetWithApollo id={objectId} />;
 	}
+	if (type === "Asset ID") {
+		aThing = <AssetId organization={props.authInfo.organization} />;
+	}
 
 		return (
 			<>
@@ -314,6 +344,7 @@ const ExportPage = (props) => {
 						<option value="Medical History">Dem + Medical History</option>
 						<option value="Custom">Custom Forms</option>
 						<option value="Asset">Asset Forms</option>
+						<option value="Asset ID">Asset ID Forms</option>
 					</Field>
 				</div>
 				{values.type === 'Custom'  &&
