@@ -12,6 +12,7 @@ export class DataTable extends React.Component {
           { title: 'Nickname', field: 'nickname' },
           { title: 'Community', field: 'communityname' },
           { title: 'Data Collector', field: 'surveyingUser' },
+          {title: 'Profile Photo', field: 'photoURL'},
           { title: 'Created At', field: 'createdAt' },
           { title: 'Updated At', field: 'updatedAt' },
         ]}
