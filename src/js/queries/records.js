@@ -232,6 +232,7 @@ export const allRecordsByOrganization = gql`
             surveyingOrganization
             latitude
             longitude
+            pictureURL
             createdAt
             updatedAt
         }

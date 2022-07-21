@@ -93,15 +93,15 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "5.12.0",
     "@babel/core": "7.8.3",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/preset-react": "7.8.3",
     "@babel/register": "7.8.3",
+    "@fortawesome/fontawesome-free": "5.12.0",
     "chai": "4.2.0",
     "codecov": "3.6.1",
-    "enzyme-adapter-react-16": "1.15.2",
     "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
     "eslint-config-standard": "14.1.0",
     "eslint-config-standard-react": "9.2.0",
     "eslint-plugin-import": "2.20.0",
