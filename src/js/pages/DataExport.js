@@ -335,7 +335,7 @@ const ExportPage = (props) => {
 								<option></option>
 									{data.getCustomFormSpec
 									.filter(opt => opt.typeOfForm.includes('Custom'))
-									.filter(opt => opt.active !== false)
+									.filter(opt => opt.active !== "false")
 									.map(opt => <option key={opt.objectId} value={opt.objectId}>{opt.name}</option>)
 									})
 								</>
