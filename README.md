@@ -1,4 +1,4 @@
-# Puente React
+# Puente React Dashboard
 
 [![Build Status](https://travis-ci.com/hopetambala/puente-react-dashboard.svg?branch=master)](https://travis-ci.com/hopetambala/puente-react-dashboard)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/505de309137b4acabb8def858cf7a6e8)](https://www.codacy.com/app/hopetambala/puente-react-dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hopetambala/puente-react-dashboard&amp;utm_campaign=Badge_Grade)
@@ -7,7 +7,7 @@
 ![](https://img.shields.io/badge/apollo_server-✓-blueviolet.svg)
 ![](https://img.shields.io/badge/parse_server-✓-blueviolet.svg)
 
-Puente React is a web dashboard used to visualize data collected on the ground in developing countries. It's still an early prototype and it's still under development.  
+Puente React is a web dashboard used to visualize data collected on the ground in LMIC countries. It's an early prototype and it's still under development. 
 
 For more details, please see our [website](https://puente-dr.com) to see how we build technology to equip the resource-challenged.
 
@@ -16,6 +16,7 @@ Use the credentials
 Username: Test
 Password: test
 
+For the AWS Implementation, please checkout
 [AWS S3 URL](http://dashboard-react-cra-clientside.s3-website.us-east-1.amazonaws.com/)
 
 ![screencap](public/tour_high.gif)
@@ -32,7 +33,7 @@ Password: test
 
 This project is built with [ReactJS](https://reactjs.org), [Redux](https://redux.js.org/), and [Apollo's GraphQL](https://www.apollographql.com/docs/) using a [JAM Stack architecture](https://jamstack.org/). The visualizations are built using [Recharts](http://recharts.org/).
 
-This project is a bootstrapped using [create-react-app](https://github.com/facebook/create-react-app).
+This project is a bootstrapped using [create-react-app](https://github.com/facebook/create-react-app). It uses client-side rendering.
 
 Here are some quick npm commands to get started:
 
