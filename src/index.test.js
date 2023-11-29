@@ -3,7 +3,7 @@ import { assert } from 'chai';
 
 it('gets the age of the person', () => {
   const date = '1998-10-27';
-  const expectedAge = 23;
+  const expectedAge = 25;
 
   let age = get_age(date, new Date());
 
